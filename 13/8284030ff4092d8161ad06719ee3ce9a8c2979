@@ -1,0 +1,19 @@
+docs/PLAN.md
+  s_e24f93d33a272e::t_cec788483bece7 59-63
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "138284030ff4092d8161ad06719ee3ce9a8c2979",
+  "prompts": {},
+  "sessions": {
+    "s_e24f93d33a272e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "38356727-9704-4b1c-b571-7ed01b9e5764",
+        "model": "unknown"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
