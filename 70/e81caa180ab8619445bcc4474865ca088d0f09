@@ -1,0 +1,101 @@
+docs/PLAN.md
+  s_e24f93d33a272e::t_f4e480d484175d 1-161
+.claude/settings.json
+  s_e24f93d33a272e::t_50ea9d88ad4af5 1-5
+.github/workflows/check.yml
+  s_e24f93d33a272e::t_75470f77d64948 1-19
+.gitignore
+  s_e24f93d33a272e::t_0a1b06dd55b75f 1-48
+.prettierignore
+  s_e24f93d33a272e::t_932725250ea411 1-3
+.prettierrc.json
+  s_e24f93d33a272e::t_a1a3d50c4d14ae 1
+.vscode/extensions.json
+  s_e24f93d33a272e::t_4f6f273bf941c1 1
+.vscode/settings.json
+  s_e24f93d33a272e::t_9c3ed560985fe2 1-7
+AGENTS.md
+  s_e24f93d33a272e::t_06917aa01f1d8e 1-50
+README.md
+  s_e24f93d33a272e::t_29e121b2637366 1-24
+app.json
+  s_e24f93d33a272e::t_2e73647c6bf0a8 1-40
+"assets/expo.icon/Assets/expo-symbol 2.svg"
+  s_e24f93d33a272e::t_02ec20deb5db58 1-3
+assets/expo.icon/icon.json
+  s_e24f93d33a272e::t_ea66643526f9ec 1-40
+docs/SPEC.md
+  s_e24f93d33a272e::t_46616938bcd00e 1-155
+docs/api/adventurelog.d.ts
+  s_e24f93d33a272e::t_49f59a16efd3a7 1-7806
+docs/api/openapi.json
+  s_e24f93d33a272e::t_d401d27c6cc8a2 1-10336
+docs/api/swagger.json
+  s_e24f93d33a272e::t_087d0ca0f3d946 1-10131
+docs/samples/collection-detail.json
+  s_e24f93d33a272e::t_d20c58e575623d 1-3457
+docs/samples/locations-list.json
+  s_e24f93d33a272e::t_4abf34bd674f95 1-1855
+eslint.config.js
+  s_e24f93d33a272e::t_fac009be2be1b5 1-5
+package-lock.json
+  s_e24f93d33a272e::t_5f69b3c7bb7f59 1-20493
+package.json
+  s_e24f93d33a272e::t_01f3d49787ae39 1-61
+scripts/generate-api-types.sh
+  s_e24f93d33a272e::t_9fb588ec95663d 1-27
+scripts/smoke-live.ts
+  s_e24f93d33a272e::t_557fc6cdbb4844 1-33
+src/api/__tests__/client.test.ts
+  s_e24f93d33a272e::t_8083f5e0be3dda 1-66
+src/api/__tests__/schemas.test.ts
+  s_e24f93d33a272e::t_5c055c49f3cda0 1-37
+src/api/client.ts
+  s_e24f93d33a272e::t_3731f9b35104ee 1-121
+src/api/generated.ts
+  s_e24f93d33a272e::t_b6eb3dd0645e18 1-7807
+src/api/schemas.ts
+  s_e24f93d33a272e::t_9e420d949dd142 1-203
+src/app/_layout.tsx
+  s_e24f93d33a272e::t_91ad77a9bd3e8e 1-47
+src/app/index.tsx
+  s_e24f93d33a272e::t_7a8a0e0d35c89f 1-63
+src/app/login.tsx
+  s_e24f93d33a272e::t_1b55a297061816 1-103
+src/app/trip/[id].tsx
+  s_e24f93d33a272e::t_63a58b73b74214 1-59
+src/auth/session.tsx
+  s_e24f93d33a272e::t_a8399c7fd9b61b 1-62
+src/ui/__tests__/format.test.ts
+  s_e24f93d33a272e::t_362e34503efc09 1-7
+tsconfig.json
+  s_e24f93d33a272e::t_4a9ee1c21698e6 1-25
+docs/SERVER.md
+  s_e24f93d33a272e::t_a12a302db93358 1-58
+docs/api/README.md
+  s_e24f93d33a272e::t_c75c5f124a8847 1-34
+src/auth/keyStore.ts
+  s_e24f93d33a272e::t_dbd6587d026540 1-29
+src/data/queries.ts
+  s_e24f93d33a272e::t_1b534928124a75 1-35
+src/ui/format.ts
+  s_e24f93d33a272e::t_f3da44fdcd45b8 1-11
+src/ui/theme.ts
+  s_e24f93d33a272e::t_b2e8bc1efe8a2a 1-27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "70e81caa180ab8619445bcc4474865ca088d0f09",
+  "prompts": {},
+  "sessions": {
+    "s_e24f93d33a272e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "38356727-9704-4b1c-b571-7ed01b9e5764",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
