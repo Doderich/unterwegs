@@ -1,0 +1,148 @@
+docs/agents/triage-labels.md
+  s_f4cf102b7ce7ea::t_f4a97b5ce1249d 1-15
+src/data/__tests__/edits.test.ts
+  s_f4cf102b7ce7ea::t_ecd7227b524548 2,5,7-8,27,40,49,52,58
+src/data/useCollectionEdits.ts
+  s_f4cf102b7ce7ea::t_fcba47bf19ec46 7,30,56-57,60,65,68,77,123,155,175,188,194,198,200,211,213-215,233,236
+  s_f4cf102b7ce7ea::t_a3a76ae1f2d7eb 70-73
+src/data/selectors.ts
+  s_f4cf102b7ce7ea::t_3a97a32e96e74e 66
+  s_f4cf102b7ce7ea::t_ecd7227b524548 1-2,46,48,57-58,60,64-65,73,75-76,78-82,85-86,98,148-149,154,167,180,186,235,253,266,279,315,321,323,334-335,342-345
+  s_f4cf102b7ce7ea::t_a3a76ae1f2d7eb 316-319
+  s_f4cf102b7ce7ea::t_7a3f046d12fd86 15,61,202,211
+docs/agents/domain.md
+  s_f4cf102b7ce7ea::t_f4a97b5ce1249d 1-6,9-13,15-19,22-35
+  s_f4cf102b7ce7ea::t_f1e8908aeea9e8 7-8
+  s_f4cf102b7ce7ea::t_e6cd2c73b150ce 14,20-21
+scripts/smoke-live.ts
+  s_f4cf102b7ce7ea::t_ecd7227b524548 2,16-19,21
+  s_f4cf102b7ce7ea::t_7a3f046d12fd86 22
+src/ui/StatusRows.tsx
+  s_f4cf102b7ce7ea::t_ecd7227b524548 3,18
+src/app/lodging/[collectionId]/[itemId].tsx
+  s_f4cf102b7ce7ea::t_7a3f046d12fd86 69
+  s_f4cf102b7ce7ea::t_fcba47bf19ec46 4,25-26,31
+src/app/transport/[collectionId]/[itemId].tsx
+  s_f4cf102b7ce7ea::t_fcba47bf19ec46 4,26-27,32
+docs/FEATURES.md
+  s_f4cf102b7ce7ea::t_f9011b1ebc35f4 5,23,45,48,56,71,79-80,86
+  s_f4cf102b7ce7ea::t_9c5474f839de20 13-15,17-19,25-37,41-44,46,64-70,72-73
+  s_f4cf102b7ce7ea::t_67bfd4b4d59291 57
+  s_f4cf102b7ce7ea::t_bcd6104e894be4 24
+src/app/collection/[id]/lodgings.tsx
+  s_f4cf102b7ce7ea::t_7a3f046d12fd86 3,17,19,22,28,47,51,56
+src/app/day-edit/[collectionId]/[date].tsx
+  s_f4cf102b7ce7ea::t_fcba47bf19ec46 6-8,19,21-23,123-124,126,134-135,203,205
+  s_f4cf102b7ce7ea::t_7a3f046d12fd86 202,213
+  s_f4cf102b7ce7ea::t_a3a76ae1f2d7eb 47-50,99-101
+src/app/collection/[id]/days.tsx
+  s_f4cf102b7ce7ea::t_fcba47bf19ec46 3-4,15,19,51
+AGENTS.md
+  s_f4cf102b7ce7ea::t_dd6830581bfe4a 3,5,8
+  s_f4cf102b7ce7ea::t_fe8cf87a46f737 51-64
+src/ui/__tests__/format.test.ts
+  s_f4cf102b7ce7ea::t_ecd7227b524548 1,9-13
+src/data/CollectionContext.tsx
+  s_f4cf102b7ce7ea::t_a3a76ae1f2d7eb 20-24
+  s_f4cf102b7ce7ea::t_fcba47bf19ec46 3,5-6,8-12,15,17-19,27-29
+src/offline/useCollectionOffline.ts
+  s_f4cf102b7ce7ea::t_fcba47bf19ec46 4,6-7,12,15,23-24,26,33,36,40-41,43,65
+  s_f4cf102b7ce7ea::t_a3a76ae1f2d7eb 27-29
+src/offline/fileCache.ts
+  s_f4cf102b7ce7ea::t_a3a76ae1f2d7eb 8
+src/data/edits.ts
+  s_f4cf102b7ce7ea::t_ecd7227b524548 1,3,6-7,18-20,24-28,32-34,37-38,40-42,45-47,55-56,59-61,67,70,80,85,88-89
+  s_f4cf102b7ce7ea::t_a3a76ae1f2d7eb 13-16,50-54
+src/app/collection/[id]/_layout.tsx
+  s_f4cf102b7ce7ea::t_fcba47bf19ec46 4,9,12-15,19-21,24
+  s_f4cf102b7ce7ea::t_7a3f046d12fd86 40,42
+src/app/note/[collectionId]/[itemId].tsx
+  s_f4cf102b7ce7ea::t_fcba47bf19ec46 7-8,25,28,36-37
+  s_f4cf102b7ce7ea::t_a3a76ae1f2d7eb 20-24,84-86
+src/api/client.ts
+  s_f4cf102b7ce7ea::t_ecd7227b524548 13,17,180-181,196-198
+src/api/__tests__/schemas.test.ts
+  s_f4cf102b7ce7ea::t_ecd7227b524548 2,4-5,12-18,22,24-26,28,33-35
+GLOSSARY.md
+  s_f4cf102b7ce7ea::t_01bea03d29b044 1-96
+DESIGN.md
+  s_f4cf102b7ce7ea::t_356feed9b41b59 144
+  s_f4cf102b7ce7ea::t_a21fdfe5781a1e 9,119,121,143,174-175,192,214,226,234
+src/app/note-edit/[collectionId].tsx
+  s_f4cf102b7ce7ea::t_fcba47bf19ec46 7-8,21-23,26
+src/time/today.ts
+  s_f4cf102b7ce7ea::t_ecd7227b524548 1,6,9,14-15,53-54,66,68,72
+  s_f4cf102b7ce7ea::t_3fedd43abe0d79 32-51
+.impeccable/design.json
+  s_f4cf102b7ce7ea::t_0943cdc74f5b5d 16,18,57,92,139
+src/data/__tests__/selectors.test.ts
+  s_f4cf102b7ce7ea::t_ecd7227b524548 2,4,6-7,9-10,33-34,38,68,74,82
+  s_f4cf102b7ce7ea::t_7a3f046d12fd86 53-55,57
+src/app/collection/[id]/map.tsx
+  s_f4cf102b7ce7ea::t_7a3f046d12fd86 83,118,200
+  s_f4cf102b7ce7ea::t_fcba47bf19ec46 8,41,116,120-121,126,128-129
+  s_f4cf102b7ce7ea::t_a3a76ae1f2d7eb 117
+src/api/__tests__/client.test.ts
+  s_f4cf102b7ce7ea::t_ecd7227b524548 15,35,42,46,48,50-51,59,64
+src/ui/CollectionHero.tsx
+  s_f4cf102b7ce7ea::t_fcba47bf19ec46 5-6,12,16-17,19-20,25,27,34-35,38,43,52,60,81,84
+  s_f4cf102b7ce7ea::t_7a3f046d12fd86 53
+  s_f4cf102b7ce7ea::t_a3a76ae1f2d7eb 39-42,63-65
+docs/agents/issue-tracker.md
+  s_f4cf102b7ce7ea::t_f4a97b5ce1249d 1-50
+src/app/_layout.tsx
+  s_f4cf102b7ce7ea::t_7a3f046d12fd86 83
+  s_f4cf102b7ce7ea::t_ecd7227b524548 80-82,84-86
+PRODUCT.md
+  s_f4cf102b7ce7ea::t_a21fdfe5781a1e 17,25,29,38,40,49
+src/data/persist.ts
+  s_f4cf102b7ce7ea::t_ecd7227b524548 17
+src/app/collection/[id]/notes.tsx
+  s_f4cf102b7ce7ea::t_a3a76ae1f2d7eb 37-40
+  s_f4cf102b7ce7ea::t_fcba47bf19ec46 6-7,21,24,28-30,56,72,90
+src/app/index.tsx
+  s_f4cf102b7ce7ea::t_ecd7227b524548 6-7,14,21,24-25,30,37,39,53,57,75,80,85,94,97,100,102-103,106,110
+  s_f4cf102b7ce7ea::t_a3a76ae1f2d7eb 64-69,107-109
+src/time/tz.ts
+  s_f4cf102b7ce7ea::t_7a3f046d12fd86 182
+src/app/location/[collectionId]/[itemId].tsx
+  s_f4cf102b7ce7ea::t_7a3f046d12fd86 6-8,31-33,37-39,44,46,49,51-53,55-56,67,71,73,75,82-85,103,111,113-114,118,120,124,126,139-140
+src/time/__tests__/tz.test.ts
+  s_f4cf102b7ce7ea::t_ecd7227b524548 14,26,52
+src/ui/format.ts
+  s_f4cf102b7ce7ea::t_ecd7227b524548 17-18
+src/ui/icons.ts
+  s_f4cf102b7ce7ea::t_7a3f046d12fd86 14,22
+src/app/collection/[id]/index.tsx
+  s_f4cf102b7ce7ea::t_fcba47bf19ec46 8-9,11,22,41,43,92-93,146-147,161
+src/ui/entries.tsx
+  s_f4cf102b7ce7ea::t_a3a76ae1f2d7eb 28-30,56-59
+  s_f4cf102b7ce7ea::t_7a3f046d12fd86 63,167
+  s_f4cf102b7ce7ea::t_ecd7227b524548 7,26-27,35-36,54,61,64,68-69,95-96,103,107-108
+src/api/schemas.ts
+  s_f4cf102b7ce7ea::t_ecd7227b524548 167-168,207
+  s_f4cf102b7ce7ea::t_a3a76ae1f2d7eb 163
+src/data/queries.ts
+  s_f4cf102b7ce7ea::t_ecd7227b524548 7,29-30,34,36,39,41,45-47
+  s_f4cf102b7ce7ea::t_7a3f046d12fd86 44
+src/time/__tests__/today.test.ts
+  s_f4cf102b7ce7ea::t_ecd7227b524548 1,5,13,39,41,48-52
+  s_f4cf102b7ce7ea::t_4f9747e663eb9d 21-38
+  s_f4cf102b7ce7ea::t_a3a76ae1f2d7eb 20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d62973a5d4b3e65baf8328ba94461460204836c0",
+  "prompts": {},
+  "sessions": {
+    "s_f4cf102b7ce7ea": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "agent-6fc66754-9012-437c-aab4-b984bdda2039",
+        "model": "unknown"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
