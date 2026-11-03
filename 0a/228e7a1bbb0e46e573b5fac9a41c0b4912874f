@@ -1,0 +1,37 @@
+docs/PLAN.md
+  s_323a0ed2f5631b::t_b29884693ae889 125
+  s_323a0ed2f5631b::t_36e83a2c889423 130
+.env.example
+  s_323a0ed2f5631b::t_b29884693ae889 9-13
+.gitignore
+  s_323a0ed2f5631b::t_b29884693ae889 56-58
+package.json
+  s_323a0ed2f5631b::t_b29884693ae889 34,62-65,72-73
+docs/RELEASING.md
+  s_323a0ed2f5631b::t_b29884693ae889 1-38
+app.config.ts
+  s_323a0ed2f5631b::t_b29884693ae889 19-22,25-55
+  s_323a0ed2f5631b::t_7593f6b2bb666b 4
+scripts/publish-update.sh
+  s_323a0ed2f5631b::t_b29884693ae889 1-21
+docs/PLAN-V2.md
+  s_323a0ed2f5631b::t_24509a171ea0da 105-106
+package-lock.json
+  s_323a0ed2f5631b::t_e21c6b931aa616 39,9772-9777,10160-10165,10202-10240,10250-10255
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0a228e7a1bbb0e46e573b5fac9a41c0b4912874f",
+  "prompts": {},
+  "sessions": {
+    "s_323a0ed2f5631b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b7f5b2ec-3da9-4322-a899-a9d0b7c9063c",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
