@@ -1,0 +1,29 @@
+docs/PLAN-V2.md
+  s_98834f4dc758c0::t_ff0de76f1bcff5 107
+  s_98834f4dc758c0::t_38f1ab0ccadb08 103
+docs/PLAN-EDITING.md
+  s_98834f4dc758c0::t_fb33c6036d50ec 1-35,38-41,44-46,48,59-62,64-171,195-213
+  s_98834f4dc758c0::t_1b290dc341cd47 49-58,63
+  s_98834f4dc758c0::t_f278359e9794a8 36-37,42-43
+  s_98834f4dc758c0::t_4f64542341fc71 47
+  s_98834f4dc758c0::t_91f373e53f4dbb 172-194
+docs/SERVER.md
+  s_98834f4dc758c0::t_bce9b7ad91e299 99
+  s_98834f4dc758c0::t_27a1b0dd9a7559 81-98,100-101
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2ca360b529d91c9fe8f992f0c2b3afd6ef3c6406",
+  "prompts": {},
+  "sessions": {
+    "s_98834f4dc758c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5353a689-5df0-4c93-9e54-becc5904117a",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
