@@ -1,0 +1,108 @@
+src/app/index.tsx
+  s_9269ee18195ee5::t_ce0534c4b24fab 76-79
+  s_9269ee18195ee5::t_5e3f97790ee0d0 6-11,23,31-35,46-64,87-112,147-151,154
+  s_9269ee18195ee5::t_d0f72022d6bf9c 75
+src/api/client.ts
+  s_9269ee18195ee5::t_ee2bea9bdad8e7 6-7,12-16,25,63-67,206-233,240-245,248-251,256-257
+  s_9269ee18195ee5::t_c73ce8e0092348 234-239,246-247,252-255
+  s_9269ee18195ee5::t_d0e28a4e392d8e 304-305
+  s_9269ee18195ee5::t_0cd98cd8e4bd04 10-11,22-23,28,202-205,259-266
+  s_9269ee18195ee5::t_fdc1c0bd12e2eb 58-62,258
+src/app/immich/[collectionId]/[locationId].tsx
+  s_9269ee18195ee5::t_f14dd4cfce6ad0 1-36,40-46,51-111,113-120,125-142,144-145
+  s_9269ee18195ee5::t_c73ce8e0092348 37-39,47-50,112,121-124
+  s_9269ee18195ee5::t_25d2adeb08879e 143
+src/app/share/[collectionId].tsx
+  s_9269ee18195ee5::t_5e14035c892b47 1-8,10-26,28-36,45-56,69-70,84,87-99,104-114,118-144,148-183,191-208,213-215,217-229
+  s_9269ee18195ee5::t_c73ce8e0092348 37-44,57-68,71-83,85-86,100-103,115-117,145-147,184-190,209-212
+  s_9269ee18195ee5::t_25d2adeb08879e 9,27
+  s_9269ee18195ee5::t_3c4374e83bdea4 216
+src/data/__tests__/world.test.ts
+  s_9269ee18195ee5::t_776c80f8a1fae3 21-23,30-37
+  s_9269ee18195ee5::t_4f6dadb05e353e 1-20,24-29,38-118
+src/api/schemas.ts
+  s_9269ee18195ee5::t_0cd98cd8e4bd04 200-205,210-261,269,323-329,336
+  s_9269ee18195ee5::t_e215967980dc25 206-209
+  s_9269ee18195ee5::t_ee2bea9bdad8e7 37-39,163,262-268,270-322,330-335
+src/data/categories.ts
+  s_9269ee18195ee5::t_113273e0f1eb87 1-41
+src/api/__tests__/client.test.ts
+  s_9269ee18195ee5::t_776c80f8a1fae3 66-106
+  s_9269ee18195ee5::t_968451f1a3ee0d 107-162
+src/app/_layout.tsx
+  s_9269ee18195ee5::t_f14dd4cfce6ad0 84-88
+  s_9269ee18195ee5::t_ce0534c4b24fab 80-83
+src/data/calendar.ts
+  s_9269ee18195ee5::t_e87097f356b1a6 1-58
+src/app/calendar.tsx
+  s_9269ee18195ee5::t_c73ce8e0092348 62-67
+  s_9269ee18195ee5::t_e87097f356b1a6 1-61,68-98
+src/data/queries.ts
+  s_9269ee18195ee5::t_83ec9b9c5856ec 32-37,97-134
+  s_9269ee18195ee5::t_18052546010224 38-44,68-96
+src/data/useOnlineAction.ts
+  s_9269ee18195ee5::t_83ec9b9c5856ec 1-50
+src/data/useRegionEdits.ts
+  s_9269ee18195ee5::t_8c8568582acc8a 13,36,80
+  s_9269ee18195ee5::t_d36311e8267f78 1-12,14-35,37-40,43-79,81-84
+  s_9269ee18195ee5::t_e215967980dc25 41-42
+src/app/world/[code].tsx
+  s_9269ee18195ee5::t_e215967980dc25 69-71
+  s_9269ee18195ee5::t_4183a4df138f79 1-68,72-80
+src/data/world.ts
+  s_9269ee18195ee5::t_e5f6756e738353 1-89
+src/app/world/map.tsx
+  s_9269ee18195ee5::t_25d2adeb08879e 101
+  s_9269ee18195ee5::t_5ed517b61023b8 1-100,102-143
+src/data/__tests__/features.test.ts
+  s_9269ee18195ee5::t_968451f1a3ee0d 1-4,6-33,35,37,41-100
+  s_9269ee18195ee5::t_25d2adeb08879e 5
+  s_9269ee18195ee5::t_3c4374e83bdea4 34,36,38-40
+src/app/category-edit.tsx
+  s_9269ee18195ee5::t_113273e0f1eb87 1-111
+src/i18n/en.ts
+  s_9269ee18195ee5::t_e215967980dc25 283-310
+  s_9269ee18195ee5::t_c73ce8e0092348 311-382
+src/data/sharing.ts
+  s_9269ee18195ee5::t_3c4374e83bdea4 15,18
+  s_9269ee18195ee5::t_5e14035c892b47 1-9,11-14,16-17,19-30
+  s_9269ee18195ee5::t_25d2adeb08879e 10
+src/app/location/[collectionId]/[itemId].tsx
+  s_9269ee18195ee5::t_f14dd4cfce6ad0 2,6-7,39-40,83-97
+  s_9269ee18195ee5::t_72dd23205b0080 98
+src/app/world/countries.tsx
+  s_9269ee18195ee5::t_f46aab89b925e2 1-35,39-65
+  s_9269ee18195ee5::t_e215967980dc25 36-38
+src/app/collection/[id]/_layout.tsx
+  s_9269ee18195ee5::t_135e0972f96edf 1,6,21-35
+src/app/world/index.tsx
+  s_9269ee18195ee5::t_c73ce8e0092348 39-42
+  s_9269ee18195ee5::t_21fa4ef1df32a3 2-34,47-95,97-124
+  s_9269ee18195ee5::t_8ff8a96d0b86bc 1
+  s_9269ee18195ee5::t_e215967980dc25 96
+  s_9269ee18195ee5::t_f14dd4cfce6ad0 35-38,43-46
+src/ui/icons.ts
+  s_9269ee18195ee5::t_75da4024b4a3ef 60-62
+  s_9269ee18195ee5::t_135e0972f96edf 63-68
+src/app/categories/index.tsx
+  s_9269ee18195ee5::t_113273e0f1eb87 1-58
+scripts/smoke-live.ts
+  s_9269ee18195ee5::t_3c7d2e34af81f6 26-36
+  s_9269ee18195ee5::t_b098b46c9aa66e 37-52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0a8e5ffc2519b4c401e594d55de1f53b5dbdab21",
+  "prompts": {},
+  "sessions": {
+    "s_9269ee18195ee5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c422a31e-bba9-40ff-983a-0109fb7f1d71",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
