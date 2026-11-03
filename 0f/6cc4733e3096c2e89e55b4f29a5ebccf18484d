@@ -1,0 +1,55 @@
+src/app/login/web.tsx
+  s_b85f87f407113a::t_9707df6b3481db 3,11,15-19,23-24,31-32,35-36,39-63,87,91,98-99,104-117,121-125,127,132,137-139,142-150,154,168
+  s_b85f87f407113a::t_19c251b6b10638 22,33-34,65-68,75,81-85,155-159,169
+src/i18n/en.ts
+  s_b85f87f407113a::t_662be108a96d78 119
+  s_b85f87f407113a::t_eda183aec64cbf 120-122
+  s_b85f87f407113a::t_95365d13aab64a 115-118
+server/README.md
+  s_b85f87f407113a::t_8c505b2ed5d3f8 1-14
+package.json
+  s_b85f87f407113a::t_6951419e52f853 16
+src/auth/serverLogin.ts
+  s_b85f87f407113a::t_6a794bef16624a 145
+  s_b85f87f407113a::t_9ce583aa85ab44 189-191,196-209,212-213
+  s_b85f87f407113a::t_f6c89a60d2f5ea 168-188,192-195,210-211,214-219
+src/auth/__tests__/serverLogin.test.ts
+  s_b85f87f407113a::t_392b62cad8bca3 1-11,97-129
+  s_b85f87f407113a::t_8dd16a87c68028 130
+src/app/+native-intent.tsx
+  s_b85f87f407113a::t_099a85bd35fa84 1-8
+src/ui/icons.ts
+  s_b85f87f407113a::t_fbf61091d2546b 59
+src/app/login/index.tsx
+  s_b85f87f407113a::t_95365d13aab64a 9,163-172
+  s_b85f87f407113a::t_392b62cad8bca3 12,60-61
+  s_b85f87f407113a::t_d115df21d7de02 8,35-42,49-50,58-59,62-80,118,141-142,161-162
+server/unterwegs-login.html
+  s_b85f87f407113a::t_ec4e5f6dd3e0d9 9,47
+  s_b85f87f407113a::t_6d537028f0f430 1-8,10-46,48-81
+docs/SERVER.md
+  s_b85f87f407113a::t_103c3319994021 40-41
+docs/PLAN-V2.md
+  s_b85f87f407113a::t_a955c04d17e7f6 47
+src/auth/browserLogin.ts
+  s_b85f87f407113a::t_099a85bd35fa84 1-5,13-42
+  s_b85f87f407113a::t_95365d13aab64a 6-12
+package-lock.json
+  s_b85f87f407113a::t_509c62353c2b8b 21,9697-9705
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0f6cc4733e3096c2e89e55b4f29a5ebccf18484d",
+  "prompts": {},
+  "sessions": {
+    "s_b85f87f407113a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ae254324-6017-44c7-b240-8c0d827c2112",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
