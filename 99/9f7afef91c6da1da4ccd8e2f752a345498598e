@@ -1,0 +1,60 @@
+docs/PLAN-EDITING.md
+  s_e8a2d281fdb841::t_9808f913df29d6 13-14
+  s_e8a2d281fdb841::t_ce36e0e4e152a5 7-12,45
+src/app/share.tsx
+  s_e8a2d281fdb841::t_bf45d8afdb936e 1-3,6,8-11,13-16,19,21-29,31-63,65-68,71-73,75-76,80-116,119,123-126,130-132,136-140,143-199,201-212,216
+  s_e8a2d281fdb841::t_8874ec6a8c1f42 4-5,64,69-70,127-128,133
+src/data/incomingShare.ts
+  s_e8a2d281fdb841::t_bf45d8afdb936e 1-36
+docs/PLAN-V2.md
+  s_e8a2d281fdb841::t_48033b631a1864 107
+src/app/transport-edit/[collectionId].tsx
+  s_e8a2d281fdb841::t_bf45d8afdb936e 34-39,188-190
+app.json
+  s_e8a2d281fdb841::t_bf45d8afdb936e 46-52
+  s_e8a2d281fdb841::t_0d7a3129ba21cf 5,23,38-42
+src/app/lodging-edit/[collectionId].tsx
+  s_e8a2d281fdb841::t_bf45d8afdb936e 41-46,160-162
+docs/BOOKING-LINKS.md
+  s_e8a2d281fdb841::t_e3508ac34500bd 1-36
+docs/RELEASING.md
+  s_e8a2d281fdb841::t_198c5af0d6c4d4 43
+plugins/with-share-signing.js
+  s_e8a2d281fdb841::t_44e9b83ffd10db 1-28
+src/__tests__/shareSigning.test.ts
+  s_e8a2d281fdb841::t_d10c87b7069356 1-39
+src/app/location/[collectionId]/[itemId].tsx
+  s_e8a2d281fdb841::t_9e111192545cf1 17,136
+src/app/lodging/[collectionId]/[itemId].tsx
+  s_e8a2d281fdb841::t_6d58002ff48800 18,110
+src/app/transport/[collectionId]/[itemId].tsx
+  s_e8a2d281fdb841::t_a9a416ac30b4f7 19,122
+src/data/__tests__/incomingShare.test.ts
+  s_e8a2d281fdb841::t_803f31c81c0fac 1-43
+src/i18n/en.ts
+  s_e8a2d281fdb841::t_dd6b5d0022045e 3-22
+src/ui/__tests__/bookingLinks.test.ts
+  s_e8a2d281fdb841::t_953ec490e4cdd4 1-23
+src/ui/bookingLinks.ts
+  s_e8a2d281fdb841::t_aa892b5af1ec6a 1-14
+src/ui/notes.tsx
+  s_e8a2d281fdb841::t_2211088bb07039 6,12-13
+src/ui/rows.tsx
+  s_e8a2d281fdb841::t_675db9d6b5ed61 16,126-149,196,202
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "999f7afef91c6da1da4ccd8e2f752a345498598e",
+  "prompts": {},
+  "sessions": {
+    "s_e8a2d281fdb841": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a263-b474-7883-bcb5-307c6f29e8c4",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
