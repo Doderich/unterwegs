@@ -1,0 +1,19 @@
+docs/PLAN.md
+  s_323a0ed2f5631b::t_653b4cddc4b1d5 62,125,130-131
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c8be1d7011e1f3232aade636ef5d60bf77029e76",
+  "prompts": {},
+  "sessions": {
+    "s_323a0ed2f5631b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b7f5b2ec-3da9-4322-a899-a9d0b7c9063c",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
