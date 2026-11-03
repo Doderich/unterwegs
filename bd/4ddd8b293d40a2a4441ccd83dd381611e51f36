@@ -1,0 +1,30 @@
+README.md
+  s_323a0ed2f5631b::t_8add3e64d4450e 5,9,13-16,19,25
+.env.example
+  s_323a0ed2f5631b::t_e858b42b137348 14-15
+package.json
+  s_323a0ed2f5631b::t_e858b42b137348 66,74-75
+  s_323a0ed2f5631b::t_bbdbb2fdf4ec1d 63,65
+scripts/publish-update.sh
+  s_323a0ed2f5631b::t_0799a0401fd761 3-4,19-29,31
+docs/RELEASING.md
+  s_323a0ed2f5631b::t_aa32bf7e869625 1,3,5,7,9-14,16-17,19,21,23-29,31-37,39,41-54,56,60
+AGENTS.md
+  s_323a0ed2f5631b::t_8add3e64d4450e 8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bd4ddd8b293d40a2a4441ccd83dd381611e51f36",
+  "prompts": {},
+  "sessions": {
+    "s_323a0ed2f5631b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b7f5b2ec-3da9-4322-a899-a9d0b7c9063c",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
