@@ -1,0 +1,214 @@
+src/i18n/en.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 3-4,11-34,58-60,65,67,69-71,77,80-81,86-88,94-95,99,102,109,112-114,122-124,132,135,142,145,150-152,155-156,159,167,171-176,182-186,190-191,195,205-213,223,225-226,237,245-246,252,254-256,264,266,272,274,279,283-285,291,294-309,331-377
+  s_9269ee18195ee5::t_c6f416908b3198 453-454
+  s_9269ee18195ee5::t_b9ba914cd60cbd 5-10
+src/ui/formValues.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-38
+scripts/check-form-input-focus.py
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-46
+src/api/client.ts
+  s_9269ee18195ee5::t_2ca6188459a8a4 130-131,370,372
+  s_9269ee18195ee5::t_cc5568265ecfeb 6,8,11-16,41-101,186-187,189-190,215-221,235,243-270,303-305,307-326,331-332,334-345,430-448
+  s_9269ee18195ee5::t_a8d92a5046417d 327-330,333,348-364,385-386,402
+src/app/collection/[id]/_layout.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 3,6-7,23-46,49-80,82,90-93,95-134
+  s_9269ee18195ee5::t_20073a373e9d13 81,83-89,94
+src/app/day-edit/[collectionId]/[date].tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1,7,10-11,33,68,72,104-127,137-138,224,229-236,238,240,248,259,262
+src/offline/fileCache.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 87-101
+src/ui/FormHost.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-14
+src/app/_layout.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 95-107
+src/ui/FormHost.android.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-17
+src/ui/Select.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 37,41
+src/ui/notes.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 6,12-13
+src/ui/SheetRow.ios.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-57
+src/ui/useInitialInputFocus.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-7
+src/app/location-edit/[collectionId].tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-244
+src/app/collection/[id]/lodgings.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 2,5,23,25,64-79
+plugins/with-share-signing.js
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-28
+src/app/location/[collectionId]/[itemId].tsx
+  s_9269ee18195ee5::t_bdeb0c14b9bf54 104
+  s_9269ee18195ee5::t_cc5568265ecfeb 11,13-14,18,41-42,66-70,75-86,94,97,132,135,143-147,155,165,168,173
+src/data/__tests__/selectors.test.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 94-186
+src/data/useCollectionEdits.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 6-17,21,29-30,32,34-40,61,92,96,104-109,210-211,214-350,352-353
+src/ui/media.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-144
+src/data/uploads.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-65
+app.json
+  s_9269ee18195ee5::t_cc5568265ecfeb 5,23,34-55,60,64-77
+src/app/transport-edit/[collectionId].tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-367
+src/ui/MarkdownPreview.ios.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-26
+src/time/zones.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-468
+src/data/__tests__/incomingShare.test.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-43
+src/ui/DateTimeRow.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-100
+src/data/useCollectionsActions.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-35,37-56,60-63
+  s_9269ee18195ee5::t_20073a373e9d13 36,57-59
+src/app/collection-share/[collectionId].tsx
+  s_9269ee18195ee5::t_20073a373e9d13 1,3,5,11,32,37,119-144
+  s_9269ee18195ee5::t_cc5568265ecfeb 2,4,6-10,12-31,33-36,38-118,145-150
+src/app/collection-edit.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-154
+src/app/note-edit/[collectionId].tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1,10-12,31,37,99,106,109,137,142-143
+src/ui/rows.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 3-4,16,126-149,196,202,253-275
+docs/FEATURES.md
+  s_9269ee18195ee5::t_a5d466f1016fa0 5,13-15,17-19,41-49,59-66,82-85,87-88
+src/ui/TextPrompt.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-70
+scripts/smoke-live.ts
+  s_9269ee18195ee5::t_2ca6188459a8a4 38,40,44,47
+src/api/__tests__/client.test.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 153-237
+  s_9269ee18195ee5::t_b9ba914cd60cbd 117
+  s_9269ee18195ee5::t_2ca6188459a8a4 108
+src/time/zonedInput.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-104
+src/data/selectors.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 87-89,217-316
+  s_9269ee18195ee5::t_fb11bccca7c720 317
+src/data/edits.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-13,35-53,56-58,64-148
+  s_9269ee18195ee5::t_0f473dc08bdd35 149
+src/app/note/[collectionId]/[itemId].tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1,10,13,32,101,121-130,174,176,193
+src/app/share.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-219
+src/ui/MarkdownPreview.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-36
+scripts/check-form-keyboard.py
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-60
+src/ui/PlaceSearch.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-145
+src/ui/markdownEditing.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-85
+src/app/category-edit.tsx
+  s_9269ee18195ee5::t_bdeb0c14b9bf54 7,20,32
+package.json
+  s_9269ee18195ee5::t_cc5568265ecfeb 19,25-26,28
+src/app/+native-intent.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 4,8
+src/app/lodging/[collectionId]/[itemId].tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 2,5,8,10,12,18,32-34,51-62,69,72,110,120,123,128
+src/app/visit-edit/[collectionId]/[locationId].tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-173
+docs/SERVER.md
+  s_9269ee18195ee5::t_a5d466f1016fa0 7-13,25-31,49-59,70-79,85-100,106-114,118-137
+  s_9269ee18195ee5::t_17489ebc0634ec 81-84
+  s_9269ee18195ee5::t_4d681b1599cd69 80
+src/ui/ActionSheet.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1,3-6,11,35-77,79-85
+src/ui/icons.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 60-73
+src/app/transport/[collectionId]/[itemId].tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 2,5,8,10,13,19,33-35,53-64,74,77,122,130,133,138
+src/ui/SheetRow.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-2
+docs/UI-NOTES.md
+  s_9269ee18195ee5::t_a5d466f1016fa0 87-94
+  s_9269ee18195ee5::t_cc5a90c5cc213e 1-86,95-110
+src/data/incomingShare.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-36
+docs/adr/0006-times-in-their-own-time-zone.md
+  s_9269ee18195ee5::t_9f58019ca56925 3
+src/__tests__/markdownEditing.test.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-64
+DESIGN.md
+  s_9269ee18195ee5::t_84c1047dff478e 247
+src/app/lodging-edit/[collectionId].tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-320
+src/ui/forms.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-60
+src/time/__tests__/tz.test.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 63-68
+src/data/__tests__/edits.test.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 4-17,74-137
+src/app/collection/[id]/days.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 2,4-5,10-11,21-22,25-55,58-118
+src/app/categories/index.tsx
+  s_9269ee18195ee5::t_bdeb0c14b9bf54 5,16
+src/app/gallery.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 2,4,6-8,10,12-13,15,17,20-67,76-85,93
+src/data/queries.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 55
+  s_9269ee18195ee5::t_fea784e71feba4 32,34-35,70-87,118-119,121
+src/api/schemas.ts
+  s_9269ee18195ee5::t_7d4989f4837db8 211-212
+  s_9269ee18195ee5::t_cc5568265ecfeb 19-20,176-179,190-210,213-227,374-377
+src/app/index.tsx
+  s_9269ee18195ee5::t_a4af96f4623b12 6
+  s_9269ee18195ee5::t_cc5568265ecfeb 4,7,27,48-65,70-76,90,92-111
+  s_9269ee18195ee5::t_95e09aa50fb05c 19
+src/time/tz.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 186-189
+src/ui/ImageStrip.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 9-13,27-32
+src/__tests__/shareSigning.test.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-39
+src/ui/__tests__/forms.test.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-23
+scripts/check-sheet-rows.py
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-26
+src/app/login/index.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1,12-13,51,131,189,256
+src/app/immich/[collectionId]/[locationId].tsx
+  s_9269ee18195ee5::t_bdeb0c14b9bf54 72
+AGENTS.md
+  s_9269ee18195ee5::t_84c1047dff478e 5
+src/ui/bookingLinks.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-14
+src/time/__tests__/zonedInput.test.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-76
+docs/RELEASING.md
+  s_9269ee18195ee5::t_cc5568265ecfeb 43
+src/ui/MarkdownEditor.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-270
+src/ui/__tests__/bookingLinks.test.ts
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-23
+docs/ROADMAP.md
+  s_9269ee18195ee5::t_9f58019ca56925 28,31,39-41,49-51,67
+src/data/__tests__/features.test.ts
+  s_9269ee18195ee5::t_95c9ef99383fdc 1,28-29,31
+scripts/check-markdown-editor.py
+  s_9269ee18195ee5::t_cc5568265ecfeb 1-65
+src/app/settings.tsx
+  s_9269ee18195ee5::t_cc5568265ecfeb 1,5-6,15
+package-lock.json
+  s_9269ee18195ee5::t_65e788fc62de2f 24,30-31,33,9776-9784,9852-9886,9908-9927
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0ac64383bc19a010ad49365a2cf9fa060853de03",
+  "prompts": {},
+  "sessions": {
+    "s_9269ee18195ee5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c422a31e-bba9-40ff-983a-0109fb7f1d71",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
