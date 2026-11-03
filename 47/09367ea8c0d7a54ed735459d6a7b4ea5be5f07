@@ -1,0 +1,50 @@
+scripts/check-form-keyboard.py
+  s_e8a2d281fdb841::t_761be79f280c2e 31,40-41,46
+  s_e8a2d281fdb841::t_9cd82055a61ae1 1-26,28-30,32,42-45,47-55
+  s_e8a2d281fdb841::t_35084518c8d3ed 27
+  s_e8a2d281fdb841::t_0218563d7b49bb 33-39
+  s_e8a2d281fdb841::t_0132ddea04b9c9 56-60
+src/app/collection-edit.tsx
+  s_e8a2d281fdb841::t_761be79f280c2e 137
+  s_e8a2d281fdb841::t_f153f891b8710c 1,10,19,32,109,116,152
+docs/KEYBOARD.md
+  s_e8a2d281fdb841::t_00ff791fd58ab7 1-17
+src/app/day-edit/[collectionId]/[date].tsx
+  s_e8a2d281fdb841::t_3d7a54151e7970 1,10,66,141
+src/app/location-edit/[collectionId].tsx
+  s_e8a2d281fdb841::t_c9163709988c96 1,11,160,235
+src/app/lodging-edit/[collectionId].tsx
+  s_e8a2d281fdb841::t_658db889465cf1 1,11-12,69,209,216,306
+src/app/login/index.tsx
+  s_e8a2d281fdb841::t_048ae874092767 1,12-13,51,131,189,256
+src/app/note-edit/[collectionId].tsx
+  s_e8a2d281fdb841::t_67189eb44e7445 1,10-11,30,97,104,148
+src/app/note/[collectionId]/[itemId].tsx
+  s_e8a2d281fdb841::t_83c9db66210b1e 1,10,101,174
+src/app/transport-edit/[collectionId].tsx
+  s_e8a2d281fdb841::t_307cdef09f37ad 1,11,263,354
+src/app/visit-edit/[collectionId]/[locationId].tsx
+  s_e8a2d281fdb841::t_d58f1ca43a9551 1,10,133,166
+src/ui/FormHost.android.tsx
+  s_e8a2d281fdb841::t_aae55748c9d8ec 1-17
+src/ui/FormHost.tsx
+  s_e8a2d281fdb841::t_d2bb3ed481eaa9 1-7
+src/ui/useInitialInputFocus.ts
+  s_e8a2d281fdb841::t_e9d8abda02ea4e 1-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4709367ea8c0d7a54ed735459d6a7b4ea5be5f07",
+  "prompts": {},
+  "sessions": {
+    "s_e8a2d281fdb841": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a263-b474-7883-bcb5-307c6f29e8c4",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
