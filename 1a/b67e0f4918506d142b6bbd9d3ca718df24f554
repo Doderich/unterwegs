@@ -1,0 +1,77 @@
+src/__tests__/markdownEditing.test.ts
+  s_e8a2d281fdb841::t_7f5448b093a632 1-7,10-16,19-43,50-52,59,63-64
+  s_e8a2d281fdb841::t_4919c993078e32 8-9,17-18,44-49
+  s_e8a2d281fdb841::t_881a06b7fb509a 53-58,60-62
+src/app/location-edit/[collectionId].tsx
+  s_e8a2d281fdb841::t_ef874c58de9c87 12,63,215,237
+  s_e8a2d281fdb841::t_dc308a856ffdb2 231
+src/app/note-edit/[collectionId].tsx
+  s_e8a2d281fdb841::t_dc308a856ffdb2 137
+  s_e8a2d281fdb841::t_ede74faa010351 109
+  s_e8a2d281fdb841::t_ef874c58de9c87 11,37,143
+src/app/transport-edit/[collectionId].tsx
+  s_e8a2d281fdb841::t_ede74faa010351 332
+  s_e8a2d281fdb841::t_dc308a856ffdb2 347
+  s_e8a2d281fdb841::t_ef874c58de9c87 12,92,353
+src/ui/MarkdownPreview.tsx
+  s_e8a2d281fdb841::t_6d42556da76ff6 1-15,20,28-36
+  s_e8a2d281fdb841::t_4919c993078e32 16-19,21-27
+src/ui/markdownEditing.ts
+  s_e8a2d281fdb841::t_4919c993078e32 25-31,44-48,73,80
+  s_e8a2d281fdb841::t_6d42556da76ff6 1-14,16-24,32-43,49-64,66-69,81-85
+  s_e8a2d281fdb841::t_716c55214551e7 15,65,70-72,74-79
+src/ui/MarkdownEditor.tsx
+  s_e8a2d281fdb841::t_1f2a5ca1ac8b9a 26,80,82,111,121-126,128-146,148,154
+  s_e8a2d281fdb841::t_03f1ba20366fda 149-153
+  s_e8a2d281fdb841::t_784e063373137e 2,90,92-94,113,117-120,127,147,181-184
+  s_e8a2d281fdb841::t_d73b5269f07a82 81,84-85
+  s_e8a2d281fdb841::t_ef874c58de9c87 20
+  s_e8a2d281fdb841::t_4919c993078e32 4-12,31-34,43-46,57-60,66-75,83,158-163,166-178,188-194,214-217,219-225,227-239,256-261,264
+  s_e8a2d281fdb841::t_f97b66b9966a85 1,3,13-19,21-25,27-30,35-42,47-56,61-65,76-79,87-89,95,97-110,112,114-116,155-157,164-165,179-180,185-187,195-204,207-213,218,226,240-255,262-263,265-270
+  s_e8a2d281fdb841::t_dc308a856ffdb2 205-206
+  s_e8a2d281fdb841::t_516079dadf9c90 91,96
+  s_e8a2d281fdb841::t_d8ad342ecf09df 86
+src/ui/MarkdownPreview.ios.tsx
+  s_e8a2d281fdb841::t_4919c993078e32 13-20
+  s_e8a2d281fdb841::t_6d42556da76ff6 1-12,21-26
+docs/MARKDOWN.md
+  s_e8a2d281fdb841::t_77041ed9f8ae6a 1-20
+src/app/collection-edit.tsx
+  s_e8a2d281fdb841::t_ef874c58de9c87 11,40,131,149
+src/ui/FormHost.tsx
+  s_e8a2d281fdb841::t_dc308a856ffdb2 4-5,8-13
+src/ui/ActionSheet.tsx
+  s_e8a2d281fdb841::t_f97b66b9966a85 7
+  s_e8a2d281fdb841::t_4919c993078e32 77
+  s_e8a2d281fdb841::t_dc308a856ffdb2 3-6,35-76,78-81,83-89
+src/app/lodging-edit/[collectionId].tsx
+  s_e8a2d281fdb841::t_ef874c58de9c87 12,93,307
+  s_e8a2d281fdb841::t_ede74faa010351 286
+  s_e8a2d281fdb841::t_dc308a856ffdb2 301
+src/i18n/en.ts
+  s_e8a2d281fdb841::t_ef874c58de9c87 3-14
+src/app/day-edit/[collectionId]/[date].tsx
+  s_e8a2d281fdb841::t_ef874c58de9c87 11,33,72,138
+scripts/check-markdown-editor.py
+  s_e8a2d281fdb841::t_b495ba14439659 44
+  s_e8a2d281fdb841::t_899e01893b8070 52,57-65
+  s_e8a2d281fdb841::t_d1d1e35bdd1275 1-43,45-51,53-56
+src/ui/Select.tsx
+  s_e8a2d281fdb841::t_1e17343ff8f2e0 37,41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1ab67e0f4918506d142b6bbd9d3ca718df24f554",
+  "prompts": {},
+  "sessions": {
+    "s_e8a2d281fdb841": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a263-b474-7883-bcb5-307c6f29e8c4",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
