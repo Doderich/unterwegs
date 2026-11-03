@@ -1,0 +1,47 @@
+docs/PLAN-V2.md
+  s_9269ee18195ee5::t_f078a166808a1f 3
+  s_9269ee18195ee5::t_aea1545deb078a 104,106-109,111,113-114,118-120,147
+  s_9269ee18195ee5::t_a408bc704bfd16 5,91-103,105,110,112,115-117,121
+docs/adr/0001-data-beyond-one-collection.md
+  s_9269ee18195ee5::t_13afd15d4876fd 1-9
+AGENTS.md
+  s_9269ee18195ee5::t_d1d5388284189f 5
+PRODUCT.md
+  s_9269ee18195ee5::t_f078a166808a1f 17,38,40,54
+README.md
+  s_9269ee18195ee5::t_f078a166808a1f 3,5,25
+docs/PLAN.md
+  s_9269ee18195ee5::t_f078a166808a1f 61
+docs/SERVER.md
+  s_9269ee18195ee5::t_aea1545deb078a 97-119
+  s_9269ee18195ee5::t_a408bc704bfd16 64,81-95
+  s_9269ee18195ee5::t_1275b097455113 96,120
+GLOSSARY.md
+  s_9269ee18195ee5::t_13afd15d4876fd 14-16,18-29,38,64,90-102
+  s_9269ee18195ee5::t_c593b4df565195 103
+docs/FEATURES.md
+  s_9269ee18195ee5::t_f078a166808a1f 3
+  s_9269ee18195ee5::t_aea1545deb078a 5,54-64,86,97-98
+  s_9269ee18195ee5::t_a408bc704bfd16 50-53,87,92
+DESIGN.md
+  s_9269ee18195ee5::t_f078a166808a1f 119,145,233-247
+  s_9269ee18195ee5::t_a139fbafcb2c5b 248
+docs/SPEC.md
+  s_9269ee18195ee5::t_f078a166808a1f 5-6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "16b2092ee56ead79fa801cebcdf908b592086755",
+  "prompts": {},
+  "sessions": {
+    "s_9269ee18195ee5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c422a31e-bba9-40ff-983a-0109fb7f1d71",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
