@@ -1,0 +1,23 @@
+docs/PLAN.md
+  s_323a0ed2f5631b::t_85e8ee36dbb471 125
+docs/RELEASING.md
+  s_323a0ed2f5631b::t_21320883ac51a7 12-13,15-17
+package.json
+  s_323a0ed2f5631b::t_e51c4cfb35a397 65
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8031139f4d06f94772f73bde6bc49a660f034022",
+  "prompts": {},
+  "sessions": {
+    "s_323a0ed2f5631b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b7f5b2ec-3da9-4322-a899-a9d0b7c9063c",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
