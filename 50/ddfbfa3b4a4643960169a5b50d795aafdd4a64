@@ -1,0 +1,885 @@
+src/ui/Text.ios.tsx
+  s_f4cf102b7ce7ea::t_64498806298f86 44-46,49
+  s_f4cf102b7ce7ea::t_d78b433fd030ff 1-43,47-48,50-53
+src/ui/entries.tsx
+  s_f4cf102b7ce7ea::t_3b52753e8c8e12 6
+  s_f4cf102b7ce7ea::t_db43f65667a342 103,111,123,136,148,164
+  s_e24f93d33a272e::t_3032bcac2469e5 12,107-108,119-120,160-161
+  s_f4cf102b7ce7ea::t_647c13548336d8 77-83
+  s_f4cf102b7ce7ea::t_d7bdac43a6463b 52
+  s_f4cf102b7ce7ea::t_2468f72a0c4121 128-135,137-147,149-152
+  s_f4cf102b7ce7ea::t_5613b4e0eda3d5 8,11,29,36-37,39,41,69-70
+  s_f4cf102b7ce7ea::t_20c6e461577e43 57-68,71-76,84-87
+  s_f4cf102b7ce7ea::t_d0b68c52092910 94-101
+src/ui/RefreshableFieldGroup.tsx
+  s_f4cf102b7ce7ea::t_c200a143662d89 1-9
+.agents/skills/grill-with-docs/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-7
+src/i18n/__tests__/en.test.ts
+  s_f4cf102b7ce7ea::t_64498806298f86 19-21
+  s_f4cf102b7ce7ea::t_338f083ce2df56 1-18,22-74
+.agents/skills/impeccable/reference/component-review.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-63
+src/ui/ActionSheet.tsx
+  s_f4cf102b7ce7ea::t_7ef843d848e5e8 2-6,8-45,54-73
+  s_f4cf102b7ce7ea::t_837de5c9a52d87 46,53
+  s_f4cf102b7ce7ea::t_f052d2ee5be00a 47-52
+  s_f4cf102b7ce7ea::t_64498806298f86 1,7
+.agents/skills/tdd/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-3
+.agents/skills/impeccable/reference/operate.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-61
+.agents/skills/impeccable/reference/hooks.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-114
+.agents/skills/to-tickets/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+.agents/skills/migrate-to-shoehorn/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-118
+.agents/skills/setup-pre-commit/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-91
+.agents/skills/setup-ts-deep-modules/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-102
+src/ui/icons.ts
+  s_f4cf102b7ce7ea::t_5613b4e0eda3d5 1,137,141-142,146
+  s_f4cf102b7ce7ea::t_43afc563e1f985 114-122,125-135,140,145
+  s_f4cf102b7ce7ea::t_fe9883675a5746 138-139,143-144,147-148
+  s_f4cf102b7ce7ea::t_25246be3742c14 45-51
+  s_f4cf102b7ce7ea::t_44896f3b86db48 79-83
+  s_f4cf102b7ce7ea::t_bfdc41d4de2008 52-58
+  s_e24f93d33a272e::t_6c85b9bc562fa9 43-44
+.agents/skills/impeccable/scripts/live-browser-session.js
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-183
+.agents/skills/impeccable/reference/degraded/documenter.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-24
+.agents/skills/domain-modeling/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-74
+src/ui/Text.tsx
+  s_f4cf102b7ce7ea::t_dcec5428fd3fb4 1-2
+.impeccable/config.json
+  s_f4cf102b7ce7ea::t_a0a0f5740ea595 1-3
+.agents/skills/impeccable/reference/mode-persuade.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-19
+.agents/skills/impeccable/reference/overdrive.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-127
+src/app/login/web.tsx
+  s_f4cf102b7ce7ea::t_4b174716db9977 9,68
+  s_f4cf102b7ce7ea::t_308f80291da41e 22,77
+  s_f4cf102b7ce7ea::t_30a7b8580917d7 60,65
+  s_f4cf102b7ce7ea::t_64498806298f86 1,12
+  s_f4cf102b7ce7ea::t_e78e23e0c465f0 2-6,11,13-21,23-49,51-59,61-64,66-67,69-76,78-100
+  s_f4cf102b7ce7ea::t_9e4f65f067cc07 10,50
+  s_f4cf102b7ce7ea::t_c1b8ffa59bd8f0 7-8
+src/app/login/index.tsx
+  s_f4cf102b7ce7ea::t_64498806298f86 1,14
+  s_f4cf102b7ce7ea::t_64376bf1319e69 2,6,8,16-19,24-37,39-60,62-65,67,69,72,79,83-91,102-106,108,110-115,117,119-120,128-129,131-134,136-138,141,143-146,148-157,159-165,167-173,175-182,186-189,200,205-206,208
+  s_f4cf102b7ce7ea::t_30a7b8580917d7 61,74-75,77,97,107,109,116,118,124,126,130,135,174,203,211
+  s_f4cf102b7ce7ea::t_4b174716db9977 101,142,147,158,166,183,196
+  s_f4cf102b7ce7ea::t_fad2681082d90d 10-11,76
+.agents/skills/impeccable/reference/region-map.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-26
+.agents/skills/impeccable/reference/degraded/asset-producer.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-44
+src/app/settings.tsx
+  s_e24f93d33a272e::t_8c4e625f98356e 25
+  s_f4cf102b7ce7ea::t_05afd31b7b509d 2,185-188,201
+  s_f4cf102b7ce7ea::t_4b174716db9977 89-90,92
+  s_f4cf102b7ce7ea::t_acfe4e286b465f 5-6,10,12-14,26,31-67,69-81,83-84,88,100-119,121-149,151-163,165-184,189-200,202-204
+  s_f4cf102b7ce7ea::t_64498806298f86 1,17
+  s_f4cf102b7ce7ea::t_248effdab9878c 15
+.agents/skills/teach/RESOURCES-FORMAT.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-32
+.agents/skills/implement-spec/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-42
+.agents/skills/impeccable/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-4
+.agents/skills/impeccable/scripts/engine-checksums.txt
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-9
+src/data/edits.ts
+  s_f4cf102b7ce7ea::t_6a80fac06cf086 1-90
+.agents/skills/impeccable/agents/impeccable_asset_producer.toml
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-47
+src/ui/RefreshableFieldGroup.ios.tsx
+  s_f4cf102b7ce7ea::t_1f1b1eeca84f0a 1-9
+.agents/skills/impeccable/reference/routing.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-24
+src/app/gallery.tsx
+  s_f4cf102b7ce7ea::t_30a7b8580917d7 6,17-18,20-21
+  s_f4cf102b7ce7ea::t_0ff773bd9b466b 19
+.agents/skills/codebase-design/DESIGN-IT-TWICE.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-44
+.agents/skills/impeccable/reference/clarify.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-94
+.agents/skills/writing-beats/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+.agents/skills/impeccable/reference/mode-read.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-21
+modules/text-size/ios/TextSizeModule.swift
+  s_f4cf102b7ce7ea::t_a376c1e574e08f 1-27
+.agents/skills/impeccable/scripts/data/font-index-failures.json
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-121
+.agents/skills/setup-matt-pocock-skills/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+.agents/skills/writing-shape/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-79
+.agents/skills/impeccable/reference/document.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-416
+.agents/skills/impeccable/reference/degraded/finish-reviewer.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-38
+.agents/skills/impeccable/reference/harden.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-362
+.agents/skills/setup-matt-pocock-skills/triage-labels.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-15
+.agents/skills/impeccable/reference/audit.native.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-139
+src/app/trip/[id]/notes.tsx
+  s_f4cf102b7ce7ea::t_64498806298f86 1,13
+  s_f4cf102b7ce7ea::t_4af98a76b01538 5,16,34,44,62,78,83,94
+  s_f4cf102b7ce7ea::t_837de5c9a52d87 36-37
+  s_f4cf102b7ce7ea::t_844a2560ee5fb0 2-3,7,24-25,32-33,35,38-39,79-82,84-87,89-93,95
+  s_f4cf102b7ce7ea::t_e83d2a52df7d73 88
+  s_f4cf102b7ce7ea::t_f3cdf1815c3778 4,6,8-12,14-15,17-23,26-31,40-43,45-61,63-77,96-101
+modules/text-size/ios/TextSize.podspec
+  s_f4cf102b7ce7ea::t_0f40259f070e00 1-19
+src/settings/haptics.ts
+  s_f4cf102b7ce7ea::t_fac9ad8aca8b5c 1-16
+.agents/skills/loop-me/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-32
+.agents/skills/impeccable/reference/ios.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-51
+.agents/skills/setup-matt-pocock-skills/issue-tracker-local.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-30
+skills-lock.json
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-3,76-80,237-239
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 4-75,81-236
+.agents/skills/impeccable/reference/new-work.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-152
+docs/PLAN.md
+  s_f4cf102b7ce7ea::t_0ec5c86be4bbf9 62
+  s_f4cf102b7ce7ea::t_1fa0c577076d86 3
+.agents/skills/tdd/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-38
+.agents/skills/impeccable/reference/critique.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-841
+.agents/skills/pr/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-3
+modules/text-size/android/build/intermediates/manifest_merge_blame_file/debug/processDebugManifest/manifest-merger-blame-debug-report.txt
+  s_f4cf102b7ce7ea::t_164b50ca6d059d 1-9
+src/i18n/index.ts
+  s_f4cf102b7ce7ea::t_cca7102a556a15 4-5,41
+  s_f4cf102b7ce7ea::t_85b225caac07b0 1-3,6-40,42-44
+src/ui/__tests__/format.test.ts
+  s_f4cf102b7ce7ea::t_a4dbb71dddfe57 1,8-13
+  s_f4cf102b7ce7ea::t_ceee3b36e2d650 14
+.agents/skills/impeccable/reference/quieter.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-99
+src/i18n/en.ts
+  s_f4cf102b7ce7ea::t_64498806298f86 221-222
+  s_f4cf102b7ce7ea::t_970832eb989c82 1-220,223-274
+.agents/skills/ask-matt/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-97
+.agents/skills/code-review/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-3
+.agents/skills/impeccable/scripts/impeccable.cmd
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-306
+.agents/skills/git-guardrails-claude-code/scripts/block-dangerous-git.sh
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-25
+src/ui/CardRow.tsx
+  s_f4cf102b7ce7ea::t_5f3fe404291114 1,3,6-10,12-13
+  s_f4cf102b7ce7ea::t_79796cc4e68632 4-5
+  s_f4cf102b7ce7ea::t_8f4ff5e63bac5d 2,11
+.agents/skills/implement/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+.agents/skills/impeccable/reference/adapt.native.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-58
+modules/text-size/index.ts
+  s_f4cf102b7ce7ea::t_6b47ef5b381f60 1-5,8-11
+  s_f4cf102b7ce7ea::t_1d23173d9a090f 6-7
+src/auth/__tests__/serverLogin.test.ts
+  s_f4cf102b7ce7ea::t_742287885b072a 1-86
+src/ui/CardRow.ios.tsx
+  s_f4cf102b7ce7ea::t_260ee7f31ebdab 1,3,5,8-9,11-12,16-18
+  s_f4cf102b7ce7ea::t_79796cc4e68632 6-7,14
+  s_f4cf102b7ce7ea::t_34dba9f8598896 2,13,15
+  s_f4cf102b7ce7ea::t_8f4ff5e63bac5d 4,10
+.agents/skills/impeccable/reference/optimize.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-257
+.agents/skills/impeccable/scripts/data/font-index.json
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1
+modules/text-size/android/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/AndroidManifest.xml
+  s_f4cf102b7ce7ea::t_164b50ca6d059d 1-7
+src/app/trip/[id]/_layout.tsx
+  s_f4cf102b7ce7ea::t_2f6b7f665083ad 46-47
+  s_f4cf102b7ce7ea::t_844a2560ee5fb0 44
+  s_f4cf102b7ce7ea::t_4af98a76b01538 29,33,37,41,45
+  s_f4cf102b7ce7ea::t_0619e08b9ab0aa 5
+src/ui/StatusRows.tsx
+  s_f4cf102b7ce7ea::t_64498806298f86 1,4,7
+  s_f4cf102b7ce7ea::t_42552eea22f54b 10,20,22,26-27,33,39
+src/ui/format.ts
+  s_f4cf102b7ce7ea::t_cca7102a556a15 1,20-21,24
+  s_f4cf102b7ce7ea::t_a4dbb71dddfe57 2-3
+  s_f4cf102b7ce7ea::t_81862cd632c068 4,8-9,35
+  s_f4cf102b7ce7ea::t_db69062f6e8c3e 17-19,22-23,25-26
+.agents/skills/impeccable/reference/colorize.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-86
+modules/text-size/android/build.gradle
+  s_f4cf102b7ce7ea::t_6834d288b1158a 1-19
+.agents/skills/impeccable/reference/mode-operate.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-21
+.agents/skills/impeccable/scripts/live-browser-dom.js
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-320
+.agents/skills/ask-matt/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+src/app/login/scan.tsx
+  s_f4cf102b7ce7ea::t_4b174716db9977 57,59
+  s_f4cf102b7ce7ea::t_30a7b8580917d7 19,26,30,40-41,54
+  s_f4cf102b7ce7ea::t_64498806298f86 1,10-11,13
+  s_f4cf102b7ce7ea::t_9e4f65f067cc07 33,37
+src/ui/notes.tsx
+  s_f4cf102b7ce7ea::t_cff016d9fc2d7e 3,6
+  s_f4cf102b7ce7ea::t_515bdaf0234d09 12
+  s_f4cf102b7ce7ea::t_87156dddd3abb5 1-2,5,7-11,18-20
+  s_f4cf102b7ce7ea::t_5613b4e0eda3d5 13-15,17
+  s_f4cf102b7ce7ea::t_7f8b7feed41630 4,16
+modules/text-size/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
+  s_f4cf102b7ce7ea::t_164b50ca6d059d 1-2
+.agents/skills/codebase-design/DEEPENING.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-37
+.agents/skills/prototype/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-3
+.agents/skills/impeccable/scripts/VERSION
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1
+.agents/skills/research/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-3
+.agents/skills/triage/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-112
+.agents/skills/impeccable/reference/shape.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-59
+src/app/lodging/[tripId]/[itemId].tsx
+  s_f4cf102b7ce7ea::t_39198f2d885377 58-60,62,68-70,72
+  s_e24f93d33a272e::t_8c4e625f98356e 11-21,28-30,57,63-64,66-67,73,77-82,87,89
+  s_f4cf102b7ce7ea::t_5613b4e0eda3d5 44
+  s_f4cf102b7ce7ea::t_64498806298f86 1,22
+  s_f4cf102b7ce7ea::t_4b174716db9977 56,65,76,86,88,90-91,96-98,102-103
+  s_f4cf102b7ce7ea::t_c1703d0ad969ec 5,9,61,71
+.agents/skills/setup-matt-pocock-skills/issue-tracker-github.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-50
+.agents/skills/impeccable/scripts/modern-screenshot.umd.js
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-14
+modules/text-size/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml
+  s_f4cf102b7ce7ea::t_164b50ca6d059d 1-7
+.agents/skills/impeccable/scripts/live-browser.js
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-13862
+.agents/skills/teach/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-140
+src/app/transport/[tripId]/[itemId].tsx
+  s_f4cf102b7ce7ea::t_4b174716db9977 61,75,94-95,102-103,108,112
+  s_f4cf102b7ce7ea::t_64498806298f86 1,23
+  s_e24f93d33a272e::t_8c4e625f98356e 12-22,29-31,62-72,76-78,80-90,96,101,113
+  s_f4cf102b7ce7ea::t_5613b4e0eda3d5 41
+  s_f4cf102b7ce7ea::t_39198f2d885377 79,97-98,100
+  s_f4cf102b7ce7ea::t_f8cee8216877c8 5,8,10,99
+src/settings/store.ts
+  s_f4cf102b7ce7ea::t_eeaa22548fcbde 1-52
+modules/text-size/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
+  s_f4cf102b7ce7ea::t_164b50ca6d059d 1
+.agents/skills/retro/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-44
+modules/text-size/android/build/.transforms/6d98f122831203ca9db0959c8ee96890/results.bin
+  s_f4cf102b7ce7ea::t_617ea4cbfb54b6 1
+.agents/skills/impeccable/reference/live-setup.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-104
+.impeccable/design.json
+  s_f4cf102b7ce7ea::t_658d11cf4263c4 1-189
+src/app/index.tsx
+  s_f4cf102b7ce7ea::t_4af98a76b01538 30,38,40-41,48,57,69,74,79
+  s_f4cf102b7ce7ea::t_a663a58ba2b49c 19,22,26-27,56,70-71,75-76,80-81,89,92
+  s_f4cf102b7ce7ea::t_c4c5758e9f46c9 1,4,62-63,65-66
+  s_f4cf102b7ce7ea::t_79796cc4e68632 11,64
+  s_f4cf102b7ce7ea::t_df306f2c3c9a20 3,7,15,21,28-29,31-35,53,55,59-61,67-68,72-73,77-78,82-83,88,90-91,93-104
+  s_f4cf102b7ce7ea::t_649367cfb5179a 8,12-14,105-106
+src/app/trip/[id]/index.tsx
+  s_f4cf102b7ce7ea::t_4af98a76b01538 31,59-61,105,110,126,134,138,155,166
+  s_f4cf102b7ce7ea::t_64498806298f86 1,19
+  s_f4cf102b7ce7ea::t_844a2560ee5fb0 3,139-144,149,151
+  s_e24f93d33a272e::t_8c4e625f98356e 17
+  s_e24f93d33a272e::t_7ebd4b10ee39a3 13,104,106-109,111-112,115-121,123-125,127-132,135-137,152-153,156-165,167-169,171-175
+  s_e24f93d33a272e::t_f7b0071909eeeb 100
+  s_f4cf102b7ce7ea::t_e83d2a52df7d73 150
+  s_f4cf102b7ce7ea::t_837de5c9a52d87 145-148
+  s_f4cf102b7ce7ea::t_0685ab0833847d 10,16,18
+src/ui/TripHero.tsx
+  s_f4cf102b7ce7ea::t_15e3293520c2b8 2,7-8,70,74-75,77-78,80,85,92-120
+  s_f4cf102b7ce7ea::t_79796cc4e68632 29-30
+  s_f4cf102b7ce7ea::t_5613b4e0eda3d5 41-42,45
+  s_f4cf102b7ce7ea::t_a663a58ba2b49c 39,141-147
+  s_f4cf102b7ce7ea::t_fd05aefbb54154 1,3-5,9-28,31-38,40,46-47,51-69,71-73,76,79,81-84,86-91,121-140,148-153
+  s_f4cf102b7ce7ea::t_c07f339775814d 6,43-44,48-50
+.agents/skills/handoff/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-16
+DESIGN.md
+  s_f4cf102b7ce7ea::t_88241cfea85ffa 1-4,28-29,32,34,37-38,41-42,45-46,49-50,53-54,57-58,61,63,69,76-77,83,89,94,98,102,106,109-138,140-252
+  s_f4cf102b7ce7ea::t_dc168e4ba18a08 5-27,30-31,33,35-36,39-40,43-44,47-48,51-52,55-56,59-60,62,64-68,70-75,78-82,84-88,90-93,95-97,99-101,103-105,107-108
+  s_f4cf102b7ce7ea::t_13297d7f8196dc 139
+modules/text-size/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/counters.tab
+  s_f4cf102b7ce7ea::t_617ea4cbfb54b6 2
+  s_f4cf102b7ce7ea::t_ef48639327dd5d 1
+.agents/skills/grill-with-docs/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+.agents/skills/setup-matt-pocock-skills/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-120
+.agents/skills/domain-modeling/GLOSSARY-FORMAT.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-60
+docs/FEATURES.md
+  s_f4cf102b7ce7ea::t_eadf39a600f7af 71
+  s_f4cf102b7ce7ea::t_9762157237be6d 88
+  s_f4cf102b7ce7ea::t_e51c7229acf7c2 27
+  s_f4cf102b7ce7ea::t_fa9e0b25aca2d5 1-26,28-70,72-87,89-96
+.agents/skills/chief-of-staff/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+.agents/skills/tdd/tests.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-77
+.agents/skills/pr/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-170
+.agents/skills/impeccable/agents/impeccable_manual_edit_applier.toml
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-96
+.agents/skills/code-review/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-89
+modules/text-size/android/build/intermediates/local_only_symbol_list/debug/parseDebugLocalResources/R-def.txt
+  s_f4cf102b7ce7ea::t_164b50ca6d059d 1-2
+.agents/skills/implement/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-17
+src/data/useTripEdits.ts
+  s_f4cf102b7ce7ea::t_4b174716db9977 86
+  s_f4cf102b7ce7ea::t_f55ba5acf4c96d 1-6,8-33,35-40,43,45-84,87-101,108-118,126-132,134-232
+  s_f4cf102b7ce7ea::t_837de5c9a52d87 102-107,119-125
+  s_f4cf102b7ce7ea::t_e36fb6959904a7 7
+  s_f4cf102b7ce7ea::t_30a7b8580917d7 34,42,44
+  s_f4cf102b7ce7ea::t_9e4f65f067cc07 85,133
+  s_f4cf102b7ce7ea::t_fb710897b78a2b 41
+.agents/skills/impeccable/reference/android.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-46
+.agents/skills/impeccable/reference/layout.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-84
+src/app/trip/[id]/days.tsx
+  s_e24f93d33a272e::t_8c4e625f98356e 9,17
+  s_f4cf102b7ce7ea::t_4af98a76b01538 33-36,38-41,50,56
+  s_f4cf102b7ce7ea::t_64498806298f86 1,11
+  s_e24f93d33a272e::t_4cd0b1b4078799 44
+  s_f4cf102b7ce7ea::t_a23dac9604ae66 4,8,10,37
+.agents/skills/tdd/mocking.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-59
+modules/text-size/android/build/.transforms/fa21403b5efcc7c67849857eefe8468d/results.bin
+  s_f4cf102b7ce7ea::t_ef48639327dd5d 1
+.agents/skills/diagnosing-bugs/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-138
+src/app/note-edit/[tripId].tsx
+  s_f4cf102b7ce7ea::t_844606ed3f2cad 6,69,77,139
+  s_f4cf102b7ce7ea::t_338809d1af743c 12,86-87,89-90
+  s_f4cf102b7ce7ea::t_b3a44f8225ef53 2-5,7-10,13-14,16-34,36-38,44-68,72,74-76,78-83,85,92-95,103,105-107,109-112,114-116,118-123,125-128,130-138,141-149
+  s_f4cf102b7ce7ea::t_4b174716db9977 35,39,71,73,88,96,104,108,113,124
+  s_f4cf102b7ce7ea::t_837de5c9a52d87 97-99,101-102
+  s_f4cf102b7ce7ea::t_64498806298f86 1,15
+  s_f4cf102b7ce7ea::t_4c3d807ee5ab0c 40-41,43,70,84,91,100,117,129,140
+  s_f4cf102b7ce7ea::t_da17cb587aec4c 11,42
+.agents/skills/writing-fragments/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-79
+.agents/skills/git-guardrails-claude-code/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-3
+src/offline/fileCache.ts
+  s_f4cf102b7ce7ea::t_51b8aa060c6a07 3,85
+.agents/skills/wait-what/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-7
+src/api/schemas.ts
+  s_f4cf102b7ce7ea::t_b9f1760c3c265c 55-56
+  s_f4cf102b7ce7ea::t_b31f210f14f1bc 199
+modules/text-size/android/build/intermediates/aar_metadata/debug/writeDebugAarMetadata/aar-metadata.properties
+  s_f4cf102b7ce7ea::t_164b50ca6d059d 1-7
+.agents/skills/loop-me/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+.agents/skills/wizard/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-3
+modules/text-size/android/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/output-metadata.json
+  s_f4cf102b7ce7ea::t_164b50ca6d059d 1-18
+.agents/skills/impeccable/reference/craft.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-5
+src/time/__tests__/tz.test.ts
+  s_f4cf102b7ce7ea::t_96465c47720236 50-68
+  s_f4cf102b7ce7ea::t_5a79147965c882 9
+.agents/skills/setup-ts-deep-modules/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+.agents/skills/writing-shape/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+modules/text-size/android/build/intermediates/android_res_source_set_path_map/debug/mapDebugSourceSetPaths/file-map.txt
+  s_f4cf102b7ce7ea::t_164b50ca6d059d 1-9
+.agents/skills/to-spec/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+AGENTS.md
+  s_f4cf102b7ce7ea::t_0ec5c86be4bbf9 3,5
+  s_f4cf102b7ce7ea::t_8283c433c79677 8
+.agents/skills/impeccable/reference/live.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-329
+docs/PLAN-V2.md
+  s_f4cf102b7ce7ea::t_0ec5c86be4bbf9 3,38-41,45-47,49,56-59,65-67,69
+  s_f4cf102b7ce7ea::t_3084d5d292e13e 91-96,98-100
+  s_f4cf102b7ce7ea::t_4c523ba54ea539 55
+  s_f4cf102b7ce7ea::t_d8761fb71d58e3 1-2,4-37,42-44,48,50-54,60-64,68,70-90,101-119
+  s_f4cf102b7ce7ea::t_9acef56ae9c215 97
+src/ui/rows.tsx
+  s_e24f93d33a272e::t_8c4e625f98356e 46-52,147-153
+  s_f4cf102b7ce7ea::t_328535e76b81d4 99-102,104
+  s_f4cf102b7ce7ea::t_5613b4e0eda3d5 1,91,160,190,199-202,218-220,222
+  s_f4cf102b7ce7ea::t_64498806298f86 3,19
+  s_f4cf102b7ce7ea::t_9e4f65f067cc07 2,72
+  s_e24f93d33a272e::t_289884cc4fdac0 8,18,21-33,41-45,53,56-57,66-71,73-85,88-89,92-93,107-110,113-114,117,139-146,154,157-158,161,169,172-174,176,210-217,221,223-225
+  s_f4cf102b7ce7ea::t_600ff20dd5af61 20
+.agents/skills/impeccable/scripts/command-metadata.json
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-98
+.agents/skills/impeccable/reference/audit.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-139
+src/app/trip/[id]/map.tsx
+  s_f4cf102b7ce7ea::t_43afc563e1f985 32-36,202
+  s_f4cf102b7ce7ea::t_800f8683bd8050 12,98,100-101,103,109-111,178-181,183-186,189,226-227
+  s_f4cf102b7ce7ea::t_64498806298f86 1,17
+  s_f4cf102b7ce7ea::t_4af98a76b01538 99,102,104-106,108,182
+  s_f4cf102b7ce7ea::t_e83d2a52df7d73 210
+  s_f4cf102b7ce7ea::t_d3e1b85927218e 10,15-16,107
+.agents/skills/impeccable/scripts/impeccable
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-266
+.agents/skills/to-spec/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-75
+.agents/skills/impeccable/agents/impeccable_finish_reviewer.toml
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-41
+.agents/skills/impeccable/agents/impeccable_documenter.toml
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-27
+.agents/skills/implement-spec/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+modules/text-size/android/build/intermediates/symbol_list_with_package_name/debug/generateDebugRFile/package-aware-r.txt
+  s_f4cf102b7ce7ea::t_164b50ca6d059d 1
+modules/text-size/android/build/intermediates/nested_resources_validation_report/debug/generateDebugResources/nestedResourcesValidationReport.txt
+  s_f4cf102b7ce7ea::t_164b50ca6d059d 1
+.agents/skills/impeccable/reference/typeset.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-90
+.agents/skills/triage/AGENT-BRIEF.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-207
+.agents/skills/wizard/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-44
+src/ui/AuthImage.tsx
+  s_f4cf102b7ce7ea::t_2808d91190d78e 7-8,12,17
+.agents/skills/grill-me/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-7
+.agents/skills/wait-what/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+.agents/skills/prototype/LOGIC.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-67
+src/ui/ImageStrip.tsx
+  s_f4cf102b7ce7ea::t_5613b4e0eda3d5 20
+  s_f4cf102b7ce7ea::t_5e6bef910a54f3 5
+modules/text-size/android/src/main/java/expo/modules/textsize/TextSizeModule.kt
+  s_f4cf102b7ce7ea::t_617ea4cbfb54b6 10
+  s_f4cf102b7ce7ea::t_2044f271462bd0 31,35
+  s_f4cf102b7ce7ea::t_27069aa5578f44 1-9,11-30,32-34,36,40-72
+  s_f4cf102b7ce7ea::t_277090eae9c4f5 37-39
+src/ui/RefreshableFieldGroup.android.tsx
+  s_f4cf102b7ce7ea::t_18fcac9b2c164c 24-28
+  s_f4cf102b7ce7ea::t_200a9ac166afe4 3-6,12,14-23,35-37
+  s_f4cf102b7ce7ea::t_22b9be209a7587 1-2,7-11,13,29-34
+.agents/skills/impeccable/reference/bolder.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-33
+.agents/skills/teach/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+src/data/selectors.ts
+  s_f4cf102b7ce7ea::t_e7064fc2f442b4 78-79
+  s_f4cf102b7ce7ea::t_7894702dfc0ee1 225-231
+  s_f4cf102b7ce7ea::t_4d72c7ec87845b 1
+  s_f4cf102b7ce7ea::t_9c22a3fbfe0846 236-237
+  s_f4cf102b7ce7ea::t_4d7b2c8a40952e 86
+  s_f4cf102b7ce7ea::t_4480ffca2d30b0 5-7,9-44
+  s_f4cf102b7ce7ea::t_837de5c9a52d87 103-109,112-113,116-123,134-140,154-162,167-173
+  s_f4cf102b7ce7ea::t_4d2bcf8c59f274 124-127,129-133,141,145-148,150-153
+  s_f4cf102b7ce7ea::t_6797d6002c3a1d 128
+  s_f4cf102b7ce7ea::t_8b59a1ca4571c6 149
+.agents/skills/impeccable/reference/craft-floor.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-50
+.agents/skills/impeccable/reference/delight.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-70
+.agents/skills/codebase-design/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-3
+.agents/skills/claude-handoff/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-18
+.agents/skills/diagnosing-bugs/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-3
+.agents/skills/pr/CREDITS.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-3
+.agents/skills/to-questionnaire/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+.agents/skills/ask-matt/PHASE-BOUNDARIES.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-55
+.agents/skills/handoff/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+docs/SERVER.md
+  s_f4cf102b7ce7ea::t_2a447bb8532699 33-34
+  s_f4cf102b7ce7ea::t_0ec5c86be4bbf9 35-41,64-78
+  s_f4cf102b7ce7ea::t_328ebf177bf4d3 63
+src/app/place/[tripId]/[itemId].tsx
+  s_f4cf102b7ce7ea::t_0d117107646bc1 136-141,146-148,150,153-164,166,169-172
+  s_f4cf102b7ce7ea::t_64498806298f86 1,25
+  s_e24f93d33a272e::t_8c4e625f98356e 36-37,82-87,114
+  s_f4cf102b7ce7ea::t_4b174716db9977 28,42,61-63,81,90,110,113,115,120,126-127
+  s_f4cf102b7ce7ea::t_ade13bb54cc108 5,7,11
+  s_f4cf102b7ce7ea::t_e387883cbee898 3,8-10,13-23,29-30,38,40-41,43,45-46,57-60,64,91-104,106-109,132,142-145,151-152,167-168
+  s_f4cf102b7ce7ea::t_39198f2d885377 27,44,56,68,105,149,165
+  s_f4cf102b7ce7ea::t_176914b6dd0a14 52
+  s_f4cf102b7ce7ea::t_693bdc8efd4f1b 73
+  s_f4cf102b7ce7ea::t_5fff8a11887b6b 26
+.agents/skills/impeccable/reference/doctor.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-54
+.agents/skills/wizard/template.sh
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-223
+.agents/skills/writing-beats/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-67
+src/time/tz.ts
+  s_f4cf102b7ce7ea::t_76648e7aab6077 179-193
+  s_f4cf102b7ce7ea::t_81862cd632c068 13,50-90,92,95-97,99-100,103-105,123,128-130,135,194
+  s_f4cf102b7ce7ea::t_cca7102a556a15 6,124-127,199
+src/api/client.ts
+  s_f4cf102b7ce7ea::t_91be27a7050b13 6,8-11,15,21-38
+  s_f4cf102b7ce7ea::t_1d1b3c503bd731 4
+  s_f4cf102b7ce7ea::t_e83d2a52df7d73 3,71,116,137
+  s_f4cf102b7ce7ea::t_d8dd7750b01528 122-136,138-145,148-162,170-179
+  s_f4cf102b7ce7ea::t_837de5c9a52d87 163-169
+  s_f4cf102b7ce7ea::t_3ebecca36b5477 39
+.agents/skills/impeccable/reference/init.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-131
+.agents/skills/grill-me/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+src/ui/Select.tsx
+  s_f4cf102b7ce7ea::t_7dbdf15fb8c0e9 3,40,44,57,68
+  s_e24f93d33a272e::t_6c85b9bc562fa9 4-9,11-20,23-32,34-36,55-56,58-67,69,71-72,74-87,89-102
+  s_f4cf102b7ce7ea::t_64498806298f86 1,10
+  s_f4cf102b7ce7ea::t_ab0679ae9fbbdc 2,21-22,33,37-39,41-43,45-54,70,73,88
+.agents/skills/diagnosing-bugs/scripts/hitl-loop.template.sh
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-44
+.agents/skills/retro/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+PRODUCT.md
+  s_f4cf102b7ce7ea::t_5191748ef88a2e 1-62
+.agents/skills/prototype/UI.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-112
+.agents/skills/impeccable/reference/onboard.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-234
+.agents/skills/writing-for-agents/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-3
+src/auth/serverLogin.ts
+  s_f4cf102b7ce7ea::t_2f359aa58c8da3 77,79
+  s_f4cf102b7ce7ea::t_837de5c9a52d87 20,124
+  s_f4cf102b7ce7ea::t_30a7b8580917d7 32,34,80-81,83,86,103,125
+  s_f4cf102b7ce7ea::t_a96e7c3bb41ba7 1-3,6-19,21-31,33,35-76,78,84-85,87-102,104-123,126-167
+  s_f4cf102b7ce7ea::t_d7d12b4ac56b35 4
+  s_f4cf102b7ce7ea::t_ef186cf5d25a91 5,82
+.agents/skills/teach/MISSION-FORMAT.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-31
+.agents/skills/prototype/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-26
+.agents/skills/scaffold-exercises/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-3
+.agents/skills/improve-codebase-architecture/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+src/data/__tests__/selectors.test.ts
+  s_f4cf102b7ce7ea::t_79253f1cf9f559 30-46
+src/ui/Sub.tsx
+  s_f4cf102b7ce7ea::t_64498806298f86 2
+.agents/skills/git-guardrails-claude-code/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-95
+.agents/skills/wayfinder/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+.agents/skills/to-questionnaire/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-54
+.agents/skills/impeccable/reference/visualize.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-47
+src/app/trip/[id]/stays.tsx
+  s_f4cf102b7ce7ea::t_64498806298f86 1,11
+  s_f4cf102b7ce7ea::t_fe9883675a5746 8,40
+  s_f4cf102b7ce7ea::t_4af98a76b01538 14,52,56
+  s_f4cf102b7ce7ea::t_5dea747e3a89f9 4,6
+.agents/skills/to-tickets/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-105
+.agents/skills/triage/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+.agents/skills/impeccable/reference/distill.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-111
+.agents/skills/setup-matt-pocock-skills/domain.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-51
+.agents/skills/codebase-design/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-114
+src/app/login/_layout.tsx
+  s_f4cf102b7ce7ea::t_4b174716db9977 3-4,13-14
+.agents/skills/scaffold-exercises/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-106
+.agents/skills/impeccable/reference/extract.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-69
+src/settings/apply.ts
+  s_f4cf102b7ce7ea::t_7a594bd7f653d0 1-47,61-85
+  s_f4cf102b7ce7ea::t_cd522b6a41b45f 48-60
+modules/text-size/android/build/intermediates/incremental/mergeDebugAssets/merger.xml
+  s_f4cf102b7ce7ea::t_164b50ca6d059d 1-2
+.agents/skills/claude-handoff/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+.agents/skills/writing-for-agents/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-81
+.agents/skills/wayfinder/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-128
+.agents/skills/improve-codebase-architecture/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-71
+.agents/skills/impeccable/reference/degraded/manual-edit-applier.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-93
+.agents/skills/setup-ts-deep-modules/dependency-cruiser.config.cjs
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-95
+.agents/skills/impeccable/reference/generate.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-101
+.agents/skills/impeccable/SKILL.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-86
+.agents/skills/domain-modeling/ADR-FORMAT.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-47
+.agents/skills/teach/LEARNING-RECORD-FORMAT.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-46
+src/data/__tests__/edits.test.ts
+  s_f4cf102b7ce7ea::t_d9de4257d274c6 1-60
+.agents/skills/writing-for-agents/SKILL-MECHANICS.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-22
+.agents/skills/research/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-12
+.agents/skills/impeccable/reference/animate.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-89
+src/app/note/[tripId]/[itemId].tsx
+  s_f4cf102b7ce7ea::t_338809d1af743c 78,84-85,87
+  s_f4cf102b7ce7ea::t_4b174716db9977 45,47,79,96,113,124,132
+  s_f4cf102b7ce7ea::t_d539b4d1b551d4 13
+  s_f4cf102b7ce7ea::t_837de5c9a52d87 100
+  s_f4cf102b7ce7ea::t_4c3d807ee5ab0c 81,150
+  s_f4cf102b7ce7ea::t_8dedf969177a1f 5,7,10,12,16,18-19,21-23,30-42,72-73,92-94,101-102,130-131,133-136,138-140,152-155,157-158,178
+  s_f4cf102b7ce7ea::t_cd5dfba3cd102e 2-4,6,8,11,14-15,20,24-29,43,46,48-71,75-77,80,82-83,89-91,95,97-99,103-112,114-123,125-129,141-149,151,156,159-177
+  s_f4cf102b7ce7ea::t_64498806298f86 1,17
+  s_f4cf102b7ce7ea::t_39198f2d885377 44,74,86,88,137
+  s_f4cf102b7ce7ea::t_35dcd017115056 9
+modules/text-size/android/build/intermediates/navigation_json/debug/extractDeepLinksDebug/navigation.json
+  s_f4cf102b7ce7ea::t_164b50ca6d059d 1
+.agents/skills/triage/OUT-OF-SCOPE.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-105
+.agents/skills/teach/GLOSSARY-FORMAT.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-35
+.agents/skills/grilling/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-30
+.agents/skills/domain-modeling/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-3
+.agents/skills/impeccable/reference/adapt.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-318
+.agents/skills/setup-pre-commit/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-3
+modules/text-size/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml
+  s_f4cf102b7ce7ea::t_164b50ca6d059d 1-2
+package.json
+  s_f4cf102b7ce7ea::t_2421cab0ced684 42
+.agents/skills/migrate-to-shoehorn/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-3
+modules/text-size/android/build/intermediates/annotation_processor_list/debug/javaPreCompileDebug/annotationProcessors.json
+  s_f4cf102b7ce7ea::t_164b50ca6d059d 1
+.agents/skills/setup-matt-pocock-skills/issue-tracker-gitlab.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-46
+.agents/skills/improve-codebase-architecture/HTML-REPORT.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-123
+.agents/skills/impeccable/reference/polish.md
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-105
+.agents/skills/writing-fragments/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-5
+src/ui/theme.ts
+  s_f4cf102b7ce7ea::t_704f73ebd921e3 2-4,26-42,46-49,57-61
+  s_f4cf102b7ce7ea::t_98cd9020c1784c 62
+.agents/skills/chief-of-staff/SKILL.md
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-75
+modules/text-size/expo-module.config.json
+  s_f4cf102b7ce7ea::t_53b33ccf813346 1-9
+modules/text-size/android/build/outputs/logs/manifest-merger-debug-report.txt
+  s_f4cf102b7ce7ea::t_164b50ca6d059d 1-16
+src/app/_layout.tsx
+  s_f4cf102b7ce7ea::t_0dcb8081057ca7 63
+  s_f4cf102b7ce7ea::t_631a621aaac163 10
+  s_f4cf102b7ce7ea::t_6834a80c430890 73
+  s_f4cf102b7ce7ea::t_41558b6856f51d 78-79,81-86
+  s_f4cf102b7ce7ea::t_2808d91190d78e 11-12,15,20,61
+  s_f4cf102b7ce7ea::t_cf2393f4ded4b8 4,62,68-72,74-76
+  s_f4cf102b7ce7ea::t_90489808cf4613 9
+src/app/day-edit/[tripId]/[date].tsx
+  s_f4cf102b7ce7ea::t_4b174716db9977 56,65-75,92,125,137-138,143-144,157-159,161,164,181,190-191,231
+  s_f4cf102b7ce7ea::t_64498806298f86 1,17
+  s_f4cf102b7ce7ea::t_e862f380cafc67 140,148,162
+  s_f4cf102b7ce7ea::t_641d68e6f75b36 42,48,124,126-136,139,141-142,145-147,149-156,160,183-184,187
+  s_f4cf102b7ce7ea::t_a471b9c7b6675d 45,52,59,83-87,97-107,168-172,185-186,189
+  s_f4cf102b7ce7ea::t_837de5c9a52d87 46-47,205-206,210,213-218
+  s_f4cf102b7ce7ea::t_338809d1af743c 14,54-55,57-58
+  s_f4cf102b7ce7ea::t_041bf345a8a228 2-13,15-16,18-41,43-44,49-51,53,60-64,76-82,88-91,93-96,108-123,163,165-167,173-180,182,188,192-204,207-209,211-212,219-230,232
+.agents/skills/grilling/agents/openai.yaml
+  s_f4cf102b7ce7ea::t_f5ce39d24ccae4 1-3
+.agents/skills/impeccable/scripts/live-browser-ignores.js
+  s_f4cf102b7ce7ea::t_e72c759f53adb9 1-246
+.claude/skills/ask-matt
+  s_f4cf102b7ce7ea::t_9558df9c538f4d 1
+.claude/skills/chief-of-staff
+  s_f4cf102b7ce7ea::t_68dc4fbcc9110b 1
+.claude/skills/claude-handoff
+  s_f4cf102b7ce7ea::t_1dd4730449d3a1 1
+.claude/skills/code-review
+  s_f4cf102b7ce7ea::t_db5b83e24aaacf 1
+.claude/skills/codebase-design
+  s_f4cf102b7ce7ea::t_ab71ae159b0f5b 1
+.claude/skills/diagnosing-bugs
+  s_f4cf102b7ce7ea::t_60e0b1b10e6635 1
+.claude/skills/domain-modeling
+  s_f4cf102b7ce7ea::t_8e79c01a5dadf5 1
+.claude/skills/git-guardrails-claude-code
+  s_f4cf102b7ce7ea::t_c8864e1c624f36 1
+.claude/skills/grill-me
+  s_f4cf102b7ce7ea::t_f189b9abe84592 1
+.claude/skills/grill-with-docs
+  s_f4cf102b7ce7ea::t_bda8756975dc7b 1
+.claude/skills/grilling
+  s_f4cf102b7ce7ea::t_2a60858c721510 1
+.claude/skills/handoff
+  s_f4cf102b7ce7ea::t_93f3555932c4f1 1
+.claude/skills/impeccable
+  s_f4cf102b7ce7ea::t_70773c90ebd5d6 1
+.claude/skills/implement
+  s_f4cf102b7ce7ea::t_d73f6c1465882e 1
+.claude/skills/implement-spec
+  s_f4cf102b7ce7ea::t_735ec2bbf6bb3d 1
+.claude/skills/improve-codebase-architecture
+  s_f4cf102b7ce7ea::t_61c7c674b88d5d 1
+.claude/skills/loop-me
+  s_f4cf102b7ce7ea::t_f70c679d59d2f0 1
+.claude/skills/migrate-to-shoehorn
+  s_f4cf102b7ce7ea::t_8add73e335b6ae 1
+.claude/skills/pr
+  s_f4cf102b7ce7ea::t_8db8f1d4dc8025 1
+.claude/skills/prototype
+  s_f4cf102b7ce7ea::t_ead7fc7bb9586f 1
+.claude/skills/research
+  s_f4cf102b7ce7ea::t_b9ea3a6a861c3f 1
+.claude/skills/retro
+  s_f4cf102b7ce7ea::t_c0cc8938643547 1
+.claude/skills/scaffold-exercises
+  s_f4cf102b7ce7ea::t_c18dc049874394 1
+.claude/skills/setup-matt-pocock-skills
+  s_f4cf102b7ce7ea::t_ab7fa153467d66 1
+.claude/skills/setup-pre-commit
+  s_f4cf102b7ce7ea::t_e3e3bd0fa63da3 1
+.claude/skills/setup-ts-deep-modules
+  s_f4cf102b7ce7ea::t_0984a4b3f7eb11 1
+.claude/skills/tdd
+  s_f4cf102b7ce7ea::t_9e783a3284fe57 1
+.claude/skills/teach
+  s_f4cf102b7ce7ea::t_07b30fb78ee633 1
+.claude/skills/to-questionnaire
+  s_f4cf102b7ce7ea::t_88b204342a2f73 1
+.claude/skills/to-spec
+  s_f4cf102b7ce7ea::t_fc2d3931101ebb 1
+.claude/skills/to-tickets
+  s_f4cf102b7ce7ea::t_848a73a00f6103 1
+.claude/skills/triage
+  s_f4cf102b7ce7ea::t_f5637991f71887 1
+.claude/skills/wait-what
+  s_f4cf102b7ce7ea::t_59f98ea3af289b 1
+.claude/skills/wayfinder
+  s_f4cf102b7ce7ea::t_b4559f7011959f 1
+.claude/skills/wizard
+  s_f4cf102b7ce7ea::t_35300ce0aab180 1
+.claude/skills/writing-beats
+  s_f4cf102b7ce7ea::t_96facdde3b3792 1
+.claude/skills/writing-for-agents
+  s_f4cf102b7ce7ea::t_978a8bd94bd289 1
+.claude/skills/writing-fragments
+  s_f4cf102b7ce7ea::t_7ccdef4dcc6c18 1
+.claude/skills/writing-shape
+  s_f4cf102b7ce7ea::t_ddd504f936affd 1
+modules/text-size/android/build/intermediates/aapt_friendly_merged_manifests/release/processReleaseManifest/aapt/AndroidManifest.xml
+  s_f4cf102b7ce7ea::t_a3ba4395247b1d 1-7
+modules/text-size/android/build/intermediates/aapt_friendly_merged_manifests/release/processReleaseManifest/aapt/output-metadata.json
+  s_f4cf102b7ce7ea::t_895d105cd0bbc6 1-18
+modules/text-size/android/build/intermediates/aar_metadata/release/writeReleaseAarMetadata/aar-metadata.properties
+  s_f4cf102b7ce7ea::t_58c00fc6d6ce5f 1-7
+modules/text-size/android/build/intermediates/android_res_source_set_path_map/release/mapReleaseSourceSetPaths/file-map.txt
+  s_f4cf102b7ce7ea::t_66c2f1e608eefd 1-9
+modules/text-size/android/build/intermediates/annotation_processor_list/release/javaPreCompileRelease/annotationProcessors.json
+  s_f4cf102b7ce7ea::t_ea9f560316f0d0 1
+modules/text-size/android/build/intermediates/default_proguard_files/global/proguard-android-optimize.txt-9.2.1
+  s_f4cf102b7ce7ea::t_f55e0791ae8ebb 1-89
+modules/text-size/android/build/intermediates/default_proguard_files/global/proguard-android.txt-9.2.1
+  s_f4cf102b7ce7ea::t_26c4c7b3ada668 1-95
+modules/text-size/android/build/intermediates/incremental/mergeReleaseAssets/merger.xml
+  s_f4cf102b7ce7ea::t_67175c8084806d 1-2
+modules/text-size/android/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml
+  s_f4cf102b7ce7ea::t_ff1a7734d4afbe 1-2
+modules/text-size/android/build/intermediates/incremental/release/packageReleaseResources/compile-file-map.properties
+  s_f4cf102b7ce7ea::t_b3df8b7e0fc6a6 1
+modules/text-size/android/build/intermediates/incremental/release/packageReleaseResources/merger.xml
+  s_f4cf102b7ce7ea::t_8cdce298d7bd30 1-2
+modules/text-size/android/build/intermediates/lint_model/release/generateReleaseLintModel/module.xml
+  s_f4cf102b7ce7ea::t_1b597cea18665a 1-19
+modules/text-size/android/build/intermediates/lint_model/release/generateReleaseLintModel/release-artifact-dependencies.xml
+  s_f4cf102b7ce7ea::t_a8f3905b54f5d5 1-467
+modules/text-size/android/build/intermediates/lint_model/release/generateReleaseLintModel/release-artifact-libraries.xml
+  s_f4cf102b7ce7ea::t_8018d9bc1f2f73 1-935
+modules/text-size/android/build/intermediates/lint_model/release/generateReleaseLintModel/release.xml
+  s_f4cf102b7ce7ea::t_dd25df4c56471d 1-31
+modules/text-size/android/build/intermediates/lint_model_metadata/release/writeReleaseLintModelMetadata/lint-model-metadata.properties
+  s_f4cf102b7ce7ea::t_c4a9531f88f98c 1-3
+modules/text-size/android/build/intermediates/lint_vital_lint_model/release/generateReleaseLintVitalModel/module.xml
+  s_f4cf102b7ce7ea::t_99a15d2ab016aa 1-19
+modules/text-size/android/build/intermediates/lint_vital_lint_model/release/generateReleaseLintVitalModel/release-artifact-dependencies.xml
+  s_f4cf102b7ce7ea::t_4a639fb1f30a52 1-467
+modules/text-size/android/build/intermediates/lint_vital_lint_model/release/generateReleaseLintVitalModel/release-artifact-libraries.xml
+  s_f4cf102b7ce7ea::t_66da51719eb78e 1-935
+modules/text-size/android/build/intermediates/lint_vital_lint_model/release/generateReleaseLintVitalModel/release.xml
+  s_f4cf102b7ce7ea::t_e65b4a1fdcb18f 1-31
+modules/text-size/android/build/intermediates/local_only_symbol_list/release/parseReleaseLocalResources/R-def.txt
+  s_f4cf102b7ce7ea::t_4b833738289bc3 1-2
+modules/text-size/android/build/intermediates/manifest_merge_blame_file/release/processReleaseManifest/manifest-merger-blame-release-report.txt
+  s_f4cf102b7ce7ea::t_d726a60ce76d31 1-9
+modules/text-size/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml
+  s_f4cf102b7ce7ea::t_a7ea31d4173363 1-7
+modules/text-size/android/build/intermediates/navigation_json/release/extractDeepLinksRelease/navigation.json
+  s_f4cf102b7ce7ea::t_0c04e41a85cd4e 1
+modules/text-size/android/build/intermediates/nested_resources_validation_report/release/generateReleaseResources/nestedResourcesValidationReport.txt
+  s_f4cf102b7ce7ea::t_89106650245707 1
+modules/text-size/android/build/intermediates/symbol_list_with_package_name/release/generateReleaseRFile/package-aware-r.txt
+  s_f4cf102b7ce7ea::t_ddeacbdd3c63d3 1
+modules/text-size/android/build/kotlin/compileReleaseKotlin/cacheable/caches-jvm/lookups/counters.tab
+  s_f4cf102b7ce7ea::t_3416b0f49b0705 1-2
+modules/text-size/android/build/outputs/logs/manifest-merger-release-report.txt
+  s_f4cf102b7ce7ea::t_44ed7aa63f6641 1-16
+package-lock.json
+  s_f4cf102b7ce7ea::t_ef8bcd51a3c7be 47,18573-18598
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "50ddfbfa3b4a4643960169a5b50d795aafdd4a64",
+  "prompts": {},
+  "sessions": {
+    "s_e24f93d33a272e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "38356727-9704-4b1c-b571-7ed01b9e5764",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    },
+    "s_f4cf102b7ce7ea": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "agent-6fc66754-9012-437c-aab4-b984bdda2039",
+        "model": "unknown"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
