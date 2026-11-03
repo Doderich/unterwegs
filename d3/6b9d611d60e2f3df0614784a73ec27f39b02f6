@@ -1,0 +1,21 @@
+.env.example
+  s_323a0ed2f5631b::t_fa9a61fc620124 14-15,17
+docs/RELEASING.md
+  s_323a0ed2f5631b::t_4d2f54ab101c62 29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d36b9d611d60e2f3df0614784a73ec27f39b02f6",
+  "prompts": {},
+  "sessions": {
+    "s_323a0ed2f5631b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b7f5b2ec-3da9-4322-a899-a9d0b7c9063c",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
