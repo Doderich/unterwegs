@@ -1,0 +1,54 @@
+docs/adr/0004-sso-through-the-website-session.md
+  s_9269ee18195ee5::t_992a34f5961cd2 1-3
+docs/adr/0008-native-controls-with-expo-ui.md
+  s_9269ee18195ee5::t_992a34f5961cd2 1-3
+docs/adr/0011-pinned-server-version.md
+  s_9269ee18195ee5::t_992a34f5961cd2 1-3
+docs/adr/0006-times-in-their-own-time-zone.md
+  s_9269ee18195ee5::t_992a34f5961cd2 1-3
+docs/RELEASING.md
+  s_9269ee18195ee5::t_742fbadb8b6b30 3
+docs/ROADMAP.md
+  s_9269ee18195ee5::t_5237b9e720add6 1-21,23-86
+  s_9269ee18195ee5::t_019ab3a30b6f81 22
+docs/adr/0001-one-request-per-collection.md
+  s_9269ee18195ee5::t_992a34f5961cd2 1-8
+docs/adr/0007-offline-copy-on-the-device.md
+  s_9269ee18195ee5::t_992a34f5961cd2 1-3
+docs/adr/0009-maplibre-with-openfreemap.md
+  s_9269ee18195ee5::t_992a34f5961cd2 1-3
+docs/adr/0005-online-only-edits.md
+  s_9269ee18195ee5::t_992a34f5961cd2 1-3
+docs/FEATURES.md
+  s_9269ee18195ee5::t_742fbadb8b6b30 3,92,97,104
+docs/adr/0003-one-api-key-per-device.md
+  s_9269ee18195ee5::t_992a34f5961cd2 1-3
+docs/adr/0010-self-hosted-distribution.md
+  s_9269ee18195ee5::t_992a34f5961cd2 1-3
+PRODUCT.md
+  s_9269ee18195ee5::t_742fbadb8b6b30 36,38
+README.md
+  s_9269ee18195ee5::t_742fbadb8b6b30 5-21
+docs/adr/0002-data-beyond-one-collection.md
+  s_9269ee18195ee5::t_992a34f5961cd2 1-11
+AGENTS.md
+  s_9269ee18195ee5::t_742fbadb8b6b30 3,5
+docs/adr/0012-app-wide-text-size.md
+  s_9269ee18195ee5::t_019ab3a30b6f81 1-10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8058d22b28244bb15b282518b0b3cb127b2567fd",
+  "prompts": {},
+  "sessions": {
+    "s_9269ee18195ee5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c422a31e-bba9-40ff-983a-0109fb7f1d71",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
