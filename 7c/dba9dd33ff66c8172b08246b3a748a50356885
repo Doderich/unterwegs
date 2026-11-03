@@ -1,0 +1,52 @@
+src/time/__tests__/zonedInput.test.ts
+  s_98834f4dc758c0::t_547c0acd23b992 1-76
+src/data/useCollectionEdits.ts
+  s_98834f4dc758c0::t_1e4784f0d1520e 6-17,21,29-30,32,34-40,61,92,96,104-109,210-211,214-350,352-353
+src/time/zonedInput.ts
+  s_98834f4dc758c0::t_9be72d2833e490 1-102
+  s_98834f4dc758c0::t_e942e0f0350d67 103-104
+src/data/useCollectionsActions.ts
+  s_98834f4dc758c0::t_dfc9b5a0786f05 1-59
+src/data/__tests__/edits.test.ts
+  s_98834f4dc758c0::t_aaec95b0ef6292 4-17,74-75,77-95,103-137
+  s_98834f4dc758c0::t_57484eba640e21 76,96-102
+src/data/queries.ts
+  s_98834f4dc758c0::t_dfc9b5a0786f05 32-34,58-75
+src/time/zones.ts
+  s_98834f4dc758c0::t_c0d2090e518add 1-468
+src/time/__tests__/tz.test.ts
+  s_98834f4dc758c0::t_1dbe133f96f801 63-68
+src/api/schemas.ts
+  s_98834f4dc758c0::t_c332053cd170eb 170-173,184-220,250-254
+src/time/tz.ts
+  s_98834f4dc758c0::t_1dbe133f96f801 186-189
+src/offline/fileCache.ts
+  s_98834f4dc758c0::t_99108c68d1e26d 87-101
+src/data/__tests__/selectors.test.ts
+  s_98834f4dc758c0::t_bb05cfabc851c0 94-163
+src/data/selectors.ts
+  s_98834f4dc758c0::t_bb05cfabc851c0 87-89,217-261
+  s_98834f4dc758c0::t_9e27a98389e7a7 262
+src/api/client.ts
+  s_98834f4dc758c0::t_37e5c21414ba05 195-201
+  s_98834f4dc758c0::t_c332053cd170eb 7,9-14,36-91,283-285,287-322,363-381
+src/data/edits.ts
+  s_98834f4dc758c0::t_0de01dedde5c94 1-13,35-53,56-58,64-148
+  s_98834f4dc758c0::t_dd5f37ec7e9c80 149
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7cdba9dd33ff66c8172b08246b3a748a50356885",
+  "prompts": {},
+  "sessions": {
+    "s_98834f4dc758c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5353a689-5df0-4c93-9e54-becc5904117a",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
