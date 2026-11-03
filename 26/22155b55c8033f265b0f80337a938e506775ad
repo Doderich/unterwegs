@@ -1,0 +1,32 @@
+scripts/check-form-input-focus.py
+  s_e8a2d281fdb841::t_867bbebc5bf083 38
+  s_e8a2d281fdb841::t_13159aca4a9397 1-37,39-46
+src/app/location-edit/[collectionId].tsx
+  s_e8a2d281fdb841::t_30f9a4239bcb83 42-43,101,181
+  s_e8a2d281fdb841::t_13159aca4a9397 173,180
+  s_e8a2d281fdb841::t_07eeb4e3c39661 174
+src/app/lodging-edit/[collectionId].tsx
+  s_e8a2d281fdb841::t_30f9a4239bcb83 83-84,174,217,229
+  s_e8a2d281fdb841::t_13159aca4a9397 216,228
+src/app/transport-edit/[collectionId].tsx
+  s_e8a2d281fdb841::t_30f9a4239bcb83 66-67,199,236
+  s_e8a2d281fdb841::t_13159aca4a9397 235
+docs/KEYBOARD.md
+  s_e8a2d281fdb841::t_16909f4c5e010b 18-33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2622155b55c8033f265b0f80337a938e506775ad",
+  "prompts": {},
+  "sessions": {
+    "s_e8a2d281fdb841": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a263-b474-7883-bcb5-307c6f29e8c4",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
