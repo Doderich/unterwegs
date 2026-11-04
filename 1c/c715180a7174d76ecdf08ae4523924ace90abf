@@ -1,0 +1,47 @@
+src/data/useCollectionEdits.ts
+  s_d6f5deb73942ed::t_0ec4d107a6d969 52,162-163
+src/app/location-edit/[collectionId].tsx
+  s_d6f5deb73942ed::t_b79055d723d419 16,70,144,286
+  s_d6f5deb73942ed::t_e9a19a1181bc79 287
+src/data/selectors.ts
+  s_d6f5deb73942ed::t_9a5e325f59bad2 287-294
+src/api/schemas.ts
+  s_d6f5deb73942ed::t_0ec4d107a6d969 64,80,106,125
+src/app/collection/[id]/_layout.tsx
+  s_d6f5deb73942ed::t_0ec4d107a6d969 6,28
+src/app/note-edit/[collectionId].tsx
+  s_d6f5deb73942ed::t_b79055d723d419 10,38,69,113
+src/app/lodging-edit/[collectionId].tsx
+  s_d6f5deb73942ed::t_b79055d723d419 24,103,179,306
+  s_d6f5deb73942ed::t_5bc23862bd8df0 307
+src/i18n/en.ts
+  s_d6f5deb73942ed::t_b79055d723d419 342
+src/api/client.ts
+  s_d6f5deb73942ed::t_0ec4d107a6d969 47,65-66,85-86,109-110
+src/app/transport-edit/[collectionId].tsx
+  s_d6f5deb73942ed::t_b79055d723d419 22,101,204,351
+  s_d6f5deb73942ed::t_67cb2cb37b7411 352
+src/data/__tests__/selectors.test.ts
+  s_d6f5deb73942ed::t_9a5e325f59bad2 187-194
+src/ui/forms.tsx
+  s_d6f5deb73942ed::t_b79055d723d419 10,79-86
+  s_d6f5deb73942ed::t_102da6ecce31f1 87-88
+docs/FEATURES.md
+  s_d6f5deb73942ed::t_2df24ac95da2ca 51-52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1cc715180a7174d76ecdf08ae4523924ace90abf",
+  "prompts": {},
+  "sessions": {
+    "s_d6f5deb73942ed": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8104c628-be4f-4a20-8980-bf5b5e358e56",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
