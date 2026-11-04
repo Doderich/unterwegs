@@ -1,0 +1,20 @@
+src/ui/MarkdownField.tsx
+  s_f05f0ce5ce06da::t_9f0a57d01a2f10 13
+  s_f05f0ce5ce06da::t_b378d6c8de2f19 144,146
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "986226b0e42385b7b463be5e406973e7bd2e3967",
+  "prompts": {},
+  "sessions": {
+    "s_f05f0ce5ce06da": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bc286b4f-f154-4253-8192-18bf72ff0784",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
