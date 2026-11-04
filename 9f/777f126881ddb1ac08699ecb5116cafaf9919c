@@ -1,0 +1,44 @@
+plugins/with-android-apks.js
+  s_8f5170e20ab5fb::t_c25d13034bd164 1-30
+docs/RELEASING.md
+  s_8f5170e20ab5fb::t_42598db4d57b92 104
+  s_8f5170e20ab5fb::t_80c0d60b518c69 105-107
+src/__tests__/telemetryHealth.test.ts
+  s_8f5170e20ab5fb::t_539f2b4ef0616b 1-56
+docs/TELEMETRY.md
+  s_8f5170e20ab5fb::t_aa07db58175c68 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31
+scripts/android-publish.sh
+  s_8f5170e20ab5fb::t_42598db4d57b92 82,84-88
+  s_8f5170e20ab5fb::t_c25d13034bd164 60,64-69,72,83,91
+  s_8f5170e20ab5fb::t_ca4171e9d82198 73-79,81
+src/telemetry/health.ts
+  s_8f5170e20ab5fb::t_3593495ed77489 1-28
+app.config.ts
+  s_8f5170e20ab5fb::t_3593495ed77489 27,31-44
+  s_8f5170e20ab5fb::t_d0de50c270bc40 45
+src/app/_layout.tsx
+  s_8f5170e20ab5fb::t_3593495ed77489 2,13,63-68
+app.json
+  s_8f5170e20ab5fb::t_3593495ed77489 5
+  s_8f5170e20ab5fb::t_c25d13034bd164 28
+package-lock.json
+  s_8f5170e20ab5fb::t_6d3c4a58e53ea2 37,9666-9679,10056-10084
+package.json
+  s_8f5170e20ab5fb::t_bc821bb19090ce 32
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9f777f126881ddb1ac08699ecb5116cafaf9919c",
+  "prompts": {},
+  "sessions": {
+    "s_8f5170e20ab5fb": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a678-7754-7721-a237-a1d086e24ae9",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
