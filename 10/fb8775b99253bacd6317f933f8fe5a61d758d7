@@ -1,0 +1,48 @@
+src/ui/format.ts
+  s_d6f5deb73942ed::t_9d47305e4d669e 59-63
+src/app/people/index.tsx
+  s_d6f5deb73942ed::t_06e4140578d32c 1-6,8-54
+  s_d6f5deb73942ed::t_9d47305e4d669e 7
+src/api/__tests__/client.test.ts
+  s_d6f5deb73942ed::t_ef81d16b729a52 261-284
+src/api/schemas.ts
+  s_d6f5deb73942ed::t_fcffbfe536b55e 236-244
+  s_d6f5deb73942ed::t_b0413e7b1de365 285-287
+src/data/queries.ts
+  s_d6f5deb73942ed::t_6a70b97c503b2b 102
+  s_d6f5deb73942ed::t_fcffbfe536b55e 35-36,92-101
+src/ui/statRows.tsx
+  s_d6f5deb73942ed::t_b0413e7b1de365 1-37
+src/app/people/[username].tsx
+  s_d6f5deb73942ed::t_9d47305e4d669e 1-100
+src/i18n/en.ts
+  s_d6f5deb73942ed::t_9d47305e4d669e 342-349
+src/app/_layout.tsx
+  s_d6f5deb73942ed::t_9d47305e4d669e 89-90
+src/api/client.ts
+  s_d6f5deb73942ed::t_fcffbfe536b55e 15-16,572-575
+docs/SERVER.md
+  s_d6f5deb73942ed::t_450456af59d62a 137
+src/app/world/index.tsx
+  s_d6f5deb73942ed::t_9d47305e4d669e 67-69
+  s_d6f5deb73942ed::t_12bec9645a36f7 8
+  s_d6f5deb73942ed::t_b0413e7b1de365 11-12
+docs/FEATURES.md
+  s_d6f5deb73942ed::t_edfa73edb94610 69
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "10fb8775b99253bacd6317f933f8fe5a61d758d7",
+  "prompts": {},
+  "sessions": {
+    "s_d6f5deb73942ed": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8104c628-be4f-4a20-8980-bf5b5e358e56",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
