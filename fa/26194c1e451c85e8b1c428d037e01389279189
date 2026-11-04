@@ -1,0 +1,43 @@
+src/api/schemas.ts
+  s_d6f5deb73942ed::t_8d95c0df2341b4 65-66,367-378,406-407
+src/i18n/en.ts
+  s_d6f5deb73942ed::t_70106de45b5ef7 342-347
+docs/FEATURES.md
+  s_d6f5deb73942ed::t_2b88cda8b1f9d2 41-45
+  s_d6f5deb73942ed::t_d3fd36ff20e5bb 71
+  s_d6f5deb73942ed::t_24c953240c0049 46-49
+src/ui/duplicateGuard.ts
+  s_d6f5deb73942ed::t_f69e0a88b1be76 1-17,19-69
+  s_d6f5deb73942ed::t_9275d2f7694618 18
+src/api/client.ts
+  s_d6f5deb73942ed::t_c20bea00d7438b 567
+  s_d6f5deb73942ed::t_8d95c0df2341b4 16,55-71,85-86,377-393,564-566
+docs/SERVER.md
+  s_d6f5deb73942ed::t_c858d8520dfe70 153
+  s_d6f5deb73942ed::t_5678ea52dcdad5 124-152,154
+src/app/nearby/[collectionId].tsx
+  s_d6f5deb73942ed::t_70106de45b5ef7 11,42,66-80,82,84-86,88,94-102,108-109,111-120
+src/data/useCollectionEdits.ts
+  s_d6f5deb73942ed::t_4f647ed1552b6b 14
+  s_d6f5deb73942ed::t_9029a8696926fa 289-320
+src/app/location-edit/[collectionId].tsx
+  s_d6f5deb73942ed::t_b37936979cdeb7 10,75,149-152
+src/api/__tests__/client.test.ts
+  s_d6f5deb73942ed::t_fd089134600e45 235-260
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "fa26194c1e451c85e8b1c428d037e01389279189",
+  "prompts": {},
+  "sessions": {
+    "s_d6f5deb73942ed": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8104c628-be4f-4a20-8980-bf5b5e358e56",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
