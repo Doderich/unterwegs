@@ -1,0 +1,38 @@
+src/app/calendar.tsx
+  s_d6f5deb73942ed::t_01194f59d628af 2,7,12-13,26-27,30-68
+src/i18n/en.ts
+  s_d6f5deb73942ed::t_2dfec7794dda79 342-350
+src/api/client.ts
+  s_d6f5deb73942ed::t_e83afee2b27d0f 193
+src/ui/serverFile.ts
+  s_d6f5deb73942ed::t_187f2753503903 1-27,29-31,33-44,50-72
+  s_d6f5deb73942ed::t_821342da1ccddb 28,32
+  s_d6f5deb73942ed::t_01194f59d628af 45-49
+src/app/location/[collectionId]/[itemId].tsx
+  s_d6f5deb73942ed::t_6c4b030e09e285 29,45,143-161
+  s_d6f5deb73942ed::t_3ba7da33cc15a6 162-163
+src/app/collection/[id]/_layout.tsx
+  s_d6f5deb73942ed::t_6c4b030e09e285 10,26,76-93
+docs/FEATURES.md
+  s_d6f5deb73942ed::t_d3fd36ff20e5bb 59-69,102
+docs/ROADMAP.md
+  s_d6f5deb73942ed::t_5bbdfba9d57ca2 50
+docs/SERVER.md
+  s_d6f5deb73942ed::t_5678ea52dcdad5 123-149
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "acb50f06d71654b51b26fcc59cff3d7a69db0c96",
+  "prompts": {},
+  "sessions": {
+    "s_d6f5deb73942ed": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8104c628-be4f-4a20-8980-bf5b5e358e56",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
