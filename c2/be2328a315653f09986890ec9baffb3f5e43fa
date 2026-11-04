@@ -1,0 +1,79 @@
+src/app/location/[collectionId]/[itemId].tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 11,40,55,173-199,217-240,258-259,308
+src/ui/MarkdownField.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 1-238
+src/ui/MarkdownEditor.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 18,23,34-36,38,40
+src/ui/ResourceGallery.ios.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 1-21
+src/ui/TodayPreview.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 1-192
+src/ui/__tests__/graphemes.test.ts
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 1-44
+src/ui/FormHost.android.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 2-5,11-13,15,17-26,28-31,33
+src/ui/DesignPreviewSettings.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 1-71
+src/app/transport-edit/[collectionId].tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 289
+src/app/collection-edit.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 130
+src/ui/Thumb.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 18-21,23-24
+src/app/transport/[collectionId]/[itemId].tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 7,30-31,43,73-87,90-110,120-129,131-150,152-216
+src/ui/ResourceGallery.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 1-15
+src/ui/ResourceHeader.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 1-79
+src/time/tz.ts
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 100-106
+src/ui/entries.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 13,49-53,55,110-111,120,132,173
+src/ui/JourneySummary.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 1-58
+src/ui/PhotoPager.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 1-112
+src/i18n/en.ts
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 816-844
+src/ui/graphemes.ts
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 1-71
+src/ui/icons.ts
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 80-83
+src/app/collection/[id]/index.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 9,23,28,43
+src/ui/FormHost.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 1,7-11,15-22
+src/app/note-edit/[collectionId].tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 102
+src/settings/designPreview.ts
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 1-54
+src/app/location-edit/[collectionId].tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 234
+src/app/day-edit/[collectionId]/[date].tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 68
+src/ui/DayNav.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 1-194
+src/app/lodging/[collectionId]/[itemId].tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 7,29,41,70-81,84-106,113-161,164-170,172-202
+src/app/lodging-edit/[collectionId].tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 235
+src/app/settings.tsx
+  s_f05f0ce5ce06da::t_58ef2b4adc56b0 15,31,184-185,202
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c2be2328a315653f09986890ec9baffb3f5e43fa",
+  "prompts": {},
+  "sessions": {
+    "s_f05f0ce5ce06da": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bc286b4f-f154-4253-8192-18bf72ff0784",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
