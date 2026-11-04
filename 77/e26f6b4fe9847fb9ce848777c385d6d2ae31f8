@@ -1,0 +1,54 @@
+docs/ROADMAP.md
+  s_d6f5deb73942ed::t_1e83cbfb19070f 28
+docs/SERVER.md
+  s_d6f5deb73942ed::t_1e83cbfb19070f 120-141
+src/app/location/[collectionId]/[itemId].tsx
+  s_d6f5deb73942ed::t_6fb7a691dc52e0 7,10-11,64,168-173,240-266
+  s_d6f5deb73942ed::t_4034da9143c1d6 123-140
+  s_d6f5deb73942ed::t_944541e4e0cc01 267
+src/api/__tests__/client.test.ts
+  s_d6f5deb73942ed::t_2fedeaeb1d3638 150-165
+src/app/nearby/[collectionId].tsx
+  s_d6f5deb73942ed::t_42591d0ec88bce 1-139
+src/time/__tests__/sun.test.ts
+  s_d6f5deb73942ed::t_500530c0de1a14 1-32,35-43
+  s_d6f5deb73942ed::t_6fb7a691dc52e0 33-34
+src/app/_layout.tsx
+  s_d6f5deb73942ed::t_feecfd6c0387b2 88
+src/ui/__tests__/format.test.ts
+  s_d6f5deb73942ed::t_15123e356352ae 1,15-21
+  s_d6f5deb73942ed::t_2f144bbc0bdc6a 22
+src/time/sun.ts
+  s_d6f5deb73942ed::t_6fb7a691dc52e0 6,22
+  s_d6f5deb73942ed::t_25dd87516431f2 1-5,7-21,23-33
+src/api/client.ts
+  s_d6f5deb73942ed::t_feecfd6c0387b2 15,48,413-421
+src/ui/icons.ts
+  s_d6f5deb73942ed::t_feecfd6c0387b2 13
+  s_d6f5deb73942ed::t_6fb7a691dc52e0 12
+docs/FEATURES.md
+  s_d6f5deb73942ed::t_1e83cbfb19070f 35,66,76,102
+src/api/schemas.ts
+  s_d6f5deb73942ed::t_94ff09d69cf2f9 337-354
+src/ui/format.ts
+  s_d6f5deb73942ed::t_15123e356352ae 40-47
+src/i18n/en.ts
+  s_d6f5deb73942ed::t_5489792d67b10c 342-354
+  s_d6f5deb73942ed::t_6fb7a691dc52e0 355-358
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "77e26f6b4fe9847fb9ce848777c385d6d2ae31f8",
+  "prompts": {},
+  "sessions": {
+    "s_d6f5deb73942ed": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8104c628-be4f-4a20-8980-bf5b5e358e56",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
