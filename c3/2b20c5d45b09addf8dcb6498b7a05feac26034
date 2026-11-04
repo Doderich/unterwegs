@@ -1,0 +1,19 @@
+docs/ROADMAP.md
+  s_ad08619c032789::t_ca867861d3a0ac 69-70
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c32b20c5d45b09addf8dcb6498b7a05feac26034",
+  "prompts": {},
+  "sessions": {
+    "s_ad08619c032789": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a627-2204-7280-82a5-5598b4a65889",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
