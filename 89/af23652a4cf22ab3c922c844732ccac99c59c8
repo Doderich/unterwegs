@@ -1,0 +1,77 @@
+src/api/schemas.ts
+  s_d6f5deb73942ed::t_3d5185c68ae91f 61-62,81,106
+src/ui/forms.tsx
+  s_d6f5deb73942ed::t_3d5185c68ae91f 14-32
+src/app/location/[collectionId]/[itemId].tsx
+  s_d6f5deb73942ed::t_3d5185c68ae91f 12-13,43,60,150,152
+src/app/transport-edit/[collectionId].tsx
+  s_d6f5deb73942ed::t_83397bfbfd0904 17-24,97,140-146,201,348-349,376
+src/api/__tests__/client.test.ts
+  s_d6f5deb73942ed::t_6a2d19484bd58f 133-149
+src/data/__tests__/selectors.test.ts
+  s_d6f5deb73942ed::t_50d99b54e4e2fb 186-192
+src/data/useCollectionEdits.ts
+  s_d6f5deb73942ed::t_4be5b02cd40892 210-224
+src/ui/formValues.ts
+  s_d6f5deb73942ed::t_3d5185c68ae91f 38-48
+  s_d6f5deb73942ed::t_51368555133b78 25-37,55,58
+docs/SERVER.md
+  s_d6f5deb73942ed::t_fe6b2988792907 120-139
+  s_d6f5deb73942ed::t_66ef79457fc66e 118
+  s_d6f5deb73942ed::t_a38148d64384d7 119
+src/app/transport/[collectionId]/[itemId].tsx
+  s_d6f5deb73942ed::t_d79c95bff5e9fb 13,48,114-118
+  s_d6f5deb73942ed::t_6d867c2ace679d 119
+src/app/location-edit/[collectionId].tsx
+  s_d6f5deb73942ed::t_83397bfbfd0904 15,54-58,105-111,125-129,137-139,249-263,294
+  s_d6f5deb73942ed::t_03eb0878b94ad7 69
+  s_d6f5deb73942ed::t_73333dc9805778 21,160-161,279
+  s_d6f5deb73942ed::t_e9a412bb625876 155-159,162-163,275-278,280-281
+  s_d6f5deb73942ed::t_590140aaf56dd6 264-265
+src/app/lodging-edit/[collectionId].tsx
+  s_d6f5deb73942ed::t_d79c95bff5e9fb 18-26,92,127-133,176,303-304,330
+docs/ROADMAP.md
+  s_d6f5deb73942ed::t_24272024820a52 49-52
+  s_d6f5deb73942ed::t_fe6b2988792907 28
+src/app/lodging/[collectionId]/[itemId].tsx
+  s_d6f5deb73942ed::t_3d5185c68ae91f 12,48,106-110
+  s_d6f5deb73942ed::t_2f75728937fd10 111
+docs/FEATURES.md
+  s_d6f5deb73942ed::t_5ac41cb8c9e442 47,92-93,96-98,101-105,109
+  s_d6f5deb73942ed::t_fe6b2988792907 46,49,100
+  s_d6f5deb73942ed::t_2c4e11f70f39ee 99
+src/api/client.ts
+  s_d6f5deb73942ed::t_4be5b02cd40892 322-326,350-355
+  s_d6f5deb73942ed::t_3d5185c68ae91f 55-58,73-74,95-96
+  s_d6f5deb73942ed::t_73333dc9805778 327
+src/i18n/en.ts
+  s_d6f5deb73942ed::t_957bed8ad183f3 258-260
+  s_d6f5deb73942ed::t_7e53d0de11cbf2 341-349
+src/data/useCollectionsActions.ts
+  s_d6f5deb73942ed::t_4be5b02cd40892 15,61-67
+src/ui/__tests__/forms.test.ts
+  s_d6f5deb73942ed::t_50d99b54e4e2fb 1,24-33
+  s_d6f5deb73942ed::t_850aa2828eed2d 34
+src/data/selectors.ts
+  s_d6f5deb73942ed::t_51368555133b78 270,283-284
+  s_d6f5deb73942ed::t_ca5a6816f5e920 285-286
+src/app/collection/[id]/_layout.tsx
+  s_d6f5deb73942ed::t_e9a412bb625876 76-98
+  s_d6f5deb73942ed::t_f10794b38a1c4c 74-75
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "89af23652a4cf22ab3c922c844732ccac99c59c8",
+  "prompts": {},
+  "sessions": {
+    "s_d6f5deb73942ed": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8104c628-be4f-4a20-8980-bf5b5e358e56",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
