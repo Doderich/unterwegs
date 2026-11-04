@@ -1,0 +1,39 @@
+src/__tests__/mapDownloads.test.ts
+  s_8f5170e20ab5fb::t_e8d8beb7185bdc 41-49
+  s_8f5170e20ab5fb::t_1cb79fc68657cf 50-61
+docs/RELEASING.md
+  s_8f5170e20ab5fb::t_a3db42488d30e8 10
+  s_8f5170e20ab5fb::t_b0121256c98eaa 9
+  s_8f5170e20ab5fb::t_0e5406a1ebca64 3-8
+app.json
+  s_8f5170e20ab5fb::t_1cb79fc68657cf 5
+docs/TELEMETRY.md
+  s_8f5170e20ab5fb::t_da0095d9189d0c 9
+  s_8f5170e20ab5fb::t_89efde8966f305 13-14,16-18
+  s_8f5170e20ab5fb::t_7ed103bad0189f 1-8,10-12,15,19-36,38-45
+  s_8f5170e20ab5fb::t_9941a2591088aa 37
+README.md
+  s_8f5170e20ab5fb::t_da0095d9189d0c 11-22
+plugins/with-map-downloads.js
+  s_8f5170e20ab5fb::t_1cb79fc68657cf 38-42,47-49,56
+  s_8f5170e20ab5fb::t_2d0c6813a60914 43-46
+docs/ROADMAP.md
+  s_8f5170e20ab5fb::t_0e5406a1ebca64 28-29
+  s_8f5170e20ab5fb::t_a3db42488d30e8 53
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7a11939b025cb33be695c6b0ed017d5bab441a00",
+  "prompts": {},
+  "sessions": {
+    "s_8f5170e20ab5fb": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a678-7754-7721-a237-a1d086e24ae9",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
