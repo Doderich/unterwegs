@@ -1,0 +1,46 @@
+src/app/visit-edit/[collectionId]/[locationId].tsx
+  s_d6f5deb73942ed::t_9d821723713db9 6,52-54
+src/data/__tests__/selectors.test.ts
+  s_d6f5deb73942ed::t_8323395dabb2ad 212-228
+src/i18n/en.ts
+  s_d6f5deb73942ed::t_64cd569c8351a8 342-343
+docs/SERVER.md
+  s_d6f5deb73942ed::t_f8bdee2d2f180e 80
+src/api/schemas.ts
+  s_d6f5deb73942ed::t_d4719284d46405 97-98
+src/time/__tests__/placeZone.test.ts
+  s_d6f5deb73942ed::t_4908fc947b527c 1-19
+src/app/location/[collectionId]/[itemId].tsx
+  s_d6f5deb73942ed::t_8323395dabb2ad 8,73,447,454
+  s_d6f5deb73942ed::t_64cd569c8351a8 78,84,86-99,126-129
+scripts/generate-country-zones.py
+  s_d6f5deb73942ed::t_47d45497c44cfb 1-50
+src/data/useCollectionEdits.ts
+  s_d6f5deb73942ed::t_db805c7c0409be 55
+  s_d6f5deb73942ed::t_6634b9c167ae5a 462,464-465
+src/app/location-edit/[collectionId].tsx
+  s_d6f5deb73942ed::t_64cd569c8351a8 184
+src/data/selectors.ts
+  s_d6f5deb73942ed::t_8323395dabb2ad 3
+  s_d6f5deb73942ed::t_d4719284d46405 296-310
+src/time/countryZones.ts
+  s_d6f5deb73942ed::t_47d45497c44cfb 1-485
+src/time/placeZone.ts
+  s_d6f5deb73942ed::t_4908fc947b527c 1-30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b4a095757b45c2b1a04a3abd3fb4d68da7a311ce",
+  "prompts": {},
+  "sessions": {
+    "s_d6f5deb73942ed": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8104c628-be4f-4a20-8980-bf5b5e358e56",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
