@@ -1,0 +1,102 @@
+src/ui/PointsMap.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 2,12
+src/app/account/index.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,20
+src/ui/MarkdownEditor.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1
+  s_f05f0ce5ce06da::t_584fe69e1b0044 27
+src/app/login/web.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,14
+src/app/world/region/[id].tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,12
+eslint.config.js
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 5-31
+src/app/collection/[id]/index.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,20
+src/app/offline-maps/[collectionId].tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,18
+src/app/immich/[collectionId]/[locationId].tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,16
+src/app/world/countries.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,11
+src/app/settings.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 2,19
+src/app/world/[code].tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,13
+src/ui/Host.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1-2
+src/app/gallery.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 3,72-73
+src/ui/FormHost.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 4
+src/app/category-edit.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,15
+src/app/login/scan.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,14
+src/app/people/index.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,11
+src/app/transport/[collectionId]/[itemId].tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,28
+src/app/integrations/strava-connect.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,16
+src/app/integrations/index.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,10
+src/app/categories/index.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,12
+src/app/integrations/[kind].tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,17
+src/ui/FormHost.android.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 4
+src/app/search.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,16
+src/app/nearby/[collectionId].tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,19
+src/app/account/keys.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,16
+src/app/collection/[id]/notes.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,14
+src/app/web-image/[collectionId].tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,16
+src/app/collection-share/[collectionId].tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,16
+src/app/collection/[id]/map.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 4,21
+src/app/collection/[id]/lodgings.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,14
+src/app/lodging/[collectionId]/[itemId].tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,27
+src/app/collection/[id]/days.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,17
+src/app/index.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,21
+src/app/calendar.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,17
+src/app/share.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,18
+src/app/people/[username].tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,13
+src/app/world/index.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,14
+src/app/_layout.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 4,58-62
+src/ui/Host.android.tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1-13
+src/app/location/[collectionId]/[itemId].tsx
+  s_f05f0ce5ce06da::t_86088eb6f4ed29 1,38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3aba6f1ba4c5b423113e54168f3eee1afd66897e",
+  "prompts": {},
+  "sessions": {
+    "s_f05f0ce5ce06da": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bc286b4f-f154-4253-8192-18bf72ff0784",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
