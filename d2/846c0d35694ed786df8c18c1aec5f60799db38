@@ -1,0 +1,74 @@
+docs/UI-NOTES.md
+  s_ad08619c032789::t_dfd4164b90dff7 5-8,115-128
+docs/adr/0011-pinned-server-version.md
+  s_ad08619c032789::t_9e11c500025378 3-5
+docs/api/README.md
+  s_ad08619c032789::t_9e11c500025378 9,25-34,37-38,44-46
+.env.example
+  s_ad08619c032789::t_dfd4164b90dff7 11,13
+docs/adr/0004-sso-through-the-website-session.md
+  s_ad08619c032789::t_dfd4164b90dff7 4-5
+docs/adr/0009-maplibre-with-openfreemap.md
+  s_ad08619c032789::t_dfd4164b90dff7 3
+docs/FEATURES.md
+  s_ad08619c032789::t_4a2dfb1c1e7265 7,27,59,83,112,116,118-120,124,127-130
+  s_ad08619c032789::t_dfd4164b90dff7 93
+  s_ad08619c032789::t_9e11c500025378 15,104-110
+README.md
+  s_ad08619c032789::t_9e11c500025378 44
+  s_ad08619c032789::t_cd6e8dfe2ceffd 3-5
+DESIGN.md
+  s_ad08619c032789::t_dfd4164b90dff7 247-255
+PRODUCT.md
+  s_ad08619c032789::t_cd6e8dfe2ceffd 17,25,31
+AGENTS.md
+  s_ad08619c032789::t_cd6e8dfe2ceffd 6,44,46,51
+docs/SERVER.md
+  s_ad08619c032789::t_9e11c500025378 146,164-165
+  s_ad08619c032789::t_4a2dfb1c1e7265 3,45-46,55-56,137,174-178
+  s_ad08619c032789::t_8af34618d063b5 179
+docs/ROADMAP.md
+  s_ad08619c032789::t_9e11c500025378 49-58,64,75-84
+  s_ad08619c032789::t_cd6e8dfe2ceffd 24,26-28,32-48,59-63,65-66,70-71
+docs/RELEASING.md
+  s_ad08619c032789::t_4a2dfb1c1e7265 3,7-10,15-18,94-109
+  s_ad08619c032789::t_32f336202390fb 5,111
+  s_ad08619c032789::t_9e11c500025378 11-14
+  s_ad08619c032789::t_f23d3ba3921e75 6
+docs/adr/0003-one-api-key-per-device.md
+  s_ad08619c032789::t_dfd4164b90dff7 3
+GLOSSARY.md
+  s_ad08619c032789::t_dfd4164b90dff7 5-12,77-82,115-120,138,143-144
+  s_ad08619c032789::t_ae6a32b851c443 145
+docs/adr/0007-offline-copy-on-the-device.md
+  s_ad08619c032789::t_dfd4164b90dff7 3-5
+server/README.md
+  s_ad08619c032789::t_dfd4164b90dff7 10-12
+docs/adr/0001-one-request-per-collection.md
+  s_ad08619c032789::t_9e11c500025378 7
+docs/adr/0005-online-only-edits.md
+  s_ad08619c032789::t_9e11c500025378 3
+docs/adr/0002-data-beyond-one-collection.md
+  s_ad08619c032789::t_dfd4164b90dff7 12-13
+  s_ad08619c032789::t_9e11c500025378 10
+docs/adr/0006-times-in-their-own-time-zone.md
+  s_ad08619c032789::t_9e11c500025378 4-5
+docs/agents/domain.md
+  s_ad08619c032789::t_9e11c500025378 35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d2846c0d35694ed786df8c18c1aec5f60799db38",
+  "prompts": {},
+  "sessions": {
+    "s_ad08619c032789": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a627-2204-7280-82a5-5598b4a65889",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
