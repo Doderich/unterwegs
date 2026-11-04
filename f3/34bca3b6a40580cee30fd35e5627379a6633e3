@@ -1,0 +1,251 @@
+src/app/world/map.tsx
+  s_f05f0ce5ce06da::t_310c5257eba8c4 164-168
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 40,55,67,91,112,137
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 39,90,100,136
+src/app/account/delete.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 52,61,69,76
+  s_f05f0ce5ce06da::t_310c5257eba8c4 32-46,48-49,56-57
+src/app/activity-edit/[collectionId].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 59-60,73,86,104-105,107,117,121,124,129,133,138,142,148,154,159,163,165,175
+src/app/location/[collectionId]/[itemId].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 56,70,82,84,91,93,97,108,110,114,120,124,130,134,138-140,155,171,186,191,199,204,208,236,243,265,280-283,286,292,309,316,342,357,370,377,382,385-386,388,393,399,425,441,467,472-473
+src/app/note/[collectionId]/[itemId].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 52-53,55,82,87,91,96,98,106,123,127,133,144,152,157,170
+src/app/collection-edit.tsx
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 155
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 64,95-96,101-102,130,134,137,142,146,150,159,165,174,178,185
+  s_f05f0ce5ce06da::t_310c5257eba8c4 43-54
+src/app/integrations/strava-connect.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 55,83,85
+src/ui/format.ts
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 22,26
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 23
+src/ui/Today.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 83-84,89,101,109,113,125,130,133,151
+src/i18n/index.ts
+  s_f05f0ce5ce06da::t_a843c670e05ebd 3,8-13,20,22,25,62-64
+src/ui/CollectionHero.tsx
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 51-53
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 46-47,75
+src/app/people/index.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 40,42-43
+  s_f05f0ce5ce06da::t_310c5257eba8c4 29-34
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 36
+src/ui/icons.ts
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 140-147,151-160,165
+  s_f05f0ce5ce06da::t_310c5257eba8c4 173-174
+src/app/search.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 72,77,84,92
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 70,91
+src/app/gallery.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 36,45,51,55-56,58,67,76,83,85
+src/app/share.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 52-53,56,69-71,112,120,123-124,126,128,134,138,141,147-148,153-154,184,195,202-204,206,210,212
+src/app/collection/[id]/lodgings.tsx
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 63
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 59,68,73,79
+src/data/useRegionEdits.ts
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 56,110,148,159,161
+src/app/calendar.tsx
+  s_f05f0ce5ce06da::t_310c5257eba8c4 39-44
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 36,46,56,58-59,79,88
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 67
+docs/adr/0013-translations-with-i18next.md
+  s_f05f0ce5ce06da::t_40cf76b97cda98 1,3,5-9,13-14
+src/app/_layout.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 91-102,105-109,111-113,119-125,132,138-139,142
+  s_f05f0ce5ce06da::t_310c5257eba8c4 114-117,126-129,133-136
+src/ui/StatusRows.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 10,20,22,26-27,33,39
+src/ui/duplicateGuard.ts
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 37,45-46,50,60-61
+  s_f05f0ce5ce06da::t_310c5257eba8c4 47
+src/app/index.tsx
+  s_f05f0ce5ce06da::t_310c5257eba8c4 52-59,61-62,105
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 46,48-49,70,76,81,86,93,95,118,135,140,145,150
+src/ui/JourneySummary.tsx
+  s_f05f0ce5ce06da::t_310c5257eba8c4 34-36
+src/app/nearby/[collectionId].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 22-24,60-61,109,117,124,126,131,133,138,142,146,158,166
+  s_f05f0ce5ce06da::t_310c5257eba8c4 135
+src/app/lodging-edit/[collectionId].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 108-109,112,115,124-125,131-132,156,172,177,211,223-224,226,228,240,244,247,252,258,264,270,274,278,282,292,302,306,313,320,331,333,336,348
+  s_f05f0ce5ce06da::t_310c5257eba8c4 137-154,327-329
+src/ui/journey.ts
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 47
+src/ui/serverFile.ts
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 34
+src/ui/MarkdownField.tsx
+  s_f05f0ce5ce06da::t_310c5257eba8c4 191-194,208-212
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 24-28,78,161,170,229,235
+src/ui/sports.ts
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 6-24,30
+src/data/useOnlineAction.ts
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 19-20,22,41
+src/app/collection/[id]/_layout.tsx
+  s_f05f0ce5ce06da::t_310c5257eba8c4 124,176
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 38,53,57,62,67,73,86-89,92,104,116,123,126,128,138,145,152,160-162,166,175,177,181,189-191,195,209,213,217,221,225
+src/ui/rows.tsx
+  s_f05f0ce5ce06da::t_310c5257eba8c4 223
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 93,140,143,186,214,240,243
+src/app/lodging/[collectionId]/[itemId].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 40,44,66-68,73,79
+  s_f05f0ce5ce06da::t_310c5257eba8c4 61-63
+src/ui/forms.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 29,43,53,57,63,67-69,83-84
+src/ui/MarkdownEditor.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 14
+src/ui/PlaceSearch.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 64-66,83,96,110,117,122
+src/app/transport-edit/[collectionId].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 116-117,120,123,130,137-138,144-145,157,169,186,191,277,282,290,294,297,307,310,313,320,325,334,336,345,350,354,361,372,374,377,389
+  s_f05f0ce5ce06da::t_310c5257eba8c4 150-155,162-167,230-244,248-255,257-258,270-272,368-370
+src/ui/PointsMap.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 97,100
+src/i18n/__tests__/i18n.test.ts
+  s_f05f0ce5ce06da::t_fb36c44cbcf374 4,9-27,29-31,42-43,56-59,62-64,66,70,73-88,96-97,102,107,110-114,116-121,126
+src/api/client.ts
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 219,372,430
+  s_f05f0ce5ce06da::t_310c5257eba8c4 369
+src/app/login/web.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 108,113,123,125-126,128,159
+src/app/immich/[collectionId]/[locationId].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 62,71,74,82,84-85,92,103,107,111-113,131
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 123
+src/app/login/scan.tsx
+  s_f05f0ce5ce06da::t_310c5257eba8c4 40,52
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 20,27,31,54,56
+src/app/settings.tsx
+  s_f05f0ce5ce06da::t_310c5257eba8c4 72-80,82-83,173
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 34-35,39,46-47,51-53,57-58,62-67,87-89,91,102,107,111-112,116,121,126,130,135,138,143,148-149,154,160,165,168,171,178,201
+src/ui/PhotoPager.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 81-82
+src/app/transport/[collectionId]/[itemId].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 52,56,100,104,108-110,121
+  s_f05f0ce5ce06da::t_310c5257eba8c4 115-117
+src/data/useCollectionEdits.ts
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 59,66-67,69,121,224
+src/app/collection/[id]/map.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 32-35,104,109,112,204,230
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 107,195
+src/app/collection/[id]/index.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 16-17,19
+src/app/collection/[id]/days.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 44,48,52,54,91,95,111,113,126,131
+  s_f05f0ce5ce06da::t_310c5257eba8c4 68-76,78-79,142
+src/app/day-edit/[collectionId]/[date].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 48,58,62,65,71,75,83,90,97,100,108,116,124,129-131,149,161-162,167-168,182,185,188,192,196,205,210-212,227,261
+  s_f05f0ce5ce06da::t_310c5257eba8c4 86,207
+src/app/people/[username].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 39,49,54,58,73,85
+src/app/web-image/[collectionId].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 60,63,67,77,85,87,89,91-92,100
+src/app/account/keys.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 42,44,55,58,60,81,85-86,92,100,103,105,107,110,113,122,128
+  s_f05f0ce5ce06da::t_310c5257eba8c4 56,89
+src/app/world/region/[id].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 50,52,68,76,86,88-89,112
+src/i18n/locales/en.json
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 280-281
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 2-279,282-911
+src/time/tz.ts
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 139-142,217
+src/ui/notes.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 15
+src/ui/StaySummary.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 38,46,58,60
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 11
+AGENTS.md
+  s_f05f0ce5ce06da::t_40cf76b97cda98 11
+src/ui/entries.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 41,43,90-91
+src/app/login/_layout.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 13-14
+src/app/note-edit/[collectionId].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 42,46,49,78-79,81,92,96,99,104,108,112,116,120,127,141
+  s_f05f0ce5ce06da::t_310c5257eba8c4 113-115,131
+src/app/login/index.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 80,99,114,135,139,145,147,154,156,162,164,169,179,184,195,203,211,220,233,240,248
+  s_f05f0ce5ce06da::t_310c5257eba8c4 173
+src/ui/TextPrompt.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 56,62
+src/i18n/locales/de.json
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 280-281
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 1-279,282-912
+src/auth/serverLogin.ts
+  s_f05f0ce5ce06da::t_310c5257eba8c4 81,122
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 32,34,80,84,101
+src/ui/media.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 56-58,89-91,93,112-113,115,124,126-127,135,148
+  s_f05f0ce5ce06da::t_310c5257eba8c4 108
+src/app/category-edit.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 54,57,59,61,72,76,79,84,88,92,106
+  s_f05f0ce5ce06da::t_310c5257eba8c4 95-97
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 56
+src/ui/stay.ts
+  s_f05f0ce5ce06da::t_310c5257eba8c4 18
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 16,20
+src/i18n/locales/ja.json
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 275
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 2-274,276-890
+src/app/world/[code].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 40,42,51,61,63-64,96
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 78
+src/app/integrations/index.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 25,28,31,64,66-67,70
+  s_f05f0ce5ce06da::t_310c5257eba8c4 41-45,54,74
+src/ui/statRows.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 9,14,17,21,27,33
+src/app/categories/index.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 26,29,37,52
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 44
+src/app/collection/[id]/notes.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 40,53,71,87,92,97,103
+src/app/visit-edit/[collectionId]/[locationId].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 66-68,73,95,111-112,114,125,129,132,139,145,149,153,163
+src/app/world/countries.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 27,32,37,42,54
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 55
+src/app/collection-share/[collectionId].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 46,55,73,76,78,94-95,97,110,120,124,133,141
+  s_f05f0ce5ce06da::t_310c5257eba8c4 51,62-69,114
+src/data/useCollectionsActions.ts
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 31,66
+src/app/integrations/[kind].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 22,46,132,137,139,160,163,170,175,182,186,197,199,204,212,218,226,238,246,261,271,276,321,332,338,350,355
+  s_f05f0ce5ce06da::t_310c5257eba8c4 55,102,134-135,253,299-310,312-313,322-326,344
+src/auth/browserLogin.ts
+  s_f05f0ce5ce06da::t_310c5257eba8c4 34
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 32,36,38
+src/app/location-edit/[collectionId].tsx
+  s_f05f0ce5ce06da::t_310c5257eba8c4 292-294
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 87-88,91,93,98,100,112-113,133,175,181,184,186-189,205-206,208,210,224,228,231,236,240-241,248,255,261,268,274,279,287,296,301,307,314,326-327,333
+src/app/account/index.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 27,35,59-60,63-64,69-70,76-77,80,117,125,128,133,137,141-143,145,155,160,163,168,174,180,188,199,203,206,210,215,224,230
+  s_f05f0ce5ce06da::t_310c5257eba8c4 108-111,151,184
+src/app/offline-maps/[collectionId].tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 33,38,40-41,59-61,66,69,80,83,85,93,96,101,103,108,110,112,114,126,128,130,134,153,161
+  s_f05f0ce5ce06da::t_310c5257eba8c4 53,74,81,104
+src/app/world/index.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 35-36,39,48,60,66,69,73,81,85,91,104,111,117,119,129
+  s_f05f0ce5ce06da::t_8cc32f6c0aed75 106
+  s_f05f0ce5ce06da::t_310c5257eba8c4 77-79
+src/ui/DayNav.tsx
+  s_f05f0ce5ce06da::t_56d10356e2ae5d 47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f334bca3b6a40580cee30fd35e5627379a6633e3",
+  "prompts": {},
+  "sessions": {
+    "s_f05f0ce5ce06da": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bc286b4f-f154-4253-8192-18bf72ff0784",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
