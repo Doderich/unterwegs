@@ -1,0 +1,68 @@
+src/ui/DesignPreviewSettings.tsx
+  s_f05f0ce5ce06da::t_86e0de6936d803 4,9,18,24,29
+src/ui/ResourceGallery.tsx
+  s_f05f0ce5ce06da::t_dbf9b222be4047 8
+src/i18n/en.ts
+  s_f05f0ce5ce06da::t_bd1f533ebe00cb 814-816
+src/ui/MarkdownField.tsx
+  s_f05f0ce5ce06da::t_16c760742704e8 57-58
+  s_f05f0ce5ce06da::t_91baa562244097 54-55,87-100,121-124
+  s_f05f0ce5ce06da::t_75ff257dad5f90 186,205
+  s_f05f0ce5ce06da::t_ecb5685e03e220 3
+  s_f05f0ce5ce06da::t_b995b723205960 33-35
+src/app/location/[collectionId]/[itemId].tsx
+  s_f05f0ce5ce06da::t_dbf9b222be4047 11
+src/settings/designPreview.ts
+  s_f05f0ce5ce06da::t_16c760742704e8 6-7
+src/app/collection-edit.tsx
+  s_f05f0ce5ce06da::t_f194e5915e5a39 41
+scripts/check-markdown-editor.py
+  s_f05f0ce5ce06da::t_efd147d5225b60 2,4-5,31,35-36,38,51,53-57,61-62,64-66,68,71-73
+  s_f05f0ce5ce06da::t_97025cf461cd71 41-50,52,58,63,70,74
+src/ui/MarkdownEditor.tsx
+  s_f05f0ce5ce06da::t_f194e5915e5a39 13,15
+  s_f05f0ce5ce06da::t_12e0de29892847 4,6-12
+src/ui/ResourceGallery.ios.tsx
+  s_f05f0ce5ce06da::t_dbf9b222be4047 12
+src/ui/PhotoPager.tsx
+  s_f05f0ce5ce06da::t_dbf9b222be4047 20-22,37-38,50,115-119
+src/app/location-edit/[collectionId].tsx
+  s_f05f0ce5ce06da::t_f194e5915e5a39 76
+src/ui/TodayPreview.tsx
+  s_f05f0ce5ce06da::t_16c760742704e8 14,26-27,47,57
+src/ui/DayNav.tsx
+  s_f05f0ce5ce06da::t_16c760742704e8 51
+  s_f05f0ce5ce06da::t_6ea5b0c8641e38 18
+src/app/note-edit/[collectionId].tsx
+  s_f05f0ce5ce06da::t_f194e5915e5a39 39
+src/app/lodging/[collectionId]/[itemId].tsx
+  s_f05f0ce5ce06da::t_dbf9b222be4047 7
+docs/UI-NOTES.md
+  s_f05f0ce5ce06da::t_9aa5204836da13 45,47-51,55,61
+docs/DESIGN-PLAN.md
+  s_f05f0ce5ce06da::t_198e7cde5e546a 192-198
+src/app/lodging-edit/[collectionId].tsx
+  s_f05f0ce5ce06da::t_f194e5915e5a39 105
+src/ui/ResourceHeader.tsx
+  s_f05f0ce5ce06da::t_dbf9b222be4047 33-34
+src/app/day-edit/[collectionId]/[date].tsx
+  s_f05f0ce5ce06da::t_f194e5915e5a39 33
+src/app/transport-edit/[collectionId].tsx
+  s_f05f0ce5ce06da::t_f194e5915e5a39 103
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8f8bf51cc53de4b520cb7e6102c040e9318c9916",
+  "prompts": {},
+  "sessions": {
+    "s_f05f0ce5ce06da": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bc286b4f-f154-4253-8192-18bf72ff0784",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
