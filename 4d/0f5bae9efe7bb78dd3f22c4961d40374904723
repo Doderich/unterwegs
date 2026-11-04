@@ -1,0 +1,35 @@
+src/api/__tests__/client.test.ts
+  s_d6f5deb73942ed::t_767b4d7377951e 151
+src/app/nearby/[collectionId].tsx
+  s_d6f5deb73942ed::t_767b4d7377951e 9,48-49,51-52
+  s_d6f5deb73942ed::t_35822b7a52a2bc 132,134-136
+src/api/schemas.ts
+  s_d6f5deb73942ed::t_767b4d7377951e 409-410,463
+  s_d6f5deb73942ed::t_1aae67b94a78e4 457-461
+src/data/useCollectionEdits.ts
+  s_d6f5deb73942ed::t_1aae67b94a78e4 287-293
+src/api/client.ts
+  s_d6f5deb73942ed::t_767b4d7377951e 559-560,562-568,570
+  s_d6f5deb73942ed::t_1aae67b94a78e4 572-573,576-577
+  s_d6f5deb73942ed::t_35822b7a52a2bc 574-575
+src/i18n/en.ts
+  s_d6f5deb73942ed::t_35822b7a52a2bc 342-344
+docs/SERVER.md
+  s_d6f5deb73942ed::t_aa400acc3391ac 126-159
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4d0f5bae9efe7bb78dd3f22c4961d40374904723",
+  "prompts": {},
+  "sessions": {
+    "s_d6f5deb73942ed": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8104c628-be4f-4a20-8980-bf5b5e358e56",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
