@@ -1,0 +1,27 @@
+docs/FEATURES.md
+  s_d6f5deb73942ed::t_c858d8520dfe70 61,103
+docs/SERVER.md
+  s_d6f5deb73942ed::t_c858d8520dfe70 145
+src/i18n/en.ts
+  s_d6f5deb73942ed::t_c858d8520dfe70 355-356
+src/ui/serverFile.ts
+  s_d6f5deb73942ed::t_c858d8520dfe70 48
+src/app/collection/[id]/_layout.tsx
+  s_d6f5deb73942ed::t_c858d8520dfe70 94-117
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1ff8686394896ac6fc518e466abc3cac88b0f35b",
+  "prompts": {},
+  "sessions": {
+    "s_d6f5deb73942ed": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8104c628-be4f-4a20-8980-bf5b5e358e56",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
