@@ -1,0 +1,24 @@
+README.md
+  s_6246804f97c73c::t_f657667f9b1ede 15
+docs/ROADMAP.md
+  s_6246804f97c73c::t_f657667f9b1ede 34-35
+docs/DESIGN-PLAN.md
+  s_6246804f97c73c::t_4def776dfe7399 39-46,58-62,168-176,238-248
+  s_6246804f97c73c::t_f657667f9b1ede 1-38,47-57,63-167,177-237,249-252
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8792bbe8fd88906c471ce9fe695f4dd62957626d",
+  "prompts": {},
+  "sessions": {
+    "s_6246804f97c73c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a680-444e-7542-a186-bd2125079e18",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
