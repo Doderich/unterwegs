@@ -1,0 +1,33 @@
+src/data/useCollectionEdits.ts
+  s_8a44f2ec972660::t_0bece43ff415e6 131,204,352,371
+src/data/__tests__/useCollectionEdits.test.ts
+  s_8a44f2ec972660::t_a6c7ca9e78eda1 38-40
+  s_8a44f2ec972660::t_9b6d0019786b95 1-37,41-52
+scripts/live-write-check.ts
+  s_8a44f2ec972660::t_0bece43ff415e6 119
+docs/ROADMAP.md
+  s_8a44f2ec972660::t_8b52cab91c9af7 44,53
+  s_8a44f2ec972660::t_a6c7ca9e78eda1 55-66
+  s_8a44f2ec972660::t_96b36bd8181d57 54
+src/api/client.ts
+  s_8a44f2ec972660::t_0bece43ff415e6 405-407,412,504,509
+docs/SERVER.md
+  s_8a44f2ec972660::t_8b52cab91c9af7 3,135,138-147
+  s_8a44f2ec972660::t_84b98dd5d03f61 137,163-167
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ed148e9cb24084978c68cf3e9bcc00e7cf6d8d52",
+  "prompts": {},
+  "sessions": {
+    "s_8a44f2ec972660": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a8c5-6d94-76c0-b462-7a77f306c337",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
