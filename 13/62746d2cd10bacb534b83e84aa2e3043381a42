@@ -1,0 +1,29 @@
+docs/adr/0011-pinned-server-version.md
+  s_d6f5deb73942ed::t_3ef75e016c8ed1 3
+package.json
+  s_d6f5deb73942ed::t_3ef75e016c8ed1 79
+scripts/live-write-check.ts
+  s_d6f5deb73942ed::t_3ef75e016c8ed1 5,49-58,60-63,120-127,146-149,158-161,278-280,304-307
+  s_d6f5deb73942ed::t_b397b933001a77 1-4,6-48,59,64-82,87-119,128-145,150-157,162-277,281-303,308-334
+  s_d6f5deb73942ed::t_14f67569292903 83-86
+docs/ROADMAP.md
+  s_d6f5deb73942ed::t_3ef75e016c8ed1 65
+README.md
+  s_d6f5deb73942ed::t_ee7b4bdfc1f825 42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1362746d2cd10bacb534b83e84aa2e3043381a42",
+  "prompts": {},
+  "sessions": {
+    "s_d6f5deb73942ed": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8104c628-be4f-4a20-8980-bf5b5e358e56",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
