@@ -1,0 +1,21 @@
+scripts/android-publish.sh
+  s_ad08619c032789::t_1bb046b29902ed 25-30,49,52
+docs/RELEASING.md
+  s_ad08619c032789::t_1bb046b29902ed 78
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6a6920f2e4a4280c9daad2bccace772261d94234",
+  "prompts": {},
+  "sessions": {
+    "s_ad08619c032789": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a627-2204-7280-82a5-5598b4a65889",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
