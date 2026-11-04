@@ -1,0 +1,38 @@
+docs/ROADMAP.md
+  s_f05f0ce5ce06da::t_e7afb87534c487 23
+src/i18n/index.ts
+  s_f05f0ce5ce06da::t_c2cca29a54a775 1,16
+  s_f05f0ce5ce06da::t_787f7ddc7d35bf 3-4,7-11,17-30,35,63
+  s_f05f0ce5ce06da::t_fe47fcd02c02b7 2
+package.json
+  s_f05f0ce5ce06da::t_1a84b48dbdb4a1 43
+src/i18n/locales/en.json
+  s_f05f0ce5ce06da::t_aac14bb489b138 1-756
+src/i18n/locales/ja.json
+  s_f05f0ce5ce06da::t_aac14bb489b138 1-756
+AGENTS.md
+  s_f05f0ce5ce06da::t_6547efbce84920 11
+src/i18n/__tests__/i18n.test.ts
+  s_f05f0ce5ce06da::t_4653a5a6a43de2 1-79,81,91-105
+  s_f05f0ce5ce06da::t_eca98fc9ebe03a 80,82-90
+docs/adr/0013-translations-with-i18next.md
+  s_f05f0ce5ce06da::t_e7afb87534c487 1-12
+package-lock.json
+  s_f05f0ce5ce06da::t_939d35d0d74ef0 48,11396-11423
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c28587407bc34f10575b4e3e0cd3bd71e6ad761f",
+  "prompts": {},
+  "sessions": {
+    "s_f05f0ce5ce06da": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bc286b4f-f154-4253-8192-18bf72ff0784",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
