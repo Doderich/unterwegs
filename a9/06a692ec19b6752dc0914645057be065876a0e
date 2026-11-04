@@ -1,0 +1,39 @@
+src/app/settings.tsx
+  s_f05f0ce5ce06da::t_636f046edeed8f 42
+src/time/__tests__/tz.test.ts
+  s_f05f0ce5ce06da::t_7017f64581f45b 1-3,5,9,81-90
+  s_f05f0ce5ce06da::t_48eb34856e9286 91-92
+src/i18n/ja.ts
+  s_f05f0ce5ce06da::t_c4568758dab6c9 1-826
+src/i18n/index.ts
+  s_f05f0ce5ce06da::t_fb7cfce2f4b904 2,6-7,12,24,27-28,41,45
+AGENTS.md
+  s_f05f0ce5ce06da::t_20e9b0ec526b59 11
+src/settings/store.ts
+  s_f05f0ce5ce06da::t_636f046edeed8f 9
+README.md
+  s_f05f0ce5ce06da::t_20e9b0ec526b59 3
+src/ui/format.ts
+  s_f05f0ce5ce06da::t_636f046edeed8f 4,9-11
+src/time/tz.ts
+  s_f05f0ce5ce06da::t_636f046edeed8f 97,101,110,114,120
+  s_f05f0ce5ce06da::t_fb7cfce2f4b904 88-92
+src/i18n/__tests__/en.test.ts
+  s_f05f0ce5ce06da::t_8fe67c104a4381 5,26,37,39-42,44,48,52,69-73,82-83
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a906a692ec19b6752dc0914645057be065876a0e",
+  "prompts": {},
+  "sessions": {
+    "s_f05f0ce5ce06da": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bc286b4f-f154-4253-8192-18bf72ff0784",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
