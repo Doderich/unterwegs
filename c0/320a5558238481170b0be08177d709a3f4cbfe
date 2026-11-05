@@ -1,0 +1,20 @@
+docs/STORE-RELEASE.md
+  s_9d7c4a34d1d8b3::t_7473b56d714cd1 64
+  s_9d7c4a34d1d8b3::t_5f1159a0e6b41f 25,27-47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c0320a5558238481170b0be08177d709a3f4cbfe",
+  "prompts": {},
+  "sessions": {
+    "s_9d7c4a34d1d8b3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4f3d5aa1-a43e-4ca3-bb6b-dc380f64cb1c",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
