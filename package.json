@@ -70,6 +70,7 @@
     "android": "DISABLE_CODE_SIGNING=1 expo run:android",
     "android:release": "env -u DISABLE_CODE_SIGNING sh -c 'expo prebuild --platform android && expo run:android --variant release \"$@\"' --",
     "android:publish": "./scripts/android-publish.sh",
+    "android:bundle": "./scripts/android-bundle.sh",
     "ios": "DISABLE_CODE_SIGNING=1 expo run:ios",
     "ios:release": "env -u DISABLE_CODE_SIGNING sh -c 'expo prebuild --platform ios && expo run:ios --configuration Release \"$@\"' --",
     "ios:testflight": "./scripts/ios-testflight.sh",
