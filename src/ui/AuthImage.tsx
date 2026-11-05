@@ -21,7 +21,7 @@ export function AuthImage({ url, onError, ...props }: Omit<ImageProps, 'source'>
   const source = local
     ? { uri: local }
     : useFallback
-      ? { uri: request.fallback, cacheKey: request.fallback }
+      ? { uri: request.fallback!.url, headers: request.fallback!.headers, cacheKey: request.fallback!.url }
       : { uri: request.url, headers: request.headers, cacheKey: request.url };
   return (
     <Image

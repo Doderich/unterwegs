@@ -251,18 +251,80 @@ function originOf(url: string): string | null {
   return m ? m[1].toLowerCase() : null;
 }
 
+type MediaSource = { url: string; headers?: Record<string, string> };
+
+/** Parent domains whose subdomains usually belong to different people (shared hosting, dynamic DNS, tunnels). */
+const SHARED_PARENTS = new Set([
+  'github.io',
+  'gitlab.io',
+  'pages.dev',
+  'workers.dev',
+  'netlify.app',
+  'vercel.app',
+  'herokuapp.com',
+  'onrender.com',
+  'fly.dev',
+  'railway.app',
+  'web.app',
+  'firebaseapp.com',
+  'azurewebsites.net',
+  'cloudfront.net',
+  'amazonaws.com',
+  'trycloudflare.com',
+  'ngrok.io',
+  'ngrok.app',
+  'ngrok-free.app',
+  'loca.lt',
+  'ts.net',
+  'duckdns.org',
+  'ddns.net',
+  'no-ip.org',
+  'no-ip.biz',
+  'hopto.org',
+  'zapto.org',
+  'sytes.net',
+  'dynu.net',
+  'freedns.org',
+  'mooo.com',
+  'afraid.org',
+  'dyndns.org',
+  'myfritz.net',
+  'synology.me',
+  'myqnapcloud.com',
+  'tplinkdns.com',
+  'eu.org',
+]);
+
+/** `https://demoapi.example.org` → `example.org`; null when the parent could be a public suffix. */
+function ownedParent(origin: string): string | null {
+  const host = origin.replace(/^https:\/\//, '');
+  if (host.includes(':') || /^[\d.]+$/.test(host)) return null;
+  const labels = host.split('.');
+  if (labels.length < 3) return null;
+  const parent = labels.slice(1).join('.');
+  const [second, tld] = labels.slice(-2);
+  // Two-label public suffixes like co.uk, com.au, ne.jp.
+  if (labels.length === 3 && tld.length === 2 && second.length <= 3) return null;
+  return SHARED_PARENTS.has(parent) ? null : parent;
+}
+
+/** Both HTTPS, and subdomains of the same domain (`demo.example.org` and `demoapi.example.org`). */
+function isSiblingHost(origin: string, server: string): boolean {
+  if (!origin.startsWith('https://')) return false;
+  const parent = ownedParent(server);
+  return parent != null && parent === ownedParent(origin);
+}
+
 /**
- * Where to load a media URL from the server's data, and whether it gets the key. The key only goes to the
- * signed-in server over HTTPS. Media URLs carry the server's `PUBLIC_URL`, which may differ from the address the
- * user signed in with; `/media` and `/api` paths on another host are loaded from the signed-in server instead.
- * Some servers only serve media on that other host (the public demo: API and media on `demoapi.…`, its web app on
- * `demo.…` answers `/media` with 404), so an HTTPS original comes back as `fallback`, loaded without the key.
- * Anything else is loaded without the key.
+ * Where to load a media URL from the server's data, and whether it gets the key. The key only goes over HTTPS: to
+ * the signed-in server, and as `fallback` to a sibling host of it. Media URLs carry the server's `PUBLIC_URL`, which
+ * may differ from the address the user signed in with; `/media` and `/api` paths on another host are loaded from the
+ * signed-in server first. Some servers only serve media on that other host (the public demo: API and media on
+ * `demoapi.…`, its web app on `demo.…` answers `/media` with 404), so an HTTPS original comes back as `fallback`:
+ * with the key when it is a subdomain of the server's own domain (not a shared-hosting or dynamic-DNS domain),
+ * else without it. Anything else is loaded without the key.
  */
-export function mediaRequest(
-  url: string,
-  credentials: Credentials | null,
-): { url: string; headers?: Record<string, string>; fallback?: string } {
+export function mediaRequest(url: string, credentials: Credentials | null): MediaSource & { fallback?: MediaSource } {
   if (!credentials) return { url };
   const base = normalizeServerUrl(credentials.serverUrl);
   const server = originOf(base);
@@ -270,9 +332,12 @@ export function mediaRequest(
   const origin = originOf(url);
   if (origin === server) return { url, headers: authHeaders(credentials.apiKey) };
   const path = origin ? url.trim().slice(origin.length) : null;
-  if (path && /^\/(media|api)\//.test(path)) {
+  if (origin && path && /^\/(media|api)\//.test(path)) {
     const request = { url: base + path, headers: authHeaders(credentials.apiKey) };
-    return origin?.startsWith('https://') ? { ...request, fallback: url.trim() } : request;
+    if (!origin.startsWith('https://')) return request;
+    const original = url.trim();
+    const fallback = isSiblingHost(origin, server) ? { url: original, headers: request.headers } : { url: original };
+    return { ...request, fallback };
   }
   return { url };
 }

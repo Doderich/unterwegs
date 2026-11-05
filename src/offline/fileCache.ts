@@ -66,7 +66,7 @@ export async function download(url: string, credentials: Credentials): Promise<F
     return await downloadToFile(request.url, request.headers, target);
   } catch (error) {
     if (!request.fallback) throw error;
-    return downloadToFile(request.fallback, undefined, target);
+    return downloadToFile(request.fallback.url, request.fallback.headers, target);
   }
 }
 
