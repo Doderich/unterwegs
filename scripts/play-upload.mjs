@@ -3,6 +3,8 @@
 // bundle, R8 mapping, track release, commit. Called by scripts/android-bundle.sh; no dependencies.
 //   node scripts/play-upload.mjs --credentials <service-account.json> --package <id> --bundle <aab>
 //     [--mapping <mapping.txt>] [--track internal] [--status draft|completed] [--name <release name>]
+//   node scripts/play-upload.mjs --credentials <service-account.json> --package <id> --check
+//     only checks access: opens an edit, lists the tracks, deletes the edit.
 // The service account needs release permissions for the app in the Play Console (docs/RELEASING.md → Google Play).
 import { createSign } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -17,9 +19,10 @@ const { values: args } = parseArgs({
     track: { type: 'string', default: 'internal' },
     status: { type: 'string', default: 'draft' },
     name: { type: 'string' },
+    check: { type: 'boolean', default: false },
   },
 });
-for (const required of ['credentials', 'package', 'bundle']) {
+for (const required of ['credentials', 'package', ...(args.check ? [] : ['bundle'])]) {
   if (!args[required]) throw new Error(`--${required} is required`);
 }
 if (!['draft', 'completed'].includes(args.status)) throw new Error('--status must be draft or completed');
@@ -74,6 +77,14 @@ async function call(method, url, { json, file, contentType } = {}) {
 
 const edit = await call('POST', `${API}/edits`, { json: {} });
 const editUrl = (base) => `${base}/edits/${edit.id}`;
+if (args.check) {
+  const { tracks = [] } = await call('GET', `${editUrl(API)}/tracks`).finally(() => call('DELETE', editUrl(API)));
+  const summary = tracks.map(
+    (t) => `${t.track}: ${t.releases?.length ? t.releases.map((r) => r.status).join(', ') : 'empty'}`,
+  );
+  console.log(`Access to ${args.package} works. Tracks — ${summary.join('; ') || 'none'}`);
+  process.exit(0);
+}
 try {
   console.log(`Uploading ${args.bundle} …`);
   const bundle = await call('POST', `${editUrl(UPLOAD_API)}/bundles?uploadType=media`, { file: args.bundle });

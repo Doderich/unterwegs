@@ -182,6 +182,7 @@ One-time setup for `--upload`:
 1. Google Cloud console: a project, the **Google Play Android Developer API** enabled, a service account with no project roles, and a JSON key for it.
 2. Play Console → Users and permissions → Invite new users: the service account's email, with the app's release permissions ("Release to testing tracks", and "Release to production" once that's wanted).
 3. Put the JSON key into 1Password (a file attachment or a field) and its reference into `UNTERWEGS_PLAY_SERVICE_ACCOUNT_OP_REF` in `.env.local`. The script reads it into a temporary file that is removed on exit.
+4. `npm run android:bundle -- --check` confirms the access without building or uploading: it opens a Play edit, lists the tracks and deletes the edit again. A permission error right after the invitation usually clears after a while.
 
 ## Over-the-air updates
 
