@@ -1,0 +1,67 @@
+site/README.md
+  s_339bcff149b539::t_118f3eebefb4b6 1-17
+docs/adr/0011-pinned-server-version.md
+  s_339bcff149b539::t_a7617fe25bcc45 8-9
+docs/STORE-RELEASE.md
+  s_339bcff149b539::t_a7617fe25bcc45 19-25
+  s_339bcff149b539::t_326b1516a2307c 79
+  s_339bcff149b539::t_c5848e8f5966db 13,26-53,75-78,100-101
+  s_339bcff149b539::t_118f3eebefb4b6 88,90,93
+  s_339bcff149b539::t_3c1e9dac1b5bbb 18
+docs/RELEASING.md
+  s_339bcff149b539::t_e65fc51f6a272d 87
+README.md
+  s_339bcff149b539::t_118f3eebefb4b6 28
+site/de/support.html
+  s_339bcff149b539::t_959472cb118dbb 1-2,20,103
+  s_339bcff149b539::t_118f3eebefb4b6 3-19,21-102
+site/style.css
+  s_339bcff149b539::t_959472cb118dbb 1-28,37-98
+  s_339bcff149b539::t_118f3eebefb4b6 29-36
+site/ja/support.html
+  s_339bcff149b539::t_959472cb118dbb 1-2,20,102
+  s_339bcff149b539::t_118f3eebefb4b6 3-19,21-101
+site/en/privacy.html
+  s_339bcff149b539::t_959472cb118dbb 1-2,20,178
+  s_339bcff149b539::t_118f3eebefb4b6 3-19,21-32,35-62,64-177
+  s_339bcff149b539::t_9828f014b795de 33-34,63
+site/de/privacy.html
+  s_339bcff149b539::t_9828f014b795de 35-36,67
+  s_339bcff149b539::t_118f3eebefb4b6 3-19,21-34,37-66,68-188
+  s_339bcff149b539::t_959472cb118dbb 1-2,20,189
+site/en/delete-account.html
+  s_339bcff149b539::t_959472cb118dbb 1-2,20,79
+  s_339bcff149b539::t_118f3eebefb4b6 3-19,21-78
+site/index.html
+  s_339bcff149b539::t_118f3eebefb4b6 3-42
+  s_339bcff149b539::t_959472cb118dbb 1-2,43
+site/de/delete-account.html
+  s_339bcff149b539::t_959472cb118dbb 1-2,20,81
+  s_339bcff149b539::t_118f3eebefb4b6 3-19,21-80
+site/ja/privacy.html
+  s_339bcff149b539::t_9828f014b795de 33,64
+  s_339bcff149b539::t_959472cb118dbb 1-2,20,173
+  s_339bcff149b539::t_118f3eebefb4b6 3-19,21-32,34-63,65-172
+site/en/support.html
+  s_339bcff149b539::t_118f3eebefb4b6 3-19,21-98
+  s_339bcff149b539::t_959472cb118dbb 1-2,20,99
+site/ja/delete-account.html
+  s_339bcff149b539::t_959472cb118dbb 1-2,20,77
+  s_339bcff149b539::t_118f3eebefb4b6 3-19,21-76
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7951b0b50864fd8d355f83e420d9138e019c40b1",
+  "prompts": {},
+  "sessions": {
+    "s_339bcff149b539": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "429dc936-a139-4646-8b57-d9c3656b5b1e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
