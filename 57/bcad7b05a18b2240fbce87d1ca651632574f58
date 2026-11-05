@@ -1,0 +1,31 @@
+.env.example
+  s_339bcff149b539::t_6a42bda446e54f 16-17
+README.md
+  s_339bcff149b539::t_ca00291a44ebca 50-53
+docs/RELEASING.md
+  s_339bcff149b539::t_6a42bda446e54f 31-32,42-44
+  s_339bcff149b539::t_a20165440e3756 140,167
+  s_339bcff149b539::t_10911c89463ce8 29-30,45
+LICENSE.md
+  s_339bcff149b539::t_056c61181eee20 1-75
+scripts/android-publish.sh
+  s_339bcff149b539::t_6a42bda446e54f 2-3,27,94
+.prettierignore
+  s_339bcff149b539::t_60e737fc8758bc 4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "57bcad7b05a18b2240fbce87d1ca651632574f58",
+  "prompts": {},
+  "sessions": {
+    "s_339bcff149b539": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "429dc936-a139-4646-8b57-d9c3656b5b1e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
