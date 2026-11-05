@@ -508,6 +508,13 @@
   "journeySummary": {
     "journey": "Fahrt"
   },
+  "licenses": {
+    "footer": "Software, die in Unterwegs steckt, mit ihren Lizenzen.",
+    "license": "Lizenz",
+    "noText": "Das Paket enthält keinen Lizenztext. Lizenz: {license}, Details im Quellcode.",
+    "source": "Quellcode",
+    "version": "Version"
+  },
   "location": {
     "activities": "Aktivitäten",
     "addActivity": "Aktivität hinzufügen",
@@ -827,6 +834,8 @@
     "extraLarge": "Sehr groß",
     "googleMaps": "Google Maps",
     "hapticFeedback": "Haptisches Feedback",
+    "healthReports": "Absturzberichte senden",
+    "healthReportsHint": "Absturz- und Startmeldungen an den Update-Server. Update-Prüfungen laufen weiter.",
     "huge": "Riesig",
     "imagesPdfsDownloadedAgainNext": "Bilder und PDFs werden beim nächsten Öffnen einer Sammlung neu geladen.",
     "increaseContrast": "Mehr Kontrast",
@@ -841,8 +850,11 @@
     "maps": "Karten",
     "noTransitionsOrFades": "Keine Übergänge und Einblendungen",
     "offline": "Offline",
+    "openSourceLicenses": "Open-Source-Lizenzen",
     "organicMaps": "Organic Maps",
     "osmand": "OsmAnd",
+    "privacy": "Datenschutz",
+    "privacyPolicy": "Datenschutzerklärung",
     "reduceMotion": "Bewegung reduzieren",
     "savedImagesPdfs": "Gespeicherte Bilder und PDFs",
     "showTabLabels": "Tab-Beschriftungen anzeigen",

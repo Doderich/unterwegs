@@ -92,6 +92,8 @@ Also needed: Xcode signed in (Settings → Accounts) with the team's Account Hol
 
 ## Release builds
 
+Before a native release, run `npm run licenses` and commit `src/legal/licenses.json` if it changed: the in-app licence list comes from the packages in the bundle. When native dependencies change, check the hand-kept native list in `scripts/licenses.mjs` against `ios/Podfile.lock`.
+
 `npm run android:release` / `ios:release` first sync `android/` / `ios/` with the current config (`expo prebuild`, so `.env.local` values and the certificate are in), then build the release app and install it. A release build carries its own JavaScript: it works without Metro and without network. Use it for the airplane-mode test and to test updates.
 
 - `expo run` keeps Metro and the log stream running after the install; stop it with Ctrl-C, the app doesn't need it.

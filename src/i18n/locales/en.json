@@ -508,6 +508,13 @@
   "journeySummary": {
     "journey": "Journey"
   },
+  "licenses": {
+    "footer": "Software that Unterwegs is built with, and its licences.",
+    "license": "Licence",
+    "noText": "The package ships no licence text. Licence: {license}, details in the source code.",
+    "source": "Source code",
+    "version": "Version"
+  },
   "location": {
     "activities": "Activities",
     "addActivity": "Add activity",
@@ -827,6 +834,8 @@
     "extraLarge": "Extra large",
     "googleMaps": "Google Maps",
     "hapticFeedback": "Haptic feedback",
+    "healthReports": "Send crash reports",
+    "healthReportsHint": "Crash and start reports to the update server. Update checks continue.",
     "huge": "Huge",
     "imagesPdfsDownloadedAgainNext": "Images and PDFs are downloaded again the next time you open a collection.",
     "increaseContrast": "Increase contrast",
@@ -841,8 +850,11 @@
     "maps": "Maps",
     "noTransitionsOrFades": "No transitions or fades",
     "offline": "Offline",
+    "openSourceLicenses": "Open-source licences",
     "organicMaps": "Organic Maps",
     "osmand": "OsmAnd",
+    "privacy": "Privacy",
+    "privacyPolicy": "Privacy policy",
     "reduceMotion": "Reduce motion",
     "savedImagesPdfs": "Saved images and PDFs",
     "showTabLabels": "Show tab labels",

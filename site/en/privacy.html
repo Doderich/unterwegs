@@ -28,14 +28,13 @@
         </li>
         <li>
           The developer provides only the app (the client). They run no public AdventureLog server and own neither the
-          server you connect to nor the data you put in it; the operator of your server is responsible for that. A
-          private server of the developer exists only for friends and family.
+          server you connect to nor the data you put in it; the operator of your server is responsible for that.
         </li>
         <li>The app developer receives no travel data, no credentials and no locations.</li>
         <li>No ads, no third-party analytics or tracking services, no data sold or shared for advertising.</li>
         <li>
           The app reports technical data to the developer's update server (installation ID, device model, operating
-          system, crash flags). Details below.
+          system, crash flags). Crash reports can be turned off in the app. Details below.
         </li>
       </ul>
       <h2>1. Controller</h2>
@@ -48,10 +47,6 @@
         to, and not the data you put in it. Your travel data lives on the AdventureLog server you choose; the
         <strong>operator of that server</strong> is responsible for it (section 2). That can be you or someone who runs
         the server for you.
-      </p>
-      <p>
-        The developer runs no public AdventureLog server. They run a private server only for friends and family; for
-        those people the developer is also the operator of that server in the sense of section 2.
       </p>
       <h2>2. Your AdventureLog server</h2>
       <p>
@@ -97,10 +92,11 @@
       <p>
         <strong>Retention:</strong> the update server keeps one record per installation (installation ID, first and last
         contact, running update ID, device model, operating system, app version, crash flag with a bounded error
-        message). It does not delete these records automatically. The developer reviews them periodically and deletes
-        records of installations that are no longer in use, and deletes them at once on request (section 9). No
-        geolocation of the IP address is configured. <strong>Objection:</strong> the app has no switch for this; you can
-        object to the processing by email (section 9).
+        message). It deletes these records 90 days after the installation was last seen, and deletes them at once on
+        request (section 9). No geolocation of the IP address is configured. <strong>Objection:</strong> in the app
+        under Settings → Privacy → “Send crash reports” you can turn off crash and start reports; pending reports are
+        then discarded. The update check itself (installation ID, app version, running update) continues because it is
+        needed to deliver updates; you can object to that by email (section 9).
       </p>
       <h2>4. Other services that are contacted</h2>
       <ul>

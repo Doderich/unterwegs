@@ -496,6 +496,13 @@
   "journeySummary": {
     "journey": "移動"
   },
+  "licenses": {
+    "footer": "Unterwegs に含まれるソフトウェアとそのライセンス。",
+    "license": "ライセンス",
+    "noText": "このパッケージにはライセンス文がありません。ライセンス: {license}、詳細はソースコードをご覧ください。",
+    "source": "ソースコード",
+    "version": "バージョン"
+  },
   "location": {
     "activities": "アクティビティ",
     "addActivity": "アクティビティを追加",
@@ -810,6 +817,8 @@
     "extraLarge": "とても大きい",
     "googleMaps": "Googleマップ",
     "hapticFeedback": "触覚フィードバック",
+    "healthReports": "クラッシュレポートを送信",
+    "healthReportsHint": "クラッシュと起動の情報をアップデートサーバーに送信します。アップデートの確認は続きます。",
     "huge": "特大",
     "imagesPdfsDownloadedAgainNext": "画像とPDFは、次にコレクションを開いたときに再ダウンロードされます。",
     "increaseContrast": "コントラストを上げる",
@@ -824,8 +833,11 @@
     "maps": "マップ",
     "noTransitionsOrFades": "切り替えとフェードなし",
     "offline": "オフライン",
+    "openSourceLicenses": "オープンソースライセンス",
     "organicMaps": "Organic Maps",
     "osmand": "OsmAnd",
+    "privacy": "プライバシー",
+    "privacyPolicy": "プライバシーポリシー",
     "reduceMotion": "視差効果を減らす",
     "savedImagesPdfs": "保存した画像とPDF",
     "showTabLabels": "タブのラベルを表示",

@@ -29,8 +29,7 @@
         <li>
           Der Entwickler stellt nur die App (den Client) bereit. Er betreibt keinen öffentlichen AdventureLog-Server und
           besitzt weder den Server, mit dem du dich verbindest, noch die Daten, die du dort einträgst. Verantwortlich
-          dafür ist der Betreiber deines Servers. Ein privater Server des Entwicklers existiert nur für Freunde und
-          Familie.
+          dafür ist der Betreiber deines Servers.
         </li>
         <li>Der Entwickler der App erhält keine Reisedaten, keine Zugangsdaten und keine Standorte.</li>
         <li>
@@ -38,7 +37,7 @@
         </li>
         <li>
           Die App meldet dem Update-Server des Entwicklers technische Daten (Installations-ID, Gerätemodell,
-          Betriebssystem, Absturzhinweise). Details unten.
+          Betriebssystem, Absturzhinweise). Absturzberichte lassen sich in der App ausschalten. Details unten.
         </li>
       </ul>
       <h2>1. Verantwortlicher</h2>
@@ -52,10 +51,6 @@
         liegen auf dem AdventureLog-Server, den du wählst; für sie ist der
         <strong>Betreiber dieses Servers</strong> verantwortlich (Abschnitt 2). Das kannst du selbst sein oder jemand,
         der den Server für dich betreibt.
-      </p>
-      <p>
-        Der Entwickler betreibt keinen öffentlichen AdventureLog-Server. Einen privaten Server betreibt er nur für
-        Freunde und Familie; für diese Personen ist er zugleich der Betreiber dieses Servers im Sinne von Abschnitt 2.
       </p>
       <h2>2. Dein AdventureLog-Server</h2>
       <p>
@@ -104,10 +99,12 @@
       <p>
         <strong>Speicherdauer:</strong> Der Update-Server legt pro Installation einen Datensatz an (Installations-ID,
         erster und letzter Kontakt, laufende Update-ID, Gerätemodell, Betriebssystem, App-Version, Absturz-Kennzeichen
-        mit begrenzter Fehlermeldung). Er löscht diese Datensätze nicht automatisch. Der Entwickler prüft sie regelmäßig
-        und löscht Datensätze von Installationen, die nicht mehr genutzt werden, sowie auf Anfrage sofort (Abschnitt 9).
-        Es ist keine Geo-Ortung der IP-Adresse eingerichtet. <strong>Widerspruch:</strong> Die App hat dafür keinen
-        Schalter; du kannst der Verarbeitung per E-Mail widersprechen (Abschnitt 9).
+        mit begrenzter Fehlermeldung). Er löscht diese Datensätze 90 Tage, nachdem die Installation zuletzt gesehen
+        wurde, sowie auf Anfrage sofort (Abschnitt 9). Es ist keine Geo-Ortung der IP-Adresse eingerichtet.
+        <strong>Widerspruch:</strong> In der App kannst du unter Einstellungen → Datenschutz → „Absturzberichte senden“
+        Absturz- und Startberichte ausschalten; ausstehende Berichte werden dann verworfen. Die Update-Prüfung selbst
+        (Installations-ID, App-Version, laufendes Update) läuft weiter, weil sie für die Auslieferung von Updates nötig
+        ist; dem kannst du per E-Mail widersprechen (Abschnitt 9).
       </p>
       <h2>4. Weitere Dienste, die kontaktiert werden</h2>
       <ul>
