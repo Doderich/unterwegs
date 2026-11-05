@@ -15,6 +15,7 @@ import { sfSymbol, toolbarIcon } from '@/ui/icons';
 import { safeFileName, useServerFile } from '@/ui/serverFile';
 import { useColors } from '@/ui/theme';
 import { useScreenBackground } from '@/ui/useScreenBackground';
+import { useTabBarColors } from '@/ui/useTabBarColors';
 
 export default function CollectionLayout() {
   const { id, name } = useLocalSearchParams<{ id: string; name?: string }>();
@@ -331,9 +332,11 @@ function CollectionTabs() {
   const colors = useColors();
   const backgroundColor = useScreenBackground();
   const { boldText, showTabLabels } = useSettings();
+  const tabBar = useTabBarColors();
   return (
     <NativeTabs
       tintColor={colors.tint}
+      {...tabBar}
       minimizeBehavior="onScrollDown"
       labelStyle={boldText ? { fontWeight: '700' } : undefined}>
       <NativeTabs.Trigger name="index" accessibilityLabel={tr('collection.plan')} contentStyle={{ backgroundColor }}>

@@ -9,6 +9,7 @@ import { tr } from '@/i18n';
 import { materialIcon } from './icons';
 import { Text } from './Text';
 import { useColors } from './theme';
+import { ACCENT_SEED } from './accent';
 
 // Each tab retains its own actions alongside its native header and content.
 export function useMainToolbarOptions(tab: string) {
@@ -55,7 +56,7 @@ function CreateButton({ tab }: { tab: string }) {
   const colors = useColors();
   const scheme = useColorScheme() === 'dark' ? 'dark' : 'light';
   return (
-    <Host matchContents colorScheme={scheme} style={styles.button}>
+    <Host matchContents colorScheme={scheme} seedColor={ACCENT_SEED} style={styles.button}>
       <DropdownMenu expanded={expanded} onDismissRequest={() => setExpanded(false)}>
         <DropdownMenu.Trigger>
           <RNHostView matchContents>

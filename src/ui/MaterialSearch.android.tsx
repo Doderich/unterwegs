@@ -19,12 +19,13 @@ import type { SearchHeaderProps, SearchLauncherProps } from './MaterialSearch';
 import { materialIcon } from './icons';
 import { useMaterialScheme } from './palette.android';
 import { useColors } from './theme';
+import { ACCENT_SEED } from './accent';
 
 function SearchIcon({ source }: { source: ImageSourcePropType }) {
   const colors = useColors();
   const scheme = useColorScheme() === 'dark' ? 'dark' : 'light';
   return (
-    <Host pointerEvents="none" colorScheme={scheme} style={{ width: 24, height: 24 }}>
+    <Host pointerEvents="none" colorScheme={scheme} seedColor={ACCENT_SEED} style={{ width: 24, height: 24 }}>
       <Icon source={source} size={24} tint={colors.text} />
     </Host>
   );
