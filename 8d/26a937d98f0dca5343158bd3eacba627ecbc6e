@@ -1,0 +1,23 @@
+src/__tests__/testflightChannel.test.ts
+  s_1f23dcea414daf::t_7d3bd873d68db0 1-79
+docs/RELEASING.md
+  s_1f23dcea414daf::t_bcd3d10e94f0f3 111,113,118-132,196
+scripts/ios-testflight.sh
+  s_1f23dcea414daf::t_bcd3d10e94f0f3 3,9-21,29-30,40-46,48,50-51,68-72,94
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8d26a937d98f0dca5343158bd3eacba627ecbc6e",
+  "prompts": {},
+  "sessions": {
+    "s_1f23dcea414daf": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1aab9-afad-7e83-af87-952ac147c904",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
