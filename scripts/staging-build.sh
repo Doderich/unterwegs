@@ -2,6 +2,8 @@
 # Local release-mode builds, separate installs from production. No uploads.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+# CocoaPods crashes without a UTF-8 locale (e.g. in a background or non-login shell).
+export LANG="${LANG:-en_US.UTF-8}" LC_ALL="${LC_ALL:-en_US.UTF-8}"
 PLATFORM="${1:-}"
 [[ "$PLATFORM" == android || "$PLATFORM" == ios ]] || { echo "Usage: $0 android|ios" >&2; exit 1; }
 if [[ -f .env.local ]]; then

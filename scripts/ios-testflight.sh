@@ -5,6 +5,8 @@
 # UNTERWEGS_APPLE_TEAM_ID, since on an individual membership nobody else may sign.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+# CocoaPods crashes without a UTF-8 locale (e.g. in a background or non-login shell).
+export LANG="${LANG:-en_US.UTF-8}" LC_ALL="${LC_ALL:-en_US.UTF-8}"
 
 CHANNEL=production
 UPLOAD=1

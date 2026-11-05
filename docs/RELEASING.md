@@ -63,6 +63,7 @@ Install/update the 1.4.0 native build (Android APK, iOS TestFlight) before the v
 | Release build on a connected phone          | `npm run android:release`                     | `npm run ios:release -- --device`         |
 | Upload to TestFlight                        |                                               | `npm run ios:testflight`                  |
 | Publish a signed APK as a GitHub release    | `npm run android:publish`                     |                                           |
+| Upload an app bundle to Google Play         | `npm run android:bundle -- --upload`          |                                           |
 | Publish an over-the-air update              | `npm run update:android -- --channel staging` | `npm run update:ios -- --channel staging` |
 | Both platforms at once                      | `npm run update:publish -- --channel staging` |                                           |
 | Regenerate `android/` + `ios/` from scratch | `npm run native:clean`                        |                                           |
@@ -82,6 +83,7 @@ Personal values live in `.env.local` (gitignored; template `.env.example`). With
 | `EXPO_PUBLIC_DEFAULT_SERVER_URL`                    | Server preset on the login screen                                                                                                                                |
 | `UNTERWEGS_UPDATE_CHANNEL`                          | Explicit build channel: `production` or `staging`. Required when updates are enabled.                                                                            |
 | `UNTERWEGS_UPDATES_URL`, `UNTERWEGS_UPDATES_APP_ID` | Update server and the app's id from the xprem dashboard                                                                                                          |
+| `UNTERWEGS_PLAY_SERVICE_ACCOUNT_OP_REF`             | 1Password reference to the Google Play service account's JSON key, for `npm run android:bundle -- --upload` ([Google Play](#google-play-app-bundle))             |
 | `EOO_TOKEN_OP_REF`, `OP_ACCOUNT`                    | 1Password reference (`op://…`, quoted if it has spaces) to the xprem API token, and the account it's in when `op` knows several; or set `EOO_TOKEN` in the shell |
 
 Also needed: Xcode signed in (Settings → Accounts) with the team's Account Holder Apple ID (on an individual membership nobody else may sign: users added in App Store Connect get App Store Connect only), `certs/certificate.pem` (tracked; a new one comes from the xprem dashboard → App Info), the 1Password CLI signed in (`op`) when using `EOO_TOKEN_OP_REF`, and `ANDROID_HOME` in the shell profile for Android builds.
@@ -97,7 +99,7 @@ Before a native release, run `npm run licenses` and commit `src/legal/licenses.j
 `npm run android:release` / `ios:release` first sync `android/` / `ios/` with the current config (`expo prebuild`, so `.env.local` values and the certificate are in), then build the release app and install it. A release build carries its own JavaScript: it works without Metro and without network. Use it for the airplane-mode test and to test updates.
 
 - `expo run` keeps Metro and the log stream running after the install; stop it with Ctrl-C, the app doesn't need it.
-- `npm run android:release` signs with the debug key; only `npm run android:publish` uses the upload key (below).
+- `npm run android:release` signs with the debug key; only `npm run android:publish` and `android:bundle` use the upload key (below).
 - iOS release builds installed this way run for a year (development profile of the paid team).
 - `expo run:ios` never lets Xcode create signing assets. On a new team, a new bundle id or a new phone, build once with `xcodebuild` so automatic signing registers the bundle ids, the App Group and the phone and creates the profiles; then `npm run ios:release` works:
 
@@ -167,6 +169,20 @@ Only for a project that has never shipped a signed release: create a 1Password i
 ### Installing on each Android phone
 
 Install [Obtainium](https://github.com/ImranR98/Obtainium), add the repository URL as a GitHub source, and enter a fine-grained GitHub token with read-only "Contents" access to the release repo (`UNTERWEGS_RELEASE_REPO`) only; it is private because the APK carries the server and update URLs. Obtainium then offers each new release as an update.
+
+## Google Play (app bundle)
+
+`npm run android:bundle` (`scripts/android-bundle.sh`) builds the Android App Bundle Play needs. It shares the checks and signing with `android:publish` (`scripts/android-signing.sh`): committed state, `npm run check`, the upload key from 1Password, the certificate check against `UNTERWEGS_UPLOAD_CERT_SHA256` (for a bundle via `keytool -printcert -jarfile`). Output: `build/android/unterwegs-<version>-<code>.aab` plus checksum, and the R8 and JavaScript maps under `build/android/<version>-<code>-symbols/`. Play re-signs the app with its own app signing key ([0014](adr/0014-store-distribution.md)). No Expo account or EAS is involved.
+
+- `npm run android:bundle`: build, sign and verify only. The **first** bundle of a new Play app goes up by hand (Play Console → Test and release → Testing → Internal testing → Create new release); this also enrols the app in Play App Signing. The API can't upload before that.
+- `npm run android:bundle -- --upload [--track internal|alpha|beta|production] [--status draft|completed]`: build, then upload through the Play Developer API (`scripts/play-upload.mjs`, no dependencies) in one edit: bundle, R8 mapping, track release named `<version>-<code>`, commit. Default: `internal`, `draft`. Play refuses anything but `draft` until the app has been published once; roll a draft out in the Play Console. A failed upload deletes its edit.
+
+One-time setup for `--upload`:
+
+1. Google Cloud console: a project, the **Google Play Android Developer API** enabled, a service account with no project roles, and a JSON key for it.
+2. Play Console → Users and permissions → Invite new users: the service account's email, with the app's release permissions ("Release to testing tracks", and "Release to production" once that's wanted).
+3. Put the JSON key into 1Password (a file attachment or a field) and its reference into `UNTERWEGS_PLAY_SERVICE_ACCOUNT_OP_REF` in `.env.local`. The script reads it into a temporary file that is removed on exit.
+4. `npm run android:bundle -- --check` confirms the access without building or uploading: it opens a Play edit, lists the tracks and deletes the edit again. A permission error right after the invitation usually clears after a while.
 
 ## Over-the-air updates
 

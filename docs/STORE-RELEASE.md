@@ -99,7 +99,7 @@ Checked and fine: the key lives only in SecureStore and never in the persisted c
 ## 4. Google Play
 
 - [ ] Developer account with identity verification. Personal accounts created after November 2023 need a closed test with at least 12 testers for 14 days before production access; start this early.
-- [ ] Android App Bundle (AAB) build and upload path next to `npm run android:publish`, which only builds APKs today.
+- [x] Android App Bundle (AAB) build and upload path: `npm run android:bundle` (`-- --upload` through the Play Developer API, no EAS). Owner: upload the first bundle by hand, then set up the service account ([RELEASING.md → Google Play](RELEASING.md#google-play-app-bundle)).
 - [ ] Current Play target API level and 16 KB page-size support for native libraries (MapLibre, React Native); check the pre-launch report.
 - [x] Permissions: `SYSTEM_ALERT_WINDOW` and `READ/WRITE_EXTERNAL_STORAGE` are blocked (1.4.1).
 - [ ] Photo access must go through the system photo picker to stay outside Play's photo/video permission policy; check the merged manifest for `READ_MEDIA_IMAGES`.
