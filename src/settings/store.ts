@@ -15,6 +15,8 @@ export const settingsSchema = z.object({
   highContrast: z.boolean().catch(false),
   reduceMotion: z.boolean().catch(false),
   haptics: z.boolean().catch(true),
+  /** Crash and start reports to the update server (`src/telemetry/health.ts`); update checks stay on. */
+  healthReports: z.boolean().catch(true),
   mapApp: z.enum(['system', 'apple', 'google', 'organic', 'osmand']).catch('system'),
 });
 

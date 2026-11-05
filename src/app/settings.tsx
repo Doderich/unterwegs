@@ -10,10 +10,12 @@ import { useCredentials, useSession } from '@/auth/session';
 import { useUser } from '@/data/queries';
 import { tr } from '@/i18n';
 import { cacheSizeBytes, clearFileCache, formatBytes } from '@/offline/fileCache';
+import { privacyPolicyUrl } from '@/legal/links';
 import { settingsSchema, updateSettings, useSettings, type Settings } from '@/settings/store';
+import { healthReportsAvailable } from '@/telemetry/health';
 import { deviceTimeZone, formatDateTime } from '@/time/tz';
 import { useSelect } from '@/ui/Select';
-import { infoRow, RowIcon, switchRow, useRowTheme } from '@/ui/rows';
+import { infoRow, linkRow, RowIcon, switchRow, useRowTheme } from '@/ui/rows';
 import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { Host } from '@/ui/Host';
@@ -209,6 +211,21 @@ export default function SettingsScreen() {
             <FieldGroup.SectionFooter>
               <Text textStyle={{ fontSize: 13, color: colors.secondary }}>{tr('settings.tripYouOpenSavedFor')}</Text>
             </FieldGroup.SectionFooter>
+          </FieldGroup.Section>
+
+          <FieldGroup.Section title={tr('settings.privacy')}>
+            {healthReportsAvailable
+              ? switchRow(rt, {
+                  label: tr('settings.healthReports'),
+                  hint: tr('settings.healthReportsHint'),
+                  value: settings.healthReports,
+                  onChange: (healthReports) => updateSettings({ healthReports }),
+                })
+              : null}
+            {linkRow(rt, { icon: 'file', label: tr('settings.privacyPolicy'), url: privacyPolicyUrl() })}
+            <ListItem colors={rt.listColors} leading={<RowIcon name="file" />} onPress={() => router.push('/licenses')}>
+              {tr('settings.openSourceLicenses')}
+            </ListItem>
           </FieldGroup.Section>
 
           <FieldGroup.Section>

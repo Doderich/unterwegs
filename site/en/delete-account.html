@@ -19,13 +19,18 @@
       <h1>Delete account</h1>
 
       <p>
-        Unterwegs has no account with the developer. Your account belongs to your AdventureLog server. There are three
-        ways.
+        Unterwegs does not create accounts. Accounts exist only on the AdventureLog server you connect to. The app
+        developer provides only the client; they own neither that server nor the data you put in it, and they run no
+        public AdventureLog server. The operator of your server is responsible for your account and travel data. There
+        are three ways.
       </p>
       <h2>1. In the app</h2>
       <ol>
         <li>Open Settings → Account → Delete account. You must be online.</li>
-        <li>Enter your username to confirm and, if your account has a password, your password.</li>
+        <li>
+          Enter your username to confirm and, if your account has a password, your password. If your account has no
+          password (for example it signs in only through SSO), the username is enough.
+        </li>
         <li>
           Confirm the prompt (“Your account and all associated data will be permanently deleted from the server”).
         </li>
@@ -35,17 +40,17 @@
         keys, …) is decided by your AdventureLog server; the app deletes nothing else on the server. Afterwards the app
         signs out and always deletes all local data (see below). Administrators (staff accounts) cannot delete
         themselves.
-        <!-- TODO verify: server-side deletion is only checked in the source code, not on a real account (docs/SERVER.md). Accounts without a usable password (SSO only) probably cannot delete in the app according to the source: name way 2 or 3 once verified. -->
       </p>
       <h2>2. On your AdventureLog server</h2>
       <p>
-        Sign in on your server's website and delete the account in the account settings there. The app signs out at its
-        next request, because the key is no longer valid.
+        Sign in on your server's website and delete the account in the settings there. The same rules apply: your
+        username to confirm, a password only for accounts that have one. The app signs out at its next request, because
+        the key is no longer valid.
       </p>
       <h2>3. Ask the operator</h2>
       <p>
-        If someone else runs your server (or your account exists only through SSO), ask that person to delete your
-        account and data. For travel data, the server operator is responsible, not the app developer.
+        If someone else runs your server, or you can't use ways 1 and 2, ask that person to delete your account and
+        data. For travel data, the server operator is responsible, not the app developer.
       </p>
       <h2>What is deleted on the device</h2>
       <ul>
@@ -61,12 +66,14 @@
       </ul>
       <h2>Data with the developer</h2>
       <p>
-        The developer stores no travel data and no account. Builds with an update server send a pseudonymous
-        installation ID, device model, operating system and crash flags (<a href="privacy.html">privacy policy</a>,
-        section 3). To have these deleted, write to <a href="mailto:privacy@example.org">privacy@example.org</a> with
-        the installation ID, if you know it.
+        Through the app, the developer stores no travel data and no account. Builds with an update server send a
+        pseudonymous installation ID, device model, operating system and crash flags (<a href="privacy.html"
+          >privacy policy</a
+        >, section 3). To have these deleted, write to <a href="mailto:__CONTACT_EMAIL__">__CONTACT_EMAIL__</a>. The app
+        does not show the installation ID; instead name your device, operating system and roughly when you used the app.
+        Uninstalling the app removes the ID from the device; a later install gets a new one. The old record on the
+        update server is deleted 90 days after the installation was last seen, or earlier on request.
       </p>
-      <!-- TODO: replace privacy@example.org with the real address. Check where the installation ID is visible in the app; if nowhere, don't give instructions for it here. -->
     </main>
     <footer>
       <nav aria-label="Language">

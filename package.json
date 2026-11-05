@@ -86,7 +86,8 @@
     "update:ios": "./scripts/publish-update.sh --platform ios",
     "update:publish": "./scripts/publish-update.sh",
     "android:staging": "./scripts/staging-build.sh android",
-    "ios:staging": "./scripts/staging-build.sh ios"
+    "ios:staging": "./scripts/staging-build.sh ios",
+    "licenses": "node scripts/licenses.mjs"
   },
   "private": true,
   "jest": {

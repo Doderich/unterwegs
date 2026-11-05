@@ -508,6 +508,13 @@
   "journeySummary": {
     "journey": "Fahrt"
   },
+  "licenses": {
+    "footer": "Software, die in Unterwegs steckt, mit ihren Lizenzen.",
+    "license": "Lizenz",
+    "noText": "Das Paket enthält keinen Lizenztext. Lizenz: {license}, Details im Quellcode.",
+    "source": "Quellcode",
+    "version": "Version"
+  },
   "location": {
     "activities": "Aktivitäten",
     "addActivity": "Aktivität hinzufügen",
@@ -588,6 +595,7 @@
     "hideApiKey": "API-Schlüssel ausblenden",
     "httpsHelp": "Kein HTTPS? So geht’s",
     "invalidApiKey": "API-Key ungültig.",
+    "passkeyHint": "Passkeys funktionieren bei diesem Server nur über den QR-Code: Website auf einem anderen Gerät öffnen → Menü → Handy Anmeldung.",
     "publicDemo": "Öffentliche AdventureLog-Demo",
     "publicDemoDescription": "Ohne eigenen Server ausprobieren",
     "publicDemoNotice": "Dies ist ein öffentlicher Testserver. Lade keine persönlichen Daten hoch.",
@@ -618,7 +626,10 @@
     "signingIn": "Anmelden…"
   },
   "loginWeb": {
+    "continueHere": "Hier weitermachen",
     "finishingSignin": "Anmeldung wird abgeschlossen…",
+    "passkeyBody": "Die Anmeldung in der App kann keine Passkeys verwenden. Öffne die Website auf einem anderen Gerät → Menü → Handy Anmeldung und scanne den QR-Code.",
+    "passkeyTitle": "Passkeys gehen hier nicht",
     "serverIsntRespondingPleaseTry": "Der Server antwortet nicht. Bitte noch einmal versuchen.",
     "signinPageWontLoadPlease": "Die Anmeldeseite lädt nicht. Bitte Internetverbindung prüfen."
   },
@@ -823,6 +834,8 @@
     "extraLarge": "Sehr groß",
     "googleMaps": "Google Maps",
     "hapticFeedback": "Haptisches Feedback",
+    "healthReports": "Absturzberichte senden",
+    "healthReportsHint": "Absturz- und Startmeldungen an den Update-Server. Update-Prüfungen laufen weiter.",
     "huge": "Riesig",
     "imagesPdfsDownloadedAgainNext": "Bilder und PDFs werden beim nächsten Öffnen einer Sammlung neu geladen.",
     "increaseContrast": "Mehr Kontrast",
@@ -837,8 +850,11 @@
     "maps": "Karten",
     "noTransitionsOrFades": "Keine Übergänge und Einblendungen",
     "offline": "Offline",
+    "openSourceLicenses": "Open-Source-Lizenzen",
     "organicMaps": "Organic Maps",
     "osmand": "OsmAnd",
+    "privacy": "Datenschutz",
+    "privacyPolicy": "Datenschutzerklärung",
     "reduceMotion": "Bewegung reduzieren",
     "savedImagesPdfs": "Gespeicherte Bilder und PDFs",
     "showTabLabels": "Tab-Beschriftungen anzeigen",

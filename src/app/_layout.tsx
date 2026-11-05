@@ -105,6 +105,8 @@ function RootStack() {
       <Stack.Protected guard={signedIn}>
         <Stack.Screen name="(main)" options={{ title: tr('shell.home'), headerShown: Platform.OS !== 'android' }} />
         <Stack.Screen name="settings" options={{ title: tr('common.settings') }} />
+        <Stack.Screen name="licenses/index" options={{ title: tr('settings.openSourceLicenses') }} />
+        <Stack.Screen name="licenses/[index]" options={{ title: '' }} />
         <Stack.Screen name="integrations/index" options={{ title: tr('common.integrations') }} />
         <Stack.Screen name="integrations/[kind]" options={{ title: tr('app.integration') }} />
         <Stack.Screen name="integrations/strava-connect" options={{ title: tr('common.connectStrava') }} />

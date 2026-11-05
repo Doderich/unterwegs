@@ -11,6 +11,7 @@ jest.mock('expo-constants', () => ({
     },
   },
 }));
+jest.mock('expo-sqlite/kv-store', () => ({ Storage: { getItemSync: jest.fn(), setItemSync: jest.fn() } }));
 jest.mock('expo-observe', () => ({
   Observe: { configure: mockConfigure, logEvent: mockLogEvent, dispatchEvents: mockDispatch },
 }));
@@ -53,4 +54,17 @@ it('keeps startup usable when offline dispatch fails', async () => {
   const { reportAppStarted } = require('../telemetry/health');
   expect(() => reportAppStarted()).not.toThrow();
   await Promise.resolve();
+});
+
+it('stops reporting when the user turns health reports off, and resumes when turned on', () => {
+  /* eslint-disable @typescript-eslint/no-require-imports */
+  const { updateSettings } = require('../settings/store');
+  const { reportAppStarted } = require('../telemetry/health');
+  /* eslint-enable @typescript-eslint/no-require-imports */
+  updateSettings({ healthReports: false });
+  expect(mockConfigure).toHaveBeenLastCalledWith(expect.objectContaining({ dispatchingEnabled: false }));
+  reportAppStarted();
+  expect(mockLogEvent).not.toHaveBeenCalled();
+  updateSettings({ healthReports: true });
+  expect(mockConfigure).toHaveBeenLastCalledWith(expect.objectContaining({ dispatchingEnabled: true }));
 });

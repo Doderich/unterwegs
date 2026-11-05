@@ -25,6 +25,22 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: actions/configure-pages@v5
+      # Contact details stay out of the (anonymous) repo: repo variables, filled in only in the published pages.
+      - name: Fill in contact details
+        env:
+          CONTROLLER_NAME: ${{ vars.CONTROLLER_NAME }}
+          CONTROLLER_ADDRESS: ${{ vars.CONTROLLER_ADDRESS }}
+          CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
+        run: |
+          for v in CONTROLLER_NAME CONTROLLER_ADDRESS CONTACT_EMAIL; do
+            [ -n "${!v}" ] || { echo "::error::Repo variable $v is not set"; exit 1; }
+          done
+          find site -name '*.html' -exec perl -pi -e '
+            s/__CONTROLLER_NAME__/$ENV{CONTROLLER_NAME}/g;
+            s/__CONTROLLER_ADDRESS__/$ENV{CONTROLLER_ADDRESS}/g;
+            s/__CONTACT_EMAIL__/$ENV{CONTACT_EMAIL}/g;
+          ' {} +
+          if grep -rn '__[A-Z_]*__' site; then echo "::error::Unfilled token in site/"; exit 1; fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

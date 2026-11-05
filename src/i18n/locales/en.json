@@ -508,6 +508,13 @@
   "journeySummary": {
     "journey": "Journey"
   },
+  "licenses": {
+    "footer": "Software that Unterwegs is built with, and its licences.",
+    "license": "Licence",
+    "noText": "The package ships no licence text. Licence: {license}, details in the source code.",
+    "source": "Source code",
+    "version": "Version"
+  },
   "location": {
     "activities": "Activities",
     "addActivity": "Add activity",
@@ -588,6 +595,7 @@
     "hideApiKey": "Hide API key",
     "httpsHelp": "No HTTPS? Here’s how",
     "invalidApiKey": "Invalid API key.",
+    "passkeyHint": "On this server, passkeys only work through the QR code: open the website on another device → menu → phone sign-in.",
     "publicDemo": "Public AdventureLog demo",
     "publicDemoDescription": "Try it without your own server",
     "publicDemoNotice": "This is a public test server. Do not upload personal data.",
@@ -618,7 +626,10 @@
     "signingIn": "Signing in…"
   },
   "loginWeb": {
+    "continueHere": "Continue here",
     "finishingSignin": "Finishing sign-in…",
+    "passkeyBody": "Signing in inside the app can’t use passkeys. Open the website on another device → menu → phone sign-in, then scan the QR code.",
+    "passkeyTitle": "Passkeys don’t work here",
     "serverIsntRespondingPleaseTry": "The server isn’t responding. Please try again.",
     "signinPageWontLoadPlease": "The sign-in page won’t load. Please check your internet connection."
   },
@@ -823,6 +834,8 @@
     "extraLarge": "Extra large",
     "googleMaps": "Google Maps",
     "hapticFeedback": "Haptic feedback",
+    "healthReports": "Send crash reports",
+    "healthReportsHint": "Crash and start reports to the update server. Update checks continue.",
     "huge": "Huge",
     "imagesPdfsDownloadedAgainNext": "Images and PDFs are downloaded again the next time you open a collection.",
     "increaseContrast": "Increase contrast",
@@ -837,8 +850,11 @@
     "maps": "Maps",
     "noTransitionsOrFades": "No transitions or fades",
     "offline": "Offline",
+    "openSourceLicenses": "Open-source licences",
     "organicMaps": "Organic Maps",
     "osmand": "OsmAnd",
+    "privacy": "Privacy",
+    "privacyPolicy": "Privacy policy",
     "reduceMotion": "Reduce motion",
     "savedImagesPdfs": "Saved images and PDFs",
     "showTabLabels": "Show tab labels",
