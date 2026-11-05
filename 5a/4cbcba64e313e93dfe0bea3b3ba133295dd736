@@ -1,0 +1,36 @@
+PRODUCT.md
+  s_9d7c4a34d1d8b3::t_6f5e2e5c25cfb7 13,34
+docs/adr/0011-pinned-server-version.md
+  s_9d7c4a34d1d8b3::t_6f5e2e5c25cfb7 6-7
+docs/adr/0010-self-hosted-distribution.md
+  s_9d7c4a34d1d8b3::t_6f5e2e5c25cfb7 3-4
+docs/STORE-RELEASE.md
+  s_9d7c4a34d1d8b3::t_2d9e4f83d9b11d 1-6,10,14-16,18,20-70
+  s_9d7c4a34d1d8b3::t_d08653d4b64981 7-8,11-13
+  s_9d7c4a34d1d8b3::t_6f5e2e5c25cfb7 9,17,19
+docs/adr/0014-store-distribution.md
+  s_9d7c4a34d1d8b3::t_6f5e2e5c25cfb7 1-7
+docs/ROADMAP.md
+  s_9d7c4a34d1d8b3::t_6f5e2e5c25cfb7 20,24,67
+  s_9d7c4a34d1d8b3::t_c8a94a58d10813 66
+docs/RELEASING.md
+  s_9d7c4a34d1d8b3::t_6f5e2e5c25cfb7 13
+README.md
+  s_9d7c4a34d1d8b3::t_20b702b036a218 24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5a4cbcba64e313e93dfe0bea3b3ba133295dd736",
+  "prompts": {},
+  "sessions": {
+    "s_9d7c4a34d1d8b3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4f3d5aa1-a43e-4ca3-bb6b-dc380f64cb1c",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
