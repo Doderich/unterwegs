@@ -1,0 +1,739 @@
+.claude/settings.json
+  s_339bcff149b539::t_1cb8ef1f77d4c0 1-5
+.env.example
+  s_339bcff149b539::t_0403b1df06d484 1-30
+.github/workflows/check.yml
+  s_339bcff149b539::t_895b1e51e1ed7a 1-19
+.github/workflows/pages.yml
+  s_339bcff149b539::t_924c7d08c99803 1-32
+.gitignore
+  s_339bcff149b539::t_71a897fbcf8e42 1-64
+.impeccable/config.json
+  s_339bcff149b539::t_fe6d20363b224f 1-3
+.impeccable/design.json
+  s_339bcff149b539::t_ac4c78784bf59c 1-209
+.prettierignore
+  s_339bcff149b539::t_8dee30a0e62365 1-4
+.prettierrc.json
+  s_339bcff149b539::t_e0307f85b26fe8 1
+.vscode/extensions.json
+  s_339bcff149b539::t_96073c56e6fb4a 1
+.vscode/settings.json
+  s_339bcff149b539::t_3245bc18b661b1 1-7
+AGENTS.md
+  s_339bcff149b539::t_22423ee64d1331 1-66
+DESIGN.md
+  s_339bcff149b539::t_c3b53aa708f868 1-358
+GLOSSARY.md
+  s_339bcff149b539::t_8023a9e36962a0 1-147
+LICENSE.md
+  s_339bcff149b539::t_99d3fa0aec53d3 1-75
+PRODUCT.md
+  s_339bcff149b539::t_4ba5e1659206e5 1-64
+README.md
+  s_339bcff149b539::t_4e0f846713b61f 1-53
+app.config.ts
+  s_339bcff149b539::t_2bf244cae172a2 1-112
+app.json
+  s_339bcff149b539::t_98f917c4f0d5b1 1-97
+assets/unterwegs-staging.icon/Assets/flag.svg
+  s_339bcff149b539::t_7719a809d3cead 1
+assets/unterwegs-staging.icon/Assets/globe.svg
+  s_339bcff149b539::t_b5354e455a683a 1
+assets/unterwegs-staging.icon/Assets/grid.svg
+  s_339bcff149b539::t_35ba86231a1312 1
+assets/unterwegs-staging.icon/Assets/stand.svg
+  s_339bcff149b539::t_921920d9be209a 1
+assets/unterwegs-staging.icon/icon.json
+  s_339bcff149b539::t_2c7cd8d6755227 1-132
+assets/unterwegs.icon/Assets/flag.svg
+  s_339bcff149b539::t_4eb83ac4c59144 1
+assets/unterwegs.icon/Assets/globe.svg
+  s_339bcff149b539::t_e5de1fd320a684 1
+assets/unterwegs.icon/Assets/grid.svg
+  s_339bcff149b539::t_3ca69d1d4554b7 1
+assets/unterwegs.icon/Assets/stand.svg
+  s_339bcff149b539::t_af68201ea4b709 1
+assets/unterwegs.icon/icon.json
+  s_339bcff149b539::t_470bd0a365529c 1-140
+certs/certificate.pem
+  s_339bcff149b539::t_9d78a04ba351db 1-18
+docs/DESIGN-PLAN.md
+  s_339bcff149b539::t_382e6a22239e20 1-268
+docs/FEATURES.md
+  s_339bcff149b539::t_94ac0160a5a990 1-143
+docs/HOME-NAVIGATION.md
+  s_339bcff149b539::t_0cbe9caa4017c7 1-17
+docs/IPAD.md
+  s_339bcff149b539::t_326f039f85ecbf 1-94
+docs/RELEASING.md
+  s_339bcff149b539::t_d256808f43f6f7 1-234
+docs/ROADMAP.md
+  s_339bcff149b539::t_47d080dcfed174 1-112
+docs/SERVER.md
+  s_339bcff149b539::t_c0bb8cf64f5665 1-215
+docs/STORE-RELEASE.md
+  s_339bcff149b539::t_8196d124486038 1-120
+docs/TELEMETRY.md
+  s_339bcff149b539::t_aedb65880ccfd5 1-33
+docs/UI-NOTES.md
+  s_339bcff149b539::t_a0a179f5c1941e 1-211
+docs/adr/0001-one-request-per-collection.md
+  s_339bcff149b539::t_67cc98d7318a7b 1-8
+docs/adr/0002-data-beyond-one-collection.md
+  s_339bcff149b539::t_6e0ffba921786b 1-13
+docs/adr/0003-one-api-key-per-device.md
+  s_339bcff149b539::t_a0811918891437 1-3
+docs/adr/0004-sso-through-the-website-session.md
+  s_339bcff149b539::t_58c3cdac952bd7 1-5
+docs/adr/0005-online-only-edits.md
+  s_339bcff149b539::t_2bda084e2490aa 1-3
+docs/adr/0006-times-in-their-own-time-zone.md
+  s_339bcff149b539::t_a1e6f79d69ed42 1-5
+docs/adr/0007-offline-copy-on-the-device.md
+  s_339bcff149b539::t_4b10b8972027f9 1-5
+docs/adr/0008-native-controls-with-expo-ui.md
+  s_339bcff149b539::t_d7a4641f87a8e1 1-3
+docs/adr/0009-maplibre-with-openfreemap.md
+  s_339bcff149b539::t_339a6bac714f3d 1-3
+docs/adr/0010-self-hosted-distribution.md
+  s_339bcff149b539::t_dd338eade3a4cd 1-5
+docs/adr/0011-pinned-server-version.md
+  s_339bcff149b539::t_f4a691315669df 1-9
+docs/adr/0012-app-wide-text-size.md
+  s_339bcff149b539::t_3bf5c19520ed0f 1-10
+docs/adr/0013-translations-with-i18next.md
+  s_339bcff149b539::t_7f977d9bf0f491 1-16
+docs/adr/0014-store-distribution.md
+  s_339bcff149b539::t_310952a78be09b 1-7
+docs/agents/domain.md
+  s_339bcff149b539::t_56e237fa12902a 1-35
+docs/agents/issue-tracker.md
+  s_339bcff149b539::t_470b52057529b2 1-50
+docs/agents/triage-labels.md
+  s_339bcff149b539::t_280dd66bdeeca8 1-15
+docs/api/README.md
+  s_339bcff149b539::t_2e0513d08710e5 1-46
+docs/api/adventurelog.d.ts
+  s_339bcff149b539::t_cb13a753a59031 1-7806
+docs/api/openapi.json
+  s_339bcff149b539::t_46f1a1ca9068ca 1-10336
+docs/api/swagger.json
+  s_339bcff149b539::t_5294fca0f55c23 1-10131
+docs/samples/collection-detail.json
+  s_339bcff149b539::t_3120b29b85ee18 1-3457
+docs/samples/locations-list.json
+  s_339bcff149b539::t_888fc34233d7f1 1-1855
+eslint.config.js
+  s_339bcff149b539::t_809af1f3ce6065 1-31
+modules/text-size/android/build.gradle
+  s_339bcff149b539::t_252f68b653ec64 1-19
+modules/text-size/android/src/main/java/expo/modules/textsize/TextSizeModule.kt
+  s_339bcff149b539::t_bd60cf1b64c9e4 1-72
+modules/text-size/expo-module.config.json
+  s_339bcff149b539::t_aaec685c35f456 1-9
+modules/text-size/index.ts
+  s_339bcff149b539::t_d1c2f55942cd11 1-11
+modules/text-size/ios/TextSize.podspec
+  s_339bcff149b539::t_27b137b7543565 1-19
+modules/text-size/ios/TextSizeModule.swift
+  s_339bcff149b539::t_42f170b90ca58f 1-27
+package-lock.json
+  s_339bcff149b539::t_174a2a9ad89a30 1-21141
+package.json
+  s_339bcff149b539::t_c56aedca193b46 1-95
+plugins/with-android-apks.js
+  s_339bcff149b539::t_5ce770ea7e729a 1-30
+plugins/with-map-downloads.js
+  s_339bcff149b539::t_b5b044558d0dcb 1-70
+plugins/with-release-signing.js
+  s_339bcff149b539::t_79c688c74371be 1-35
+plugins/with-share-signing.js
+  s_339bcff149b539::t_f44246a9f7abc9 1-28
+plugins/with-user-certificates.js
+  s_339bcff149b539::t_dcb5cc447ecacc 1-48
+scripts/android-keystore.sh
+  s_339bcff149b539::t_184367d0c78df9 1-50
+scripts/android-publish.sh
+  s_339bcff149b539::t_38f514ce437854 1-96
+scripts/anonymise-sample.ts
+  s_339bcff149b539::t_860347297d0909 1-134
+scripts/check-form-input-focus.py
+  s_339bcff149b539::t_79d50f80ed0360 1-46
+scripts/check-form-keyboard.py
+  s_339bcff149b539::t_e83a097912f25d 1-60
+scripts/check-header-content.py
+  s_339bcff149b539::t_75cca9f2285e45 1-60
+scripts/check-markdown-editor.py
+  s_339bcff149b539::t_592ccd61eb060a 1-74
+scripts/check-navigation-chrome.py
+  s_339bcff149b539::t_7c2a9742b20a87 1-90
+scripts/check-sheet-rows.py
+  s_339bcff149b539::t_73bc43dcddcb5d 1-26
+scripts/generate-api-types.sh
+  s_339bcff149b539::t_50bb9801b95cd5 1-27
+scripts/generate-country-zones.py
+  s_339bcff149b539::t_39fcf4592b73e4 1-50
+scripts/generate-icons.py
+  s_339bcff149b539::t_f9d9e247db0183 1-173
+scripts/ios-testflight.sh
+  s_339bcff149b539::t_ff5863d41c3b13 1-94
+scripts/live-write-check.ts
+  s_339bcff149b539::t_03944400871a34 1-356
+scripts/publish-update.sh
+  s_339bcff149b539::t_2fa3119c52f706 1-75
+scripts/smoke-live.ts
+  s_339bcff149b539::t_37faf7c2b5983a 1-61
+scripts/staging-build.sh
+  s_339bcff149b539::t_f8fcaa2918577b 1-33
+scripts/update-record.mjs
+  s_339bcff149b539::t_325588ba2fa5dc 1-41
+server/README.md
+  s_339bcff149b539::t_25f17ad207fe6a 1-16
+server/unterwegs-login.html
+  s_339bcff149b539::t_50aa914856c8cc 1-154
+site/README.md
+  s_339bcff149b539::t_6ea0d97ba051af 1-17
+site/de/delete-account.html
+  s_339bcff149b539::t_6b225fd80469f6 1-81
+site/de/privacy.html
+  s_339bcff149b539::t_82e27ad60cc9ed 1-189
+site/de/support.html
+  s_339bcff149b539::t_3b88c7cc90e442 1-103
+site/en/delete-account.html
+  s_339bcff149b539::t_d11f74993da54a 1-79
+site/en/privacy.html
+  s_339bcff149b539::t_580602e0cc93f1 1-178
+site/en/support.html
+  s_339bcff149b539::t_d2df10c37c671f 1-99
+site/index.html
+  s_339bcff149b539::t_2005d7db0a0b73 1-43
+site/ja/delete-account.html
+  s_339bcff149b539::t_356a6647c653c0 1-77
+site/ja/privacy.html
+  s_339bcff149b539::t_a02716f4e9f99c 1-174
+site/ja/support.html
+  s_339bcff149b539::t_79b5dfd4df01c6 1-102
+site/style.css
+  s_339bcff149b539::t_6301c515eb5e3f 1-98
+skills-lock.json
+  s_339bcff149b539::t_91aac6f08a7085 1-239
+src/__tests__/mapDownloads.test.ts
+  s_339bcff149b539::t_44c01c482f9f80 1-61
+src/__tests__/markdownEditing.test.ts
+  s_339bcff149b539::t_8b4af0749e1b43 1-64
+src/__tests__/privacy.test.ts
+  s_339bcff149b539::t_0d1d4d35903038 1-51
+src/__tests__/releaseSigning.test.ts
+  s_339bcff149b539::t_1a3e8e92355f7a 1-48
+src/__tests__/securityGuards.test.ts
+  s_339bcff149b539::t_838780a8a8dc2d 1-86
+src/__tests__/shareSigning.test.ts
+  s_339bcff149b539::t_979ce581aaa73b 1-39
+src/__tests__/telemetryHealth.test.ts
+  s_339bcff149b539::t_23c26475f2a711 1-56
+src/__tests__/testflightChannel.test.ts
+  s_339bcff149b539::t_7ac78a212ad440 1-79
+src/__tests__/updateConfig.test.ts
+  s_339bcff149b539::t_3cdde0cb2203cc 1-73
+src/__tests__/updateRelease.test.ts
+  s_339bcff149b539::t_ea3d9e28258224 1-152
+src/api/__tests__/client.test.ts
+  s_339bcff149b539::t_956ad5affb849a 1-613
+src/api/__tests__/compat.test.ts
+  s_339bcff149b539::t_4eacef5636a1ac 1-104
+src/api/__tests__/http.test.ts
+  s_339bcff149b539::t_866073a45bf4ca 1-106
+src/api/__tests__/schemas.test.ts
+  s_339bcff149b539::t_9e592ab53831f3 1-37
+src/api/client.ts
+  s_339bcff149b539::t_dc008f07b79656 1-801
+src/api/compat.ts
+  s_339bcff149b539::t_c3d9a677b75342 1-143
+src/api/errors.ts
+  s_339bcff149b539::t_4656368bdf87ec 1-46
+src/api/generated.ts
+  s_339bcff149b539::t_259c8f3d0854e1 1-7807
+src/api/http.ts
+  s_339bcff149b539::t_a1f84670936d42 1-98
+src/api/schemas.ts
+  s_339bcff149b539::t_4d0ddceb680aa3 1-547
+src/api/upload.ts
+  s_339bcff149b539::t_b7124eec7b3269 1-32
+src/app/(main)/(home)/_layout.tsx
+  s_339bcff149b539::t_0dd42791a3247f 1-6
+src/app/(main)/(home)/index.tsx
+  s_339bcff149b539::t_e03cd1cb742eca 1-162
+src/app/(main)/_layout.tsx
+  s_339bcff149b539::t_06db91c8148e6c 1-77
+src/app/(main)/collections/_layout.tsx
+  s_339bcff149b539::t_5034c1e2327091 1-6
+src/app/(main)/collections/index.tsx
+  s_339bcff149b539::t_a2c4e06c6c09e0 1-148
+src/app/(main)/find/_layout.tsx
+  s_339bcff149b539::t_e718ddd4ae87ab 1-5
+src/app/(main)/find/index.tsx
+  s_339bcff149b539::t_da53a2142b8165 1-7
+src/app/(main)/places/_layout.tsx
+  s_339bcff149b539::t_bc89db87fe6034 1-6
+src/app/(main)/places/index.tsx
+  s_339bcff149b539::t_eaf278855a455f 1-122
+src/app/(main)/world/_layout.tsx
+  s_339bcff149b539::t_5f05c2dd61b10d 1-6
+src/app/(main)/world/index.tsx
+  s_339bcff149b539::t_70ea599f6e2bd7 1-137
+src/app/+native-intent.tsx
+  s_339bcff149b539::t_5b2c1f133381d1 1-13
+src/app/_layout.tsx
+  s_339bcff149b539::t_990d34b7def0db 1-175
+src/app/account/delete.tsx
+  s_339bcff149b539::t_826b611e0309ba 1-86
+src/app/account/index.tsx
+  s_339bcff149b539::t_3a1870f9afa97a 1-240
+src/app/account/keys.tsx
+  s_339bcff149b539::t_eee1c735df356e 1-137
+src/app/activity-edit/[collectionId].tsx
+  s_339bcff149b539::t_08f2492e6a10a5 1-184
+src/app/calendar.tsx
+  s_339bcff149b539::t_71a2c7108e3425 1-124
+src/app/categories/index.tsx
+  s_339bcff149b539::t_89fe4707f71a5e 1-59
+src/app/category-edit.tsx
+  s_339bcff149b539::t_a9754c5ec84db2 1-114
+src/app/collection-edit.tsx
+  s_339bcff149b539::t_74ee4037e92086 1-194
+src/app/collection-share/[collectionId].tsx
+  s_339bcff149b539::t_b406fb22c9784c 1-150
+src/app/collection/[id]/_layout.tsx
+  s_339bcff149b539::t_bb80de0ee1dd6e 1-385
+src/app/collection/[id]/days.tsx
+  s_339bcff149b539::t_21abe35945429e 1
+src/app/collection/[id]/index.tsx
+  s_339bcff149b539::t_579f3bc8f538c0 1-52
+src/app/collection/[id]/lodgings.tsx
+  s_339bcff149b539::t_fb192e48ceec01 1-82
+src/app/collection/[id]/map.tsx
+  s_339bcff149b539::t_f819a4fbd4d5d0 1-269
+src/app/collection/[id]/notes.tsx
+  s_339bcff149b539::t_d832d0544799cd 1-106
+src/app/collection/[id]/search/_layout.tsx
+  s_339bcff149b539::t_c8e9ece5595a2e 1-5
+src/app/collection/[id]/search/index.tsx
+  s_339bcff149b539::t_77e26568643aa1 1-9
+src/app/day-edit/[collectionId]/[date].tsx
+  s_339bcff149b539::t_983eb4834e2e48 1-262
+src/app/gallery.tsx
+  s_339bcff149b539::t_80ce668458e48a 1-105
+src/app/immich/[collectionId]/[locationId].tsx
+  s_339bcff149b539::t_d5f63efeac8efb 1-146
+src/app/integrations/[kind].tsx
+  s_339bcff149b539::t_24afc0010b79c2 1-363
+src/app/integrations/index.tsx
+  s_339bcff149b539::t_9ed0277f92ee95 1-82
+src/app/integrations/strava-connect.tsx
+  s_339bcff149b539::t_68b4c8c3ca130e 1-94
+src/app/location-edit/[collectionId].tsx
+  s_339bcff149b539::t_e36e42f9231fae 1-346
+src/app/location/[collectionId]/[itemId].tsx
+  s_339bcff149b539::t_292ffc26471954 1-477
+src/app/lodging-edit/[collectionId].tsx
+  s_339bcff149b539::t_3ab8574ab4ea8d 1-367
+src/app/lodging/[collectionId]/[itemId].tsx
+  s_339bcff149b539::t_e446a1ad539089 1-89
+src/app/login/_layout.tsx
+  s_339bcff149b539::t_77827a74eed917 1-18
+src/app/login/https-help.tsx
+  s_339bcff149b539::t_e56e02bf99f174 1-32
+src/app/login/index.tsx
+  s_339bcff149b539::t_25467913a8011c 1-407
+src/app/login/scan.tsx
+  s_339bcff149b539::t_c43f1a7c900959 1-110
+src/app/login/web.tsx
+  s_339bcff149b539::t_42e9db36725709 1-180
+src/app/nearby/[collectionId].tsx
+  s_339bcff149b539::t_1533519be2dd98 1-176
+src/app/note-edit/[collectionId].tsx
+  s_339bcff149b539::t_c7a477632d3da9 1-150
+src/app/note/[collectionId]/[itemId].tsx
+  s_339bcff149b539::t_c0ce1381c78f00 1-199
+src/app/offline-maps/[collectionId].tsx
+  s_339bcff149b539::t_4f0f6fdffc9f1a 1-171
+src/app/people/[username].tsx
+  s_339bcff149b539::t_379b9967ae6bf8 1-102
+src/app/people/index.tsx
+  s_339bcff149b539::t_c602fcdaeb9c55 1-60
+src/app/place-edit.tsx
+  s_339bcff149b539::t_93dd3419b050c1 1-24
+src/app/place-visit/[id].tsx
+  s_339bcff149b539::t_d31a3fa40e3c72 1-18
+src/app/place/[id].tsx
+  s_339bcff149b539::t_5192e85098d9f3 1-193
+src/app/search.tsx
+  s_339bcff149b539::t_a84d5dc12fe806 1
+src/app/settings.tsx
+  s_339bcff149b539::t_fb0bf20972e186 1-243
+src/app/share.tsx
+  s_339bcff149b539::t_2e4c12d8405c92 1-222
+src/app/transport-edit/[collectionId].tsx
+  s_339bcff149b539::t_312e65b59fe902 1-409
+src/app/transport/[collectionId]/[itemId].tsx
+  s_339bcff149b539::t_585d790616118b 1-128
+src/app/visit-edit/[collectionId]/[locationId].tsx
+  s_339bcff149b539::t_3e42912e7f3ff5 1-23
+src/app/web-image/[collectionId].tsx
+  s_339bcff149b539::t_59786931b316af 1-128
+src/app/world/[code].tsx
+  s_339bcff149b539::t_a037c013c2999d 1-104
+src/app/world/countries.tsx
+  s_339bcff149b539::t_a7ae30fa6f8f0e 1-66
+src/app/world/map.tsx
+  s_339bcff149b539::t_f238957d3bf65b 1-185
+src/app/world/region/[id].tsx
+  s_339bcff149b539::t_9fc243883d528a 1-120
+src/auth/__tests__/qr.test.ts
+  s_339bcff149b539::t_a2bc9efdc9feda 1-19
+src/auth/__tests__/serverLogin.test.ts
+  s_339bcff149b539::t_35d2e3605e5a12 1-170
+src/auth/browserLogin.ts
+  s_339bcff149b539::t_7e3f4b631b73ae 1-73
+src/auth/keyStore.ts
+  s_339bcff149b539::t_f871b7615c560d 1-38
+src/auth/qr.ts
+  s_339bcff149b539::t_26b2f63cc74967 1-26
+src/auth/serverLogin.ts
+  s_339bcff149b539::t_b9d4bf5416d664 1-252
+src/auth/session.tsx
+  s_339bcff149b539::t_86e2333342bdcb 1-111
+src/data/CollectionContext.tsx
+  s_339bcff149b539::t_eeddd50436de89 1-38
+src/data/__tests__/collectionCreation.test.ts
+  s_339bcff149b539::t_61ab2fcf24c3e1 1-22
+src/data/__tests__/edits.test.ts
+  s_339bcff149b539::t_4530543e505069 1-137
+src/data/__tests__/features.test.ts
+  s_339bcff149b539::t_07c307deda87a3 1-67
+src/data/__tests__/homeFeed.test.ts
+  s_339bcff149b539::t_ad5bb93da79c9d 1-56
+src/data/__tests__/incomingShare.test.ts
+  s_339bcff149b539::t_a66e3cd92bc0d4 1-43
+src/data/__tests__/locationLibrary.test.ts
+  s_339bcff149b539::t_c8f885e7b5b683 1-22
+src/data/__tests__/mainData.test.ts
+  s_339bcff149b539::t_a7c4a26a81fdf5 1-88
+src/data/__tests__/search.test.ts
+  s_339bcff149b539::t_eb4d448f62420e 1-53
+src/data/__tests__/selectors.test.ts
+  s_339bcff149b539::t_158541504d1058 1-243
+src/data/__tests__/useCollectionEdits.test.ts
+  s_339bcff149b539::t_a642593609dada 1-52
+src/data/__tests__/world.test.ts
+  s_339bcff149b539::t_ef59bbb54da426 1-175
+src/data/calendar.ts
+  s_339bcff149b539::t_128156cd5efcdd 1-58
+src/data/categories.ts
+  s_339bcff149b539::t_b50dfab4ca035a 1-41
+src/data/collectionCreation.ts
+  s_339bcff149b539::t_19e93062ed18a7 1-18
+src/data/edits.ts
+  s_339bcff149b539::t_8381e18ae7b97f 1-216
+src/data/homeFeed.ts
+  s_339bcff149b539::t_2387caa409c13a 1-63
+src/data/images.ts
+  s_339bcff149b539::t_cd4358c89a4c94 1-7
+src/data/incomingShare.ts
+  s_339bcff149b539::t_0c468c754b2045 1-36
+src/data/locationLibrary.ts
+  s_339bcff149b539::t_ec51ec5cd8070c 1-9
+src/data/mainData.ts
+  s_339bcff149b539::t_8c411b7d5567ef 1-33
+src/data/persist.ts
+  s_339bcff149b539::t_54b353d6824429 1-24
+src/data/queries.ts
+  s_339bcff149b539::t_129b87fc7a5829 1-184
+src/data/search.ts
+  s_339bcff149b539::t_876e4ab73ee041 1-127
+src/data/selectors.ts
+  s_339bcff149b539::t_288eec5af3f90a 1-482
+src/data/uploads.ts
+  s_339bcff149b539::t_3d77adc5908dda 1-65
+src/data/useCollectionEdits.ts
+  s_339bcff149b539::t_fd41348e63850f 1-490
+src/data/useCollectionsActions.ts
+  s_339bcff149b539::t_a418ccf2418b9a 1-71
+src/data/useLocation.ts
+  s_339bcff149b539::t_57053834f83845 1-48
+src/data/useOnlineAction.ts
+  s_339bcff149b539::t_af865392a6e831 1-49
+src/data/usePrefetchMainData.ts
+  s_339bcff149b539::t_a3b21fd26961d2 1-26
+src/data/useRegionEdits.ts
+  s_339bcff149b539::t_114ca5292f5dfd 1-160
+src/data/world.ts
+  s_339bcff149b539::t_f3b1a51fce3c88 1-106
+src/i18n/__tests__/i18n.test.ts
+  s_339bcff149b539::t_2e64c09e16164a 1-136
+src/i18n/index.ts
+  s_339bcff149b539::t_374a48c37f8aa9 1-65
+src/i18n/locales/de.json
+  s_339bcff149b539::t_9d511a5dc220d3 1-1032
+src/i18n/locales/en.json
+  s_339bcff149b539::t_a211ffe7b6453f 1-1032
+src/i18n/locales/ja.json
+  s_339bcff149b539::t_28795952fd842a 1-1010
+src/integrations/__tests__/connection.test.ts
+  s_339bcff149b539::t_a2047a7a372c6b 1-37
+src/integrations/connection.ts
+  s_339bcff149b539::t_3301ef484a3e95 1-49
+src/maps/__tests__/regions.test.ts
+  s_339bcff149b539::t_5dc0c6561598ac 1-37
+src/maps/offline.ts
+  s_339bcff149b539::t_d19be8293ce45b 1-117
+src/maps/regions.ts
+  s_339bcff149b539::t_5a8089efa43ba8 1-52
+src/maps/useOfflineMaps.ts
+  s_339bcff149b539::t_def3026d1e2314 1-45
+src/offline/fileCache.ts
+  s_339bcff149b539::t_1884b517c5c381 1-128
+src/offline/useCollectionOffline.ts
+  s_339bcff149b539::t_f3761ab29ea842 1-85
+src/offline/wipe.ts
+  s_339bcff149b539::t_5d8e7953d1fb3a 1-21
+src/screens/DaysScreen.tsx
+  s_339bcff149b539::t_f4d6803856fa36 1-147
+src/screens/PlaceEditor.tsx
+  s_339bcff149b539::t_7712e5c2ad4a37 1-163
+src/screens/SearchScreen.tsx
+  s_339bcff149b539::t_aefb1147a0e149 1-191
+src/screens/VisitEditor.tsx
+  s_339bcff149b539::t_5ce03ad1da4362 1-203
+src/settings/apply.ts
+  s_339bcff149b539::t_13235a4393d06f 1-85
+src/settings/haptics.ts
+  s_339bcff149b539::t_0d7d0a6e4b956f 1-16
+src/settings/store.ts
+  s_339bcff149b539::t_dc588299c01d7c 1-55
+src/telemetry/health.ts
+  s_339bcff149b539::t_a27edb046ecce5 1-28
+src/time/__tests__/placeZone.test.ts
+  s_339bcff149b539::t_3d4f25061ed92b 1-35
+src/time/__tests__/sun.test.ts
+  s_339bcff149b539::t_e50f3837f1afb1 1-43
+src/time/__tests__/today.test.ts
+  s_339bcff149b539::t_d7642dca834297 1-53
+src/time/__tests__/tz.test.ts
+  s_339bcff149b539::t_732e4798b8cacf 1-92
+src/time/__tests__/zonedInput.test.ts
+  s_339bcff149b539::t_956f384bbeec89 1-76
+src/time/countryZones.ts
+  s_339bcff149b539::t_22754769bdf7be 1-485
+src/time/placeZone.ts
+  s_339bcff149b539::t_80812cd8b342fd 1-44
+src/time/sun.ts
+  s_339bcff149b539::t_25555ca0298c30 1-33
+src/time/today.ts
+  s_339bcff149b539::t_70ddbbc1a36c50 1-77
+src/time/tz.ts
+  s_339bcff149b539::t_d8f0b01a2910f7 1-218
+src/time/zonedInput.ts
+  s_339bcff149b539::t_75bea588f67e6c 1-104
+src/time/zones.ts
+  s_339bcff149b539::t_3253ffe89dce26 1-468
+src/ui/ActionSheet.tsx
+  s_339bcff149b539::t_09101e671793ab 1-90
+src/ui/AuthImage.tsx
+  s_339bcff149b539::t_307d2e1ebfe600 1-17
+src/ui/CardRow.ios.tsx
+  s_339bcff149b539::t_3eac2ac6f00190 1-18
+src/ui/CardRow.tsx
+  s_339bcff149b539::t_347a9200aa4012 1-13
+src/ui/CollectionHero.tsx
+  s_339bcff149b539::t_79a453f6f99f9f 1-166
+src/ui/CollectionLoading.tsx
+  s_339bcff149b539::t_d3613f2b47a6d8 1-44
+src/ui/CompatNotice.tsx
+  s_339bcff149b539::t_3451d66072fea8 1-47
+src/ui/DateTimeRow.tsx
+  s_339bcff149b539::t_47a44f0e8c83e0 1-100
+src/ui/DayNav.tsx
+  s_339bcff149b539::t_f2e44a00bd9a2c 1-137
+src/ui/ErrorScreen.tsx
+  s_339bcff149b539::t_f48841483627f7 1-55
+src/ui/FormHost.android.tsx
+  s_339bcff149b539::t_8ffe5e23556b84 1-40
+src/ui/FormHost.tsx
+  s_339bcff149b539::t_a421bb1106a5bb 1-25
+src/ui/GlobalSearchRow.tsx
+  s_339bcff149b539::t_547a7d85050b3b 1-16
+src/ui/Host.android.tsx
+  s_339bcff149b539::t_193b368dcd6ad1 1-31
+src/ui/Host.tsx
+  s_339bcff149b539::t_fe83b3a6673071 1-10
+src/ui/JourneySummary.tsx
+  s_339bcff149b539::t_c03f48bdb0d45c 1-41
+src/ui/LoadingRows.tsx
+  s_339bcff149b539::t_56ab3d0364f83d 1-60
+src/ui/MainSearchScreen.tsx
+  s_339bcff149b539::t_882ec29b0f1a82 1-34
+src/ui/MainTabStack.tsx
+  s_339bcff149b539::t_8be29df9ccc3cc 1-25
+src/ui/MainToolbar.android.tsx
+  s_339bcff149b539::t_0412b6d4bd50b8 1-113
+src/ui/MainToolbar.tsx
+  s_339bcff149b539::t_020dc05c92f6b0 1-58
+src/ui/MapCanvas.tsx
+  s_339bcff149b539::t_4c6434e56f0dd8 1-71
+src/ui/MarkdownEditor.tsx
+  s_339bcff149b539::t_f8b0af71abb40f 1-16
+src/ui/MarkdownField.tsx
+  s_339bcff149b539::t_92a35f10c15c72 1-250
+src/ui/MarkdownText.ios.tsx
+  s_339bcff149b539::t_4fcd52edcdfb49 1-50
+src/ui/MarkdownText.tsx
+  s_339bcff149b539::t_56ecda5af2383e 1-49
+src/ui/MaterialSearch.android.tsx
+  s_339bcff149b539::t_9bdca133cb6bb2 1-140
+src/ui/MaterialSearch.tsx
+  s_339bcff149b539::t_58afd45a90c1d6 1-17
+src/ui/PhotoPager.tsx
+  s_339bcff149b539::t_22f6009e582966 1-120
+src/ui/PlaceSearch.tsx
+  s_339bcff149b539::t_c48643459169d7 1-145
+src/ui/PlanModeTabs.android.tsx
+  s_339bcff149b539::t_1e661c4b8a9de6 1-30
+src/ui/PlanModeTabs.tsx
+  s_339bcff149b539::t_f019b5ccaa19e5 1-23
+src/ui/PointsMap.tsx
+  s_339bcff149b539::t_8d963b79f6c817 1-136
+src/ui/RefreshableFieldGroup.android.tsx
+  s_339bcff149b539::t_25f416ce5162b0 1-37
+src/ui/RefreshableFieldGroup.ios.tsx
+  s_339bcff149b539::t_e859b3672deadb 1-9
+src/ui/RefreshableFieldGroup.tsx
+  s_339bcff149b539::t_9701ae0868cec0 1-9
+src/ui/ResourceGallery.ios.tsx
+  s_339bcff149b539::t_b369393f10718c 1-21
+src/ui/ResourceGallery.tsx
+  s_339bcff149b539::t_b20a6f61d4b56d 1-15
+src/ui/ResourceHeader.tsx
+  s_339bcff149b539::t_ddf5a2bfbff4e7 1-82
+src/ui/ScreenSearch.tsx
+  s_339bcff149b539::t_b835d9036dffd8 1-40
+src/ui/Select.tsx
+  s_339bcff149b539::t_5b46046b08bfdf 1-102
+src/ui/SheetRow.ios.tsx
+  s_339bcff149b539::t_e4cb8fa591872a 1-57
+src/ui/SheetRow.tsx
+  s_339bcff149b539::t_52bd4a5759e1db 1-2
+src/ui/StatusRows.tsx
+  s_339bcff149b539::t_4ff6f7d041d417 1-62
+src/ui/StaySummary.tsx
+  s_339bcff149b539::t_764159b9d802fd 1-62
+src/ui/Sub.tsx
+  s_339bcff149b539::t_3f7af37454744d 1-13
+src/ui/TabBarSpacer.tsx
+  s_339bcff149b539::t_377f95d719a263 1-23
+src/ui/Text.ios.tsx
+  s_339bcff149b539::t_67df0dffb69241 1-59
+src/ui/Text.tsx
+  s_339bcff149b539::t_646bb7000587ce 1-2
+src/ui/TextPrompt.tsx
+  s_339bcff149b539::t_6b71087c73719d 1-70
+src/ui/Thumb.tsx
+  s_339bcff149b539::t_35429aae8c6f1d 1-28
+src/ui/Today.tsx
+  s_339bcff149b539::t_885d2ed64908d4 1-169
+src/ui/__tests__/Text.ios.test.tsx
+  s_339bcff149b539::t_f0e7bc0a735130 1-38
+src/ui/__tests__/bookingLinks.test.ts
+  s_339bcff149b539::t_7c3873978a9e87 1-23
+src/ui/__tests__/collectionFirstRender.test.tsx
+  s_339bcff149b539::t_736d6230f93848 1-42
+src/ui/__tests__/format.test.ts
+  s_339bcff149b539::t_8ca9a45d3fe003 1-39
+src/ui/__tests__/forms.test.ts
+  s_339bcff149b539::t_2de7823b6da75e 1-53
+src/ui/__tests__/graphemes.test.ts
+  s_339bcff149b539::t_b92d190b3d4837 1-44
+src/ui/__tests__/journey.test.ts
+  s_339bcff149b539::t_e439c17e4b7793 1-85
+src/ui/__tests__/mapLayout.test.tsx
+  s_339bcff149b539::t_04daf105d32609 1-78
+src/ui/__tests__/mapLinks.test.ts
+  s_339bcff149b539::t_848bba30f82bf5 1-67
+src/ui/__tests__/markdown.test.ts
+  s_339bcff149b539::t_41bf60afc832b6 1-64
+src/ui/bookingLinks.ts
+  s_339bcff149b539::t_848aed16ab6b46 1-14
+src/ui/duplicateGuard.ts
+  s_339bcff149b539::t_b64a52109792f9 1-67
+src/ui/entries.tsx
+  s_339bcff149b539::t_a15baffd5e8541 1-189
+src/ui/formValues.ts
+  s_339bcff149b539::t_4e580530a5d61c 1-82
+src/ui/format.ts
+  s_339bcff149b539::t_ec59bb9486c73e 1-65
+src/ui/forms.tsx
+  s_339bcff149b539::t_77ed22c2e65137 1-88
+src/ui/graphemes.ts
+  s_339bcff149b539::t_655a77aa3dd5f7 1-71
+src/ui/icons.ts
+  s_339bcff149b539::t_2855c4acd0145c 1-175
+src/ui/journey.ts
+  s_339bcff149b539::t_57aed95294f0a7 1-48
+src/ui/links.ts
+  s_339bcff149b539::t_a317a95169982f 1-4
+src/ui/mapLinks.ts
+  s_339bcff149b539::t_e00945a40a1ca3 1-52
+src/ui/markdown.ts
+  s_339bcff149b539::t_aaceae1c08ef50 1-81
+src/ui/markdownEditing.ts
+  s_339bcff149b539::t_5f9216d1f951d0 1-85
+src/ui/media.tsx
+  s_339bcff149b539::t_3b1a2ecf5dc0c1 1-154
+src/ui/notes.tsx
+  s_339bcff149b539::t_f6a0875e698107 1-20
+src/ui/rows.tsx
+  s_339bcff149b539::t_00072dda1f88f8 1-274
+src/ui/serverFile.ts
+  s_339bcff149b539::t_53fb1d4adde184 1-83
+src/ui/sports.ts
+  s_339bcff149b539::t_7bedc6f20ec6b4 1-32
+src/ui/statRows.tsx
+  s_339bcff149b539::t_7c8df6057ffdb1 1-37
+src/ui/stay.ts
+  s_339bcff149b539::t_2c50911a403ce8 1-23
+src/ui/textWeight.ts
+  s_339bcff149b539::t_ec77eac9463932 1-22
+src/ui/theme.ts
+  s_339bcff149b539::t_118e0426f852da 1-62
+src/ui/typeScale.ts
+  s_339bcff149b539::t_f72f2ed71cb8f3 1-22
+src/ui/useDescriptionRows.tsx
+  s_339bcff149b539::t_3e67e64f8223ea 1-43
+src/ui/useInitialInputFocus.ts
+  s_339bcff149b539::t_536bdd0630ec23 1-7
+src/ui/useScreenBackground.android.ts
+  s_339bcff149b539::t_ba7dff5017fe0a 1-6
+src/ui/useScreenBackground.ts
+  s_339bcff149b539::t_c15ca7bc5af0a9 1-5
+src/ui/useTabVisited.ts
+  s_339bcff149b539::t_64e5e2d1715343 1-13
+tsconfig.json
+  s_339bcff149b539::t_9b9fa07ad91a93 1-25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5d8c3282756ff0c88e7bdf94b07df33273a9ee4e",
+  "prompts": {},
+  "sessions": {
+    "s_339bcff149b539": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "429dc936-a139-4646-8b57-d9c3656b5b1e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
