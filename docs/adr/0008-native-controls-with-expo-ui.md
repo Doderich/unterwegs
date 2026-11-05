@@ -1,0 +1,3 @@
+# Native controls through @expo/ui
+
+Screens are built from `@expo/ui` components, which render SwiftUI on iOS and Jetpack Compose (Material 3) on Android from one component tree, with the native stack, toolbar and tabs from expo-router. React Native views are used only where no native component exists (the hero card, the map, photo strips and grids). This makes the app feel like each platform for people who know their phone but not the app, and gives text size, bold text, dark mode and screen readers for free; the price is working around the library's gaps (e.g. Android list rows must be `ListItem`s directly, see `src/ui/rows.tsx`).

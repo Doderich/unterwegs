@@ -1,0 +1,3457 @@
+{
+  "id": "00000000-0000-4000-8000-000000000001",
+  "description": "",
+  "user": "00000000-0000-4000-8000-000000000100",
+  "name": "Japan Familienreise",
+  "is_public": false,
+  "locations": [
+    {
+      "id": "9d9b89e3-0e80-408f-a6e2-34b760da69fb",
+      "name": "東京都",
+      "description": null,
+      "rating": null,
+      "tags": [
+        "stadt"
+      ],
+      "location": "Tokyo, JP",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T15:41:16.378209Z",
+      "updated_at": "2026-10-31T15:41:16.394847Z",
+      "images": [
+        {
+          "id": "8d9c6ec6-4acc-4c5a-9fc9-2f586caae729",
+          "image": "https://adventurelog.example.org/media/images/6bc44812-52dd-42f3-89f9-b41863df120f.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": "https://example.org/link-1",
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 139.766706,
+      "latitude": 35.681255,
+      "visits": [
+        {
+          "id": "c550ee89-2d09-4b84-a4a1-9903b10332f5",
+          "start_date": "2026-12-19T00:00:00Z",
+          "end_date": "2026-12-19T00:00:00Z",
+          "timezone": "Europe/Berlin",
+          "notes": "",
+          "activities": [],
+          "location": "9d9b89e3-0e80-408f-a6e2-34b760da69fb",
+          "created_at": "2026-10-31T15:42:23.387735Z",
+          "updated_at": "2026-10-31T15:42:38.006057Z"
+        },
+        {
+          "id": "994447fa-69fe-49a8-a72d-7e88ba9706d3",
+          "start_date": "2026-12-20T00:00:00Z",
+          "end_date": "2026-12-20T00:00:00Z",
+          "timezone": null,
+          "notes": "Created from itinerary planning",
+          "activities": [],
+          "location": "9d9b89e3-0e80-408f-a6e2-34b760da69fb",
+          "created_at": "2026-10-31T15:44:53.229466Z",
+          "updated_at": "2026-10-31T15:44:53.229484Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "b6e365db-b563-46ed-a647-88737e70b461",
+        "name": "stadt",
+        "display_name": "Stadt",
+        "icon": "🏙️",
+        "num_locations": 1
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": {
+        "id": "JP-13",
+        "num_cities": 63,
+        "country_name": "Japan",
+        "name": "Tokyo",
+        "country": 109,
+        "latitude": 35.67686,
+        "longitude": 139.763895
+      },
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "7058d52e-d5f9-4d75-a831-462d3b97920e",
+      "name": "Meiji-Schrein",
+      "description": null,
+      "rating": null,
+      "tags": null,
+      "location": "Shibuya, Tokio",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.141975Z",
+      "updated_at": "2026-10-31T16:16:05.141992Z",
+      "images": [
+        {
+          "id": "0c1e1815-45e3-438d-94b2-5e1328f233bf",
+          "image": "https://adventurelog.example.org/media/images/c069e512-2ac1-4817-bdb6-0b6365173114.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 139.6993,
+      "latitude": 35.6764,
+      "visits": [
+        {
+          "id": "6d5056c9-94c7-4fce-9b69-2459850fa2b0",
+          "start_date": "2026-12-18T15:00:00Z",
+          "end_date": "2026-12-18T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "7058d52e-d5f9-4d75-a831-462d3b97920e",
+          "created_at": "2026-10-31T16:16:05.149395Z",
+          "updated_at": "2026-10-31T16:16:05.149406Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "ec13996b-f228-4cdf-974e-8ad8b01fb957",
+      "name": "Tokioter Rathaus (Aussichtsplattform)",
+      "description": "Aussichtsplattform noch offen (?)",
+      "rating": null,
+      "tags": null,
+      "location": "Shinjuku, Tokio",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.157395Z",
+      "updated_at": "2026-10-31T16:16:05.157411Z",
+      "images": [
+        {
+          "id": "42f5797f-5803-432e-9bb4-6797a533b48d",
+          "image": "https://adventurelog.example.org/media/images/01d99518-8b92-469d-a733-e299202e3fa9.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 139.6922,
+      "latitude": 35.6896,
+      "visits": [
+        {
+          "id": "8181de52-c8d8-435e-a63c-158f488ca7d9",
+          "start_date": "2026-12-18T15:00:00Z",
+          "end_date": "2026-12-18T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "ec13996b-f228-4cdf-974e-8ad8b01fb957",
+          "created_at": "2026-10-31T16:16:05.163290Z",
+          "updated_at": "2026-10-31T16:16:05.163302Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "b1200bce-cc22-4e21-8ae0-bdf6d45410fe",
+      "name": "Ginza",
+      "description": "Einkaufsviertel",
+      "rating": null,
+      "tags": null,
+      "location": "Chuo, Tokio",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.169722Z",
+      "updated_at": "2026-10-31T16:16:05.169740Z",
+      "images": [
+        {
+          "id": "c0c46a79-24b7-499c-b0d4-a3aa78aa9999",
+          "image": "https://adventurelog.example.org/media/images/fa54a285-83aa-4a35-965e-f96f66919abc.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 139.765,
+      "latitude": 35.6717,
+      "visits": [
+        {
+          "id": "113da793-4700-4f58-9371-41178f215dd2",
+          "start_date": "2026-12-18T15:00:00Z",
+          "end_date": "2026-12-18T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "b1200bce-cc22-4e21-8ae0-bdf6d45410fe",
+          "created_at": "2026-10-31T16:16:05.175333Z",
+          "updated_at": "2026-10-31T16:16:05.175344Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "34887eff-989c-4cb6-9793-6e7ce3dab50d",
+      "name": "Rainbow Bridge",
+      "description": null,
+      "rating": null,
+      "tags": null,
+      "location": "Minato, Tokio",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.181071Z",
+      "updated_at": "2026-10-31T16:16:05.181087Z",
+      "images": [
+        {
+          "id": "fd8afb2e-0d4d-4f20-b971-eba4c25277d2",
+          "image": "https://adventurelog.example.org/media/images/cb5e950a-6411-4caf-b947-431f95d6d062.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 139.7633,
+      "latitude": 35.6365,
+      "visits": [
+        {
+          "id": "3bbf08d0-a45e-4c13-b7d5-e47e0e3aec30",
+          "start_date": "2026-12-18T15:00:00Z",
+          "end_date": "2026-12-18T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "34887eff-989c-4cb6-9793-6e7ce3dab50d",
+          "created_at": "2026-10-31T16:16:05.186456Z",
+          "updated_at": "2026-10-31T16:16:05.186467Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "7327e017-dccf-46a8-97d3-2ca2015ea44a",
+      "name": "Kasumigaseki und Parlament",
+      "description": "Regierungsviertel mit Parlamentsgebäude",
+      "rating": null,
+      "tags": null,
+      "location": "Chiyoda, Tokio",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.192635Z",
+      "updated_at": "2026-10-31T16:16:05.192650Z",
+      "images": [
+        {
+          "id": "20bce712-debe-4dea-b8b1-f1f1bb4d6e67",
+          "image": "https://adventurelog.example.org/media/images/02ecda8d-5f6e-4efa-86a7-d654a8a2befc.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 139.745,
+      "latitude": 35.6759,
+      "visits": [
+        {
+          "id": "2c12a34c-4c4b-48d7-a797-7ae3a1f2742c",
+          "start_date": "2026-12-18T15:00:00Z",
+          "end_date": "2026-12-18T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "7327e017-dccf-46a8-97d3-2ca2015ea44a",
+          "created_at": "2026-10-31T16:16:05.197945Z",
+          "updated_at": "2026-10-31T16:16:05.197955Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "d61fce1f-fec6-464f-a951-810413fafb6e",
+      "name": "Sakurada-Tor und Nijubashi-Brücke",
+      "description": "Fernblick auf den Kaiserpalast",
+      "rating": null,
+      "tags": null,
+      "location": "Chiyoda, Tokio",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.203677Z",
+      "updated_at": "2026-10-31T16:16:05.203692Z",
+      "images": [
+        {
+          "id": "a6c29ede-2401-4494-8aac-ad38310daf36",
+          "image": "https://adventurelog.example.org/media/images/a87f90a9-401f-492b-aa2f-e8759bf7514e.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": "https://example.org/link-2",
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 139.751,
+      "latitude": 35.68,
+      "visits": [
+        {
+          "id": "c4f05a0e-73bd-41ce-bb52-6a59ea5866d6",
+          "start_date": "2026-12-18T15:00:00Z",
+          "end_date": "2026-12-18T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "d61fce1f-fec6-464f-a951-810413fafb6e",
+          "created_at": "2026-10-31T16:16:05.208546Z",
+          "updated_at": "2026-10-31T16:16:05.208557Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "79dacf1e-dbc4-4695-8ff7-f74e8796ab07",
+      "name": "Edo-Tokyo-Museum",
+      "description": null,
+      "rating": null,
+      "tags": null,
+      "location": "Sumida, Tokio",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.214656Z",
+      "updated_at": "2026-10-31T16:16:05.214670Z",
+      "images": [
+        {
+          "id": "d9ebad2c-0b31-4555-b4ff-aaf495014861",
+          "image": "https://adventurelog.example.org/media/images/c2f6dc2a-6482-4acc-bd1c-965bd640bcf7.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 139.7957,
+      "latitude": 35.6966,
+      "visits": [
+        {
+          "id": "0e33bba9-198c-47d3-a112-0f1db982112d",
+          "start_date": "2026-12-19T15:00:00Z",
+          "end_date": "2026-12-19T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "79dacf1e-dbc4-4695-8ff7-f74e8796ab07",
+          "created_at": "2026-10-31T16:16:05.220193Z",
+          "updated_at": "2026-10-31T16:16:05.220204Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "3a1eedf5-e8f3-4ee8-9304-baad95405783",
+      "name": "Tokyo Skytree",
+      "description": "Skytree und/oder Tokyo Tower",
+      "rating": null,
+      "tags": null,
+      "location": "Sumida, Tokio",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.225486Z",
+      "updated_at": "2026-10-31T16:16:05.225498Z",
+      "images": [
+        {
+          "id": "458b1b47-5358-470b-a6e3-7457202ebf46",
+          "image": "https://adventurelog.example.org/media/images/1441b803-6e83-4fd5-8245-bd6b4137624f.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 139.8107,
+      "latitude": 35.7101,
+      "visits": [
+        {
+          "id": "7ea8b214-534d-4602-b85d-a29b7fddb7ee",
+          "start_date": "2026-12-19T15:00:00Z",
+          "end_date": "2026-12-19T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "3a1eedf5-e8f3-4ee8-9304-baad95405783",
+          "created_at": "2026-10-31T16:16:05.230354Z",
+          "updated_at": "2026-10-31T16:16:05.230365Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "d2d77fdf-d597-482b-9d71-fa7825295eca",
+      "name": "Tokyo Tower",
+      "description": "Skytree und/oder Tokyo Tower",
+      "rating": null,
+      "tags": null,
+      "location": "Minato, Tokio",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.235512Z",
+      "updated_at": "2026-10-31T16:16:05.235526Z",
+      "images": [
+        {
+          "id": "8b2779a7-3e5f-4352-848d-36c1c5720529",
+          "image": "https://adventurelog.example.org/media/images/c7385b55-daf0-46b8-8f39-edd8ad4bc584.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 139.7454,
+      "latitude": 35.6586,
+      "visits": [
+        {
+          "id": "9355cce6-7a6e-4103-a6ac-e37f00e81d3d",
+          "start_date": "2026-12-19T15:00:00Z",
+          "end_date": "2026-12-19T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "d2d77fdf-d597-482b-9d71-fa7825295eca",
+          "created_at": "2026-10-31T16:16:05.240801Z",
+          "updated_at": "2026-10-31T16:16:05.240808Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "f1b9717f-f3c1-4d51-b8ae-04f91a6071e4",
+      "name": "Nara",
+      "description": "Ausflug nach Nara",
+      "rating": null,
+      "tags": null,
+      "location": "Nara",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.246717Z",
+      "updated_at": "2026-10-31T16:16:05.246729Z",
+      "images": [
+        {
+          "id": "fc392364-1918-47a8-b44e-7e5aa9e1f6eb",
+          "image": "https://adventurelog.example.org/media/images/5871b638-02e7-42d0-93e3-3da399367797.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 135.843,
+      "latitude": 34.6851,
+      "visits": [
+        {
+          "id": "e76e5007-6be8-4da9-8133-5ac40fb81efc",
+          "start_date": "2026-12-23T15:00:00Z",
+          "end_date": "2026-12-23T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "f1b9717f-f3c1-4d51-b8ae-04f91a6071e4",
+          "created_at": "2026-10-31T16:16:05.252019Z",
+          "updated_at": "2026-10-31T16:16:05.252030Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "7126366e-c0cd-4e60-93b6-755f7863ca35",
+      "name": "Burg Himeji",
+      "description": null,
+      "rating": null,
+      "tags": null,
+      "location": "Himeji, Hyogo",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.257862Z",
+      "updated_at": "2026-10-31T16:16:05.257881Z",
+      "images": [
+        {
+          "id": "639d774e-c441-469b-bb6d-4ce9ef101650",
+          "image": "https://adventurelog.example.org/media/images/1ae89c0a-318e-4dd1-9477-17fa97009ce0.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 134.6939,
+      "latitude": 34.8394,
+      "visits": [
+        {
+          "id": "7349364f-189a-488f-bee0-9b3d41873c3e",
+          "start_date": "2026-12-24T15:00:00Z",
+          "end_date": "2026-12-24T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "7126366e-c0cd-4e60-93b6-755f7863ca35",
+          "created_at": "2026-10-31T16:16:05.264270Z",
+          "updated_at": "2026-10-31T16:16:05.264283Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "78d1a69b-b354-48f1-9232-19be4b4155c2",
+      "name": "Engyo-ji-Tempel",
+      "description": null,
+      "rating": null,
+      "tags": null,
+      "location": "Mount Shosha, Himeji",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.270929Z",
+      "updated_at": "2026-10-31T16:16:05.270943Z",
+      "images": [
+        {
+          "id": "f088b696-3423-4af9-9230-f90bcc7bfde5",
+          "image": "https://adventurelog.example.org/media/images/f3f33749-36ab-4327-b59d-4f62db747148.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 134.6656,
+      "latitude": 34.893,
+      "visits": [
+        {
+          "id": "640cce76-3bac-4832-aa3d-b6405498627c",
+          "start_date": "2026-12-24T15:00:00Z",
+          "end_date": "2026-12-24T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "78d1a69b-b354-48f1-9232-19be4b4155c2",
+          "created_at": "2026-10-31T16:16:05.276927Z",
+          "updated_at": "2026-10-31T16:16:05.276939Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "0eb6e353-be2f-46ed-b6c9-bf9ee0884d05",
+      "name": "Miyajima (Itsukushima-Schrein)",
+      "description": "Ausflug nach Miyajima",
+      "rating": null,
+      "tags": null,
+      "location": "Miyajima, Hiroshima",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.283448Z",
+      "updated_at": "2026-10-31T16:16:05.283463Z",
+      "images": [
+        {
+          "id": "1ece2a19-5b4c-4031-a95f-3df7b1e8c0c2",
+          "image": "https://adventurelog.example.org/media/images/09218d85-4089-478f-9c47-22202fb6f41a.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 132.3198,
+      "latitude": 34.296,
+      "visits": [
+        {
+          "id": "4ad8cdca-0de9-4d40-b8a4-b5e1d801780e",
+          "start_date": "2026-12-27T15:00:00Z",
+          "end_date": "2026-12-27T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "0eb6e353-be2f-46ed-b6c9-bf9ee0884d05",
+          "created_at": "2026-10-31T16:16:05.289197Z",
+          "updated_at": "2026-10-31T16:16:05.289209Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "8d5ba4f1-49ac-49b5-8199-89598151f938",
+      "name": "Umeda Sky Building",
+      "description": "Mit Aussichtsplattform",
+      "rating": null,
+      "tags": null,
+      "location": "Kita-ku, Osaka",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.295234Z",
+      "updated_at": "2026-10-31T16:16:05.295250Z",
+      "images": [
+        {
+          "id": "f4b74705-df75-4619-8a05-a73dc17e57e2",
+          "image": "https://adventurelog.example.org/media/images/48959583-13d4-4dcb-86d8-dffc64102759.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": "https://example.org/link-3",
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 135.4903,
+      "latitude": 34.7053,
+      "visits": [
+        {
+          "id": "bb8af5a8-c1ee-4cf0-a92f-729d9801a05d",
+          "start_date": "2027-01-02T15:00:00Z",
+          "end_date": "2027-01-02T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "8d5ba4f1-49ac-49b5-8199-89598151f938",
+          "created_at": "2026-10-31T16:16:05.300848Z",
+          "updated_at": "2026-10-31T16:16:05.300858Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "51a65caf-f64d-48fb-9a5b-747ee9362fbe",
+      "name": "Burg Osaka",
+      "description": "Im Plan als \"Beton-Burg\"",
+      "rating": null,
+      "tags": null,
+      "location": "Chuo-ku, Osaka",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.306799Z",
+      "updated_at": "2026-10-31T16:16:05.306815Z",
+      "images": [
+        {
+          "id": "66bce147-0e7a-41e0-b384-9ba3daf1da4d",
+          "image": "https://adventurelog.example.org/media/images/7cdc2d0f-efe4-4646-93c1-95435205b0bf.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 135.5262,
+      "latitude": 34.6873,
+      "visits": [
+        {
+          "id": "46e6d790-c51b-4bd0-b637-7e3e7866d4a9",
+          "start_date": "2027-01-03T15:00:00Z",
+          "end_date": "2027-01-03T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "51a65caf-f64d-48fb-9a5b-747ee9362fbe",
+          "created_at": "2026-10-31T16:16:05.312381Z",
+          "updated_at": "2026-10-31T16:16:05.312392Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "b8b8b28c-c29f-457c-8bf1-a766d1b974b2",
+      "name": "Shinsekai",
+      "description": null,
+      "rating": null,
+      "tags": null,
+      "location": "Naniwa-ku, Osaka",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.318950Z",
+      "updated_at": "2026-10-31T16:16:05.318967Z",
+      "images": [
+        {
+          "id": "2ed5874e-e4d7-40de-babb-4eff01e28ac7",
+          "image": "https://adventurelog.example.org/media/images/d8bc82fb-96ab-4385-bccd-1b03e8e82333.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 135.5063,
+      "latitude": 34.6525,
+      "visits": [
+        {
+          "id": "41e6b978-a5a6-4986-8bab-de85bf5a3985",
+          "start_date": "2027-01-03T15:00:00Z",
+          "end_date": "2027-01-03T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "b8b8b28c-c29f-457c-8bf1-a766d1b974b2",
+          "created_at": "2026-10-31T16:16:05.324932Z",
+          "updated_at": "2026-10-31T16:16:05.324944Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "087ff7c5-fb0e-4622-b197-304cd32c2dc1",
+      "name": "Shitennoji-Tempel",
+      "description": "Mit Gokuraku-jodo-Garten",
+      "rating": null,
+      "tags": null,
+      "location": "Tennoji-ku, Osaka",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.331435Z",
+      "updated_at": "2026-10-31T16:16:05.331455Z",
+      "images": [
+        {
+          "id": "9f642147-8e15-4b11-99e3-398970ae8a14",
+          "image": "https://adventurelog.example.org/media/images/cfbec5f0-513c-4a33-b4b9-c3e9f15de2ba.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 135.5164,
+      "latitude": 34.6536,
+      "visits": [
+        {
+          "id": "53513e4b-5a67-4d0e-93d5-2aabafca4da1",
+          "start_date": "2027-01-03T15:00:00Z",
+          "end_date": "2027-01-03T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "087ff7c5-fb0e-4622-b197-304cd32c2dc1",
+          "created_at": "2026-10-31T16:16:05.338029Z",
+          "updated_at": "2026-10-31T16:16:05.338042Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "865d9644-4c03-4c70-8e94-23c5960a15e8",
+      "name": "Fuji (Kawaguchiko)",
+      "description": "Ausflug zum Fuji",
+      "rating": null,
+      "tags": null,
+      "location": "Fujikawaguchiko, Yamanashi",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.344321Z",
+      "updated_at": "2026-10-31T16:16:05.344335Z",
+      "images": [
+        {
+          "id": "94ed7c3a-80be-4089-9c55-ddf0c76a1a2c",
+          "image": "https://adventurelog.example.org/media/images/54e30502-6ebe-4ecc-8aaa-0b3a168c9a94.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 138.7519,
+      "latitude": 35.5163,
+      "visits": [
+        {
+          "id": "c0a1e494-8db6-4c1f-b09a-06565ef9d3ae",
+          "start_date": "2027-01-05T15:00:00Z",
+          "end_date": "2027-01-05T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "865d9644-4c03-4c70-8e94-23c5960a15e8",
+          "created_at": "2026-10-31T16:16:05.349007Z",
+          "updated_at": "2026-10-31T16:16:05.349018Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "99651d4f-b8d6-4c8e-aefa-de1b33c16845",
+      "name": "Yokohama",
+      "description": "Ausflug nach Yokohama und/oder Kamakura",
+      "rating": null,
+      "tags": null,
+      "location": "Yokohama, Kanagawa",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.355045Z",
+      "updated_at": "2026-10-31T16:16:05.355061Z",
+      "images": [
+        {
+          "id": "35343f0a-4d2d-42af-bb44-89c1f297f0a3",
+          "image": "https://adventurelog.example.org/media/images/f6b30395-a8c3-41a6-a16d-84624395917a.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 139.638,
+      "latitude": 35.4437,
+      "visits": [
+        {
+          "id": "721d8942-ae4f-49f2-a6fd-864d5372b7a7",
+          "start_date": "2027-01-06T15:00:00Z",
+          "end_date": "2027-01-06T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "99651d4f-b8d6-4c8e-aefa-de1b33c16845",
+          "created_at": "2026-10-31T16:16:05.360571Z",
+          "updated_at": "2026-10-31T16:16:05.360584Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    },
+    {
+      "id": "a8082e79-da62-4e3b-8b5c-d9111e97b406",
+      "name": "Kamakura",
+      "description": "Ausflug nach Yokohama und/oder Kamakura",
+      "rating": null,
+      "tags": null,
+      "location": "Kamakura, Kanagawa",
+      "is_public": false,
+      "collections": [
+        "00000000-0000-4000-8000-000000000001"
+      ],
+      "created_at": "2026-10-31T16:16:05.367116Z",
+      "updated_at": "2026-10-31T16:16:05.367133Z",
+      "images": [
+        {
+          "id": "eb606f26-30be-44b1-9582-030661420243",
+          "image": "https://adventurelog.example.org/media/images/7001f098-26b3-494c-b112-022274f0845c.webp",
+          "is_primary": true,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "wikipedia",
+          "source_url": null,
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "link": null,
+      "longitude": 139.5467,
+      "latitude": 35.3192,
+      "visits": [
+        {
+          "id": "fbb59f76-09d3-412f-9134-158ac5887579",
+          "start_date": "2027-01-06T15:00:00Z",
+          "end_date": "2027-01-06T15:00:00Z",
+          "timezone": "Asia/Tokyo",
+          "notes": null,
+          "activities": [],
+          "location": "a8082e79-da62-4e3b-8b5c-d9111e97b406",
+          "created_at": "2026-10-31T16:16:05.372640Z",
+          "updated_at": "2026-10-31T16:16:05.372653Z"
+        }
+      ],
+      "is_visited": false,
+      "category": {
+        "id": "9354032f-c4ca-4931-a669-f92d865acbdb",
+        "name": "vorschlag",
+        "display_name": "Vorschlag",
+        "icon": "💡",
+        "num_locations": 20
+      },
+      "attachments": [],
+      "user": {
+        "profile_pic": null,
+        "uuid": "00000000-0000-4000-8000-000000000100",
+        "public_profile": true,
+        "username": "alex",
+        "first_name": "Alex",
+        "last_name": "Beispiel",
+        "date_joined": "2026-10-31T12:41:32.640211Z",
+        "is_staff": false,
+        "disable_password": false,
+        "measurement_system": "metric",
+        "default_currency": "EUR",
+        "date_format": "locale",
+        "map_style": "default",
+        "has_password": false,
+        "shared_collection_count": 0,
+        "pending_collection_invite_count": 0
+      },
+      "city": null,
+      "country": {
+        "id": 109,
+        "flag_url": "https://adventurelog.example.org/media/flags/jp.png",
+        "num_regions": 47,
+        "num_visits": 0,
+        "name": "Japan",
+        "country_code": "JP",
+        "subregion": "Eastern Asia",
+        "capital": "Tokyo",
+        "latitude": 36,
+        "longitude": 138
+      },
+      "region": null,
+      "trails": [],
+      "price": null,
+      "price_currency": "USD"
+    }
+  ],
+  "created_at": "2026-10-31T13:15:58.471610Z",
+  "start_date": "2026-12-17",
+  "end_date": "2027-01-08",
+  "transportations": [
+    {
+      "id": "e7c649a3-9af3-4360-9001-9554248183bd",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "type": "plane",
+      "name": "Frankfurt am Main → 東京国際空港",
+      "description": "",
+      "rating": null,
+      "price": null,
+      "price_currency": "USD",
+      "link": null,
+      "date": "2026-12-17T13:00:00Z",
+      "flight_number": "LH000",
+      "from_location": "Frankfurt am Main",
+      "to_location": "東京国際空港",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T15:16:22.348310Z",
+      "updated_at": "2026-10-31T15:44:33.916433Z",
+      "end_date": "2026-12-18T01:45:00Z",
+      "origin_latitude": 50.110644,
+      "origin_longitude": 8.682092,
+      "destination_latitude": 35.545692,
+      "destination_longitude": 139.776099,
+      "start_timezone": "Europe/Berlin",
+      "end_timezone": "Asia/Tokyo",
+      "distance": 9372.55,
+      "images": [],
+      "attachments": [],
+      "start_code": "FRA",
+      "end_code": "HND",
+      "travel_duration_minutes": 765
+    },
+    {
+      "id": "90ec16fc-ee15-4523-9919-5e6e516aa308",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "type": "plane",
+      "name": "東京国際空港 → Flughafen Frankfurt am Main",
+      "description": "",
+      "rating": null,
+      "price": null,
+      "price_currency": "USD",
+      "link": null,
+      "date": "2027-01-07T15:35:00Z",
+      "flight_number": "LH000",
+      "from_location": "東京国際空港",
+      "to_location": "Flughafen Frankfurt am Main",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T16:09:57.859338Z",
+      "updated_at": "2026-10-31T16:09:57.859354Z",
+      "end_date": "2027-01-09T18:00:00Z",
+      "origin_latitude": 35.545692,
+      "origin_longitude": 139.776099,
+      "destination_latitude": 50.024413,
+      "destination_longitude": 8.5552,
+      "start_timezone": "Asia/Tokyo",
+      "end_timezone": "Europe/Berlin",
+      "distance": 9385.7,
+      "images": [],
+      "attachments": [],
+      "start_code": "HND",
+      "end_code": "FRA",
+      "travel_duration_minutes": 3025
+    },
+    {
+      "id": "1b4d7e51-10f4-4cb3-9172-f1f0cf4a1b51",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "type": "train",
+      "name": "Tokio → Kyoto (Shinkansen)",
+      "description": null,
+      "rating": null,
+      "price": null,
+      "price_currency": "USD",
+      "link": null,
+      "date": "2026-12-21T03:00:00Z",
+      "flight_number": null,
+      "from_location": "Tokio",
+      "to_location": "Kyoto",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T16:16:05.084773Z",
+      "updated_at": "2026-10-31T16:18:21.176883Z",
+      "end_date": "2026-12-21T03:00:00Z",
+      "origin_latitude": 35.6812,
+      "origin_longitude": 139.7671,
+      "destination_latitude": 34.9858,
+      "destination_longitude": 135.7588,
+      "start_timezone": "Asia/Tokyo",
+      "end_timezone": "Asia/Tokyo",
+      "distance": 372.47,
+      "images": [],
+      "attachments": [],
+      "start_code": null,
+      "end_code": null,
+      "travel_duration_minutes": 0
+    },
+    {
+      "id": "3bc9cad9-e67f-4ee4-8b28-1f797f276d47",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "type": "train",
+      "name": "Ausflug Kyoto → Himeji (Shinkansen)",
+      "description": "Details zur Verbindung",
+      "rating": null,
+      "price": null,
+      "price_currency": "USD",
+      "link": null,
+      "date": "2026-12-25T03:00:00Z",
+      "flight_number": null,
+      "from_location": "Kyoto",
+      "to_location": "Himeji",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T16:16:05.093596Z",
+      "updated_at": "2026-10-31T16:18:21.180070Z",
+      "end_date": "2026-12-25T03:00:00Z",
+      "origin_latitude": 34.9858,
+      "origin_longitude": 135.7588,
+      "destination_latitude": 34.827,
+      "destination_longitude": 134.691,
+      "start_timezone": "Asia/Tokyo",
+      "end_timezone": "Asia/Tokyo",
+      "distance": 99.17,
+      "images": [],
+      "attachments": [],
+      "start_code": null,
+      "end_code": null,
+      "travel_duration_minutes": 0
+    },
+    {
+      "id": "97de6521-c27d-45ff-afa6-879aac59f8c6",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "type": "train",
+      "name": "Kyoto → Hiroshima (Shinkansen)",
+      "description": null,
+      "rating": null,
+      "price": null,
+      "price_currency": "USD",
+      "link": null,
+      "date": "2026-12-26T03:00:00Z",
+      "flight_number": null,
+      "from_location": "Kyoto",
+      "to_location": "Hiroshima",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T16:16:05.100776Z",
+      "updated_at": "2026-10-31T16:18:21.181772Z",
+      "end_date": "2026-12-26T03:00:00Z",
+      "origin_latitude": 34.9858,
+      "origin_longitude": 135.7588,
+      "destination_latitude": 34.3976,
+      "destination_longitude": 132.4753,
+      "start_timezone": "Asia/Tokyo",
+      "end_timezone": "Asia/Tokyo",
+      "distance": 307.84,
+      "images": [],
+      "attachments": [],
+      "start_code": null,
+      "end_code": null,
+      "travel_duration_minutes": 0
+    },
+    {
+      "id": "79abc3b3-94a5-4a69-b314-1d59420186c5",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "type": "boat",
+      "name": "Fähre nach Miyajima",
+      "description": "Details zur Verbindung",
+      "rating": null,
+      "price": null,
+      "price_currency": "USD",
+      "link": null,
+      "date": "2026-12-28T03:00:00Z",
+      "flight_number": null,
+      "from_location": "Miyajimaguchi",
+      "to_location": "Miyajima",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T16:16:05.107931Z",
+      "updated_at": "2026-10-31T16:16:05.107944Z",
+      "end_date": "2026-12-28T03:00:00Z",
+      "origin_latitude": 34.311,
+      "origin_longitude": 132.303,
+      "destination_latitude": 34.3001,
+      "destination_longitude": 132.3218,
+      "start_timezone": "Asia/Tokyo",
+      "end_timezone": "Asia/Tokyo",
+      "distance": 2.11,
+      "images": [],
+      "attachments": [],
+      "start_code": null,
+      "end_code": null,
+      "travel_duration_minutes": 0
+    },
+    {
+      "id": "c7b9e624-06b0-4e41-896c-e0c0454c5bd1",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "type": "train",
+      "name": "Hiroshima → Gero Onsen",
+      "description": "Details zur Verbindung",
+      "rating": null,
+      "price": null,
+      "price_currency": "USD",
+      "link": null,
+      "date": "2026-12-29T03:00:00Z",
+      "flight_number": null,
+      "from_location": "Hiroshima",
+      "to_location": "Gero Onsen",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T16:16:05.114710Z",
+      "updated_at": "2026-10-31T16:18:21.183561Z",
+      "end_date": "2026-12-29T03:00:00Z",
+      "origin_latitude": 34.3976,
+      "origin_longitude": 132.4753,
+      "destination_latitude": 35.8063,
+      "destination_longitude": 137.2439,
+      "start_timezone": "Asia/Tokyo",
+      "end_timezone": "Asia/Tokyo",
+      "distance": 461.95,
+      "images": [],
+      "attachments": [],
+      "start_code": null,
+      "end_code": null,
+      "travel_duration_minutes": 0
+    },
+    {
+      "id": "da20530e-b743-4045-a6e3-02113c1020de",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "type": "train",
+      "name": "Gero → Gifu",
+      "description": "Details zur Verbindung",
+      "rating": null,
+      "price": null,
+      "price_currency": "USD",
+      "link": null,
+      "date": "2026-12-30T03:00:00Z",
+      "flight_number": null,
+      "from_location": "Gero Onsen",
+      "to_location": "Gifu",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T16:16:05.121052Z",
+      "updated_at": "2026-10-31T16:16:05.121061Z",
+      "end_date": "2026-12-30T03:00:00Z",
+      "origin_latitude": 35.8063,
+      "origin_longitude": 137.2439,
+      "destination_latitude": 35.4093,
+      "destination_longitude": 136.7567,
+      "start_timezone": "Asia/Tokyo",
+      "end_timezone": "Asia/Tokyo",
+      "distance": 62.36,
+      "images": [],
+      "attachments": [],
+      "start_code": null,
+      "end_code": null,
+      "travel_duration_minutes": 0
+    },
+    {
+      "id": "820f274c-6d2a-435a-8156-49e9bc51d3c3",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "type": "train",
+      "name": "Gifu → Osaka",
+      "description": "Details zur Verbindung",
+      "rating": null,
+      "price": null,
+      "price_currency": "USD",
+      "link": null,
+      "date": "2027-01-02T03:00:00Z",
+      "flight_number": null,
+      "from_location": "Gifu",
+      "to_location": "Osaka",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T16:16:05.126995Z",
+      "updated_at": "2026-10-31T17:50:44.576099Z",
+      "end_date": "2027-01-02T03:00:00Z",
+      "origin_latitude": 35.4093,
+      "origin_longitude": 136.7567,
+      "destination_latitude": 34.7025,
+      "destination_longitude": 135.4959,
+      "start_timezone": "Asia/Tokyo",
+      "end_timezone": "Asia/Tokyo",
+      "distance": 139.2,
+      "images": [],
+      "attachments": [],
+      "start_code": null,
+      "end_code": null,
+      "travel_duration_minutes": 0
+    },
+    {
+      "id": "629a9c68-1c06-4c69-a0b2-98f12c627461",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "type": "train",
+      "name": "Osaka → Tokio",
+      "description": null,
+      "rating": null,
+      "price": null,
+      "price_currency": "USD",
+      "link": null,
+      "date": "2027-01-04T03:00:00Z",
+      "flight_number": null,
+      "from_location": "Osaka",
+      "to_location": "Tokio",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T16:16:05.133342Z",
+      "updated_at": "2026-10-31T16:18:14.904449Z",
+      "end_date": "2027-01-04T03:00:00Z",
+      "origin_latitude": 34.7334,
+      "origin_longitude": 135.5001,
+      "destination_latitude": 35.6812,
+      "destination_longitude": 139.7671,
+      "start_timezone": "Asia/Tokyo",
+      "end_timezone": "Asia/Tokyo",
+      "distance": 402.48,
+      "images": [],
+      "attachments": [],
+      "start_code": null,
+      "end_code": null,
+      "travel_duration_minutes": 0
+    }
+  ],
+  "notes": [
+    {
+      "id": "aba3deb3-941b-4059-89da-0abb81b74d07",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "name": "Excel Link",
+      "content": "",
+      "date": null,
+      "links": [
+        "https://example.org/link-4"
+      ],
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T15:59:14.200618Z",
+      "updated_at": "2026-10-31T15:59:14.200632Z"
+    }
+  ],
+  "updated_at": "2026-10-31T16:20:12.828705Z",
+  "checklists": [],
+  "is_archived": false,
+  "shared_with": [
+    "00000000-0000-4000-8000-000000000101",
+    "00000000-0000-4000-8000-000000000102"
+  ],
+  "collaborators": [
+    {
+      "uuid": "00000000-0000-4000-8000-000000000100",
+      "username": "alex",
+      "first_name": "Alex",
+      "last_name": "Beispiel",
+      "profile_pic": null,
+      "public_profile": true,
+      "is_owner": true,
+      "is_current_user": true
+    },
+    {
+      "uuid": "00000000-0000-4000-8000-000000000101",
+      "username": "bea",
+      "first_name": "Bea",
+      "last_name": "Beispiel",
+      "profile_pic": null,
+      "public_profile": true,
+      "is_owner": false,
+      "is_current_user": false
+    },
+    {
+      "uuid": "00000000-0000-4000-8000-000000000102",
+      "username": "chris",
+      "first_name": "Chris",
+      "last_name": "Beispiel",
+      "profile_pic": null,
+      "public_profile": true,
+      "is_owner": false,
+      "is_current_user": false
+    }
+  ],
+  "link": "https://example.org/link-5",
+  "lodging": [
+    {
+      "id": "bec8267d-2f2a-4e58-aba7-1e43591e9279",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "name": "Oyado Cocochi",
+      "description": "Bestätigungsnummer: XXXX\n\n[Buchungsbestätigung](https://example.org/booking)",
+      "rating": null,
+      "link": "https://example.org/link-6",
+      "check_in": "2026-12-18T06:00:00Z",
+      "check_out": "2026-12-21T01:00:00Z",
+      "reservation_number": "XXXX",
+      "price": "489.00",
+      "price_currency": "EUR",
+      "latitude": 35.7,
+      "longitude": 139.7,
+      "location": "Tokyo, JP",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T16:16:05.035301Z",
+      "updated_at": "2026-10-31T16:52:32.520221Z",
+      "type": "hotel",
+      "timezone": "Asia/Tokyo",
+      "images": [
+        {
+          "id": "fe614cc9-b68f-4011-82ea-d5933247dbe5",
+          "image": "https://adventurelog.example.org/media/images/785242c6-d074-411d-8b9b-f37f7e019601.webp",
+          "is_primary": false,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "url",
+          "source_url": "https://example.org/link-7",
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "attachments": [
+        {
+          "id": "3f5db048-4b0e-4e5b-9892-41a10da080f5",
+          "file": "https://adventurelog.example.org/media/attachments/22bcf456-bf78-4fe7-a8e3-2d8cc8fbc784.pdf",
+          "extension": "pdf",
+          "name": "Buchungsbestätigung",
+          "user": "00000000-0000-4000-8000-000000000100",
+          "geojson": null
+        }
+      ]
+    },
+    {
+      "id": "ecd4f700-d8e1-408e-8fe9-64a01d53300e",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "name": "Familienwohnung fe20 (Airbnb, Ikebukuro)",
+      "description": "Bestätigungsnummer: XXXX\n\n[Buchungsbestätigung](https://example.org/booking)",
+      "rating": null,
+      "link": null,
+      "check_in": "2027-01-04T07:00:00Z",
+      "check_out": "2027-01-08T01:00:00Z",
+      "reservation_number": "XXXX",
+      "price": "682.79",
+      "price_currency": "EUR",
+      "latitude": 35.73,
+      "longitude": 139.71,
+      "location": "Toshima City, Tokio 171-0014",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T16:16:05.075185Z",
+      "updated_at": "2026-10-31T17:32:56.504571Z",
+      "type": "apartment",
+      "timezone": "Asia/Tokyo",
+      "images": [
+        {
+          "id": "1bb34918-7da3-45d6-bf74-ce890ed00cf6",
+          "image": "https://adventurelog.example.org/media/images/54abe544-c250-4891-b731-67e17f1c2e7b.webp",
+          "is_primary": false,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "url",
+          "source_url": "https://example.org/link-8",
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "attachments": [
+        {
+          "id": "ae15364c-bc5a-4170-9d3a-7e3429ede13e",
+          "file": "https://adventurelog.example.org/media/attachments/35b08e03-d581-44b6-9f67-e5e6e9c6237c.pdf",
+          "extension": "pdf",
+          "name": "Airbnb-Buchung Tokio",
+          "user": "00000000-0000-4000-8000-000000000100",
+          "geojson": null
+        }
+      ]
+    },
+    {
+      "id": "f6c82014-9755-46fc-948f-637748ea1ea2",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "name": "東寺楽屋 Toji Rakuya",
+      "description": "Bestätigungsnummer: XXXX\n\n[Buchungsbestätigung](https://example.org/booking)",
+      "rating": null,
+      "link": "https://example.org/link-9",
+      "check_in": "2026-12-21T06:00:00Z",
+      "check_out": "2026-12-26T01:00:00Z",
+      "reservation_number": "XXXX",
+      "price": "927.93",
+      "price_currency": "EUR",
+      "latitude": 34.98,
+      "longitude": 135.75,
+      "location": "Kyōto, JP",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T16:16:05.047164Z",
+      "updated_at": "2026-10-31T17:02:46.758572Z",
+      "type": "hotel",
+      "timezone": "Asia/Tokyo",
+      "images": [
+        {
+          "id": "848cd4c2-fb2c-4447-9b90-4370cb05c439",
+          "image": "https://adventurelog.example.org/media/images/57220d7e-8032-442b-a26a-ab31cafaa2e2.webp",
+          "is_primary": false,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "url",
+          "source_url": "https://example.org/link-10",
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "attachments": [
+        {
+          "id": "2e9113d7-37a9-4f88-b652-8c90d1f9ae68",
+          "file": "https://adventurelog.example.org/media/attachments/a679ef48-7109-48a5-99d7-515828f0b143.pdf",
+          "extension": "pdf",
+          "name": "Toji Rakuya Buchungsbestätigung",
+          "user": "00000000-0000-4000-8000-000000000100",
+          "geojson": null
+        }
+      ]
+    },
+    {
+      "id": "77be6399-a439-455b-b6f6-99bfbb92eb06",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "name": "Hotel Miki",
+      "description": "Bestätigungsnummer: XXXX\n\n[Buchungsbestätigung](https://example.org/booking)",
+      "rating": null,
+      "link": "https://example.org/link-11",
+      "check_in": "2026-12-29T06:00:00Z",
+      "check_out": "2026-12-30T01:30:00Z",
+      "reservation_number": "XXXX",
+      "price": "833.93",
+      "price_currency": "EUR",
+      "latitude": 35.82,
+      "longitude": 137.19,
+      "location": "Gifu, JP",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T16:16:05.058020Z",
+      "updated_at": "2026-10-31T17:11:29.769787Z",
+      "type": "hotel",
+      "timezone": "Asia/Tokyo",
+      "images": [
+        {
+          "id": "b648b173-8897-4c13-94a3-1680eb204760",
+          "image": "https://adventurelog.example.org/media/images/15921eb5-0388-4c49-bf3b-c58c1437a807.webp",
+          "is_primary": false,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "url",
+          "source_url": "https://example.org/link-12",
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "attachments": [
+        {
+          "id": "59224d80-3cd0-4753-9b07-77d1e1828340",
+          "file": "https://adventurelog.example.org/media/attachments/2cd18d14-0d32-4d2b-bfe3-27772bd7623c.pdf",
+          "extension": "pdf",
+          "name": "GERO_ONSEN Buchungsbestätigung",
+          "user": "00000000-0000-4000-8000-000000000100",
+          "geojson": null
+        }
+      ]
+    },
+    {
+      "id": "35c0040f-d89f-48b4-9910-6dedc17a5285",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "name": "AirBnB Hikarigaoka",
+      "description": "Bestätigungsnummer: XXXX\n\n[Buchungsbestätigung](https://example.org/booking)",
+      "rating": null,
+      "link": "https://example.org/link-13",
+      "check_in": "2026-12-26T06:00:00Z",
+      "check_out": "2026-12-29T02:00:00Z",
+      "reservation_number": "XXXX",
+      "price": "612.00",
+      "price_currency": "EUR",
+      "latitude": 34.4,
+      "longitude": 132.48,
+      "location": "Higashi Ward, Hiroshima 732-0051",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T16:16:05.052805Z",
+      "updated_at": "2026-10-31T17:35:42.876069Z",
+      "type": "house",
+      "timezone": "Asia/Tokyo",
+      "images": [
+        {
+          "id": "436a87ae-9ef2-4070-bb18-2e2e89595073",
+          "image": "https://adventurelog.example.org/media/images/bbe7ea82-b79e-43be-9b6f-b4c017a36161.webp",
+          "is_primary": false,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "url",
+          "source_url": "https://example.org/link-14",
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "attachments": [
+        {
+          "id": "9142a77d-f108-480b-8297-9d9a8d69cc8c",
+          "file": "https://adventurelog.example.org/media/attachments/31d5649d-f2f3-4eb5-99ce-d085524a598b.pdf",
+          "extension": "pdf",
+          "name": "Buchungsbestätigung AirBnB Hiroshima",
+          "user": "00000000-0000-4000-8000-000000000100",
+          "geojson": null
+        }
+      ]
+    },
+    {
+      "id": "927b3f74-b82d-43c9-95ec-89666bc104e4",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "name": "Oyadoya gifu kano",
+      "description": "Bestätigungsnummer: XXXX\n\n[Buchungsbestätigung](https://example.org/booking)",
+      "rating": null,
+      "link": "https://example.org/link-15",
+      "check_in": "2026-12-30T06:00:00Z",
+      "check_out": "2027-01-02T01:00:00Z",
+      "reservation_number": "XXXX",
+      "price": "497.50",
+      "price_currency": "EUR",
+      "latitude": 35.41,
+      "longitude": 136.76,
+      "location": "Gifu, JP",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T16:16:05.064359Z",
+      "updated_at": "2026-10-31T17:25:47.419330Z",
+      "type": "apartment",
+      "timezone": "Asia/Tokyo",
+      "images": [
+        {
+          "id": "6f01ee08-928a-4bf2-b1ad-441769ebcb03",
+          "image": "https://adventurelog.example.org/media/images/4e7baf1b-247f-4ab8-8c63-b981e4a584e8.webp",
+          "is_primary": false,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "url",
+          "source_url": "https://example.org/link-16",
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "attachments": [
+        {
+          "id": "9a10c402-ea26-45c5-8c90-30a94183e6e7",
+          "file": "https://adventurelog.example.org/media/attachments/05783bd8-ce1d-4cf5-bd5a-96ff17b7fbd6.pdf",
+          "extension": "pdf",
+          "name": "HOTEL_GIFU_Booking",
+          "user": "00000000-0000-4000-8000-000000000100",
+          "geojson": null
+        }
+      ]
+    },
+    {
+      "id": "5c568416-f4cc-4682-9953-0472c3e0d08a",
+      "user": "00000000-0000-4000-8000-000000000100",
+      "name": "Sanco Inn Osaka Yodoyabashi (三交イン大阪淀屋橋)",
+      "description": "Bestätigungsnummer: XXXX\n\n[Buchungsbestätigung](https://example.org/booking)",
+      "rating": null,
+      "link": null,
+      "check_in": "2027-01-02T06:00:00Z",
+      "check_out": "2027-01-04T01:00:00Z",
+      "reservation_number": "XXXX",
+      "price": "507.00",
+      "price_currency": "EUR",
+      "latitude": 34.69,
+      "longitude": 135.5,
+      "location": "Chuo-ku, Osaka 541-0043",
+      "is_public": false,
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "created_at": "2026-10-31T16:16:05.069995Z",
+      "updated_at": "2026-10-31T17:49:18.776872Z",
+      "type": "hotel",
+      "timezone": "Asia/Tokyo",
+      "images": [
+        {
+          "id": "969da46f-2882-4d25-8ab5-c3e57594fe44",
+          "image": "https://adventurelog.example.org/media/images/cbcb07c3-1602-4edb-82a2-d8ea0fb655d5.webp",
+          "is_primary": false,
+          "user": "00000000-0000-4000-8000-000000000100",
+          "immich_id": null,
+          "source": "url",
+          "source_url": "https://example.org/link-17",
+          "latitude": null,
+          "longitude": null
+        }
+      ],
+      "attachments": [
+        {
+          "id": "575f9434-c617-40ea-a958-3a86c4cd2a05",
+          "file": "https://adventurelog.example.org/media/attachments/9dff0814-27f7-47a6-9b68-351d8456cca0.pdf",
+          "extension": "pdf",
+          "name": "Pre-Check-in Osaka (Referenzcode)",
+          "user": "00000000-0000-4000-8000-000000000100",
+          "geojson": null
+        },
+        {
+          "id": "b0c69670-4f6d-470e-91af-2b6adf6f68bd",
+          "file": "https://adventurelog.example.org/media/attachments/624e7664-9d53-4b37-9b1b-9c657b4b57d8.pdf",
+          "extension": "pdf",
+          "name": "Booking.com Bestätigung Osaka",
+          "user": "00000000-0000-4000-8000-000000000100",
+          "geojson": null
+        }
+      ]
+    }
+  ],
+  "status": "upcoming",
+  "days_until_start": 45,
+  "primary_image": null,
+  "itinerary": [
+    {
+      "id": "566a04f5-ec5e-40b4-a930-a58fafa10e28",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "transportation",
+      "object_id": "e7c649a3-9af3-4360-9001-9554248183bd",
+      "item": {
+        "id": "e7c649a3-9af3-4360-9001-9554248183bd",
+        "type": "transportation"
+      },
+      "date": "2026-12-17",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": "2026-12-17T13:00:00Z",
+      "end_datetime": "2026-12-18T01:45:00Z",
+      "created_at": "2026-10-31T15:21:53.460678Z",
+      "object_name": "transportation"
+    },
+    {
+      "id": "4936f4cb-815c-4ce1-b8d5-30240f70123c",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "9d9b89e3-0e80-408f-a6e2-34b760da69fb",
+      "item": {
+        "id": "9d9b89e3-0e80-408f-a6e2-34b760da69fb",
+        "type": "location"
+      },
+      "date": "2026-12-18",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T15:41:16.614883Z",
+      "object_name": "location"
+    },
+    {
+      "id": "e8d73bff-5c02-4741-88bd-05759242c41a",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "lodging",
+      "object_id": "bec8267d-2f2a-4e58-aba7-1e43591e9279",
+      "item": {
+        "id": "bec8267d-2f2a-4e58-aba7-1e43591e9279",
+        "type": "lodging"
+      },
+      "date": "2026-12-18",
+      "is_global": false,
+      "order": 1,
+      "start_datetime": "2026-12-18T06:00:00Z",
+      "end_datetime": "2026-12-21T01:00:00Z",
+      "created_at": "2026-10-31T16:16:05.044050Z",
+      "object_name": "lodging"
+    },
+    {
+      "id": "eebec52a-a3aa-48dd-a424-e63e3a506a27",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "9d9b89e3-0e80-408f-a6e2-34b760da69fb",
+      "item": {
+        "id": "9d9b89e3-0e80-408f-a6e2-34b760da69fb",
+        "type": "location"
+      },
+      "date": "2026-12-19",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T15:43:32.125855Z",
+      "object_name": "location"
+    },
+    {
+      "id": "7f20cbb1-e076-42ec-ab7d-67e0c4b93e23",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "7058d52e-d5f9-4d75-a831-462d3b97920e",
+      "item": {
+        "id": "7058d52e-d5f9-4d75-a831-462d3b97920e",
+        "type": "location"
+      },
+      "date": "2026-12-19",
+      "is_global": false,
+      "order": 1,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.154432Z",
+      "object_name": "location"
+    },
+    {
+      "id": "ceb477c8-1a6a-416e-b5c0-9206bb948c32",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "ec13996b-f228-4cdf-974e-8ad8b01fb957",
+      "item": {
+        "id": "ec13996b-f228-4cdf-974e-8ad8b01fb957",
+        "type": "location"
+      },
+      "date": "2026-12-19",
+      "is_global": false,
+      "order": 2,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.166544Z",
+      "object_name": "location"
+    },
+    {
+      "id": "46abeed7-2451-4c6b-bc03-0fec27079a36",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "b1200bce-cc22-4e21-8ae0-bdf6d45410fe",
+      "item": {
+        "id": "b1200bce-cc22-4e21-8ae0-bdf6d45410fe",
+        "type": "location"
+      },
+      "date": "2026-12-19",
+      "is_global": false,
+      "order": 3,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.178223Z",
+      "object_name": "location"
+    },
+    {
+      "id": "d4fe9ac0-59b2-4701-a23a-cbd0ce2698e2",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "34887eff-989c-4cb6-9793-6e7ce3dab50d",
+      "item": {
+        "id": "34887eff-989c-4cb6-9793-6e7ce3dab50d",
+        "type": "location"
+      },
+      "date": "2026-12-19",
+      "is_global": false,
+      "order": 4,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.189619Z",
+      "object_name": "location"
+    },
+    {
+      "id": "5e9822d8-54b7-4037-a2d3-530c4e1e983d",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "7327e017-dccf-46a8-97d3-2ca2015ea44a",
+      "item": {
+        "id": "7327e017-dccf-46a8-97d3-2ca2015ea44a",
+        "type": "location"
+      },
+      "date": "2026-12-19",
+      "is_global": false,
+      "order": 5,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.201006Z",
+      "object_name": "location"
+    },
+    {
+      "id": "32f0d8ba-569f-422f-b8a6-96f2e098f2e2",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "d61fce1f-fec6-464f-a951-810413fafb6e",
+      "item": {
+        "id": "d61fce1f-fec6-464f-a951-810413fafb6e",
+        "type": "location"
+      },
+      "date": "2026-12-19",
+      "is_global": false,
+      "order": 6,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.211744Z",
+      "object_name": "location"
+    },
+    {
+      "id": "1a4bad9d-d799-4d3b-9b58-6261c3b0a4da",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "9d9b89e3-0e80-408f-a6e2-34b760da69fb",
+      "item": {
+        "id": "9d9b89e3-0e80-408f-a6e2-34b760da69fb",
+        "type": "location"
+      },
+      "date": "2026-12-20",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T15:44:53.242639Z",
+      "object_name": "location"
+    },
+    {
+      "id": "a8a5e5ca-82bc-4e71-a1c9-4126c826bfd8",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "79dacf1e-dbc4-4695-8ff7-f74e8796ab07",
+      "item": {
+        "id": "79dacf1e-dbc4-4695-8ff7-f74e8796ab07",
+        "type": "location"
+      },
+      "date": "2026-12-20",
+      "is_global": false,
+      "order": 1,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.223093Z",
+      "object_name": "location"
+    },
+    {
+      "id": "0c120dcb-32e2-4296-91ce-57725e378471",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "3a1eedf5-e8f3-4ee8-9304-baad95405783",
+      "item": {
+        "id": "3a1eedf5-e8f3-4ee8-9304-baad95405783",
+        "type": "location"
+      },
+      "date": "2026-12-20",
+      "is_global": false,
+      "order": 2,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.233093Z",
+      "object_name": "location"
+    },
+    {
+      "id": "75004f2d-2a84-4603-bdbb-ddfaaafce356",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "d2d77fdf-d597-482b-9d71-fa7825295eca",
+      "item": {
+        "id": "d2d77fdf-d597-482b-9d71-fa7825295eca",
+        "type": "location"
+      },
+      "date": "2026-12-20",
+      "is_global": false,
+      "order": 3,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.243910Z",
+      "object_name": "location"
+    },
+    {
+      "id": "3dcca0f8-0f4c-4734-b248-4b44c9cdb3fb",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "lodging",
+      "object_id": "f6c82014-9755-46fc-948f-637748ea1ea2",
+      "item": {
+        "id": "f6c82014-9755-46fc-948f-637748ea1ea2",
+        "type": "lodging"
+      },
+      "date": "2026-12-21",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": "2026-12-21T06:00:00Z",
+      "end_datetime": "2026-12-26T01:00:00Z",
+      "created_at": "2026-10-31T16:16:05.050590Z",
+      "object_name": "lodging"
+    },
+    {
+      "id": "75f38711-4f37-49b7-bc1c-fa65adef889b",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "transportation",
+      "object_id": "1b4d7e51-10f4-4cb3-9172-f1f0cf4a1b51",
+      "item": {
+        "id": "1b4d7e51-10f4-4cb3-9172-f1f0cf4a1b51",
+        "type": "transportation"
+      },
+      "date": "2026-12-21",
+      "is_global": false,
+      "order": 1,
+      "start_datetime": "2026-12-21T03:00:00Z",
+      "end_datetime": "2026-12-21T03:00:00Z",
+      "created_at": "2026-10-31T16:16:05.090039Z",
+      "object_name": "transportation"
+    },
+    {
+      "id": "a1a05e6f-8a4b-4b4e-a59b-5ff0648ea82a",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "f1b9717f-f3c1-4d51-b8ae-04f91a6071e4",
+      "item": {
+        "id": "f1b9717f-f3c1-4d51-b8ae-04f91a6071e4",
+        "type": "location"
+      },
+      "date": "2026-12-24",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.254926Z",
+      "object_name": "location"
+    },
+    {
+      "id": "cec2480a-5ab0-4ca5-8d59-d38cdc748bb2",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "transportation",
+      "object_id": "3bc9cad9-e67f-4ee4-8b28-1f797f276d47",
+      "item": {
+        "id": "3bc9cad9-e67f-4ee4-8b28-1f797f276d47",
+        "type": "transportation"
+      },
+      "date": "2026-12-25",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": "2026-12-25T03:00:00Z",
+      "end_datetime": "2026-12-25T03:00:00Z",
+      "created_at": "2026-10-31T16:16:05.097529Z",
+      "object_name": "transportation"
+    },
+    {
+      "id": "1b9960fe-e321-4b70-a424-9bbd825a8bcc",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "7126366e-c0cd-4e60-93b6-755f7863ca35",
+      "item": {
+        "id": "7126366e-c0cd-4e60-93b6-755f7863ca35",
+        "type": "location"
+      },
+      "date": "2026-12-25",
+      "is_global": false,
+      "order": 1,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.267640Z",
+      "object_name": "location"
+    },
+    {
+      "id": "189f398d-1085-44c5-9c01-694f5bb1727a",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "78d1a69b-b354-48f1-9232-19be4b4155c2",
+      "item": {
+        "id": "78d1a69b-b354-48f1-9232-19be4b4155c2",
+        "type": "location"
+      },
+      "date": "2026-12-25",
+      "is_global": false,
+      "order": 2,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.280355Z",
+      "object_name": "location"
+    },
+    {
+      "id": "73ad2870-e6ca-47f4-8c67-009c96e4dc6f",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "lodging",
+      "object_id": "35c0040f-d89f-48b4-9910-6dedc17a5285",
+      "item": {
+        "id": "35c0040f-d89f-48b4-9910-6dedc17a5285",
+        "type": "lodging"
+      },
+      "date": "2026-12-26",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": "2026-12-26T06:00:00Z",
+      "end_datetime": "2026-12-29T02:00:00Z",
+      "created_at": "2026-10-31T16:16:05.055727Z",
+      "object_name": "lodging"
+    },
+    {
+      "id": "1b2234a0-0646-48f4-9be2-a32c6c374d34",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "transportation",
+      "object_id": "97de6521-c27d-45ff-afa6-879aac59f8c6",
+      "item": {
+        "id": "97de6521-c27d-45ff-afa6-879aac59f8c6",
+        "type": "transportation"
+      },
+      "date": "2026-12-26",
+      "is_global": false,
+      "order": 1,
+      "start_datetime": "2026-12-26T03:00:00Z",
+      "end_datetime": "2026-12-26T03:00:00Z",
+      "created_at": "2026-10-31T16:16:05.104672Z",
+      "object_name": "transportation"
+    },
+    {
+      "id": "a2b722ad-ae77-435f-9ec3-e5d6f8032775",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "transportation",
+      "object_id": "79abc3b3-94a5-4a69-b314-1d59420186c5",
+      "item": {
+        "id": "79abc3b3-94a5-4a69-b314-1d59420186c5",
+        "type": "transportation"
+      },
+      "date": "2026-12-28",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": "2026-12-28T03:00:00Z",
+      "end_datetime": "2026-12-28T03:00:00Z",
+      "created_at": "2026-10-31T16:16:05.111757Z",
+      "object_name": "transportation"
+    },
+    {
+      "id": "21217ac3-0e9f-4a44-ad32-9ba279f891fa",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "0eb6e353-be2f-46ed-b6c9-bf9ee0884d05",
+      "item": {
+        "id": "0eb6e353-be2f-46ed-b6c9-bf9ee0884d05",
+        "type": "location"
+      },
+      "date": "2026-12-28",
+      "is_global": false,
+      "order": 1,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.292379Z",
+      "object_name": "location"
+    },
+    {
+      "id": "af65c202-eebe-470e-a722-ac5da4d70a7b",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "lodging",
+      "object_id": "77be6399-a439-455b-b6f6-99bfbb92eb06",
+      "item": {
+        "id": "77be6399-a439-455b-b6f6-99bfbb92eb06",
+        "type": "lodging"
+      },
+      "date": "2026-12-29",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": "2026-12-29T06:00:00Z",
+      "end_datetime": "2026-12-30T01:30:00Z",
+      "created_at": "2026-10-31T16:16:05.061540Z",
+      "object_name": "lodging"
+    },
+    {
+      "id": "6b5bffba-fc73-4f3e-8dd0-ac6faa09200b",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "transportation",
+      "object_id": "c7b9e624-06b0-4e41-896c-e0c0454c5bd1",
+      "item": {
+        "id": "c7b9e624-06b0-4e41-896c-e0c0454c5bd1",
+        "type": "transportation"
+      },
+      "date": "2026-12-29",
+      "is_global": false,
+      "order": 1,
+      "start_datetime": "2026-12-29T03:00:00Z",
+      "end_datetime": "2026-12-29T03:00:00Z",
+      "created_at": "2026-10-31T16:16:05.118198Z",
+      "object_name": "transportation"
+    },
+    {
+      "id": "102c8f9c-b5df-4c9f-a714-ea6d04678a50",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "lodging",
+      "object_id": "927b3f74-b82d-43c9-95ec-89666bc104e4",
+      "item": {
+        "id": "927b3f74-b82d-43c9-95ec-89666bc104e4",
+        "type": "lodging"
+      },
+      "date": "2026-12-30",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": "2026-12-30T06:00:00Z",
+      "end_datetime": "2027-01-02T01:00:00Z",
+      "created_at": "2026-10-31T16:16:05.067745Z",
+      "object_name": "lodging"
+    },
+    {
+      "id": "e99b2a8c-ee45-4ee7-a201-ee434a010292",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "transportation",
+      "object_id": "da20530e-b743-4045-a6e3-02113c1020de",
+      "item": {
+        "id": "da20530e-b743-4045-a6e3-02113c1020de",
+        "type": "transportation"
+      },
+      "date": "2026-12-30",
+      "is_global": false,
+      "order": 1,
+      "start_datetime": "2026-12-30T03:00:00Z",
+      "end_datetime": "2026-12-30T03:00:00Z",
+      "created_at": "2026-10-31T16:16:05.124471Z",
+      "object_name": "transportation"
+    },
+    {
+      "id": "a5461e74-7e02-4ba2-87cb-c11fe5601654",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "lodging",
+      "object_id": "5c568416-f4cc-4682-9953-0472c3e0d08a",
+      "item": {
+        "id": "5c568416-f4cc-4682-9953-0472c3e0d08a",
+        "type": "lodging"
+      },
+      "date": "2027-01-02",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": "2027-01-02T06:00:00Z",
+      "end_datetime": "2027-01-04T01:00:00Z",
+      "created_at": "2026-10-31T16:16:05.072821Z",
+      "object_name": "lodging"
+    },
+    {
+      "id": "6f2dcfc0-b77a-48fc-a667-a00a1efbc613",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "transportation",
+      "object_id": "820f274c-6d2a-435a-8156-49e9bc51d3c3",
+      "item": {
+        "id": "820f274c-6d2a-435a-8156-49e9bc51d3c3",
+        "type": "transportation"
+      },
+      "date": "2027-01-02",
+      "is_global": false,
+      "order": 1,
+      "start_datetime": "2027-01-02T03:00:00Z",
+      "end_datetime": "2027-01-02T03:00:00Z",
+      "created_at": "2026-10-31T16:16:05.130377Z",
+      "object_name": "transportation"
+    },
+    {
+      "id": "de27e18e-2a09-4539-89e6-fe4b7da046cd",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "8d5ba4f1-49ac-49b5-8199-89598151f938",
+      "item": {
+        "id": "8d5ba4f1-49ac-49b5-8199-89598151f938",
+        "type": "location"
+      },
+      "date": "2027-01-03",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.303956Z",
+      "object_name": "location"
+    },
+    {
+      "id": "141238ec-f31d-40f3-9be1-69e9fbc5a9a9",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "lodging",
+      "object_id": "ecd4f700-d8e1-408e-8fe9-64a01d53300e",
+      "item": {
+        "id": "ecd4f700-d8e1-408e-8fe9-64a01d53300e",
+        "type": "lodging"
+      },
+      "date": "2027-01-04",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": "2027-01-04T07:00:00Z",
+      "end_datetime": "2027-01-08T01:00:00Z",
+      "created_at": "2026-10-31T16:16:05.078756Z",
+      "object_name": "lodging"
+    },
+    {
+      "id": "f655a3e5-7dbb-4a20-8639-a3f10c864ac2",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "transportation",
+      "object_id": "629a9c68-1c06-4c69-a0b2-98f12c627461",
+      "item": {
+        "id": "629a9c68-1c06-4c69-a0b2-98f12c627461",
+        "type": "transportation"
+      },
+      "date": "2027-01-04",
+      "is_global": false,
+      "order": 1,
+      "start_datetime": "2027-01-04T03:00:00Z",
+      "end_datetime": "2027-01-04T03:00:00Z",
+      "created_at": "2026-10-31T16:16:05.137148Z",
+      "object_name": "transportation"
+    },
+    {
+      "id": "97742074-0885-4a9c-bb25-1d0c919e8ea2",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "51a65caf-f64d-48fb-9a5b-747ee9362fbe",
+      "item": {
+        "id": "51a65caf-f64d-48fb-9a5b-747ee9362fbe",
+        "type": "location"
+      },
+      "date": "2027-01-04",
+      "is_global": false,
+      "order": 2,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.315831Z",
+      "object_name": "location"
+    },
+    {
+      "id": "31749d38-64ef-4198-b26a-81b2fb75bb56",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "b8b8b28c-c29f-457c-8bf1-a766d1b974b2",
+      "item": {
+        "id": "b8b8b28c-c29f-457c-8bf1-a766d1b974b2",
+        "type": "location"
+      },
+      "date": "2027-01-04",
+      "is_global": false,
+      "order": 3,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.328068Z",
+      "object_name": "location"
+    },
+    {
+      "id": "c68e16cb-b4e8-4eb5-8489-50f4749c9fc6",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "087ff7c5-fb0e-4622-b197-304cd32c2dc1",
+      "item": {
+        "id": "087ff7c5-fb0e-4622-b197-304cd32c2dc1",
+        "type": "location"
+      },
+      "date": "2027-01-04",
+      "is_global": false,
+      "order": 4,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.341362Z",
+      "object_name": "location"
+    },
+    {
+      "id": "be6e21e2-aeb5-4252-8e17-841f92a08170",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "865d9644-4c03-4c70-8e94-23c5960a15e8",
+      "item": {
+        "id": "865d9644-4c03-4c70-8e94-23c5960a15e8",
+        "type": "location"
+      },
+      "date": "2027-01-06",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.352194Z",
+      "object_name": "location"
+    },
+    {
+      "id": "d1e16576-dd4e-4fe1-98fd-3c889ca6bb8f",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "99651d4f-b8d6-4c8e-aefa-de1b33c16845",
+      "item": {
+        "id": "99651d4f-b8d6-4c8e-aefa-de1b33c16845",
+        "type": "location"
+      },
+      "date": "2027-01-07",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.364034Z",
+      "object_name": "location"
+    },
+    {
+      "id": "47534d70-eb02-44c8-96b4-ba1095e3eeef",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "location",
+      "object_id": "a8082e79-da62-4e3b-8b5c-d9111e97b406",
+      "item": {
+        "id": "a8082e79-da62-4e3b-8b5c-d9111e97b406",
+        "type": "location"
+      },
+      "date": "2027-01-07",
+      "is_global": false,
+      "order": 1,
+      "start_datetime": null,
+      "end_datetime": null,
+      "created_at": "2026-10-31T16:16:05.375712Z",
+      "object_name": "location"
+    },
+    {
+      "id": "277f47b0-64d9-46f1-a640-6627042fcb56",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "content_type": "transportation",
+      "object_id": "90ec16fc-ee15-4523-9919-5e6e516aa308",
+      "item": {
+        "id": "90ec16fc-ee15-4523-9919-5e6e516aa308",
+        "type": "transportation"
+      },
+      "date": "2027-01-08",
+      "is_global": false,
+      "order": 0,
+      "start_datetime": "2027-01-07T15:35:00Z",
+      "end_datetime": "2027-01-09T18:00:00Z",
+      "created_at": "2026-10-31T16:09:58.044710Z",
+      "object_name": "transportation"
+    }
+  ],
+  "itinerary_days": [
+    {
+      "id": "22288101-37e8-4774-8e33-40069acf7963",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2026-12-17",
+      "name": "Abflug Frankfurt",
+      "description": "14:00 Flug nach Japan, Haneda",
+      "created_at": "2026-10-31T15:06:28.956287Z",
+      "updated_at": "2026-10-31T15:06:44.637845Z"
+    },
+    {
+      "id": "36bb7d36-66a6-485f-8c40-2a9af4925136",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2026-12-18",
+      "name": "Tokio 1",
+      "description": "Ankunft 10:45 Uhr",
+      "created_at": "2026-10-31T13:24:25.849961Z",
+      "updated_at": "2026-10-31T16:16:05.378107Z"
+    },
+    {
+      "id": "1f9f2346-caad-4672-9551-9f5888afdf9d",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2026-12-19",
+      "name": "Tokio 2",
+      "description": null,
+      "created_at": "2026-10-31T15:43:54.875106Z",
+      "updated_at": "2026-10-31T15:43:54.875119Z"
+    },
+    {
+      "id": "d19034da-92b6-4aab-9470-c27ca6e13b4c",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2026-12-20",
+      "name": "Tokio 3",
+      "description": "Weihnachtsmarkt, Edo-Periode-Museum, Skytree und/oder Tokyo Tower",
+      "created_at": "2026-10-31T15:43:59.875136Z",
+      "updated_at": "2026-10-31T16:16:05.380318Z"
+    },
+    {
+      "id": "1c2e0b9d-ed5a-4897-85fe-896cbeeb53fb",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2026-12-21",
+      "name": "Kyoto 1",
+      "description": null,
+      "created_at": "2026-10-31T15:45:26.666014Z",
+      "updated_at": "2026-10-31T15:45:26.666031Z"
+    },
+    {
+      "id": "2cfdb5ba-ea11-4e7d-9839-e01aa2536fd0",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2026-12-22",
+      "name": "Kyoto 2",
+      "description": null,
+      "created_at": "2026-10-31T15:45:31.393389Z",
+      "updated_at": "2026-10-31T15:45:31.393409Z"
+    },
+    {
+      "id": "0a5bcbb6-51cf-49d0-95a5-2ad1f9f6a7fa",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2026-12-23",
+      "name": "Kyoto 3",
+      "description": null,
+      "created_at": "2026-10-31T15:45:38.026831Z",
+      "updated_at": "2026-10-31T15:45:38.026846Z"
+    },
+    {
+      "id": "c1d7d50b-43d5-4380-9c3f-a82b1c2a8bc7",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2026-12-24",
+      "name": "Kyoto 4",
+      "description": null,
+      "created_at": "2026-10-31T16:00:16.387205Z",
+      "updated_at": "2026-10-31T16:00:16.387224Z"
+    },
+    {
+      "id": "97d2efb0-7d27-4fb4-8876-f96172474fdc",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2026-12-25",
+      "name": "Kyoto 5",
+      "description": null,
+      "created_at": "2026-10-31T16:00:21.301129Z",
+      "updated_at": "2026-10-31T16:00:21.301146Z"
+    },
+    {
+      "id": "38cece96-d542-4246-a70e-97c304589b86",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2026-12-26",
+      "name": "Hiroshima",
+      "description": null,
+      "created_at": "2026-10-31T16:00:28.691136Z",
+      "updated_at": "2026-10-31T16:00:28.691155Z"
+    },
+    {
+      "id": "c0defc05-ad9a-4120-9a12-b0ee08886583",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2026-12-27",
+      "name": "Hiroshima",
+      "description": null,
+      "created_at": "2026-10-31T16:00:33.175238Z",
+      "updated_at": "2026-10-31T16:00:33.175255Z"
+    },
+    {
+      "id": "ceb41649-2f01-4f3b-bfb0-8e352ff52614",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2026-12-28",
+      "name": "Hiroshima",
+      "description": null,
+      "created_at": "2026-10-31T16:00:38.789962Z",
+      "updated_at": "2026-10-31T16:00:38.789978Z"
+    },
+    {
+      "id": "0646f17f-b0e1-4518-8f1f-cb89a6d988fb",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2026-12-29",
+      "name": "Gero Onsen",
+      "description": null,
+      "created_at": "2026-10-31T16:00:44.185985Z",
+      "updated_at": "2026-10-31T16:00:44.186024Z"
+    },
+    {
+      "id": "ebf8f37d-a734-4915-b019-ddd9156e85c2",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2026-12-30",
+      "name": "Kasamatsu",
+      "description": "Neujahrsfest",
+      "created_at": "2026-10-31T16:00:51.116207Z",
+      "updated_at": "2026-10-31T16:16:05.382227Z"
+    },
+    {
+      "id": "63f49f64-6b27-40c8-a1f5-4e406945f69b",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2026-12-31",
+      "name": "Kasamatsu",
+      "description": null,
+      "created_at": "2026-10-31T16:00:54.842062Z",
+      "updated_at": "2026-10-31T16:00:54.842086Z"
+    },
+    {
+      "id": "b2666f7f-b3bb-401a-9ee9-4a3f622bb4d9",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2027-01-01",
+      "name": "Kasamatsu",
+      "description": null,
+      "created_at": "2026-10-31T16:01:00.401956Z",
+      "updated_at": "2026-10-31T16:01:00.401973Z"
+    },
+    {
+      "id": "6f3b587f-2388-40e9-8a80-3d5898cc08a4",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2027-01-02",
+      "name": "Kasamatsu / Osaka",
+      "description": null,
+      "created_at": "2026-10-31T16:01:04.631165Z",
+      "updated_at": "2026-10-31T16:01:20.860614Z"
+    },
+    {
+      "id": "a6d077f0-b634-4b39-9a1b-f0ed5f04b6e4",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2027-01-03",
+      "name": "Osaka 2",
+      "description": "Umeda Sky Building, Vergnügungspark",
+      "created_at": "2026-10-31T16:01:37.131825Z",
+      "updated_at": "2026-10-31T16:16:05.384352Z"
+    },
+    {
+      "id": "09ca4ab2-08f8-412a-8393-75bf9463186e",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2027-01-04",
+      "name": "Tokio 4",
+      "description": null,
+      "created_at": "2026-10-31T16:01:57.559061Z",
+      "updated_at": "2026-10-31T16:01:57.559081Z"
+    },
+    {
+      "id": "4a5e6daf-b909-4e71-9f8d-0be44ca49815",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2027-01-05",
+      "name": "Tokio 5",
+      "description": null,
+      "created_at": "2026-10-31T16:02:00.720605Z",
+      "updated_at": "2026-10-31T16:02:00.720623Z"
+    },
+    {
+      "id": "c4c5ff46-12b3-48d8-8021-7d74887b5b8e",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2027-01-06",
+      "name": "Tokio 6",
+      "description": null,
+      "created_at": "2026-10-31T16:02:05.002656Z",
+      "updated_at": "2026-10-31T16:02:05.002676Z"
+    },
+    {
+      "id": "3623ec64-0938-4f54-8ae7-59e6c1262232",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2027-01-07",
+      "name": "Tokio 7",
+      "description": null,
+      "created_at": "2026-10-31T16:02:13.161075Z",
+      "updated_at": "2026-10-31T16:02:13.161091Z"
+    },
+    {
+      "id": "0f69d4c0-5f12-489d-96ba-af5673eae84f",
+      "collection": "00000000-0000-4000-8000-000000000001",
+      "date": "2027-01-08",
+      "name": "Tokio 8",
+      "description": "Rückflug",
+      "created_at": "2026-10-31T16:02:18.601584Z",
+      "updated_at": "2026-10-31T16:16:05.386273Z"
+    }
+  ]
+}

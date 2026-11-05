@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Support - Unterwegs</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="../index.html#de">Unterwegs</a>
+      <nav aria-label="Pages">
+        <a href="privacy.html">Datenschutz</a><a href="support.html" aria-current="page">Support</a
+        ><a href="delete-account.html">Konto löschen</a>
+      </nav>
+    </header>
+    <main>
+      <h1>Support</h1>
+
+      <h2>Was ist Unterwegs?</h2>
+      <p>
+        Unterwegs - Travel Log ist eine App für Android und iPhone, mit der du Sammlungen deines
+        <a href="https://github.com/seanmorley15/AdventureLog">AdventureLog</a>-Servers unterwegs liest: Tagesplan,
+        Unterkünfte, Zugverbindungen, Buchungsnummern, PDFs und Karten, auch ohne Internet. Mit Verbindung kannst du
+        Orte, Unterkünfte, Verbindungen, Notizen und Fotos auch bearbeiten.
+      </p>
+      <p>Die App ist inoffiziell und nicht Teil des AdventureLog-Projekts.</p>
+      <h2>Du brauchst einen eigenen AdventureLog-Server</h2>
+      <p>
+        Die App enthält keine Reisedaten und keinen eigenen Konto-Dienst. Du brauchst einen AdventureLog-Server (selbst
+        betrieben oder von jemandem, der ihn für dich betreibt) und dort ein Konto. Zum Ausprobieren bietet die
+        Anmeldeseite den öffentlichen Test-Server an; lade dort keine persönlichen Daten hoch.
+      </p>
+      <h2>HTTPS ist Pflicht</h2>
+      <p>
+        Die App sendet deinen API-Schlüssel bei jeder Anfrage und verbindet sich deshalb nur über <code>https://</code>.
+        Am einfachsten gibst du dem Server eine Adresse mit gültigem Zertifikat, zum Beispiel:
+      </p>
+      <ul>
+        <li>
+          Tailscale: „tailscale serve“ macht den Server unter <code>https://&lt;name&gt;.ts.net</code> für alle Geräte
+          deines Tailnets erreichbar.
+        </li>
+        <li>
+          Eine eigene oder kostenlose Domain mit einem Reverse-Proxy wie Caddy, der automatisch ein
+          Let's-Encrypt-Zertifikat holt.
+        </li>
+      </ul>
+      <p>
+        Ohne Domain: Erstelle ein eigenes Zertifikat für die Adresse des Servers (z. B. mit Caddy „tls internal“ oder
+        mkcert; es muss genau für die in Unterwegs eingegebene Adresse gelten) und installiere das Stammzertifikat (CA)
+        auf dem Handy. Auf dem iPhone: <code>.crt</code>-Datei öffnen, in den Einstellungen das Profil installieren und
+        unter Allgemein → Info → Zertifikatsvertrauenseinstellungen volles Vertrauen aktivieren. Auf Android:
+        Einstellungen → Sicherheit → Verschlüsselung &amp; Anmeldedaten → Zertifikat installieren → CA-Zertifikat.
+        Installiere nur Zertifikate, die du selbst erstellt hast; wer ein Stammzertifikat kontrolliert, kann
+        verschlüsselte Verbindungen mitlesen. Die App zeigt diese Hilfe auch auf dem Anmeldebildschirm („Kein HTTPS? So
+        geht's“).
+      </p>
+      <h2>Anmelden</h2>
+      <ul>
+        <li>
+          <strong>QR-Code scannen:</strong> Auf der AdventureLog-Webseite unter Einstellungen → Mobile App wird ein
+          QR-Code angezeigt. Die App zeigt den Server daraus an und meldet erst nach deiner Bestätigung an.
+        </li>
+        <li>
+          <strong>Im Browser anmelden:</strong> Die App öffnet die Anmeldeseite deines Servers. Dort funktionieren
+          Passwort und Single Sign-on (SSO) deines Servers; die App übernimmt danach einen API-Schlüssel.
+        </li>
+        <li>
+          <strong>Mit API-Schlüssel:</strong> Webseite → Einstellungen → API-Schlüssel. Nur nötig, wenn nichts anderes
+          geht.
+        </li>
+      </ul>
+      <h2>Offline nutzen</h2>
+      <p>
+        Die App speichert deine Sammlungen lokal und öffnet sie ohne Internet. Lade vor einer Reise die Sammlung für die
+        Offline-Nutzung herunter (PDFs, Fotos) und bei Bedarf Kartenbereiche. Änderungen brauchen eine Verbindung.
+      </p>
+      <h2>Kontakt</h2>
+      <p>
+        E-Mail: <a href="mailto:support@example.org">support@example.org</a><br />
+        Fehler und Wünsche: <a href="https://github.com/example/unterwegs/issues">GitHub Issues</a>
+      </p>
+      <!-- TODO: support@example.org und die GitHub-URL durch die echten Adressen ersetzen, bevor die Seite in den Stores verlinkt wird. -->
+      <p>
+        Bitte schicke keine API-Schlüssel, Passwörter oder Buchungsdaten. Nenne Gerät, Betriebssystem, App-Version und
+        deine AdventureLog-Version.
+      </p>
+      <p>
+        Datenschutz: <a href="privacy.html">Datenschutzerklärung</a> · Konto löschen:
+        <a href="delete-account.html">Anleitung</a>
+      </p>
+    </main>
+    <footer>
+      <nav aria-label="Sprache">
+        <a href="../de/support.html" hreflang="de" lang="de" aria-current="true">Deutsch</a
+        ><a href="../en/support.html" hreflang="en" lang="en">English</a
+        ><a href="../ja/support.html" hreflang="ja" lang="ja">日本語</a>
+      </nav>
+    </footer>
+  </body>
+</html>

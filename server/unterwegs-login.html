@@ -1,0 +1,154 @@
+<!doctype html>
+<!--
+  unterwegs-login-v1 unterwegs-login-v2
+
+  Served same-origin on the AdventureLog host at /unterwegs/login.html (see server/README.md).
+  The app opens `/accounts/oidc/<provider>/login/?next=/unterwegs/login.html?state=…&name=…` in the
+  system browser sheet. After SSO, allauth lands here with a logged-in session; this page creates the
+  device's API key, ends the web session and hands the key back to the app via `unterwegs://login`.
+  v2: when the app sends `seal` (a base64url AES-256 key made for this sign-in), the key goes back only as
+  `sealed` = base64url(iv | AES-GCM ciphertext | tag), with the state as additional data. Another app that
+  registers `unterwegs://` (possible on Android) then catches nothing usable. Apps without `seal` (older updates)
+  still get the plain key.
+  No dollar sign anywhere in this file: it is embedded in a Compose file, which would interpolate it.
+-->
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="robots" content="noindex" />
+    <title>Unterwegs</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: -apple-system, system-ui, sans-serif;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+      p {
+        font-size: 17px;
+        margin: 0 0 20px;
+      }
+      a {
+        display: none;
+        padding: 12px 24px;
+        border-radius: 12px;
+        background: #b5502d;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p id="text">Anmeldung wird abgeschlossen…</p>
+      <a id="back" href="unterwegs://login">Zurück zur App</a>
+    </main>
+    <script>
+      (function () {
+        var params = new URLSearchParams(location.search);
+        var state = params.get('state') || '';
+        var name = (params.get('name') || 'Unterwegs').slice(0, 100);
+        var seal = params.get('seal');
+        var text = document.getElementById('text');
+        var back = document.getElementById('back');
+
+        function finish(result) {
+          result.set('state', state);
+          var url = 'unterwegs://login?' + result.toString();
+          back.href = url;
+          // Some browsers block a scripted jump into an app; the button is the fallback.
+          setTimeout(function () {
+            back.style.display = 'inline-block';
+          }, 1500);
+          location.replace(url);
+        }
+
+        if (state.length < 16 || state.length > 128 || /[^A-Za-z0-9_-]/.test(state)) {
+          text.textContent = 'Diese Seite öffnet nur die Unterwegs-App.';
+          return;
+        }
+        if (seal !== null && (seal.length !== 43 || /[^A-Za-z0-9_-]/.test(seal) || !(window.crypto && crypto.subtle))) {
+          finish(new URLSearchParams({ error: 'no-key' }));
+          return;
+        }
+
+        function fromBase64Url(text) {
+          var b64 = text.replace(/-/g, '+').replace(/_/g, '/');
+          while (b64.length % 4) b64 += '=';
+          return Uint8Array.from(atob(b64), function (c) {
+            return c.charCodeAt(0);
+          });
+        }
+        function toBase64Url(bytes) {
+          var bin = '';
+          for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+          return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+/g, '');
+        }
+        function ascii(text) {
+          return Uint8Array.from(text, function (c) {
+            return c.charCodeAt(0);
+          });
+        }
+
+        // The key as the app wants it back: plain for old apps, else encrypted for this sign-in only.
+        function result(key) {
+          if (seal === null) return Promise.resolve(new URLSearchParams({ key: key }));
+          var iv = crypto.getRandomValues(new Uint8Array(12));
+          return crypto.subtle
+            .importKey('raw', fromBase64Url(seal), { name: 'AES-GCM' }, false, ['encrypt'])
+            .then(function (aes) {
+              return crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv, additionalData: ascii(state) }, aes, ascii(key));
+            })
+            .then(function (box) {
+              var combined = new Uint8Array(12 + box.byteLength);
+              combined.set(iv, 0);
+              combined.set(new Uint8Array(box), 12);
+              return new URLSearchParams({ sealed: toBase64Url(combined) });
+            });
+        }
+
+        fetch('/auth/user-metadata', { credentials: 'include', headers: { Accept: 'application/json' } })
+          .then(function (r) {
+            if (!r.ok) {
+              finish(new URLSearchParams({ error: 'signed-out' }));
+              return null;
+            }
+            return fetch('/auth/api-keys', {
+              method: 'POST',
+              credentials: 'include',
+              headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+              body: JSON.stringify({ name: name }),
+            })
+              .then(function (k) {
+                return k.ok ? k.json() : null;
+              })
+              .then(function (k) {
+                var key = k && k.key;
+                // End the web session either way: the app only keeps the API key.
+                return fetch('/auth/browser/v1/auth/session', { method: 'DELETE', credentials: 'include' })
+                  .catch(function () {})
+                  .then(function () {
+                    return key ? result(key) : new URLSearchParams({ error: 'no-key' });
+                  })
+                  .then(finish, function () {
+                    finish(new URLSearchParams({ error: 'no-key' }));
+                  });
+              });
+          })
+          .catch(function () {
+            finish(new URLSearchParams({ error: 'network' }));
+          });
+      })();
+    </script>
+  </body>
+</html>

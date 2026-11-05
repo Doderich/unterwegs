@@ -1,0 +1,51 @@
+/**
+ * Keeps personal data out of the repository (see AGENTS.md). Scans every file git would commit.
+ * Generic checks run everywhere; personal terms (names, domains, ids) go one per line into the gitignored
+ * `.privacy-denylist`, so they are checked locally without being written into the repo.
+ */
+import { execFileSync } from 'child_process';
+import { existsSync, readFileSync, statSync } from 'fs';
+import { join } from 'path';
+
+const ROOT = join(__dirname, '..', '..');
+const SKIP = /(^|\/)(package-lock\.json|\.privacy-denylist)$|\.(png|jpe?g|gif|webp|ico|ttf|otf|woff2?|pdf|jar|keystore)$/i;
+
+const files = execFileSync('git', ['ls-files', '-co', '--exclude-standard'], { cwd: ROOT, encoding: 'utf8' })
+  .split('\n')
+  .filter((f) => f && !SKIP.test(f) && existsSync(join(ROOT, f)) && statSync(join(ROOT, f)).isFile())
+  .map((path) => ({ path, text: readFileSync(join(ROOT, path), 'utf8') }));
+
+function hits(pattern: RegExp, allow: (match: string) => boolean = () => false): string[] {
+  return files.flatMap(({ path, text }) =>
+    [...text.matchAll(pattern)].map((m) => m[0]).filter((m) => !allow(m)).map((m) => `${path}: ${m}`),
+  );
+}
+
+describe('no personal data in the repository', () => {
+  it('scans the files', () => {
+    expect(files.length).toBeGreaterThan(50);
+  });
+
+  it('has only example e-mail addresses', () => {
+    const allowed = /@(example\.(org|com|net)|anthropic\.com)$/i;
+    expect(hits(/[\w.%+-]+@[\w-]+(\.[\w-]+)*\.[a-z]{2,}\b/gi, (m) => allowed.test(m))).toEqual([]);
+  });
+
+  it('has no private network addresses', () => {
+    expect(hits(/\b(192\.168|10\.\d{1,3}|172\.(1[6-9]|2\d|3[01]))\.\d{1,3}\.\d{1,3}\b/g)).toEqual([]);
+  });
+
+  it('has none of the terms in .privacy-denylist', () => {
+    const denylist = join(ROOT, '.privacy-denylist');
+    const terms = existsSync(denylist)
+      ? readFileSync(denylist, 'utf8')
+          .split('\n')
+          .map((t) => t.trim())
+          .filter((t) => t && !t.startsWith('#'))
+      : [];
+    const found = terms.flatMap((term) =>
+      files.filter(({ text }) => text.toLowerCase().includes(term.toLowerCase())).map(({ path }) => `${path}: ${term}`),
+    );
+    expect(found).toEqual([]);
+  });
+});

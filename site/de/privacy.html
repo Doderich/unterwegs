@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Datenschutzerklärung - Unterwegs</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="../index.html#de">Unterwegs</a>
+      <nav aria-label="Pages">
+        <a href="privacy.html" aria-current="page">Datenschutz</a><a href="support.html">Support</a
+        ><a href="delete-account.html">Konto löschen</a>
+      </nav>
+    </header>
+    <main>
+      <h1>Datenschutzerklärung</h1>
+
+      <p class="meta">Stand: 05.11.2026 · App-Version 1.4.1</p>
+      <!-- TODO: Verantwortlichen eintragen (Name, Anschrift). "Der Betreiber" ist ein Platzhalter. Für die Store-Formulare wird ggf. eine ladungsfähige Anschrift gebraucht. -->
+      <h2>Kurzfassung</h2>
+      <ul>
+        <li>
+          Unterwegs - Travel Log ist eine App für deinen eigenen, selbst betriebenen
+          <a href="https://github.com/seanmorley15/AdventureLog">AdventureLog</a>-Server. Deine Reisedaten liegen auf
+          diesem Server, nicht beim Entwickler.
+        </li>
+        <li>Der Entwickler der App erhält keine Reisedaten, keine Zugangsdaten und keine Standorte.</li>
+        <li>
+          Keine Werbung, keine Analyse- oder Tracking-Dienste Dritter, keine Weitergabe von Daten zu Werbezwecken.
+        </li>
+        <li>
+          Die App meldet dem Update-Server des Entwicklers technische Daten (Installations-ID, Gerätemodell,
+          Betriebssystem, Absturzhinweise). Details unten.
+        </li>
+      </ul>
+      <h2>1. Verantwortlicher</h2>
+      <p>
+        Für die Daten, die die App an den Update-Server des Entwicklers sendet (Abschnitt 3), ist verantwortlich: der
+        Betreiber der App („der Inhaber“), Kontakt: <a href="mailto:privacy@example.org">privacy@example.org</a>.
+      </p>
+      <p>
+        Für alle Reisedaten ist der <strong>Betreiber deines AdventureLog-Servers</strong> verantwortlich (Abschnitt 2).
+        Das kannst du selbst sein oder jemand, der den Server für dich betreibt.
+      </p>
+      <h2>2. Dein AdventureLog-Server</h2>
+      <p>
+        Die App verbindet sich nur mit dem Server, dessen Adresse du eingibst (oder per QR-Code übernimmst). Sie ruft
+        dort deine Sammlungen mit Orten, Unterkünften, Verbindungen, Notizen, Fotos, PDFs und Standorten ab und schreibt
+        deine Änderungen dorthin zurück. Auf dem Server gelten die Datenschutzregeln seines Betreibers. Der Entwickler
+        der App hat keinen Zugriff auf diesen Server.
+      </p>
+      <p>
+        Die Verbindung läuft ausschließlich über HTTPS. Dein API-Schlüssel wird als Kopfzeile nur an den angemeldeten
+        Server gesendet, nie an andere Hosts.
+      </p>
+      <p>
+        Auf der Anmeldeseite bietet die App eine Abkürzung zum öffentlichen Test-Server
+        <code>demo.adventurelog.app</code> an. Dieser wird nicht vom Entwickler dieser App betrieben; lade dort keine
+        persönlichen Daten hoch.
+      </p>
+      <h2>3. Was der Update-Server des Entwicklers erhält</h2>
+      <p>
+        Die App kann JavaScript-Updates über die Luft (OTA) von einem selbst betriebenen Update-Server laden und diesem
+        Gesundheitsdaten melden. Die Versionen im App Store und bei Google Play tun das.
+      </p>
+      <ul>
+        <li>
+          <strong>Update-Abfrage</strong> bei jedem Start: Installations-ID (zufällige UUID, keine Konto- oder
+          Hardware-Kennung), App-Version, Plattform, Kanal, laufende Update-ID, Fehlersignale beim Laden eines Updates.
+          Wie bei jeder Internetverbindung sieht der Server außerdem deine IP-Adresse.
+        </li>
+        <li>
+          <strong>Start-Meldung</strong> („app_started“): ein fester Ereignisname ohne Inhalt, einmal pro Start,
+          zusammen mit Gerätemodell, Betriebssystem-Version und App-Version.
+        </li>
+        <li>
+          <strong>Absturzberichte</strong>: bei schwerwiegenden JavaScript- oder nativen Fehlern die Fehlermeldung und
+          der Stack-Trace sowie ein Absturz-Kennzeichen für die Installation. Die App fügt keine Konto- oder
+          Gerätenamen, Koordinaten, Server-Adressen, Sammlungsinhalte oder Anfrage-Inhalte hinzu.
+        </li>
+      </ul>
+      <p>
+        Installations-ID und Geräteangaben sind pseudonym, nicht anonym. Es gibt keine Produktnutzungs-Statistik, keine
+        Bildschirmverfolgung und kein Netzwerk-Tracing. Es wird kein Dienst von Expo/EAS genutzt; die Daten gehen direkt
+        an den selbst betriebenen Server. Schlägt die Meldung fehl oder bist du offline, öffnet die App trotzdem normal.
+        Zweck: Updates ausliefern und prüfen, ob eine Version abstürzt (berechtigtes Interesse, Art. 6 Abs. 1 lit. f
+        DSGVO).
+        <!-- TODO verify: Aufbewahrungsdauer der Update- und Absturzdaten auf dem Update-Server, Rechtsgrundlage und Opt-out. -->
+      </p>
+      <h2>4. Weitere Dienste, die kontaktiert werden</h2>
+      <ul>
+        <li>
+          <strong>Kartenkacheln und Kartenstil:</strong> <code>tiles.openfreemap.org</code> (OpenFreeMap, Kartendaten ©
+          OpenStreetMap-Mitwirkende, ODbL). Beim Anzeigen oder Herunterladen einer Karte sieht dieser Dienst deine
+          IP-Adresse und, über die angefragten Kacheln, welchen Kartenausschnitt du ansiehst.
+          <!-- TODO verify: Datenschutzhinweise von OpenFreeMap prüfen und hier verlinken. Sichtbare OSM-/OpenFreeMap-Quellenangabe in der Karte fehlt noch (STORE-RELEASE, Abschnitt 3). -->
+        </li>
+        <li>
+          <strong>Wikimedia:</strong> In „Foto aus dem Web“ lädt die App Vorschaubilder direkt von
+          <code>upload.wikimedia.org</code>. Dabei sieht Wikimedia deine IP-Adresse.
+        </li>
+        <li>
+          <strong>Dienste, die dein Server nutzt:</strong> Orts-Suche (Nominatim/OpenStreetMap), Beschreibungen und
+          Bilder von Wikipedia, Orte in der Nähe (Overpass/OpenStreetMap, optional Google, wenn dein Betreiber es
+          eingerichtet hat), Immich und Strava. Diese Anfragen stellt dein Server, nicht die App; dort gilt die
+          Datenschutzerklärung deines Server-Betreibers. Für die Strava-Verbindung öffnet die App Stravas Anmeldeseite;
+          deine Strava-Zugangsdaten sieht die App nicht.
+        </li>
+        <li>
+          <strong>Links, die du antippst:</strong> Karten-Apps (Apple Karten, Google Maps, Organic Maps, OsmAnd) und
+          Buchungsseiten (booking.com) öffnen sich erst, wenn du einen Link antippst, und unterliegen deren
+          Datenschutzregeln.
+        </li>
+      </ul>
+      <h2>5. Berechtigungen</h2>
+      <ul>
+        <li><strong>Kamera:</strong> zum Scannen des Anmelde-QR-Codes und für Fotos zu deiner Reise. Kein Mikrofon.</li>
+        <li>
+          <strong>Fotos:</strong> nur wenn du Bilder auswählst; sie werden zu dem Ort, der Unterkunft oder der
+          Verbindung auf deinem Server hochgeladen.
+        </li>
+        <li>
+          <strong>Standort (nur bei Nutzung):</strong> nur wenn du einen Ort an deiner aktuellen Position anlegst. Die
+          Koordinaten gehen an deinen Server (und über ihn an dessen Geocoding-Dienst), nicht an den Entwickler. Kein
+          Hintergrund-Standort.
+        </li>
+      </ul>
+      <h2>6. Was auf deinem Gerät gespeichert wird</h2>
+      <ul>
+        <li>
+          Server-Adresse und API-Schlüssel im sicheren Speicher des Betriebssystems (iOS-Schlüsselbund, nur nach
+          Entsperren und nur auf diesem Gerät; Android Keystore-gestützter Speicher).
+        </li>
+        <li>
+          Eine Kopie deiner Sammlungen und anderer abgerufener Daten in einer lokalen Datenbank (SQLite), damit die App
+          offline startet; außerdem Einstellungen.
+        </li>
+        <li>
+          Heruntergeladene Dateien (PDFs, Fotos), Bild-Zwischenspeicher, Offline-Kartenbereiche und Exporte, getrennt
+          nach Server.
+        </li>
+        <li>
+          Android: Die Datensicherung (Backup) ist ausgeschaltet. iOS: Offline-Dateien und Datenbank können in deinem
+          eigenen Geräte-Backup enthalten sein, der API-Schlüssel nicht.
+        </li>
+      </ul>
+      <h2>7. Abmelden und Löschen</h2>
+      <ul>
+        <li>
+          <strong>Abmelden:</strong> Der Schlüssel wird vom Gerät gelöscht, die zwischengespeicherten Daten werden
+          entfernt. Die App fragt, ob heruntergeladene Dateien, Fotos und Karten behalten oder gelöscht werden. Optional
+          wird der Schlüssel auf dem Server gelöscht.
+        </li>
+        <li>
+          <strong>Konto löschen:</strong> in der App unter Einstellungen → Konto (löscht das Konto auf dem Server und
+          danach alle lokalen Daten). Siehe <a href="delete-account.html">Konto löschen</a>.
+        </li>
+        <li><strong>App deinstallieren:</strong> entfernt alle lokalen Daten der App.</li>
+      </ul>
+      <h2>8. Kinder</h2>
+      <p>
+        Die App richtet sich nicht an Kinder.
+        <!-- TODO verify: Altersfreigabe/Zielgruppe aus den Store-Angaben übernehmen. -->
+      </p>
+      <h2>9. Deine Rechte</h2>
+      <p>
+        Du hast nach der DSGVO Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und
+        Widerspruch sowie das Recht, dich bei einer Aufsichtsbehörde zu beschweren. Für Reisedaten wende dich an den
+        Betreiber deines Servers. Für die Daten aus Abschnitt 3 schreibe an
+        <a href="mailto:privacy@example.org">privacy@example.org</a>; nenne dazu die Installations-ID, falls du sie
+        kennst, weil sich die Daten sonst nicht dir zuordnen lassen.
+      </p>
+      <h2>10. Änderungen</h2>
+      <p>
+        Wenn sich die App ändert (z. B. neue Dienste), wird diese Erklärung angepasst; das Datum oben zeigt den Stand.
+      </p>
+    </main>
+    <footer>
+      <nav aria-label="Sprache">
+        <a href="../de/privacy.html" hreflang="de" lang="de" aria-current="true">Deutsch</a
+        ><a href="../en/privacy.html" hreflang="en" lang="en">English</a
+        ><a href="../ja/privacy.html" hreflang="ja" lang="ja">日本語</a>
+      </nav>
+    </footer>
+  </body>
+</html>

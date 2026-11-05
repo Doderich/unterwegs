@@ -1,0 +1,97 @@
+{
+  "expo": {
+    "name": "Unterwegs",
+    "slug": "unterwegs",
+    "version": "1.4.1",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "unterwegs",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "icon": "./assets/unterwegs.icon",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#1C1C1E",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": true,
+      "allowBackup": false,
+      "blockedPermissions": [
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "plugins": [
+      "./plugins/with-share-signing",
+      "./plugins/with-release-signing",
+      "./plugins/with-android-apks",
+      "./plugins/with-map-downloads",
+      "./plugins/with-user-certificates",
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#FFFFFF",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 140,
+          "dark": {
+            "backgroundColor": "#000000",
+            "image": "./assets/images/splash-icon-dark.png"
+          }
+        }
+      ],
+      "expo-sqlite",
+      [
+        "expo-sharing",
+        {
+          "ios": {
+            "enabled": true,
+            "activationRule": {
+              "supportsFileWithMaxCount": 1,
+              "supportsImageWithMaxCount": 5
+            }
+          },
+          "android": {
+            "enabled": true,
+            "singleShareMimeTypes": ["application/pdf", "image/*"],
+            "multipleShareMimeTypes": ["image/*"]
+          }
+        }
+      ],
+      "@maplibre/maplibre-react-native",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Unterwegs nutzt die Kamera, um den Anmelde-QR-Code zu scannen und Fotos für deine Reise aufzunehmen.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Unterwegs braucht Zugriff auf deine Fotos, um sie zu Orten, Unterkünften und Verbindungen hochzuladen.",
+          "cameraPermission": "Unterwegs nutzt die Kamera, um den Anmelde-QR-Code zu scannen und Fotos für deine Reise aufzunehmen.",
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Unterwegs nutzt deinen Standort nur, wenn du einen Ort an deiner aktuellen Position anlegst."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}

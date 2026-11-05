@@ -1,0 +1,3 @@
+# One API key per device, whatever the sign-in method
+
+Every sign-in method (SSO, username and password, the website's QR code, a pasted key) ends with an API key for this device, stored in `expo-secure-store`; sessions and CSRF exist only for the moment the key is created. Keeping sessions instead would have meant cookie and CSRF handling in every request and in authenticated media downloads, and sessions expire mid-trip. Keys created by the app are named `Unterwegs · <device>`; QR/pasted keys retain their server-assigned names. The revoking sign-out option finds this device's key by `key_prefix`; local-only sign-out leaves it valid. Account settings can manage other API keys without replacing the one stored for this device.

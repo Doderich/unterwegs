@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Privacy policy - Unterwegs</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="../index.html#en">Unterwegs</a>
+      <nav aria-label="Pages">
+        <a href="privacy.html" aria-current="page">Privacy policy</a><a href="support.html">Support</a
+        ><a href="delete-account.html">Delete account</a>
+      </nav>
+    </header>
+    <main>
+      <h1>Privacy policy</h1>
+
+      <p class="meta">Last updated: 5 November 2026 · app version 1.4.1</p>
+      <!-- TODO: fill in the controller (name, postal address). "The owner" is a placeholder. The store forms may require a postal address. -->
+      <h2>In short</h2>
+      <ul>
+        <li>
+          Unterwegs - Travel Log is an app for your own, self-hosted
+          <a href="https://github.com/seanmorley15/AdventureLog">AdventureLog</a> server. Your travel data lives on that
+          server, not with the app developer.
+        </li>
+        <li>The app developer receives no travel data, no credentials and no locations.</li>
+        <li>No ads, no third-party analytics or tracking services, no data sold or shared for advertising.</li>
+        <li>
+          The app reports technical data to the developer's update server (installation ID, device model, operating
+          system, crash flags). Details below.
+        </li>
+      </ul>
+      <h2>1. Controller</h2>
+      <p>
+        For the data the app sends to the developer's update server (section 3), the controller is the app's operator
+        (“the owner”), contact: <a href="mailto:privacy@example.org">privacy@example.org</a>.
+      </p>
+      <p>
+        For all travel data, the <strong>operator of your AdventureLog server</strong> is responsible (section 2). That
+        may be you, or someone who runs the server for you.
+      </p>
+      <h2>2. Your AdventureLog server</h2>
+      <p>
+        The app connects only to the server whose address you enter (or take from a QR code). It loads your collections
+        there, with locations, lodging, transportation, notes, photos, PDFs and coordinates, and writes your changes
+        back. The server operator's privacy rules apply there. The app developer has no access to that server.
+      </p>
+      <p>
+        The connection uses HTTPS only. Your API key is sent as a header to the signed-in server only, never to other
+        hosts.
+      </p>
+      <p>
+        On the sign-in screen, the app offers a shortcut to the public test server <code>demo.adventurelog.app</code>.
+        It is not operated by this app's developer; do not upload personal data there.
+      </p>
+      <h2>3. What the developer's update server receives</h2>
+      <p>
+        The app can load JavaScript updates over the air (OTA) from a self-hosted update server and report health data
+        to it. The versions in the App Store and Google Play do this.
+      </p>
+      <ul>
+        <li>
+          <strong>Update check</strong> on every start: installation ID (random UUID, not an account or hardware
+          identifier), app version, platform, channel, running update ID, update-load failure signals. As with any
+          internet connection, the server also sees your IP address.
+        </li>
+        <li>
+          <strong>Start signal</strong> (“app_started”): a fixed event name with no content, once per launch, together
+          with device model, operating system version and app version.
+        </li>
+        <li>
+          <strong>Crash reports</strong>: for fatal JavaScript or native errors, the error message and stack trace, and
+          a crash flag for the installation. The app adds no account or device names, coordinates, server addresses,
+          collection content or request content.
+        </li>
+      </ul>
+      <p>
+        The installation ID and device details are pseudonymous, not anonymous. There is no product-usage statistics, no
+        screen tracking and no network tracing. No Expo/EAS hosted service is used; the data goes directly to the
+        self-hosted server. If reporting fails or you are offline, the app opens normally. Purpose: delivering updates
+        and finding out whether a version crashes (legitimate interest, Art. 6(1)(f) GDPR).
+        <!-- TODO verify: retention period of update and crash data on the update server, legal basis and opt-out. -->
+      </p>
+      <h2>4. Other services that are contacted</h2>
+      <ul>
+        <li>
+          <strong>Map tiles and map style:</strong> <code>tiles.openfreemap.org</code> (OpenFreeMap, map data ©
+          OpenStreetMap contributors, ODbL). When you view or download a map, this service sees your IP address and,
+          through the requested tiles, which map area you look at.
+          <!-- TODO verify: check OpenFreeMap's privacy statement and link it here. A visible OSM/OpenFreeMap attribution on the map is still missing (STORE-RELEASE, section 3). -->
+        </li>
+        <li>
+          <strong>Wikimedia:</strong> in “Photo from the web”, the app loads preview images directly from
+          <code>upload.wikimedia.org</code>. Wikimedia sees your IP address.
+        </li>
+        <li>
+          <strong>Services your server uses:</strong> place search (Nominatim/OpenStreetMap), descriptions and images
+          from Wikipedia, places nearby (Overpass/OpenStreetMap, optionally Google if your operator set it up), Immich
+          and Strava. Your server makes these requests, not the app; your server operator's privacy policy applies. For
+          the Strava connection, the app opens Strava's sign-in page; the app does not see your Strava credentials.
+        </li>
+        <li>
+          <strong>Links you tap:</strong> map apps (Apple Maps, Google Maps, Organic Maps, OsmAnd) and booking sites
+          (booking.com) open only when you tap a link and are subject to their own privacy rules.
+        </li>
+      </ul>
+      <h2>5. Permissions</h2>
+      <ul>
+        <li><strong>Camera:</strong> to scan the sign-in QR code and to take photos for your trip. No microphone.</li>
+        <li>
+          <strong>Photos:</strong> only when you pick images; they are uploaded to the location, lodging or
+          transportation on your server.
+        </li>
+        <li>
+          <strong>Location (while in use):</strong> only when you create a place at your current position. The
+          coordinates go to your server (and through it to its geocoding service), not to the developer. No background
+          location.
+        </li>
+      </ul>
+      <h2>6. What is stored on your device</h2>
+      <ul>
+        <li>
+          Server address and API key in the operating system's secure storage (iOS Keychain, only when unlocked and only
+          on this device; Android Keystore-backed storage).
+        </li>
+        <li>
+          A copy of your collections and other loaded data in a local database (SQLite) so the app starts offline; also
+          settings.
+        </li>
+        <li>
+          Downloaded files (PDFs, photos), image cache, offline map areas and exports, kept separately per server.
+        </li>
+        <li>
+          Android: backup is turned off. iOS: offline files and the database can be part of your own device backup; the
+          API key is not.
+        </li>
+      </ul>
+      <h2>7. Signing out and deleting</h2>
+      <ul>
+        <li>
+          <strong>Sign out:</strong> the key is deleted from the device and cached data is removed. The app asks whether
+          to keep or delete downloaded files, photos and maps. Optionally the key is also deleted on the server.
+        </li>
+        <li>
+          <strong>Delete account:</strong> in the app under Settings → Account (deletes the account on the server, then
+          all local data). See <a href="delete-account.html">Delete account</a>.
+        </li>
+        <li><strong>Uninstalling the app</strong> removes all of its local data.</li>
+      </ul>
+      <h2>8. Children</h2>
+      <p>
+        The app is not aimed at children.
+        <!-- TODO verify: take the age rating / target audience from the store forms. -->
+      </p>
+      <h2>9. Your rights</h2>
+      <p>
+        Under the GDPR you have the rights of access, rectification, erasure, restriction, data portability and
+        objection, and the right to lodge a complaint with a supervisory authority. For travel data, contact the
+        operator of your server. For the data in section 3, write to
+        <a href="mailto:privacy@example.org">privacy@example.org</a> and include the installation ID if you know it,
+        because otherwise the data can't be linked to you.
+      </p>
+      <h2>10. Changes</h2>
+      <p>If the app changes (for example new services), this policy is updated; the date above shows the version.</p>
+    </main>
+    <footer>
+      <nav aria-label="Language">
+        <a href="../de/privacy.html" hreflang="de" lang="de">Deutsch</a
+        ><a href="../en/privacy.html" hreflang="en" lang="en" aria-current="true">English</a
+        ><a href="../ja/privacy.html" hreflang="ja" lang="ja">日本語</a>
+      </nav>
+    </footer>
+  </body>
+</html>

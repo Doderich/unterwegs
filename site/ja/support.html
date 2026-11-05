@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>サポート - Unterwegs</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="../index.html#ja">Unterwegs</a>
+      <nav aria-label="Pages">
+        <a href="privacy.html">プライバシーポリシー</a><a href="support.html" aria-current="page">サポート</a
+        ><a href="delete-account.html">アカウントの削除</a>
+      </nav>
+    </header>
+    <main>
+      <h1>サポート</h1>
+
+      <h2>Unterwegs とは</h2>
+      <p>
+        Unterwegs - Travel Log は、<a href="https://github.com/seanmorley15/AdventureLog">AdventureLog</a>
+        サーバーのコレクションを旅先で読むための Android / iPhone
+        アプリです。日程、宿泊、列車、予約番号、PDF、地図を、インターネットがなくても確認できます。接続中は、場所、宿泊、交通、メモ、写真の編集もできます。
+      </p>
+      <p>本アプリは非公式で、AdventureLog プロジェクトの一部ではありません。</p>
+      <h2>ご自身の AdventureLog サーバーが必要です</h2>
+      <p>
+        アプリには旅行データも独自のアカウントサービスもありません。AdventureLog
+        サーバー(自前運用、または他の方が運用しているもの)とそのアカウントが必要です。お試し用に、サインイン画面から公開テストサーバーを選べます。個人データはアップロードしないでください。
+      </p>
+      <h2>HTTPS が必須です</h2>
+      <p>
+        アプリはリクエストのたびに API キーを送信するため、<code>https://</code>
+        でのみ接続します。最も簡単なのは、有効な証明書のあるアドレスをサーバーに付けることです。例:
+      </p>
+      <ul>
+        <li>
+          Tailscale:「tailscale serve」で、サーバーを tailnet 内のすべての端末から
+          <code>https://&lt;name&gt;.ts.net</code> で利用できます。
+        </li>
+        <li>
+          ご自身のドメインまたは無料ドメインと、Let's Encrypt の証明書を自動取得する Caddy などのリバースプロキシ。
+        </li>
+      </ul>
+      <p>
+        ドメインがない場合:サーバーのアドレス用に自分で証明書を作成し(例:Caddy の「tls internal」または
+        mkcert。Unterwegs
+        に入力するアドレスと完全に一致している必要があります)、ルート証明書(CA)をスマートフォンにインストールします。iPhone:<code
+          >.crt</code
+        >
+        ファイルを開き、設定でプロファイルをインストールし、「一般」→「情報」→「証明書信頼設定」でフルアクセスを有効にします。Android:設定
+        → セキュリティ → 暗号化と認証情報 → 証明書のインストール → CA
+        証明書。ご自身で作成した証明書のみインストールしてください。ルート証明書を管理できる人は、暗号化された通信を読み取れます。アプリのサインイン画面にも同じヘルプがあります(「HTTPS
+        がない場合」)。
+      </p>
+      <h2>サインイン</h2>
+      <ul>
+        <li>
+          <strong>QR コードをスキャン:</strong>AdventureLog のウェブサイトの「設定」→「Mobile App」に QR
+          コードが表示されます。アプリはそこからサーバーを表示し、確認後にサインインします。
+        </li>
+        <li>
+          <strong>ブラウザでサインイン:</strong
+          >アプリがサーバーのサインインページを開きます。サーバーのパスワードやシングルサインオン(SSO)がそこで使え、その後アプリが
+          API キーを受け取ります。
+        </li>
+        <li>
+          <strong>API キーでサインイン:</strong>ウェブサイト →「設定」→「API
+          キー」。他の方法が使えない場合のみ必要です。
+        </li>
+      </ul>
+      <h2>オフラインでの利用</h2>
+      <p>
+        アプリはコレクションを端末に保存し、インターネットなしで開けます。旅行の前に、コレクションをオフライン用にダウンロード(PDF、写真)し、必要なら地図エリアもダウンロードしてください。変更には接続が必要です。
+      </p>
+      <h2>連絡先</h2>
+      <p>
+        メール:<a href="mailto:support@example.org">support@example.org</a><br />
+        不具合とご要望:<a href="https://github.com/example/unterwegs/issues">GitHub Issues</a>
+      </p>
+      <!-- TODO: ストアにリンクする前に、support@example.org と GitHub の URL を実際のものに置き換える。 -->
+      <p>
+        API キー、パスワード、予約情報は送らないでください。端末、OS、アプリのバージョン、AdventureLog
+        のバージョンをお知らせください。
+      </p>
+      <p>
+        プライバシー:<a href="privacy.html">プライバシーポリシー</a> · アカウントの削除:<a href="delete-account.html"
+          >手順</a
+        >
+      </p>
+    </main>
+    <footer>
+      <nav aria-label="言語">
+        <a href="../de/support.html" hreflang="de" lang="de">Deutsch</a
+        ><a href="../en/support.html" hreflang="en" lang="en">English</a
+        ><a href="../ja/support.html" hreflang="ja" lang="ja" aria-current="true">日本語</a>
+      </nav>
+    </footer>
+  </body>
+</html>

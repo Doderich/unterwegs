@@ -1,0 +1,7 @@
+# Distribution through the app stores
+
+Supersedes [0010](0010-self-hosted-distribution.md). The app ships on Google Play and the App Store so that people who run their own AdventureLog server can install it too. Testing goes through TestFlight and a Google Play testing track; once the store apps are live, they are the only channel, for the family as well, and GitHub/Obtainium releases stop. JavaScript-only changes keep going out as over-the-air updates (`expo-updates`), which both stores allow as long as an update doesn't change what the app is for.
+
+The package and bundle id stay the same, so the existing App Store Connect record and its TestFlight history carry over; its store name is "Unterwegs - Travel Log", the home-screen name stays Unterwegs. Android uses Play App Signing with a key Google generates, and the existing keystore becomes the upload key. A lost upload key can then be reset through Play instead of stranding every install. The cost: the Play app can't update an APK signed with the old key, so each Android phone with the Obtainium install needs one uninstall, a fresh install from Play, sign-in and sync, done online and never during a trip.
+
+Store builds carry no personal server values, so the repository no longer has to stay private for that reason. Store review, privacy labels, a privacy policy and the developer accounts become ongoing obligations. The checklist is in `docs/STORE-RELEASE.md`.

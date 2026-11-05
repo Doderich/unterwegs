@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Support - Unterwegs</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="../index.html#en">Unterwegs</a>
+      <nav aria-label="Pages">
+        <a href="privacy.html">Privacy policy</a><a href="support.html" aria-current="page">Support</a
+        ><a href="delete-account.html">Delete account</a>
+      </nav>
+    </header>
+    <main>
+      <h1>Support</h1>
+
+      <h2>What is Unterwegs?</h2>
+      <p>
+        Unterwegs - Travel Log is an Android and iPhone app for reading collections of your
+        <a href="https://github.com/seanmorley15/AdventureLog">AdventureLog</a> server while travelling: day plan,
+        lodging, trains, booking numbers, PDFs and maps, even without internet. With a connection you can also edit
+        locations, lodging, transportation, notes and photos.
+      </p>
+      <p>The app is unofficial and not part of the AdventureLog project.</p>
+      <h2>You need your own AdventureLog server</h2>
+      <p>
+        The app contains no travel data and has no account service of its own. You need an AdventureLog server
+        (self-hosted, or run for you by someone else) and an account there. To try it out, the sign-in screen offers the
+        public test server; do not upload personal data there.
+      </p>
+      <h2>HTTPS is required</h2>
+      <p>
+        The app sends your API key with every request, so it connects only over <code>https://</code>. The easiest way
+        is to give the server an address with a valid certificate, for example:
+      </p>
+      <ul>
+        <li>
+          Tailscale: “tailscale serve” makes the server reachable at <code>https://&lt;name&gt;.ts.net</code> for all
+          devices in your tailnet.
+        </li>
+        <li>
+          Your own or a free domain with a reverse proxy such as Caddy, which gets a Let's Encrypt certificate
+          automatically.
+        </li>
+      </ul>
+      <p>
+        Without a domain: create your own certificate for the server's address (for example with Caddy's “tls internal”
+        or mkcert; it must be valid for exactly the address you enter in Unterwegs) and install the root certificate
+        (CA) on the phone. iPhone: open the <code>.crt</code> file, install the profile in Settings, then turn on full
+        trust under General → About → Certificate Trust Settings. Android: Settings → Security → Encryption &amp;
+        credentials → Install a certificate → CA certificate. Only install certificates you created yourself; whoever
+        controls a root certificate can read encrypted connections. The app shows this help on the sign-in screen too
+        (“No HTTPS? Here's how”).
+      </p>
+      <h2>Signing in</h2>
+      <ul>
+        <li>
+          <strong>Scan QR code:</strong> on the AdventureLog website, Settings → Mobile App shows a QR code. The app
+          shows the server from it and signs in only after you confirm.
+        </li>
+        <li>
+          <strong>Sign in in the browser:</strong> the app opens your server's sign-in page. Your server's password and
+          single sign-on (SSO) work there; afterwards the app takes over an API key.
+        </li>
+        <li><strong>With an API key:</strong> website → Settings → API keys. Only needed if nothing else works.</li>
+      </ul>
+      <h2>Using it offline</h2>
+      <p>
+        The app stores your collections locally and opens them without internet. Before a trip, download the collection
+        for offline use (PDFs, photos) and, if needed, map areas. Changes need a connection.
+      </p>
+      <h2>Contact</h2>
+      <p>
+        Email: <a href="mailto:support@example.org">support@example.org</a><br />
+        Bugs and requests: <a href="https://github.com/example/unterwegs/issues">GitHub Issues</a>
+      </p>
+      <!-- TODO: replace support@example.org and the GitHub URL with the real addresses before linking this page in the stores. -->
+      <p>
+        Please do not send API keys, passwords or booking data. Include your device, operating system, app version and
+        AdventureLog version.
+      </p>
+      <p>
+        Privacy: <a href="privacy.html">Privacy policy</a> · Delete account:
+        <a href="delete-account.html">Instructions</a>
+      </p>
+    </main>
+    <footer>
+      <nav aria-label="Language">
+        <a href="../de/support.html" hreflang="de" lang="de">Deutsch</a
+        ><a href="../en/support.html" hreflang="en" lang="en" aria-current="true">English</a
+        ><a href="../ja/support.html" hreflang="ja" lang="ja">日本語</a>
+      </nav>
+    </footer>
+  </body>
+</html>

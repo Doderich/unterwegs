@@ -1,0 +1,346 @@
+import { FieldGroup, ListItem, TextInput } from '@expo/ui';
+import { router, Stack, useLocalSearchParams } from 'expo-router';
+import { useState } from 'react';
+import { Alert } from 'react-native';
+
+import type { CategoryInput, LocationInput } from '@/api/client';
+import { useCategories, useCollectionView } from '@/data/queries';
+import { changedFields } from '@/data/selectors';
+import { useCollectionEdits } from '@/data/useCollectionEdits';
+import { useDuplicateGuard } from '@/ui/duplicateGuard';
+import { useClient } from '@/auth/session';
+import { getLanguage, tr } from '@/i18n';
+import { FormHost } from '@/ui/FormHost';
+import { useMarkdownEditor } from '@/ui/MarkdownEditor';
+import { formatDayLabel } from '@/time/tz';
+import { useActionSheet } from '@/ui/ActionSheet';
+import { attachmentEditRows, currencyOptions, defaultCurrency, parsePrice, parseTags, publicRow } from '@/ui/forms';
+import { androidToolbarIcon } from '@/ui/icons';
+import { useMediaUploads } from '@/ui/media';
+import { usePlaceSearch, type PickedPlace } from '@/ui/PlaceSearch';
+import { infoRow, RowIcon, useRowTheme } from '@/ui/rows';
+import { useSelect } from '@/ui/Select';
+import { Sub } from '@/ui/Sub';
+import { useTextPrompt } from '@/ui/TextPrompt';
+import { useColors } from '@/ui/theme';
+import { Text } from '@/ui/Text';
+
+const NEW_CATEGORY = '__new__';
+
+/**
+ * Create (`itemId` missing; `day` puts it on that day's plan) or edit a location. A new location starts from a
+ * search or the current position.
+ */
+export default function LocationEditScreen() {
+  const { collectionId, itemId, day } = useLocalSearchParams<{ collectionId: string; itemId?: string; day?: string }>();
+  const { view } = useCollectionView(collectionId);
+  const edits = useCollectionEdits(view);
+  const categories = useCategories();
+  const rt = useRowTheme();
+  const colors = useColors();
+  const sheet = useActionSheet(rt);
+  const prompt = useTextPrompt(rt);
+  const places = usePlaceSearch(rt);
+  const location = itemId ? view?.collection.locations.find((l) => l.id === itemId) : undefined;
+
+  // Reset uncontrolled inputs only when a picked place supplies new text, never while typing.
+  const [placeRevision, setPlaceRevision] = useState(0);
+  const [name, setName] = useState(location?.name ?? '');
+  const [address, setAddress] = useState(location?.location ?? '');
+  const [coords, setCoords] = useState({
+    latitude: location?.latitude ?? null,
+    longitude: location?.longitude ?? null,
+  });
+  const [description, setDescription] = useState(location?.description ?? '');
+  const [link, setLink] = useState(location?.link ?? '');
+  const [tags, setTags] = useState((location?.tags ?? []).join(', '));
+  const [price, setPrice] = useState(location?.price ? String(location.price) : '');
+  const [currency, setCurrency] = useState(
+    location?.price_currency ?? (view ? defaultCurrency(view.collection) : 'EUR'),
+  );
+  const [category, setCategory] = useState<CategoryInput | null>(
+    location?.category
+      ? {
+          name: location.category.name,
+          display_name: location.category.display_name ?? location.category.name,
+          icon: location.category.icon ?? undefined,
+        }
+      : null,
+  );
+  const [saving, setSaving] = useState(false);
+  const [isPublic, setIsPublic] = useState(!!location?.is_public);
+  const [duplicating, setDuplicating] = useState(false);
+  const [fetchingWiki, setFetchingWiki] = useState(false);
+  const client = useClient();
+  const guardDuplicate = useDuplicateGuard(edits, view);
+  const markdown = useMarkdownEditor(rt, description, setDescription);
+
+  // Categories of this collection first, then the user's others; plus the current one and "Neue Kategorie".
+  const known = new Map<string, CategoryInput>();
+  for (const c of view?.collection.locations.flatMap((l) => (l.category ? [l.category] : [])) ?? [])
+    known.set(c.name, { name: c.name, display_name: c.display_name ?? c.name, icon: c.icon ?? undefined });
+  for (const c of categories.data ?? [])
+    if (!known.has(c.name))
+      known.set(c.name, { name: c.name, display_name: c.display_name ?? c.name, icon: c.icon ?? undefined });
+  if (category && !known.has(category.name)) known.set(category.name, category);
+  const categorySelect = useSelect(rt, {
+    title: tr('common.category'),
+    label: tr('common.category'),
+    value: category?.name ?? '',
+    options: [
+      { value: '', label: tr('locationEdit.none') },
+      ...[...known.values()].map((c) => ({ value: c.name, label: `${c.icon ?? ''} ${c.display_name}`.trim() })),
+      { value: NEW_CATEGORY, label: tr('locationEdit.newCategory') },
+    ],
+    onChange: (v) => {
+      if (v === NEW_CATEGORY) {
+        prompt.open({
+          title: tr('common.newCategory'),
+          value: '',
+          placeholder: tr('locationEdit.eGFood'),
+          onSave: (text) => {
+            // A leading emoji becomes the icon: "🍜 Essen" → icon 🍜, name "Essen".
+            const m = text.match(/^(\p{Extended_Pictographic}️?)\s*(.+)$/u);
+            const display = (m ? m[2] : text).trim();
+            setCategory({ name: display.toLowerCase(), display_name: display, icon: m?.[1] ?? '📍' });
+          },
+        });
+      } else setCategory(v ? (known.get(v) ?? null) : null);
+    },
+  });
+  const currencySelect = useSelect(rt, {
+    title: tr('common.currency'),
+    label: tr('common.currency'),
+    value: currency,
+    onChange: setCurrency,
+    options: currencyOptions(currency),
+  });
+  const media = useMediaUploads(rt, edits, sheet, 'location', itemId ?? '');
+
+  if (!view || (itemId && !location)) return null;
+
+  const apply = (p: PickedPlace) => {
+    setPlaceRevision((revision) => revision + 1);
+    if (p.name) setName(p.name);
+    setAddress(p.address ?? '');
+    setCoords({ latitude: p.latitude, longitude: p.longitude });
+  };
+
+  const save = async () => {
+    if (!name.trim() || saving) return;
+    const parsedPrice = parsePrice(price);
+    if (parsedPrice === undefined) {
+      Alert.alert(tr('common.checkPrice'), tr('common.pleaseEnterNumberEG'));
+      return;
+    }
+    const input: LocationInput = {
+      name: name.trim(),
+      location: address.trim() || null,
+      latitude: coords.latitude,
+      longitude: coords.longitude,
+      description: description.trim() || null,
+      link: link.trim() || null,
+      tags: parseTags(tags),
+      price: parsedPrice,
+      price_currency: currency,
+      is_public: isPublic,
+    };
+    setSaving(true);
+    if (!location && !(await guardDuplicate(input, day))) {
+      setSaving(false);
+      return;
+    }
+    const saved = location
+      ? await edits.saveLocation(location.id, {
+          name: input.name,
+          ...changedFields(location, input),
+          ...(category && category.name !== location.category?.name ? { category } : {}),
+        })
+      : await edits.saveLocation(null, { ...input, ...(category ? { category } : {}) }, day);
+    setSaving(false);
+    if (!saved) return;
+    if (location) router.back();
+    else router.replace({ pathname: '/location/[collectionId]/[itemId]', params: { collectionId, itemId: saved.id } });
+  };
+
+  /** Fills the description from Wikipedia; asks before replacing text that is already there. */
+  const fromWikipedia = async () => {
+    if (!name.trim() || fetchingWiki) return;
+    setFetchingWiki(true);
+    let page: Awaited<ReturnType<typeof client.wikipediaDescription>> = null;
+    try {
+      page = await client.wikipediaDescription(name.trim(), getLanguage());
+    } catch {
+      setFetchingWiki(false);
+      Alert.alert(tr('locationEdit.wikipediaNotReachable'), tr('common.notReachableRightNowTry'));
+      return;
+    }
+    setFetchingWiki(false);
+    const text = page?.extract?.trim();
+    if (!text) {
+      Alert.alert(tr('common.nothingFound'), tr('locationEdit.wikipediaHasNoArticleOn', { name: name.trim() }));
+      return;
+    }
+    const withSource = `${text}\n\n${tr('locationEdit.sourceWikipediaTitle', { title: page?.title ?? name.trim() })}`;
+    if (!description.trim()) return setDescription(withSource);
+    Alert.alert(tr('locationEdit.replaceDescriptionConfirm'), text.slice(0, 200) + (text.length > 200 ? ' …' : ''), [
+      { text: tr('common.cancel'), style: 'cancel' },
+      { text: tr('common.attach'), onPress: () => setDescription(`${description.trim()}\n\n${withSource}`) },
+      { text: tr('locationEdit.replace'), style: 'destructive', onPress: () => setDescription(withSource) },
+    ]);
+  };
+
+  const duplicate = async () => {
+    if (!location || duplicating) return;
+    setDuplicating(true);
+    const copy = await edits.duplicateLocation(location);
+    setDuplicating(false);
+    if (copy)
+      router.replace({ pathname: '/location/[collectionId]/[itemId]', params: { collectionId, itemId: copy.id } });
+  };
+
+  const confirmDelete = () =>
+    location &&
+    Alert.alert(
+      tr('common.deleteNameConfirm', { name: location.name }),
+      tr('locationEdit.includingVisitsPhotosAttachmentsPlan'),
+      [
+        { text: tr('common.cancel'), style: 'cancel' },
+        {
+          text: tr('common.delete'),
+          style: 'destructive',
+          onPress: async () => {
+            router.dismiss(2);
+            await edits.deleteObject('location', location.id);
+          },
+        },
+      ],
+    );
+
+  const dayNumber = day ? view.days.find((d) => d.date === day)?.number : undefined;
+
+  return (
+    <>
+      <Stack.Screen options={{ title: location ? tr('locationEdit.editPlace') : tr('common.newPlace') }} />
+      <Stack.Toolbar placement="right">
+        <Stack.Toolbar.Button
+          icon={androidToolbarIcon('check')}
+          accessibilityLabel={tr('common.save')}
+          disabled={!name.trim() || saving || !edits.online}
+          onPress={() => void save()}>
+          {saving ? tr('common.saving') : tr('common.save')}
+        </Stack.Toolbar.Button>
+      </Stack.Toolbar>
+      <FormHost keyboardBar={markdown.keyboardBar}>
+        <FieldGroup>
+          <FieldGroup.Section title={tr('common.place')}>
+            <ListItem
+              colors={rt.listColors}
+              leading={<RowIcon name="search" />}
+              onPress={() => places.start(tr('common.searchPlace'), apply)}>
+              {location ? tr('locationEdit.searchAgain') : tr('locationEdit.searchOrUseCurrentLocation')}
+            </ListItem>
+            <TextInput
+              testID="location-name"
+              key={`name-${placeRevision}`}
+              defaultValue={name}
+              onChangeText={setName}
+              placeholder={tr('common.name')}
+            />
+            <TextInput
+              testID="location-address"
+              key={`addr-${placeRevision}`}
+              defaultValue={address}
+              onChangeText={setAddress}
+              placeholder={tr('common.address')}
+              multiline
+            />
+            {coords.latitude != null && coords.longitude != null
+              ? infoRow(rt, {
+                  icon: 'pin',
+                  label: tr('locationEdit.coordinates'),
+                  value: `${coords.latitude.toFixed(5)}, ${coords.longitude.toFixed(5)}`,
+                })
+              : null}
+            {dayNumber ? (
+              <FieldGroup.SectionFooter>
+                <Text textStyle={{ fontSize: 13, color: colors.secondary }}>
+                  {tr('locationEdit.goesOntoPlanOfDay', { n: dayNumber, date: formatDayLabel(day!) })}
+                </Text>
+              </FieldGroup.SectionFooter>
+            ) : null}
+          </FieldGroup.Section>
+
+          <FieldGroup.Section title={tr('common.details')}>
+            {categorySelect.row}
+            <TextInput
+              defaultValue={link}
+              onChangeText={setLink}
+              placeholder={tr('common.linkHttps')}
+              keyboardType="url"
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+            {markdown.row}
+            {edits.online && name.trim() ? (
+              <ListItem colors={rt.listColors} leading={<RowIcon name="world" />} onPress={() => void fromWikipedia()}>
+                {fetchingWiki ? tr('common.loading') : tr('locationEdit.descriptionFromWikipedia')}
+              </ListItem>
+            ) : null}
+          </FieldGroup.Section>
+
+          <FieldGroup.Section title={tr('common.visibility')}>
+            {publicRow(rt, isPublic, setIsPublic)}
+          </FieldGroup.Section>
+
+          <FieldGroup.Section title={tr('locationEdit.tagsPrice')}>
+            <TextInput
+              testID="location-tags"
+              defaultValue={tags}
+              onChangeText={setTags}
+              placeholder={tr('locationEdit.tagsSeparatedByCommas')}
+              autoCorrect={false}
+            />
+            <TextInput
+              defaultValue={price}
+              onChangeText={setPrice}
+              placeholder={tr('locationEdit.priceEGAdmission')}
+              keyboardType="decimal-pad"
+            />
+            {currencySelect.row}
+          </FieldGroup.Section>
+
+          {location ? (
+            <FieldGroup.Section title={tr('common.attachments')}>
+              {attachmentEditRows(rt, location.attachments, sheet, prompt, edits)}
+              {media.fileRows}
+            </FieldGroup.Section>
+          ) : null}
+
+          {location ? (
+            <FieldGroup.Section>
+              <ListItem
+                colors={rt.listColors}
+                leading={<RowIcon name="copy" />}
+                onPress={() => void duplicate()}
+                supportingText={<Sub>{tr('locationEdit.withPhotosWithoutVisitsAttachments')}</Sub>}>
+                {duplicating ? tr('locationEdit.duplicating') : tr('locationEdit.duplicatePlace')}
+              </ListItem>
+              <ListItem
+                colors={{ ...rt.listColors, contentColor: colors.danger }}
+                leading={<RowIcon name="delete" color={colors.danger} />}
+                onPress={confirmDelete}>
+                <Text textStyle={{ color: colors.danger }}>{tr('locationEdit.deletePlace')}</Text>
+              </ListItem>
+            </FieldGroup.Section>
+          ) : null}
+        </FieldGroup>
+      </FormHost>
+      {categorySelect.sheet}
+      {currencySelect.sheet}
+      {sheet.sheet}
+      {prompt.sheet}
+      {places.sheet}
+    </>
+  );
+}

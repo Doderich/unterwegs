@@ -1,0 +1,5 @@
+# SSO signs in through the website, then makes the key there
+
+AdventureLog's app client (headless allauth) has no social providers, and allauth won't redirect to a custom app scheme, so the app can't receive an SSO login directly. Instead the user signs in on the website (provider URL with `next` pointing at a small page the owner's server serves, `server/unterwegs-login.html`) in the system browser sheet, and that page creates the API key in the logged-in web session and returns it via `unterwegs://login`. Without that page the app falls back to an incognito WebView whose injected script creates the key. The browser sheet is preferred because passkeys work there; the cleaner allauth token login needs a newer AdventureLog (GitHub issue #1).
+
+The retained credential is the API key, not the browser session. It authenticates the same user on DRF endpoints, including account and integration management. The pinned allauth email/MFA endpoints have a separate session/token flow and do not accept that key; endpoint-specific evidence lives in `docs/SERVER.md`.
