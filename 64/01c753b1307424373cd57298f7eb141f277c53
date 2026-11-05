@@ -1,0 +1,66 @@
+package.json
+  s_1f23dcea414daf::t_0e934cf4dbf9f4 87-89
+src/app/+native-intent.tsx
+  s_1f23dcea414daf::t_ae82ca36093230 7
+assets/unterwegs-staging.icon/icon.json
+  s_1f23dcea414daf::t_7dfd8feb3aaa1a 1-132
+.env.example
+  s_1f23dcea414daf::t_7dfd8feb3aaa1a 23-24
+scripts/staging-build.sh
+  s_1f23dcea414daf::t_0e934cf4dbf9f4 1-26,31-33
+  s_1f23dcea414daf::t_ae82ca36093230 27-30
+scripts/publish-update.sh
+  s_1f23dcea414daf::t_01465abb8cf8bd 63-64
+  s_1f23dcea414daf::t_0e934cf4dbf9f4 2,5-31,38-52,54-58,61-62,65-73
+app.config.ts
+  s_1f23dcea414daf::t_7dfd8feb3aaa1a 8-19,22-23,28-29,34-43,45-47,89,105,107
+  s_1f23dcea414daf::t_bb96a0497ca521 44
+scripts/update-record.mjs
+  s_1f23dcea414daf::t_0e934cf4dbf9f4 1-22,24,26-28,31-35,37-41
+  s_1f23dcea414daf::t_7cae87ec425d03 23,25,29-30,36
+scripts/ios-testflight.sh
+  s_1f23dcea414daf::t_01465abb8cf8bd 18
+  s_1f23dcea414daf::t_ae82ca36093230 34-36,38-39
+  s_1f23dcea414daf::t_0e934cf4dbf9f4 16-17
+scripts/android-publish.sh
+  s_1f23dcea414daf::t_01465abb8cf8bd 22
+  s_1f23dcea414daf::t_0e934cf4dbf9f4 20-21
+docs/ROADMAP.md
+  s_1f23dcea414daf::t_ca3f2098da44aa 35-36
+src/__tests__/updateConfig.test.ts
+  s_1f23dcea414daf::t_01465abb8cf8bd 2-73
+  s_1f23dcea414daf::t_ba7e84823a5b28 1
+src/auth/serverLogin.ts
+  s_1f23dcea414daf::t_ae82ca36093230 1,177-179
+docs/RELEASING.md
+  s_1f23dcea414daf::t_ca3f2098da44aa 25-28,55-64,67,79,158,161-208
+  s_1f23dcea414daf::t_e7da91b47eba49 209-210
+assets/unterwegs-staging.icon/Assets/flag.svg
+  s_1f23dcea414daf::t_8d5cf28037ea4c 1
+assets/unterwegs-staging.icon/Assets/globe.svg
+  s_1f23dcea414daf::t_9f2c10ca6e12ee 1
+assets/unterwegs-staging.icon/Assets/grid.svg
+  s_1f23dcea414daf::t_2dd137a0d71f6a 1
+assets/unterwegs-staging.icon/Assets/stand.svg
+  s_1f23dcea414daf::t_c273921015083f 1
+src/__tests__/updateRelease.test.ts
+  s_1f23dcea414daf::t_3d0813710d152a 1-152
+src/auth/__tests__/serverLogin.test.ts
+  s_1f23dcea414daf::t_f655b2966d20ea 1,14-15,126-137
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6401c753b1307424373cd57298f7eb141f277c53",
+  "prompts": {},
+  "sessions": {
+    "s_1f23dcea414daf": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1aab9-afad-7e83-af87-952ac147c904",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
