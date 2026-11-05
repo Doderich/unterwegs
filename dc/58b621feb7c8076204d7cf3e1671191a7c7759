@@ -1,0 +1,35 @@
+docs/STORE-RELEASE.md
+  s_339bcff149b539::t_6cc5a1e5821432 102
+scripts/play-upload.mjs
+  s_339bcff149b539::t_6cc5a1e5821432 70-71
+  s_339bcff149b539::t_88561c4b5a5f41 1-69,72-112
+package.json
+  s_339bcff149b539::t_77bd8018275c14 73
+scripts/android-bundle.sh
+  s_339bcff149b539::t_458bdf8ac87da9 1-59
+.env.example
+  s_339bcff149b539::t_6cc5a1e5821432 16-18
+scripts/android-signing.sh
+  s_339bcff149b539::t_6ce0373976b778 1-69
+scripts/android-publish.sh
+  s_339bcff149b539::t_81e6550af1f278 14-15,22,38
+docs/RELEASING.md
+  s_339bcff149b539::t_6cc5a1e5821432 66,86,102,173-184
+  s_339bcff149b539::t_020352eea4cc1e 185
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "dc58b621feb7c8076204d7cf3e1671191a7c7759",
+  "prompts": {},
+  "sessions": {
+    "s_339bcff149b539": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "429dc936-a139-4646-8b57-d9c3656b5b1e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
