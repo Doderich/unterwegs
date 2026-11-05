@@ -1,4 +1,4 @@
-import { Host, Icon, useMaterialColors } from '@expo/ui/jetpack-compose';
+import { Host, Icon } from '@expo/ui/jetpack-compose';
 import {
   type ImageSourcePropType,
   Keyboard,
@@ -17,6 +17,7 @@ import { rnTextScale } from '@/settings/apply';
 import { useSettings } from '@/settings/store';
 import type { SearchHeaderProps, SearchLauncherProps } from './MaterialSearch';
 import { materialIcon } from './icons';
+import { useMaterialScheme } from './palette.android';
 import { useColors } from './theme';
 
 function SearchIcon({ source }: { source: ImageSourcePropType }) {
@@ -32,7 +33,7 @@ function SearchIcon({ source }: { source: ImageSourcePropType }) {
 export function SearchLauncher({ placeholder, onPress }: SearchLauncherProps) {
   const colors = useColors();
   const { boldText, textSize, highContrast } = useSettings();
-  const palette = useMaterialColors();
+  const palette = useMaterialScheme(useColorScheme() === 'dark');
   const { width } = useWindowDimensions();
   const scale = rnTextScale(textSize);
   return (
@@ -60,7 +61,7 @@ export function SearchLauncher({ placeholder, onPress }: SearchLauncherProps) {
 /** Dedicated search view: native editable text, Material controls, live query and standard Android Back. */
 export function SearchHeader({ query, onChange, placeholder, onBack }: SearchHeaderProps) {
   const colors = useColors();
-  const palette = useMaterialColors();
+  const palette = useMaterialScheme(useColorScheme() === 'dark');
   const insets = useSafeAreaInsets();
   const { boldText, textSize, highContrast } = useSettings();
   const scale = rnTextScale(textSize);

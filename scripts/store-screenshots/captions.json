@@ -1,0 +1,32 @@
+{
+  "home": {
+    "en": ["Your trips,", "always with you"],
+    "de": ["Deine Reisen,", "immer dabei"],
+    "ja": ["旅の予定を、", "いつも手元に"]
+  },
+  "plan": {
+    "en": ["Every day planned,", "even offline"],
+    "de": ["Jeder Tag geplant,", "auch ohne Netz"],
+    "ja": ["毎日の予定を、", "オフラインでも"]
+  },
+  "map": {
+    "en": ["All your places", "on one map"],
+    "de": ["Alle Orte", "auf einer Karte"],
+    "ja": ["すべての場所を", "ひとつの地図に"]
+  },
+  "place": {
+    "en": ["Every detail", "at hand"],
+    "de": ["Alle Details", "griffbereit"],
+    "ja": ["詳しい情報も", "すぐに確認"]
+  },
+  "stays": {
+    "en": ["Stays and connections", "included"],
+    "de": ["Unterkünfte und", "Verbindungen inklusive"],
+    "ja": ["宿泊も交通も", "まとめて"]
+  },
+  "login": {
+    "en": ["Your own server.", "Your data."],
+    "de": ["Dein eigener Server.", "Deine Daten."],
+    "ja": ["自分のサーバー。", "自分のデータ。"]
+  }
+}

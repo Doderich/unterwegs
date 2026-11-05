@@ -255,12 +255,14 @@ function originOf(url: string): string | null {
  * Where to load a media URL from the server's data, and whether it gets the key. The key only goes to the
  * signed-in server over HTTPS. Media URLs carry the server's `PUBLIC_URL`, which may differ from the address the
  * user signed in with; `/media` and `/api` paths on another host are loaded from the signed-in server instead.
+ * Some servers only serve media on that other host (the public demo: API and media on `demoapi.…`, its web app on
+ * `demo.…` answers `/media` with 404), so an HTTPS original comes back as `fallback`, loaded without the key.
  * Anything else is loaded without the key.
  */
 export function mediaRequest(
   url: string,
   credentials: Credentials | null,
-): { url: string; headers?: Record<string, string> } {
+): { url: string; headers?: Record<string, string>; fallback?: string } {
   if (!credentials) return { url };
   const base = normalizeServerUrl(credentials.serverUrl);
   const server = originOf(base);
@@ -268,7 +270,10 @@ export function mediaRequest(
   const origin = originOf(url);
   if (origin === server) return { url, headers: authHeaders(credentials.apiKey) };
   const path = origin ? url.trim().slice(origin.length) : null;
-  if (path && /^\/(media|api)\//.test(path)) return { url: base + path, headers: authHeaders(credentials.apiKey) };
+  if (path && /^\/(media|api)\//.test(path)) {
+    const request = { url: base + path, headers: authHeaders(credentials.apiKey) };
+    return origin?.startsWith('https://') ? { ...request, fallback: url.trim() } : request;
+  }
   return { url };
 }
 

@@ -1,7 +1,9 @@
 import { Host as UIHost } from '@expo/ui';
-import { useMaterialColors } from '@expo/ui/jetpack-compose';
 import type { ComponentProps } from 'react';
 import { StyleSheet, useColorScheme, View } from 'react-native';
+
+import { ACCENT_SEED } from './accent';
+import { useMaterialScheme } from './palette.android';
 
 /** Widest a screen's forms and lists get; on tablets and unfolded foldables they are centred at this width. */
 export const READABLE_WIDTH = 720;
@@ -16,11 +18,12 @@ export const READABLE_WIDTH = 720;
  */
 export function Host(props: ComponentProps<typeof UIHost>) {
   const scheme = useColorScheme() === 'dark' ? 'dark' : 'light';
-  const palette = useMaterialColors({ colorScheme: scheme, seedColor: props.seedColor });
-  if (props.matchContents) return <UIHost colorScheme={scheme} {...props} />;
+  const palette = useMaterialScheme(scheme === 'dark');
+  // Every Compose subtree uses the app's teal scheme, not the wallpaper's.
+  if (props.matchContents) return <UIHost colorScheme={scheme} seedColor={ACCENT_SEED} {...props} />;
   return (
     <View style={[styles.frame, { backgroundColor: palette.surface }]}>
-      <UIHost colorScheme={scheme} {...props} style={[styles.host, props.style]} />
+      <UIHost colorScheme={scheme} seedColor={ACCENT_SEED} {...props} style={[styles.host, props.style]} />
     </View>
   );
 }

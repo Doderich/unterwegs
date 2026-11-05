@@ -2,7 +2,7 @@
 
 The app opens on a Home feed, with Collections, Places and World as its other app-level destinations. Opening a collection pushes a separate workspace. On iOS its tabs are Plan, Map, Stays, Notes and a detached native Search button; Plan combines a day view and all-days overview through a native segmented picker. Android has Plan, Map, Stays and Notes, with search in the header; Plan switches between day view and all-days overview using a native Material segmented control at the top. The app bar and collection bar are never shown together. Back returns to the previous app destination.
 
-The existing native grouped lists, system typography, terracotta accent, photo treatment and accessibility settings remain the visual system. This is an extension of the existing interface, not a new visual identity.
+The existing native grouped lists, system typography, teal accent, photo treatment and accessibility settings remain the visual system. This is an extension of the existing interface, not a new visual identity.
 
 Home prioritises current collections and today's visits, then interleaves upcoming collections and scheduled visits by date. A compact cover card can feature the first collection, without repeating it in the list. Recently saved places follow the dated feed; saving a place alone does not invent a visit. Invitations lead to Collections for acceptance or decline. Compact headers keep creation and settings accessible. On iOS, app-wide Search sits separately at the bottom right of the native tab bar and expands into the system search field; Android keeps search in the header.
 

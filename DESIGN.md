@@ -2,12 +2,16 @@
 name: Unterwegs
 description: The family's trip in your pocket, native on Android and iOS, offline first.
 colors:
-  terracotta: '#C2410C'
-  terracotta-night: '#FB923C'
-  terracotta-deep: '#9A3412'
+  teal: '#2F7672'
+  teal-night: '#5FB3AE'
+  teal-deep: '#1D5C59'
+  teal-bright: '#8FD3CD'
+  teal-seed: '#428E8B'
   apricot: '#FDBA74'
   location-blue: '#2563EB'
-  transit-green: '#059669'
+  lodging-terracotta: '#C2410C'
+  transit-violet: '#7C3AED'
+  visited-green: '#059669'
   alarm-red: '#D70015'
   alarm-red-night: '#FF6961'
   alarm-red-deep: '#A50011'
@@ -15,13 +19,13 @@ colors:
   grouped-mist: '#F2F2F7'
   card-white: '#FFFFFF'
   ink: '#000000'
-  pebble: '#6C6C70'
+  pebble: '#3C3C4399'
   pebble-deep: '#3A3A3C'
   hairline: '#C6C6C8'
   hairline-strong: '#8E8E93'
   night: '#000000'
   night-card: '#1C1C1E'
-  moon-grey: '#98989F'
+  moon-grey: '#EBEBF599'
   moon-grey-bright: '#D1D1D6'
   night-hairline: '#38383A'
   night-hairline-strong: '#636366'
@@ -79,7 +83,7 @@ spacing:
   xxl: '24px'
 components:
   hero-card:
-    backgroundColor: '{colors.terracotta}'
+    backgroundColor: '{colors.teal}'
     textColor: '{colors.card-white}'
     rounded: '{rounded.hero}'
     padding: '20px'
@@ -118,7 +122,7 @@ components:
     padding: '8px 10px 0'
     width: 'min 56px'
   day-chip-selected:
-    backgroundColor: '{colors.terracotta}'
+    backgroundColor: '{colors.teal}'
     textColor: '{colors.card-white}'
     rounded: '{rounded.floating}'
   map-filter-bar:
@@ -132,7 +136,7 @@ components:
 
 **Creative North Star: "The Travel Wallet"**
 
-Everything for the trip in your pocket, calm and always to hand. Unterwegs is opened on a platform, at a hotel desk or in a temple without signal, by people who know their phone but not this app. So the design is calm, native and quietly warm: the platform's own controls (SwiftUI on iOS, Material 3 on Android) do most of the work, and personality comes from one warm accent and the trip's own photos. It is flat and layered, not decorative, and nothing competes with the information you need right now.
+Everything for the trip in your pocket, calm and always to hand. Unterwegs is opened on a platform, at a hotel desk or in a temple without signal, by people who know their phone but not this app. So the design is calm, native and quietly warm: the platform's own controls (SwiftUI on iOS, Material 3 on Android) do most of the work, and personality comes from one accent, the teal of the app icon's hills, and the trip's own photos. It is flat and layered, not decorative, and nothing competes with the information you need right now.
 
 Density is that of a system settings screen: grouped lists of rows, each row one fact with a tinted icon (or an emoji the user chose), a value and a secondary line. The one exception is the collection hero (`CollectionHero`) on the home screen, a full-bleed photo card that is the app's only "loud" moment.
 
@@ -141,26 +145,29 @@ Density is that of a system settings screen: grouped lists of rows, each row one
 **Key Characteristics:**
 
 - Native grouped lists on a grey background; white (or near-black) rows.
-- One accent, Terracotta, for icons, the selected state and calls to action.
+- One accent, Teal, for icons, the selected state and calls to action.
 - The trip's photos carry the colour; the chrome stays neutral.
 - Every text size follows the system and the app's own text-size setting.
 - Light, dark and a "Mehr Kontrast" palette for each.
 
 ## Colors
 
-A neutral system-grey canvas with one warm terracotta accent; colour beyond that comes from photos and the map's three point types.
+A neutral canvas in the platform's own colours with one teal accent; colour beyond that comes from photos and the map's three point types. `useColors()` (`src/ui/theme.ts`) takes them from the Expo libraries rather than a hand-made palette: on iOS Apple's system colours (Expo Router `Color.ios`, `src/ui/palette.ts`), on Android the Material 3 scheme Expo UI derives from the teal seed (`useMaterialColors` with `seedColor`, `src/ui/palette.android.ts`). The accent values live in `src/ui/accent.ts`.
 
 ### Primary
 
-- **Terracotta** (`terracotta`): the app's single accent. Leading icons in every list row, the native tab and toolbar tint, the selected day ("Heute"), checkmarks in pickers, and the hero card's background before its photo loads.
-- **Terracotta Night** (`terracotta-night`): the same role in dark mode.
-- **Deep Terracotta** (`terracotta-deep`) and **Apricot** (`apricot`): the "Mehr Kontrast" accent in light and dark mode. Apricot is also the countdown on the hero photo ("Noch 44 Tage", "Tag 3 von 23"), where it needs to stand out against a dark scrim.
+- **Teal** (`teal`): the app's single accent, the icon's hill teal darkened to 5.3:1 on white. Leading icons in every list row, the native tab and toolbar tint, the selected day ("Heute"), checkmarks in pickers, and the hero card's background before its photo loads.
+- **Teal Night** (`teal-night`): the same role in dark mode (6.9:1 on the night card).
+- **Deep Teal** (`teal-deep`) and **Bright Teal** (`teal-bright`): the "Mehr Kontrast" accent in light and dark mode (≥ 7:1).
+- **Teal Seed** (`teal-seed`): the icon's own hill colour. Android builds its whole Material 3 scheme from it (accent, surfaces, containers, outlines, error), the same on every phone and independent of the wallpaper; with "Mehr Kontrast" the accent there is Deep Teal / Bright Teal.
+- **Apricot** (`apricot`): the countdown on the hero photo ("Noch 44 Tage", "Tag 3 von 23"), where it needs to stand out against a dark scrim. It matches the sand of the icon's sky.
 
 ### Secondary
 
 - **Location Blue** (`location-blue`): locations on the map.
-- **Transit Green** (`transit-green`): transportation start / end points and the dashed route lines on the map. Lodgings use Terracotta, so the three point types read apart at a glance.
-- On the map of all locations ("Alle Orte") the same two colours mean visited (green) and not yet visited (blue), explained by a legend in the floating bar.
+- **Lodging Terracotta** (`lodging-terracotta`): lodgings on the map.
+- **Transit Violet** (`transit-violet`): transportation start / end points and the dashed route lines on the map. With blue and terracotta, the three point types read apart at a glance, and none of them looks like the teal accent.
+- On the map of all locations ("Alle Orte") **Visited Green** (`visited-green`) and Location Blue mean visited and not yet visited, explained by a legend in the floating bar.
 
 ### Tertiary
 
@@ -174,13 +181,19 @@ A neutral system-grey canvas with one warm terracotta accent; colour beyond that
 - **Pebble** (`pebble`) / **Moon Grey** (`moon-grey`): secondary lines under row values, captions, section footers. Contrast mode: **Deep Pebble** (`pebble-deep`) / **Bright Moon** (`moon-grey-bright`).
 - **Hairline** (`hairline`) / **Night Hairline** (`night-hairline`): separators. Contrast mode: `hairline-strong` / `night-hairline-strong`.
 
-The neutrals are Apple's system greys and stay the same on Android, where Material 3 surfaces draw their own tonal containers on top.
+On iOS the neutrals and Alarm Red are Apple's system colours (`systemGroupedBackground`, `secondarySystemGroupedBackground`, `label`, `secondaryLabel`, `opaqueSeparator`, `systemRed`); the hex values above are their light and dark defaults. They follow the system "Increase Contrast" setting by themselves, which also provides the contrast twins of the neutrals there. On Android the same roles are Material 3 roles of the teal scheme: `surface` (background), `surfaceContainerLow` (cards), `onSurface` (text), `onSurfaceVariant` (secondary; `onSurface` with "Mehr Kontrast"), `outlineVariant` (separators; `outline` with "Mehr Kontrast") and `error`.
+
+iOS system colours reach JavaScript as `PlatformColor` objects typed as strings (`palette.ts`): pass them to styles and Expo UI, never do string work on them (alpha suffixes, parsing).
 
 ### Named Rules
 
-**The One Accent Rule.** Terracotta is the only UI accent. Blue and green exist only to tell map points apart; they never appear on buttons, icons or text.
+**The One Accent Rule.** Teal is the only UI accent. Blue, terracotta, violet and green exist only to tell map points apart; they never appear on buttons, icons or text.
 
-**The Contrast Twin Rule.** Every colour the UI uses has a "Mehr Kontrast" twin in `useColors()` (darker in light mode, lighter in dark mode). A new colour is not done until its twin exists.
+**The Contrast Twin Rule.** Every colour the UI uses has a "Mehr Kontrast" twin (darker in light mode, lighter in dark mode): the accent in `accent.ts`, the Android neutrals as the stronger Material roles in `palette.android.ts`, the iOS neutrals through the system "Increase Contrast" setting. A new colour is not done until its twin exists.
+
+### App icon
+
+A folded paper map whose panels show a sunset landscape: sand sky, cream sun, teal hills and a cream road winding towards the sun. It stands on a paper-white plate (near-black in the dark appearance, where the map turns moonlit: deep teal sky, muted turquoise hills, a sand moon and road); staging builds put it on amber. `scripts/generate-icons.py` draws it once and writes the iOS Icon Composer documents (`assets/unterwegs.icon`, `assets/unterwegs-staging.icon`), the Android adaptive and themed icons, the splash images and the favicon. The accent teal is taken from its hills.
 
 ## Typography
 
@@ -234,7 +247,7 @@ Native rows and sheets keep the platform's own shapes (iOS inset grouped corners
 
 ### Hero Card (signature)
 
-The current or next collection as a large photo card on the home screen. Full-bleed cover photo (Terracotta fill until it loads) under the gradient scrim; top-left a frosted pill badge (22% white) with the overline; bottom: Apricot countdown, the collection name in Display, a date / today line in Supporting at 88% white, then frosted stat chips (18% white pills) for days, locations and lodgings. Pressed state: 90% opacity. One accessibility label reads name, countdown and dates.
+The current or next collection as a large photo card on the home screen. Full-bleed cover photo (Teal fill until it loads) under the gradient scrim; top-left a frosted pill badge (22% white) with the overline; bottom: Apricot countdown, the collection name in Display, a date / today line in Supporting at 88% white, then frosted stat chips (18% white pills) for days, locations and lodgings. Pressed state: 90% opacity. One accessibility label reads name, countdown and dates.
 
 ### List Rows
 
@@ -242,7 +255,7 @@ The app's main building block (`src/ui/rows.tsx`): a native `ListItem` with a 22
 
 ### Selects and Sheets
 
-iOS: a native menu picker tinted Terracotta. Android: a row with the label as headline and the current value as supporting text, opening a bottom sheet with a Title heading and a checkmark on the chosen option.
+iOS: a native menu picker tinted Teal. Android: a row with the label as headline and the current value as supporting text, opening a bottom sheet with a Title heading and a checkmark on the chosen option.
 
 ### Navigation
 
@@ -270,7 +283,7 @@ Android pattern reference: [Material search component](https://github.com/materi
 
 ### Resource Header and Detail Gallery
 
-The top of every location, lodging and transportation (`resourceHeaderRows`): a swipeable gallery of the resource's photos with an "n / total" pill (capped at 1.4× text size), then the name in Headline and a short context line in Supporting on the card's solid surface. Tap opens the full-screen gallery; "Foto hinzufügen" and the gallery's cover/delete actions stay right below. Each photo is announced as "Name, Bild n von total". Without photos the header is a 28px Terracotta icon beside the title, never an empty frame or a collection photo. The frame is reserved in Hairline grey before photos load and stays when one can't.
+The top of every location, lodging and transportation (`resourceHeaderRows`): a swipeable gallery of the resource's photos with an "n / total" pill (capped at 1.4× text size), then the name in Headline and a short context line in Supporting on the card's solid surface. Tap opens the full-screen gallery; "Foto hinzufügen" and the gallery's cover/delete actions stay right below. Each photo is announced as "Name, Bild n von total". Without photos the header is a 28px Teal icon beside the title, never an empty frame or a collection photo. The frame is reserved in Hairline grey before photos load and stays when one can't.
 
 ### List Thumbnail
 
@@ -278,7 +291,7 @@ One square crop for every list that shows a resource: itinerary entries, "Heute 
 
 ### Day Strip
 
-"Heute" opens on a horizontal strip of day chips above the swipeable days (`src/ui/DayNav.tsx`): weekday, day number, month. The selected day is filled Terracotta (black text in dark mode, white in light, both ≥ 4.5:1); the actual current day keeps a dot, so "selected" and "today" read apart. Chips are tabs with a selected state and a full-date label ("Freitag, 18. Dezember, Tag 2 von 23, Heute"). The strip scrolls the selected day into view; a tapped day jumps without animation when motion is reduced. The "Alle Tage" picker below the date stays for long jumps.
+"Heute" opens on a horizontal strip of day chips above the swipeable days (`src/ui/DayNav.tsx`): weekday, day number, month. The selected day is filled Teal (black text in dark mode, white in light, both ≥ 4.5:1); the actual current day keeps a dot, so "selected" and "today" read apart. Chips are tabs with a selected state and a full-date label ("Freitag, 18. Dezember, Tag 2 von 23, Heute"). The strip scrolls the selected day into view; a tapped day jumps without animation when motion is reduced. The "Alle Tage" picker below the date stays for long jumps.
 
 ### Itinerary Entry and Stay Summary
 
@@ -290,11 +303,11 @@ The focus of a transportation (`journeyRows`): departure time in Figure, place w
 
 ### Emoji Leading
 
-Where the user or the server chose the symbol, a row leads with that emoji instead of a Terracotta icon: country flags (made from the country code, so they work offline), category icons, and calendar events. Everything else keeps the tinted icon.
+Where the user or the server chose the symbol, a row leads with that emoji instead of a Teal icon: country flags (made from the country code, so they work offline), category icons, and calendar events. Everything else keeps the tinted icon.
 
 ### Toggle Rows
 
-Marking something on or off in a list (a visited region, "Öffentlich") is a whole-row tap with a checkbox icon: Terracotta when on, Pebble when off. Online only; the change shows at once and rolls back with an alert if the server refuses it.
+Marking something on or off in a list (a visited region, "Öffentlich") is a whole-row tap with a checkbox icon: Teal when on, Pebble when off. Online only; the change shows at once and rolls back with an alert if the server refuses it.
 
 ### Photo Grid
 
@@ -343,8 +356,8 @@ Place, location, lodging and transportation descriptions use native selectable M
 ### Do:
 
 - **Do** use the platform's own controls (`@expo/ui`) first; React Native views only where no native one exists (hero, map, gallery, day strip, thumbnails).
-- **Do** take colours from `useColors()` so light, dark and "Mehr Kontrast" all work; add the contrast twin with any new colour.
-- **Do** give every row a leading icon in Terracotta and a plain-language secondary line.
+- **Do** take colours from `useColors()` so light, dark and "Mehr Kontrast" all work; add the contrast twin with any new colour. Prefer a platform role (iOS system colour, Material role) over a new hex value.
+- **Do** give every row a leading icon in Teal and a plain-language secondary line.
 - **Do** let text grow: check new screens at "Riesig" and with bold text on both platforms.
 - **Do** honour reduced motion: no stack animation, no image fades, no animated day jumps.
 - **Do** build resource screens from the shared pieces (`resourceHeaderRows`, `entryRow`, `stayRow`, `journeyRows`, `Thumb`, `typeScale`) and fix problems there, not per screen.

@@ -49,7 +49,7 @@ function dayLabel(date: string, number: number, total: number, isToday: boolean)
 
 /**
  * Day navigation on Today: one chip per day, scrolled so the selected day stays in view. The selected day is filled
- * Terracotta; the actual current day keeps a Terracotta dot, so "selected" and "today" read apart.
+ * in the accent; the actual current day keeps an accent dot, so "selected" and "today" read apart.
  */
 export function DayStrip({
   dates,
@@ -64,7 +64,7 @@ export function DayStrip({
   const { textSize } = useSettings();
   const scroller = useRef<ScrollViewInstance>(null);
   const top = useTopInset();
-  // The dark-mode accent is a light orange: black on it, white on the light-mode terracotta (both ≥ 4.5:1).
+  // The dark-mode accent is a light teal: black on it, white on the light-mode teal (both ≥ 4.5:1).
   const onTint = useColorScheme() === 'dark' ? '#000000' : '#FFFFFF';
   const offsets = useRef<number[]>([]);
 

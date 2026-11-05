@@ -23,6 +23,14 @@ describe('mediaRequest', () => {
     });
   });
 
+  it('falls back to an HTTPS original, without the key', () => {
+    expect(mediaRequest('https://media.example.org/media/images/a.webp', creds)).toEqual({
+      url: 'https://adventurelog.example.org/media/images/a.webp',
+      headers: { 'X-API-Key': 'al_test' },
+      fallback: 'https://media.example.org/media/images/a.webp',
+    });
+  });
+
   it('never sends the key elsewhere', () => {
     expect(mediaRequest('https://images.example.net/photo.jpg', creds)).toEqual({
       url: 'https://images.example.net/photo.jpg',

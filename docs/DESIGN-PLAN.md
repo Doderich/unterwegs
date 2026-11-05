@@ -19,7 +19,7 @@ Borrow ideas from reference apps, then design them as Unterwegs components. The 
 Across screens, use:
 
 - The platform's system font, with a shared hierarchy of titles, body text, supporting text, and labels.
-- The existing terracotta accent and neutral surfaces, adapted to light, dark, and increased contrast.
+- The teal accent (from the app icon) and neutral platform surfaces, adapted to light, dark, and increased contrast.
 - Consistent spacing, image treatment, section rhythm, action placement, and interaction feedback.
 - One semantic icon vocabulary, using each platform's native symbols.
 - Familiar iOS and Android controls and navigation, with a shared product identity rather than identical pixels.
@@ -30,7 +30,7 @@ Judge the design as a family of screens. A date selector, gallery, journey summa
 
 ### What carries forward
 
-The existing home hero, native navigation, system typography, terracotta accent, offline behaviour, and accessibility support remain the foundation. Expand the role of photos and improve hierarchy rather than introducing a replacement brand.
+The existing home hero, native navigation, system typography, teal accent, offline behaviour, and accessibility support remain the foundation. Expand the role of photos and improve hierarchy rather than introducing a replacement brand.
 
 `DESIGN.md` remains the description of the current implementation. After native review, merge the implemented patterns and tokens into it and its existing `.impeccable/design.json` sidecar. In particular, revise the current rule that the home hero is the only prominent photo treatment. Do not overwrite unrelated design guidance or record proposals as implemented rules.
 
