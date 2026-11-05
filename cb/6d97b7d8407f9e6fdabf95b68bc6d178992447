@@ -1,0 +1,29 @@
+.gitignore
+  s_339bcff149b539::t_3c1e9dac1b5bbb 58-64
+certs/certificate.pem
+  s_323a0ed2f5631b::t_2ea2687f93df05 1-18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cb6d97b7d8407f9e6fdabf95b68bc6d178992447",
+  "prompts": {},
+  "sessions": {
+    "s_323a0ed2f5631b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b7f5b2ec-3da9-4322-a899-a9d0b7c9063c",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    },
+    "s_339bcff149b539": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "429dc936-a139-4646-8b57-d9c3656b5b1e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
