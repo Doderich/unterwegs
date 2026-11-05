@@ -19,13 +19,18 @@
       <h1>Konto löschen</h1>
 
       <p>
-        Unterwegs hat kein eigenes Konto beim Entwickler. Dein Konto gehört zu deinem AdventureLog-Server. Es gibt drei
-        Wege.
+        Unterwegs legt keine Konten an. Konten gibt es nur auf dem AdventureLog-Server, mit dem du dich verbindest. Der
+        Entwickler der App stellt nur den Client bereit; er besitzt weder diesen Server noch die Daten, die du dort
+        einträgst, und betreibt keinen öffentlichen AdventureLog-Server. Verantwortlich für dein Konto und deine
+        Reisedaten ist der Betreiber deines Servers. Es gibt drei Wege.
       </p>
       <h2>1. In der App</h2>
       <ol>
         <li>Öffne Einstellungen → Konto → Konto löschen. Du musst online sein.</li>
-        <li>Gib zur Bestätigung deinen Benutzernamen ein, und, falls dein Konto ein Passwort hat, dein Passwort.</li>
+        <li>
+          Gib zur Bestätigung deinen Benutzernamen ein und, falls dein Konto ein Passwort hat, dein Passwort. Hat dein
+          Konto kein Passwort (zum Beispiel bei Anmeldung nur über SSO), genügt der Benutzername.
+        </li>
         <li>Bestätige die Rückfrage („Konto und alle zugehörigen Daten werden dauerhaft vom Server gelöscht“).</li>
       </ol>
       <p>
@@ -33,18 +38,19 @@
         Fotos, Schlüssel, …), bestimmt dein AdventureLog-Server; die App löscht auf dem Server nichts anderes.
         Anschließend meldet sich die App ab und löscht immer alle lokalen Daten (siehe unten). Administratoren
         (Staff-Konten) können sich nicht selbst löschen.
-        <!-- TODO verify: Das Löschen am Server ist nur im Quellcode geprüft, nicht an einem echten Konto (docs/SERVER.md). Konten ohne nutzbares Passwort (nur SSO) können nach dem Quellcode vermutlich nicht in der App löschen: Weg 2 oder 3 nennen, sobald geprüft. -->
       </p>
       <h2>2. Auf deinem AdventureLog-Server</h2>
       <p>
-        Melde dich auf der Webseite deines Servers an und lösche das Konto dort in den Konto-Einstellungen. Danach
-        meldet sich die App beim nächsten Zugriff ab, weil der Schlüssel nicht mehr gültig ist.
+        Melde dich auf der Webseite deines Servers an und lösche das Konto dort in den Einstellungen. Es gelten
+        dieselben Regeln: Benutzername zur Bestätigung, Passwort nur bei Konten mit Passwort. Danach meldet sich die App
+        beim nächsten Zugriff ab, weil der Schlüssel nicht mehr gültig ist.
       </p>
       <h2>3. Den Betreiber bitten</h2>
       <p>
-        Wenn jemand anderes deinen Server betreibt (oder dein Konto nur per SSO existiert), bitte diese Person, dein
+        Wenn jemand anderes deinen Server betreibt oder du den Weg 1 und 2 nicht nutzen kannst, bitte diese Person, dein
         Konto und deine Daten zu löschen. Für Reisedaten ist der Betreiber des Servers verantwortlich, nicht der
-        Entwickler der App.
+        Entwickler der App. Hast du ein Konto auf dem privaten Server des Entwicklers für Freunde und Familie, ist der
+        Entwickler dein Betreiber: schreibe an <a href="mailto:__CONTACT_EMAIL__">__CONTACT_EMAIL__</a>.
       </p>
       <h2>Was auf dem Gerät gelöscht wird</h2>
       <ul>
@@ -62,13 +68,15 @@
       </ul>
       <h2>Daten beim Entwickler</h2>
       <p>
-        Der Entwickler speichert keine Reisedaten und kein Konto. Builds mit Update-Server senden eine pseudonyme
-        Installations-ID, Gerätemodell, Betriebssystem und Absturzhinweise (<a href="privacy.html"
+        Der Entwickler speichert über die App keine Reisedaten und kein Konto. Builds mit Update-Server senden eine
+        pseudonyme Installations-ID, Gerätemodell, Betriebssystem und Absturzhinweise (<a href="privacy.html"
           >Datenschutzerklärung</a
-        >, Abschnitt 3). Eine Löschung dieser Angaben fragst du unter
-        <a href="mailto:privacy@example.org">privacy@example.org</a> an, mit der Installations-ID, falls bekannt.
+        >, Abschnitt 3). Eine Löschung dieser Angaben fragst du per E-Mail an
+        <a href="mailto:__CONTACT_EMAIL__">__CONTACT_EMAIL__</a> an. Die App zeigt die Installations-ID nicht an; nenne
+        stattdessen Gerät, Betriebssystem und ungefähr, wann du die App genutzt hast. Wenn du die App deinstallierst,
+        entfernt das die ID vom Gerät; eine spätere Installation bekommt eine neue ID. Der alte Datensatz auf dem
+        Update-Server bleibt, bis er gelöscht wird.
       </p>
-      <!-- TODO: privacy@example.org durch die echte Adresse ersetzen. Prüfen, wo die Installations-ID in der App einsehbar ist; falls nirgends, hier keine Anleitung dazu geben. -->
     </main>
     <footer>
       <nav aria-label="Sprache">

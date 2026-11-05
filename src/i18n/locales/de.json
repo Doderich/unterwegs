@@ -588,6 +588,7 @@
     "hideApiKey": "API-Schlüssel ausblenden",
     "httpsHelp": "Kein HTTPS? So geht’s",
     "invalidApiKey": "API-Key ungültig.",
+    "passkeyHint": "Passkeys funktionieren bei diesem Server nur über den QR-Code: Website auf einem anderen Gerät öffnen → Menü → Handy Anmeldung.",
     "publicDemo": "Öffentliche AdventureLog-Demo",
     "publicDemoDescription": "Ohne eigenen Server ausprobieren",
     "publicDemoNotice": "Dies ist ein öffentlicher Testserver. Lade keine persönlichen Daten hoch.",
@@ -618,7 +619,10 @@
     "signingIn": "Anmelden…"
   },
   "loginWeb": {
+    "continueHere": "Hier weitermachen",
     "finishingSignin": "Anmeldung wird abgeschlossen…",
+    "passkeyBody": "Die Anmeldung in der App kann keine Passkeys verwenden. Öffne die Website auf einem anderen Gerät → Menü → Handy Anmeldung und scanne den QR-Code.",
+    "passkeyTitle": "Passkeys gehen hier nicht",
     "serverIsntRespondingPleaseTry": "Der Server antwortet nicht. Bitte noch einmal versuchen.",
     "signinPageWontLoadPlease": "Die Anmeldeseite lädt nicht. Bitte Internetverbindung prüfen."
   },

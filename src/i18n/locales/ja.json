@@ -576,6 +576,7 @@
     "hideApiKey": "APIキーを非表示",
     "httpsHelp": "HTTPS がない場合",
     "invalidApiKey": "APIキーが無効です。",
+    "passkeyHint": "このサーバーでは、パスキーはQRコード経由でのみ使えます: 別の端末でウェブサイトを開く → メニュー → スマートフォンでログイン。",
     "publicDemo": "AdventureLogの公開デモ",
     "publicDemoDescription": "自分のサーバーなしで試す",
     "publicDemoNotice": "公開テストサーバーです。個人情報をアップロードしないでください。",
@@ -606,7 +607,10 @@
     "signingIn": "ログイン中…"
   },
   "loginWeb": {
+    "continueHere": "このまま続ける",
     "finishingSignin": "ログインを完了しています…",
+    "passkeyBody": "アプリ内のログインではパスキーを使えません。別の端末でウェブサイトを開き、メニュー → スマートフォンでログイン を選んで、QRコードをスキャンしてください。",
+    "passkeyTitle": "ここではパスキーを使えません",
     "serverIsntRespondingPleaseTry": "サーバーが応答しません。もう一度試してください。",
     "signinPageWontLoadPlease": "ログインページを読み込めません。インターネット接続を確認してください。"
   },

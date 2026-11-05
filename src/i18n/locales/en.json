@@ -588,6 +588,7 @@
     "hideApiKey": "Hide API key",
     "httpsHelp": "No HTTPS? Here’s how",
     "invalidApiKey": "Invalid API key.",
+    "passkeyHint": "On this server, passkeys only work through the QR code: open the website on another device → menu → phone sign-in.",
     "publicDemo": "Public AdventureLog demo",
     "publicDemoDescription": "Try it without your own server",
     "publicDemoNotice": "This is a public test server. Do not upload personal data.",
@@ -618,7 +619,10 @@
     "signingIn": "Signing in…"
   },
   "loginWeb": {
+    "continueHere": "Continue here",
     "finishingSignin": "Finishing sign-in…",
+    "passkeyBody": "Signing in inside the app can’t use passkeys. Open the website on another device → menu → phone sign-in, then scan the QR code.",
+    "passkeyTitle": "Passkeys don’t work here",
     "serverIsntRespondingPleaseTry": "The server isn’t responding. Please try again.",
     "signinPageWontLoadPlease": "The sign-in page won’t load. Please check your internet connection."
   },

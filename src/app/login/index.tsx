@@ -284,6 +284,12 @@ export default function LoginScreen() {
           ) : null}
           {qrRow}
           {errorFooter('sso') ??
+            // Without the sign-in page, SSO runs in a WebView, where passkeys fail: say so before the user gets stuck.
+            (providers.length > 0 && browserLogin.isSuccess && !browserLogin.data ? (
+              <FieldGroup.SectionFooter>
+                <Text textStyle={{ ...typeScale.label, color: colors.secondary }}>{tr('login.passkeyHint')}</Text>
+              </FieldGroup.SectionFooter>
+            ) : null) ??
             (options.isPaused ? (
               <FieldGroup.SectionFooter>
                 <Text textStyle={{ ...typeScale.label, color: colors.secondary }}>{tr('login.connectToInternet')}</Text>

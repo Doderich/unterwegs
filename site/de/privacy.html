@@ -19,13 +19,18 @@
       <h1>Datenschutzerklärung</h1>
 
       <p class="meta">Stand: 05.11.2026 · App-Version 1.4.1</p>
-      <!-- TODO: Verantwortlichen eintragen (Name, Anschrift). "Der Betreiber" ist ein Platzhalter. Für die Store-Formulare wird ggf. eine ladungsfähige Anschrift gebraucht. -->
       <h2>Kurzfassung</h2>
       <ul>
         <li>
           Unterwegs - Travel Log ist eine App für deinen eigenen, selbst betriebenen
           <a href="https://github.com/seanmorley15/AdventureLog">AdventureLog</a>-Server. Deine Reisedaten liegen auf
           diesem Server, nicht beim Entwickler.
+        </li>
+        <li>
+          Der Entwickler stellt nur die App (den Client) bereit. Er betreibt keinen öffentlichen AdventureLog-Server und
+          besitzt weder den Server, mit dem du dich verbindest, noch die Daten, die du dort einträgst. Verantwortlich
+          dafür ist der Betreiber deines Servers. Ein privater Server des Entwicklers existiert nur für Freunde und
+          Familie.
         </li>
         <li>Der Entwickler der App erhält keine Reisedaten, keine Zugangsdaten und keine Standorte.</li>
         <li>
@@ -38,12 +43,19 @@
       </ul>
       <h2>1. Verantwortlicher</h2>
       <p>
-        Für die Daten, die die App an den Update-Server des Entwicklers sendet (Abschnitt 3), ist verantwortlich: der
-        Betreiber der App („der Inhaber“), Kontakt: <a href="mailto:privacy@example.org">privacy@example.org</a>.
+        Für die Daten, die die App an den Update-Server des Entwicklers sendet (Abschnitt 3), ist verantwortlich:
+        __CONTROLLER_NAME__, __CONTROLLER_ADDRESS__, E-Mail: <a href="mailto:__CONTACT_EMAIL__">__CONTACT_EMAIL__</a>.
       </p>
       <p>
-        Für alle Reisedaten ist der <strong>Betreiber deines AdventureLog-Servers</strong> verantwortlich (Abschnitt 2).
-        Das kannst du selbst sein oder jemand, der den Server für dich betreibt.
+        Der Entwickler stellt nur die App, also den Client, bereit. Er besitzt und betreibt nicht den
+        AdventureLog-Server, mit dem du dich verbindest, und auch nicht die Daten, die du dort einträgst. Die Reisedaten
+        liegen auf dem AdventureLog-Server, den du wählst; für sie ist der
+        <strong>Betreiber dieses Servers</strong> verantwortlich (Abschnitt 2). Das kannst du selbst sein oder jemand,
+        der den Server für dich betreibt.
+      </p>
+      <p>
+        Der Entwickler betreibt keinen öffentlichen AdventureLog-Server. Einen privaten Server betreibt er nur für
+        Freunde und Familie; für diese Personen ist er zugleich der Betreiber dieses Servers im Sinne von Abschnitt 2.
       </p>
       <h2>2. Dein AdventureLog-Server</h2>
       <p>
@@ -88,15 +100,23 @@
         an den selbst betriebenen Server. Schlägt die Meldung fehl oder bist du offline, öffnet die App trotzdem normal.
         Zweck: Updates ausliefern und prüfen, ob eine Version abstürzt (berechtigtes Interesse, Art. 6 Abs. 1 lit. f
         DSGVO).
-        <!-- TODO verify: Aufbewahrungsdauer der Update- und Absturzdaten auf dem Update-Server, Rechtsgrundlage und Opt-out. -->
+      </p>
+      <p>
+        <strong>Speicherdauer:</strong> Der Update-Server legt pro Installation einen Datensatz an (Installations-ID,
+        erster und letzter Kontakt, laufende Update-ID, Gerätemodell, Betriebssystem, App-Version, Absturz-Kennzeichen
+        mit begrenzter Fehlermeldung). Er löscht diese Datensätze nicht automatisch. Der Entwickler prüft sie regelmäßig
+        und löscht Datensätze von Installationen, die nicht mehr genutzt werden, sowie auf Anfrage sofort (Abschnitt 9).
+        Es ist keine Geo-Ortung der IP-Adresse eingerichtet. <strong>Widerspruch:</strong> Die App hat dafür keinen
+        Schalter; du kannst der Verarbeitung per E-Mail widersprechen (Abschnitt 9).
       </p>
       <h2>4. Weitere Dienste, die kontaktiert werden</h2>
       <ul>
         <li>
           <strong>Kartenkacheln und Kartenstil:</strong> <code>tiles.openfreemap.org</code> (OpenFreeMap, Kartendaten ©
           OpenStreetMap-Mitwirkende, ODbL). Beim Anzeigen oder Herunterladen einer Karte sieht dieser Dienst deine
-          IP-Adresse und, über die angefragten Kacheln, welchen Kartenausschnitt du ansiehst.
-          <!-- TODO verify: Datenschutzhinweise von OpenFreeMap prüfen und hier verlinken. Sichtbare OSM-/OpenFreeMap-Quellenangabe in der Karte fehlt noch (STORE-RELEASE, Abschnitt 3). -->
+          IP-Adresse und, über die angefragten Kacheln, welchen Kartenausschnitt du ansiehst. Datenschutz und
+          Nutzungsbedingungen: <a href="https://openfreemap.org/privacy/">Datenschutzerklärung von OpenFreeMap</a>,
+          <a href="https://openfreemap.org/tos/">Nutzungsbedingungen</a>.
         </li>
         <li>
           <strong>Wikimedia:</strong> In „Foto aus dem Web“ lädt die App Vorschaubilder direkt von
@@ -162,16 +182,18 @@
       </ul>
       <h2>8. Kinder</h2>
       <p>
-        Die App richtet sich nicht an Kinder.
-        <!-- TODO verify: Altersfreigabe/Zielgruppe aus den Store-Angaben übernehmen. -->
+        Die Inhalte der App sind für alle Altersgruppen geeignet (Altersfreigabe „Für alle“ bzw. 4+). Die App richtet
+        sich aber nicht an Kinder unter 13 Jahren; Zielgruppe sind Nutzer ab 13. Der Entwickler sammelt wissentlich
+        keine Daten von Kindern unter 13 Jahren.
       </p>
       <h2>9. Deine Rechte</h2>
       <p>
         Du hast nach der DSGVO Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und
         Widerspruch sowie das Recht, dich bei einer Aufsichtsbehörde zu beschweren. Für Reisedaten wende dich an den
         Betreiber deines Servers. Für die Daten aus Abschnitt 3 schreibe an
-        <a href="mailto:privacy@example.org">privacy@example.org</a>; nenne dazu die Installations-ID, falls du sie
-        kennst, weil sich die Daten sonst nicht dir zuordnen lassen.
+        <a href="mailto:__CONTACT_EMAIL__">__CONTACT_EMAIL__</a>. Die Installations-ID zeigt die App nicht an; nenne
+        stattdessen Gerät, Betriebssystem und ungefähr, wann du die App genutzt hast, damit sich der Datensatz finden
+        lässt.
       </p>
       <h2>10. Änderungen</h2>
       <p>

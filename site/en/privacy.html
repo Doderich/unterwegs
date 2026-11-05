@@ -19,13 +19,17 @@
       <h1>Privacy policy</h1>
 
       <p class="meta">Last updated: 5 November 2026 · app version 1.4.1</p>
-      <!-- TODO: fill in the controller (name, postal address). "The owner" is a placeholder. The store forms may require a postal address. -->
       <h2>In short</h2>
       <ul>
         <li>
           Unterwegs - Travel Log is an app for your own, self-hosted
           <a href="https://github.com/seanmorley15/AdventureLog">AdventureLog</a> server. Your travel data lives on that
           server, not with the app developer.
+        </li>
+        <li>
+          The developer provides only the app (the client). They run no public AdventureLog server and own neither the
+          server you connect to nor the data you put in it; the operator of your server is responsible for that. A
+          private server of the developer exists only for friends and family.
         </li>
         <li>The app developer receives no travel data, no credentials and no locations.</li>
         <li>No ads, no third-party analytics or tracking services, no data sold or shared for advertising.</li>
@@ -36,12 +40,18 @@
       </ul>
       <h2>1. Controller</h2>
       <p>
-        For the data the app sends to the developer's update server (section 3), the controller is the app's operator
-        (“the owner”), contact: <a href="mailto:privacy@example.org">privacy@example.org</a>.
+        For the data the app sends to the developer's update server (section 3), the controller is __CONTROLLER_NAME__,
+        __CONTROLLER_ADDRESS__, email: <a href="mailto:__CONTACT_EMAIL__">__CONTACT_EMAIL__</a>.
       </p>
       <p>
-        For all travel data, the <strong>operator of your AdventureLog server</strong> is responsible (section 2). That
-        may be you, or someone who runs the server for you.
+        The developer provides only the app, the client. They do not own or operate the AdventureLog server you connect
+        to, and not the data you put in it. Your travel data lives on the AdventureLog server you choose; the
+        <strong>operator of that server</strong> is responsible for it (section 2). That can be you or someone who runs
+        the server for you.
+      </p>
+      <p>
+        The developer runs no public AdventureLog server. They run a private server only for friends and family; for
+        those people the developer is also the operator of that server in the sense of section 2.
       </p>
       <h2>2. Your AdventureLog server</h2>
       <p>
@@ -83,15 +93,23 @@
         screen tracking and no network tracing. No Expo/EAS hosted service is used; the data goes directly to the
         self-hosted server. If reporting fails or you are offline, the app opens normally. Purpose: delivering updates
         and finding out whether a version crashes (legitimate interest, Art. 6(1)(f) GDPR).
-        <!-- TODO verify: retention period of update and crash data on the update server, legal basis and opt-out. -->
+      </p>
+      <p>
+        <strong>Retention:</strong> the update server keeps one record per installation (installation ID, first and last
+        contact, running update ID, device model, operating system, app version, crash flag with a bounded error
+        message). It does not delete these records automatically. The developer reviews them periodically and deletes
+        records of installations that are no longer in use, and deletes them at once on request (section 9). No
+        geolocation of the IP address is configured. <strong>Objection:</strong> the app has no switch for this; you can
+        object to the processing by email (section 9).
       </p>
       <h2>4. Other services that are contacted</h2>
       <ul>
         <li>
           <strong>Map tiles and map style:</strong> <code>tiles.openfreemap.org</code> (OpenFreeMap, map data ©
           OpenStreetMap contributors, ODbL). When you view or download a map, this service sees your IP address and,
-          through the requested tiles, which map area you look at.
-          <!-- TODO verify: check OpenFreeMap's privacy statement and link it here. A visible OSM/OpenFreeMap attribution on the map is still missing (STORE-RELEASE, section 3). -->
+          through the requested tiles, which map area you look at. Privacy and terms:
+          <a href="https://openfreemap.org/privacy/">OpenFreeMap privacy policy</a>,
+          <a href="https://openfreemap.org/tos/">terms of service</a>.
         </li>
         <li>
           <strong>Wikimedia:</strong> in “Photo from the web”, the app loads preview images directly from
@@ -153,16 +171,17 @@
       </ul>
       <h2>8. Children</h2>
       <p>
-        The app is not aimed at children.
-        <!-- TODO verify: take the age rating / target audience from the store forms. -->
+        The app's content is suitable for everyone (store rating “Everyone” / 4+). The app is, however, not directed at
+        children under 13; its target audience is users aged 13 and over. The developer does not knowingly collect data
+        from children under 13.
       </p>
       <h2>9. Your rights</h2>
       <p>
         Under the GDPR you have the rights of access, rectification, erasure, restriction, data portability and
         objection, and the right to lodge a complaint with a supervisory authority. For travel data, contact the
         operator of your server. For the data in section 3, write to
-        <a href="mailto:privacy@example.org">privacy@example.org</a> and include the installation ID if you know it,
-        because otherwise the data can't be linked to you.
+        <a href="mailto:__CONTACT_EMAIL__">__CONTACT_EMAIL__</a>. The app does not show the installation ID; instead
+        name your device, operating system and roughly when you used the app, so the record can be found.
       </p>
       <h2>10. Changes</h2>
       <p>If the app changes (for example new services), this policy is updated; the date above shows the version.</p>
