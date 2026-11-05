@@ -1,0 +1,81 @@
+src/app/login/scan.tsx
+  s_9d7c4a34d1d8b3::t_2e708a2d35cfec 5,8,31-46
+src/app/login/index.tsx
+  s_9d7c4a34d1d8b3::t_2e708a2d35cfec 34,67-71,74,78,201-205
+src/ui/rows.tsx
+  s_9d7c4a34d1d8b3::t_2b7be2dabb1805 108-109,112-114
+  s_9d7c4a34d1d8b3::t_2d08248bbfcb66 217
+  s_9d7c4a34d1d8b3::t_d69831ccc69fb2 20
+src/i18n/locales/ja.json
+  s_9d7c4a34d1d8b3::t_2e708a2d35cfec 545,561,564
+src/i18n/locales/de.json
+  s_9d7c4a34d1d8b3::t_2e708a2d35cfec 556,572,575
+src/ui/AuthImage.tsx
+  s_9d7c4a34d1d8b3::t_c1891e8c34c00b 3,14-15
+src/api/client.ts
+  s_9d7c4a34d1d8b3::t_8d69aca3220af5 247-259,261-272
+  s_9d7c4a34d1d8b3::t_1e737a1a51511e 260
+src/auth/keyStore.ts
+  s_9d7c4a34d1d8b3::t_648843f4831cde 19-21
+  s_9d7c4a34d1d8b3::t_2b7be2dabb1805 7-9,18,22,32,37
+src/ui/links.ts
+  s_9d7c4a34d1d8b3::t_23484e460edac7 1-4
+scripts/android-publish.sh
+  s_9d7c4a34d1d8b3::t_573eb287bac6da 26,78-81
+src/app/share.tsx
+  s_9d7c4a34d1d8b3::t_20b6ce48513949 4-5,23-24
+src/offline/fileCache.ts
+  s_9d7c4a34d1d8b3::t_cf7eb6098c7fd0 4,7-9,13-25,37-50,59,62-64,72,83,100-102,122
+src/offline/wipe.ts
+  s_9d7c4a34d1d8b3::t_09d86521f2416c 4,9-10,16
+  s_9d7c4a34d1d8b3::t_c71f9aca426ef6 1-3,5-8,11-15,17-21
+src/app/_layout.tsx
+  s_9d7c4a34d1d8b3::t_c71f9aca426ef6 11,34,45
+package.json
+  s_9d7c4a34d1d8b3::t_573eb287bac6da 74
+  s_9d7c4a34d1d8b3::t_557cf79833c14f 71
+docs/FEATURES.md
+  s_9d7c4a34d1d8b3::t_aac251ba905bdc 77-86,88-89
+  s_9d7c4a34d1d8b3::t_fb6344a5228dba 17,19
+src/app/+native-intent.tsx
+  s_9d7c4a34d1d8b3::t_60dd45bcf88c0b 5-6,10
+src/auth/qr.ts
+  s_9d7c4a34d1d8b3::t_2e708a2d35cfec 17-18,22-25
+  s_9d7c4a34d1d8b3::t_dbbd24df99fb01 26
+docs/STORE-RELEASE.md
+  s_9d7c4a34d1d8b3::t_fb6344a5228dba 25-45
+docs/RELEASING.md
+  s_9d7c4a34d1d8b3::t_aac251ba905bdc 21-24,140
+app.json
+  s_9d7c4a34d1d8b3::t_0d589a3338c8da 5,23-29
+src/app/login/web.tsx
+  s_9d7c4a34d1d8b3::t_2f548b65d0d99f 139
+  s_9d7c4a34d1d8b3::t_60dd45bcf88c0b 75-76,137-138
+src/ui/serverFile.ts
+  s_9d7c4a34d1d8b3::t_09d86521f2416c 1,10-16,19-20,28-30
+src/__tests__/securityGuards.test.ts
+  s_9d7c4a34d1d8b3::t_d69831ccc69fb2 1-44,46-76
+  s_9d7c4a34d1d8b3::t_ab4566b88856d6 45
+src/i18n/locales/en.json
+  s_9d7c4a34d1d8b3::t_2e708a2d35cfec 556,572,575
+src/offline/useCollectionOffline.ts
+  s_9d7c4a34d1d8b3::t_2d08248bbfcb66 61
+src/maps/offline.ts
+  s_9d7c4a34d1d8b3::t_c71f9aca426ef6 113-117
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3a7e031161a95e440c124d53f22a57624a8c59fb",
+  "prompts": {},
+  "sessions": {
+    "s_9d7c4a34d1d8b3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4f3d5aa1-a43e-4ca3-bb6b-dc380f64cb1c",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
