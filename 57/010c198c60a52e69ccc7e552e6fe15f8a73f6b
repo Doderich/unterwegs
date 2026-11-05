@@ -1,0 +1,19 @@
+docs/RELEASING.md
+  s_8a44f2ec972660::t_f16e00c9a1becd 23-35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "57010c198c60a52e69ccc7e552e6fe15f8a73f6b",
+  "prompts": {},
+  "sessions": {
+    "s_8a44f2ec972660": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a8c5-6d94-76c0-b462-7a77f306c337",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Malte Budig <malte.budig@gmx.net>"
+    }
+  }
+}
