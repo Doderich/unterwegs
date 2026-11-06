@@ -208,3 +208,7 @@ Sign-in uses the user's own server (password, single sign-on configured on that 
 
 Camera is used to scan the sign-in QR code and to take photos for a trip; location is used only when the user creates a place at the current position.
 ```
+
+## Google Play graphics
+
+`node scripts/store-screenshots/feature-graphic.mjs` renders the 1024 × 500 feature graphic per language and the 512 × 512 icon into `build/store-screens/play/`. `node scripts/play-graphics.mjs --credentials <service-account.json> --package <id>` uploads them with the framed Android screenshots (`frame.mjs --platform android`) to every existing store listing, replacing the current images; a language needs its translation in the Play Console first. `--dry-run` lists what it would do.
