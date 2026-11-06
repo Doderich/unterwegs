@@ -1,0 +1,25 @@
+docs/RELEASING.md
+  s_339bcff149b539::t_fa62a730baae71 140
+scripts/android-bundle.sh
+  s_339bcff149b539::t_b2957fd8133890 23-24
+scripts/android-publish.sh
+  s_339bcff149b539::t_cb8f0c192e8b52 6,13-19
+scripts/android-signing.sh
+  s_339bcff149b539::t_f905ec09bcbbd9 12-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b8b9cd71c95330045f8ef0167b271e1fffcd2320",
+  "prompts": {},
+  "sessions": {
+    "s_339bcff149b539": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "429dc936-a139-4646-8b57-d9c3656b5b1e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
