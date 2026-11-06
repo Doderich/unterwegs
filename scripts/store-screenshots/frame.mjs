@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 // Frames raw app screenshots for the stores: a headline in the icon's palette (white and sand on its teal) above the screen in a phone outline.
-//   node scripts/store-screenshots/frame.mjs --platform ios|android [--in build/store-screens/raw] [--out build/store-screens]
+//   node scripts/store-screenshots/frame.mjs --platform ios|android [--size WxH] [--in build/store-screens/raw] [--out build/store-screens]
 // Raw captures are named <platform>-<lang>-<shot>.png (shots and headlines: captions.json). Output keeps the name.
 // Sizes: iOS 1320×2868 (6.9" iPhone, the size App Store Connect requires); Android 1080×1920 (Play: the long side
 // may be at most twice the short side, so a full-height phone screen is scaled down to fit).
+// --size renders another size into <out>/<platform>-<size>, e.g. 1206x2622 for App Store Connect's "iPhone with Dynamic Island
+// (medium display)" slot.
 // Renders with the installed Google Chrome (headless); captures contain demo data only and stay in build/.
 import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -17,16 +19,17 @@ const { values: args } = parseArgs({
     platform: { type: 'string', default: 'ios' },
     in: { type: 'string', default: 'build/store-screens/raw' },
     out: { type: 'string', default: 'build/store-screens' },
+    size: { type: 'string' },
   },
 });
-const SIZE = { ios: [1320, 2868], android: [1080, 1920] }[args.platform];
+const SIZE = args.size ? args.size.split('x').map(Number) : { ios: [1320, 2868], android: [1080, 1920] }[args.platform];
 if (!SIZE) throw new Error('--platform must be ios or android');
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 if (!existsSync(CHROME)) throw new Error('Google Chrome is needed for rendering');
 
 const captions = JSON.parse(readFileSync(join(import.meta.dirname, 'captions.json'), 'utf8'));
 const inDir = resolve(root, args.in);
-const outDir = resolve(root, args.out, args.platform);
+const outDir = resolve(root, args.out, args.size ? `${args.platform}-${args.size}` : args.platform);
 mkdirSync(outDir, { recursive: true });
 
 const [W, H] = SIZE;
