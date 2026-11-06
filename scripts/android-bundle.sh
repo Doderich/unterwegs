@@ -20,7 +20,8 @@ while [[ $# -gt 0 ]]; do
     --track) TRACK="$2"; shift 2 ;;
     --status) STATUS="$2"; shift 2 ;;
     --check) CHECK=1; shift ;;
-    *) echo "Usage: $0 [--check | --upload [--track internal|alpha|beta|production] [--status draft|completed]]" >&2; exit 1 ;;
+    --public) export UNTERWEGS_PUBLIC=1; shift ;;
+    *) echo "Usage: $0 [--check | --upload [--track internal|alpha|beta|production] [--status draft|completed]] [--public]" >&2; exit 1 ;;
   esac
 done
 
