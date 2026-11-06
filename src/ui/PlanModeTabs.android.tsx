@@ -5,6 +5,7 @@ import { useColorScheme } from 'react-native';
 import { tr } from '@/i18n';
 import type { PlanModeTabsProps } from './PlanModeTabs';
 import { Text } from './Text';
+import { ACCENT_SEED } from './accent';
 
 export function PlanModeTabs({ value, onChange }: PlanModeTabsProps) {
   const scheme = useColorScheme() === 'dark' ? 'dark' : 'light';
@@ -12,6 +13,7 @@ export function PlanModeTabs({ value, onChange }: PlanModeTabsProps) {
     <Host
       matchContents={{ vertical: true }}
       colorScheme={scheme}
+      seedColor={ACCENT_SEED}
       style={{ marginHorizontal: 16, marginTop: 8, marginBottom: 8 }}>
       <SingleChoiceSegmentedButtonRow modifiers={[fillMaxWidth()]}>
         <SegmentedButton selected={value === 'day'} onClick={() => onChange('day')}>

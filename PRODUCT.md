@@ -43,7 +43,7 @@ The opening Home feed answers what is happening today and what comes next, combi
 
 ## Brand Commitments
 
-- Name: Unterwegs. App icon in `assets/`.
+- Name: Unterwegs. App icon: a folded map with a sunset road through teal hills, drawn by `scripts/generate-icons.py` into `assets/` (DESIGN.md → App icon). Its hill teal is the app's accent.
 - Voice: plain, friendly German (English as a translation), short labels, no jargon.
 
 ## Evidence on Hand

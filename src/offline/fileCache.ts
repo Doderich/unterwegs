@@ -62,7 +62,12 @@ export async function download(url: string, credentials: Credentials): Promise<F
   if (target.exists && (target.size ?? 0) > 0) return target;
   ensureFolder(url);
   const request = mediaRequest(url, credentials);
-  return downloadToFile(request.url, request.headers, target);
+  try {
+    return await downloadToFile(request.url, request.headers, target);
+  } catch (error) {
+    if (!request.fallback) throw error;
+    return downloadToFile(request.fallback.url, request.fallback.headers, target);
+  }
 }
 
 export type PrefetchProgress = { done: number; total: number; failed: number };

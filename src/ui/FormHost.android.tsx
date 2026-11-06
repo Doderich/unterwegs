@@ -4,7 +4,6 @@ import { Keyboard, KeyboardAvoidingView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Host } from './Host';
-import { useColors } from './theme';
 
 /**
  * A bounded Compose Host otherwise keeps its full height behind the IME. Resize it so FieldGroup can reveal
@@ -14,7 +13,6 @@ import { useColors } from './theme';
  * without a soft keyboard (hardware keyboard) it keeps clear of the gesture bar.
  */
 export function FormHost({ children, keyboardBar }: { children: ReactNode; keyboardBar?: ReactNode }) {
-  const colors = useColors();
   const headerHeight = useHeaderHeight();
   const insets = useSafeAreaInsets();
   const [keyboard, setKeyboard] = useState(false);
@@ -31,9 +29,7 @@ export function FormHost({ children, keyboardBar }: { children: ReactNode; keybo
       style={{ flex: 1 }}
       behavior="height"
       keyboardVerticalOffset={headerHeight + (keyboardBar ? 0 : 24)}>
-      <Host seedColor={colors.tint} style={{ flex: 1 }}>
-        {children}
-      </Host>
+      <Host style={{ flex: 1 }}>{children}</Host>
       {keyboardBar ? <View style={{ paddingBottom: keyboard ? 0 : insets.bottom }}>{keyboardBar}</View> : null}
     </KeyboardAvoidingView>
   );

@@ -57,7 +57,7 @@ The map fills the middle column. The day filter stays a floating bar on the map.
 
 ### Inspector
 
-A location, lodging, or transportation uses the same blocks as the phone: gallery, name, then the arrival or the journey, then the rest. The gallery is sized from the inspector's width, between 4:3 and 16:10, and at most 280pt tall. It is not a third of the iPad window. Transportation keeps its low 2:1 strip. A resource with no photo keeps the terracotta icon beside the title.
+A location, lodging, or transportation uses the same blocks as the phone: gallery, name, then the arrival or the journey, then the rest. The gallery is sized from the inspector's width, between 4:3 and 16:10, and at most 280pt tall. It is not a third of the iPad window. Transportation keeps its low 2:1 strip. A resource with no photo keeps the teal icon beside the title.
 
 Notes and checklists use the same reading and ticking they use on the phone. The inspector scrolls on its own.
 
@@ -75,7 +75,7 @@ Reordering a day accepts a drag on the regular-width list, with the same limits 
 
 ## What does not change
 
-Colours, type, the one terracotta accent, native grouped rows, and the photo treatments in [DESIGN.md](../DESIGN.md). Offline reading, per-object time zones, and PDFs. German, English, and Japanese. The collection is still one request. Public collections stay read-only. Large text, bold text, more contrast, reduced motion, and VoiceOver apply to every column. The reading order is leading, then middle, then inspector.
+Colours, type, the one teal accent, native grouped rows, and the photo treatments in [DESIGN.md](../DESIGN.md). Offline reading, per-object time zones, and PDFs. German, English, and Japanese. The collection is still one request. Public collections stay read-only. Large text, bold text, more contrast, reduced motion, and VoiceOver apply to every column. The reading order is leading, then middle, then inspector.
 
 ## How it is built
 

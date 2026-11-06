@@ -8,6 +8,7 @@ import { useScreenBackground } from '@/ui/useScreenBackground';
 import { useSettings } from '@/settings/store';
 import { sfSymbol } from '@/ui/icons';
 import { useColors } from '@/ui/theme';
+import { useTabBarColors } from '@/ui/useTabBarColors';
 import { ScreenSearchProvider, useScreenSearchActions } from '@/ui/ScreenSearch';
 
 /** App destinations live here; opening a collection pushes a separate tab workspace on the root stack. */
@@ -22,6 +23,7 @@ export default function MainLayout() {
 function MainTabs() {
   const search = useScreenSearchActions();
   const colors = useColors();
+  const tabBar = useTabBarColors();
   const backgroundColor = useScreenBackground();
   usePrefetchMainData();
   const { boldText, showTabLabels } = useSettings();
@@ -30,6 +32,7 @@ function MainTabs() {
       <Stack.Screen options={{ headerShown: false }} />
       <NativeTabs
         tintColor={colors.tint}
+        {...tabBar}
         minimizeBehavior="onScrollDown"
         labelStyle={boldText ? { fontWeight: '700' } : undefined}>
         <NativeTabs.Trigger name="(home)" contentStyle={{ backgroundColor }} accessibilityLabel={tr('shell.home')}>

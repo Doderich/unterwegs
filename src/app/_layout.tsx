@@ -69,7 +69,17 @@ function NavigationTheme({ children }: { children: ReactNode }) {
   const base = scheme === 'dark' ? DarkTheme : DefaultTheme;
   const background = useScreenBackground();
   return (
-    <ThemeProvider value={{ ...base, colors: { ...base.colors, primary: colors.tint, background } }}>
+    <ThemeProvider
+      value={{
+        ...base,
+        colors: {
+          ...base.colors,
+          primary: colors.tint,
+          background,
+          // Android headers take `card`: the Material surface, so they match the screen below them.
+          ...(Platform.OS === 'android' && { card: background, text: colors.text, border: colors.border }),
+        },
+      }}>
       {/* Follow the app appearance, not the system one: Android otherwise keeps white icons on light headers. */}
       <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       {children}

@@ -1,110 +1,96 @@
 #!/usr/bin/env python3
 """Generate the app icon, Android adaptive icon, splash images and favicon from one drawing.
 
-The mark: a desk globe, tilted like the Earth, with a small flag stuck into it. Monochrome; the colours per
-appearance (light, dark, clear, tinted) live in the iOS Icon Composer document `assets/unterwegs.icon`, which can
-be opened and refined in Icon Composer (Xcode → Open Developer Tool). Rasters are rendered with `sips` (macOS).
+The mark: a folded paper map whose panels show a sunset landscape, with a road winding through the hills
+towards the sun. It stands on a plain paper-white plate (black in the dark appearance; staging: amber). The iOS Icon Composer documents `assets/unterwegs.icon`
+and `assets/unterwegs-staging.icon` hold the mark as layers, so iOS can apply its glass and dark appearances; they
+can be opened and refined in Icon Composer (Xcode → Open Developer Tool). Rasters are rendered with `sips` (macOS).
 
     python3 scripts/generate-icons.py
 """
 import json
-import math
 import shutil
 import subprocess
 import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-ICON = ROOT / 'assets' / 'unterwegs.icon'
-IMAGES = ROOT / 'assets' / 'images'
+ASSETS = ROOT / 'assets'
+IMAGES = ASSETS / 'images'
 
-INK = '#1C1C1E'
-NIGHT_TOP, NIGHT_BOTTOM = '#2C2C2E', '#050505'
-DAY_TOP, DAY_BOTTOM = '#FFFFFF', '#E5E5EA'
+PAPER, NIGHT = '#FBF8F4', '#050909'  # background: light appearance, dark appearance
+AMBER = '#F59E0B'  # staging, so the two apps are told apart on the home screen
+# The map at sunset (light) and by moonlight (dark appearance, dark splash screen)
+DAY = {'sky': ('#E9BE8C', '#FAE8D4'), 'sun': '#FAEBD8', 'road': '#FAEBD8', 'hills': '#428E8B', 'fold': '#7A4A1A'}
+MOON = {'sky': ('#0B2E39', '#12404D'), 'sun': '#E9CFA7', 'road': '#E9CFA7', 'hills': '#2E6B73', 'fold': '#000000'}
 
 # Geometry on a 1024 canvas
-C = (502, 472)
-R = 220
-TILT = 23  # axial tilt, north pole leans right
-VIEW = math.radians(18)  # seen slightly from above: parallels curve
-RING = R + 52
-GLYPH_CENTRE = (503.5, 510.5)  # centre of the mark's bounding box (216–791 × 162–859)
-
-
-def point(angle, radius):
-    return C[0] + radius * math.cos(math.radians(angle)), C[1] + radius * math.sin(math.radians(angle))
+MAP = 'M85 255 L335 160 L515 255 L755 160 L935 255 L935 865 L755 775 L545 870 L335 775 L85 870 Z'
+MAP_CENTRE = (510, 515)  # centre of the map's bounding box (85–935 × 160–870)
+FOLDS = ['M335 160 L515 255 L545 870 L335 775 Z', 'M755 160 L935 255 L935 865 L755 775 Z']
+HILL_LINE = 'M60 535 L225 460 L310 500 L465 405 L585 468 C 610 445, 650 445, 690 470 L815 385 L960 450 V1024 H60 Z'
+ROAD_PATH = (
+    'M40 780 C 160 700, 420 710, 445 665 C 465 625, 370 610, 390 575 C 415 530, 690 535, 778 505 '
+    'C 790 495, 770 480, 700 468 L 690 474 C 730 490, 725 500, 690 508 C 600 528, 520 540, 515 565 '
+    'C 510 590, 640 610, 615 680 C 595 740, 450 790, 405 820 L 40 1000 Z'
+)
+SUN_CIRCLE = (730, 415, 140)
+SCALE = 0.86  # the map on the icon plate
 
 
 def svg(body):
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">{body}</svg>'
 
 
-def sphere(color):
-    return f'<circle cx="{C[0]}" cy="{C[1]}" r="{R}" fill="{color}"/>'
+def clipped(body, key):
+    return f'<defs><clipPath id="map-{key}"><path d="{MAP}"/></clipPath></defs><g clip-path="url(#map-{key})">{body}</g>'
 
 
-def grid_lines(color, width=22):
-    cx, cy = C
-    lines = [f'<line x1="{cx}" y1="{cy - R}" x2="{cx}" y2="{cy + R}"/>']
-    for longitude in (32, 62):
-        lines.append(f'<ellipse cx="{cx}" cy="{cy}" rx="{R * math.sin(math.radians(longitude)):.1f}" ry="{R}"/>')
-    for latitude in (-42, 0, 42):
-        r = R * math.cos(math.radians(latitude))
-        y = cy - R * math.sin(math.radians(latitude)) * math.cos(VIEW)
-        lines.append(f'<path d="M{cx - r:.1f} {y:.1f} A{r:.1f} {r * math.sin(VIEW):.1f} 0 0 0 {cx + r:.1f} {y:.1f}"/>')
+def sky(p=DAY):
+    top, bottom = p['sky']
     return (
-        f'<g transform="rotate({TILT} {cx} {cy})" fill="none" stroke="{color}" stroke-width="{width}" '
-        f'stroke-linecap="round">{"".join(lines)}</g>'
+        f'<defs><linearGradient id="sky" x1="0" x2="0" y1="160" y2="560" gradientUnits="userSpaceOnUse">'
+        f'<stop offset="0" stop-color="{top}"/><stop offset="1" stop-color="{bottom}"/></linearGradient></defs>'
+        f'<path d="{MAP}" fill="url(#sky)"/>'
     )
 
 
-def grid(color):
-    """Grid as its own layer (Icon Composer), clipped to the sphere."""
+def sun(p=DAY):
+    x, y, r = SUN_CIRCLE
+    return clipped(f'<circle cx="{x}" cy="{y}" r="{r}" fill="{p["sun"]}"/>', 'sun')
+
+
+def hills(p=DAY):
+    return clipped(f'<path d="{HILL_LINE}" fill="{p["hills"]}"/>', 'hills')
+
+
+def road(p=DAY):
+    folds = ''.join(f'<path d="{d}" fill="{p["fold"]}" opacity=".05"/>' for d in FOLDS)
+    return clipped(f'<path d="{ROAD_PATH}" fill="{p["road"]}"/>{folds}', 'road')
+
+
+def silhouette(color):
+    """The map in one colour with the sun, the ridge line and the road cut out (Android themed icon)."""
+    x, y, r = SUN_CIRCLE
+    ridge = HILL_LINE.split(' V')[0]
     return (
-        f'<defs><clipPath id="sphere"><circle cx="{C[0]}" cy="{C[1]}" r="{R}"/></clipPath></defs>'
-        f'<g clip-path="url(#sphere)">{grid_lines(color)}</g>'
+        f'<defs><mask id="cut"><path d="{MAP}" fill="#fff"/><circle cx="{x}" cy="{y}" r="{r}" fill="#000"/>'
+        f'<path d="{HILL_LINE}" fill="#fff"/><path d="{ridge}" fill="none" stroke="#000" stroke-width="22"/>'
+        f'<path d="{ROAD_PATH}" fill="#000"/><path d="M0 0 H1024 V1024 H0 Z {MAP}" fill="#000" fill-rule="evenodd"/>'
+        f'</mask></defs>'
+        f'<rect width="1024" height="1024" fill="{color}" mask="url(#cut)"/>'
     )
 
 
-def stand(color):
-    start, end = point(TILT - 90, RING), point(90, RING)  # north pole, round the left side, down to the stem
-    base_y = C[1] + R + 150
-    return (
-        f'<g fill="none" stroke="{color}" stroke-linecap="round">'
-        f'<path d="M{start[0]:.1f} {start[1]:.1f} A{RING} {RING} 0 1 0 {end[0]:.1f} {end[1]:.1f}" stroke-width="28"/>'
-        f'<path d="M{C[0]} {C[1] + RING:.1f} L{C[0]} {base_y - 6}" stroke-width="28"/>'
-        f'<path d="M{C[0] - 100} {base_y} L{C[0] + 100} {base_y}" stroke-width="36"/></g>'
-    )
-
-
-def flag(color):
-    foot = point(-38, R - 10)  # stuck into the upper right of the sphere
-    x, y = foot[0], foot[1] - 170
-    cloth = (
-        f'M{x:.1f} {y:.1f} C {x + 40:.1f} {y - 18:.1f}, {x + 80:.1f} {y + 22:.1f}, {x + 124:.1f} {y + 2:.1f} '
-        f'L{x + 124:.1f} {y + 80:.1f} C {x + 80:.1f} {y + 100:.1f}, {x + 40:.1f} {y + 60:.1f}, {x:.1f} {y + 78:.1f} Z'
-    )
-    return (
-        f'<line x1="{foot[0]:.1f}" y1="{foot[1]:.1f}" x2="{x:.1f}" y2="{y:.1f}" stroke="{color}" stroke-width="20" '
-        f'stroke-linecap="round"/><path d="{cloth}" fill="{color}"/>'
-    )
-
-
-def glyph(color, scale=1.0):
-    """The whole mark in one colour with the grid cut out, centred on the canvas."""
-    body = (
-        f'<defs><mask id="cut"><rect width="1024" height="1024" fill="#fff"/>{grid_lines("#000")}</mask></defs>'
-        f'{stand(color)}<g mask="url(#cut)">{sphere(color)}</g>{flag(color)}'
-    )
-    gx, gy = GLYPH_CENTRE
+def mark(scale=1.0, body=None, p=DAY):
+    """The map centred on the canvas."""
+    gx, gy = MAP_CENTRE
+    body = body or sky(p) + sun(p) + hills(p) + road(p)
     return f'<g transform="translate(512 512) scale({scale}) translate({-gx} {-gy})">{body}</g>'
 
 
-def gradient(top, bottom):
-    return (
-        f'<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{top}"/>'
-        f'<stop offset="1" stop-color="{bottom}"/></linearGradient></defs><rect width="1024" height="1024" fill="url(#bg)"/>'
-    )
+def solid(color):
+    return f'<rect width="1024" height="1024" fill="{color}"/>'
 
 
 def srgb(hex_color):
@@ -112,37 +98,42 @@ def srgb(hex_color):
     return f'srgb:{r:.5f},{g:.5f},{b:.5f},1.00000'
 
 
-def icon_composer():
-    shutil.rmtree(ICON, ignore_errors=True)
-    (ICON / 'Assets').mkdir(parents=True)
-    for name, body in {'flag': flag('#000'), 'grid': grid('#000'), 'globe': sphere('#000'), 'stand': stand('#000')}.items():
-        (ICON / 'Assets' / f'{name}.svg').write_text(svg(body))
+def icon_composer(name, light, dark):
+    """An Icon Composer document: the background per appearance, the map as layers in its own colours.
 
-    def layer(name, light, dark, glass=True):
-        fills = [{'value': {'solid': srgb(light)}}, {'appearance': 'dark', 'value': {'solid': srgb(dark)}}]
-        return {'image-name': f'{name}.svg', 'name': name, 'fill-specializations': fills, 'glass': glass}
+    The layers keep their drawn (sunset) colours; the dark appearance repaints them by moonlight."""
+    icon = ASSETS / name
+    shutil.rmtree(icon, ignore_errors=True)
+    (icon / 'Assets').mkdir(parents=True)
+    # Icon Composer places layers on the full canvas, so they carry the same scale as the flat icon.
+    for layer_name, body in {'sky': sky(), 'sun': sun(), 'hills': hills(), 'road': road()}.items():
+        (icon / 'Assets' / f'{layer_name}.svg').write_text(svg(mark(SCALE, body)))
 
-    def group(name, layers):
+    def layer(layer_name, glass=False):
+        moon = MOON[layer_name][-1] if layer_name == 'sky' else MOON[layer_name]
         return {
-            'name': name,
-            'layers': layers,
-            'shadow': {'kind': 'neutral', 'opacity': 0.5},
-            'translucency': {'enabled': True, 'value': 0.3},
+            'image-name': f'{layer_name}.svg',
+            'name': layer_name,
+            'glass': glass,
+            'fill-specializations': [{'appearance': 'dark', 'value': {'solid': srgb(moon)}}],
         }
 
     document = {
         'fill-specializations': [
-            {'value': {'linear-gradient': [srgb(DAY_TOP), srgb(DAY_BOTTOM)]}},
-            {'appearance': 'dark', 'value': {'linear-gradient': [srgb(NIGHT_TOP), srgb(NIGHT_BOTTOM)]}},
+            {'value': {'solid': srgb(light)}},
+            {'appearance': 'dark', 'value': {'solid': srgb(dark)}},
         ],
         'groups': [  # topmost first
-            group('Flag', [layer('flag', INK, '#FFFFFF')]),
-            group('Globe', [layer('grid', '#F2F2F7', INK, glass=False), layer('globe', INK, '#FFFFFF')]),
-            group('Stand', [layer('stand', INK, '#FFFFFF')]),
+            {
+                'name': 'Map',
+                'layers': [layer('road'), layer('hills'), layer('sun', glass=True), layer('sky')],
+                'shadow': {'kind': 'neutral', 'opacity': 0.5},
+                'translucency': {'enabled': False, 'value': 0.5},
+            }
         ],
         'supported-platforms': {'circles': ['watchOS'], 'squares': 'shared'},
     }
-    (ICON / 'icon.json').write_text(json.dumps(document, indent=2) + '\n')
+    (icon / 'icon.json').write_text(json.dumps(document, indent=2) + '\n')
 
 
 def raster(name, body, size):
@@ -157,16 +148,16 @@ def raster(name, body, size):
 
 
 def main():
-    icon_composer()
-    night = gradient(NIGHT_TOP, NIGHT_BOTTOM)
-    raster('icon.png', night + glyph('#FFFFFF'), 1024)  # fallback icon (Android legacy, App Store Connect)
-    raster('favicon.png', night + glyph('#FFFFFF', 0.9), 48)
-    # Android adaptive icon: the mark inside the 66 dp safe zone of the 108 dp canvas
-    raster('android-icon-foreground.png', glyph('#FFFFFF', 0.62), 512)
-    raster('android-icon-background.png', night, 512)
-    raster('android-icon-monochrome.png', glyph('#FFFFFF', 0.62), 432)
-    raster('splash-icon.png', glyph(INK), 512)
-    raster('splash-icon-dark.png', glyph('#FFFFFF'), 512)
+    icon_composer('unterwegs.icon', PAPER, NIGHT)
+    icon_composer('unterwegs-staging.icon', AMBER, AMBER)
+    raster('icon.png', solid(PAPER) + mark(SCALE), 1024)  # fallback icon (Android legacy, App Store Connect)
+    raster('favicon.png', solid(PAPER) + mark(0.92), 48)
+    # Android adaptive icon: the map inside the 66 dp safe circle of the 108 dp canvas
+    raster('android-icon-foreground.png', mark(0.56), 512)
+    raster('android-icon-background.png', solid(PAPER), 512)
+    raster('android-icon-monochrome.png', mark(0.56, silhouette('#FFFFFF')), 432)
+    raster('splash-icon.png', mark(), 512)
+    raster('splash-icon-dark.png', mark(p=MOON), 512)
 
 
 if __name__ == '__main__':

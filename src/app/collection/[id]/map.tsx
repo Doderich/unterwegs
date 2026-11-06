@@ -29,8 +29,8 @@ import { useTabVisited } from '@/ui/useTabVisited';
 const KIND_COLORS = {
   location: '#2563EB',
   lodging: '#C2410C',
-  'transport-start': '#059669',
-  'transport-end': '#059669',
+  'transport-start': '#7C3AED',
+  'transport-end': '#7C3AED',
 };
 
 const KIND_LABEL: Record<MapPoint['kind'], () => string> = {

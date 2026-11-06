@@ -2,7 +2,7 @@
 # Explicit OTA target; see docs/RELEASING.md. No arbitrary eoas arguments are forwarded.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-CHANNEL="" PLATFORM=all CONFIRM_COMMIT="" DRY_RUN=0
+CHANNEL="" PLATFORM=all CONFIRM_COMMIT="" DRY_RUN=0 PUBLIC=0
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --channel|--platform|--confirm-commit)
@@ -12,7 +12,8 @@ while [[ $# -gt 0 ]]; do
       esac
       shift 2 ;;
     --dry-run) DRY_RUN=1; shift ;;
-    *) echo "Unknown argument: $1. Use --channel staging|production [--platform all|ios|android] [--confirm-commit SHA] [--dry-run]" >&2; exit 1 ;;
+    --public) PUBLIC=1; shift ;;
+    *) echo "Unknown argument: $1. Use --channel staging|production [--platform all|ios|android] [--confirm-commit SHA] [--dry-run] [--public]" >&2; exit 1 ;;
   esac
 done
 [[ "$CHANNEL" == staging || "$CHANNEL" == production ]] || { echo "Choose --channel staging or production" >&2; exit 1; }
@@ -36,6 +37,8 @@ if [[ -f .env.local ]]; then
   set +a
 fi
 export UNTERWEGS_UPDATE_CHANNEL="$CHANNEL" RELEASE_CHANNEL="$CHANNEL"
+# --public: no server preset, like the store build it updates (ios-testflight.sh --public).
+if [[ $PUBLIC == 1 ]]; then export EXPO_PUBLIC_DEFAULT_SERVER_URL=""; fi
 unset DISABLE_CODE_SIGNING
 : "${UNTERWEGS_APP_ID:?Set UNTERWEGS_APP_ID}"
 : "${UNTERWEGS_UPDATES_URL:?Set UNTERWEGS_UPDATES_URL}"
@@ -45,7 +48,7 @@ unset DISABLE_CODE_SIGNING
 [[ -f certs/certificate.pem ]] || { echo "certs/certificate.pem missing" >&2; exit 1; }
 RUNTIME="$(node -p "require('./app.json').expo.version")"
 if [[ $DRY_RUN == 1 ]]; then
-  echo "Validated $COMMIT: channel=$CHANNEL branch=$CHANNEL runtime=$RUNTIME platform=$PLATFORM; nothing published"
+  echo "Validated $COMMIT: channel=$CHANNEL branch=$CHANNEL runtime=$RUNTIME platform=$PLATFORM preset=$([[ -n $EXPO_PUBLIC_DEFAULT_SERVER_URL ]] && echo yes || echo none); nothing published"
   exit 0
 fi
 npm run check

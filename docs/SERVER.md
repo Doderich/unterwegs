@@ -15,6 +15,7 @@ Baseline verified 02.11.2026, with later checks dated in each section (latest 05
 ## Request rules
 
 - The public domain routes `/api`, `/auth`, `/media`, `/accounts` through SvelteKit to Django. `/docs/` (Swagger) is **not** routed.
+- Other servers may not: the public demo (`demo.adventurelog.app`) answers `/api` but returns its web app's 404 for `/media`; image URLs there point at the backend host `demoapi.adventurelog.app`, which serves public images without the key and the images of private collections only with it (403 otherwise). The app loads such media from the signed-in server first, then falls back to the original HTTPS URL. The fallback carries the key only when its host is a subdomain of the same domain as the server (`demo.…` and `demoapi.…`) and that domain is not a shared-hosting or dynamic-DNS one (`mediaRequest` in `src/api/client.ts`).
 - `/api/x/` → **308** → `/api/x`. Call paths **without** a trailing slash.
 - Auth header: `X-API-Key: al_…` or `Authorization: Api-Key al_…`. Both pass through the proxy.
 - "Not logged in" responses come in two forms: **401** `{"detail":"Authentication credentials were not provided."}` and **400** `{"error":"User is not authenticated"}`. Treat both as logged out.
