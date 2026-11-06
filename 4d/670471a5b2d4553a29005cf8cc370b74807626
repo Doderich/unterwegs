@@ -1,0 +1,27 @@
+scripts/store-screenshots/frame.mjs
+  s_339bcff149b539::t_c6c609306b033a 25
+  s_339bcff149b539::t_4aa21e31ed628c 3,7-8,22,32
+docs/STORE-RELEASE.md
+  s_339bcff149b539::t_c6c609306b033a 116
+docs/STORE-LISTING.md
+  s_339bcff149b539::t_c0d7332262379b 3,205
+  s_339bcff149b539::t_c6c609306b033a 156
+  s_339bcff149b539::t_b9064970cf3173 13-17,21-25,51-55,59-63,160-168,183-187,193-198
+  s_339bcff149b539::t_65ae6a5a5c30e2 1-2,4-12,18-20,26-50,56-58,64-155,157-159,169-182,188-192,199-204,206-210
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4d670471a5b2d4553a29005cf8cc370b74807626",
+  "prompts": {},
+  "sessions": {
+    "s_339bcff149b539": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "429dc936-a139-4646-8b57-d9c3656b5b1e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
