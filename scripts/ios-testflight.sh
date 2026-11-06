@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Archives the iOS release build and uploads it to App Store Connect, for TestFlight (docs/RELEASING.md).
-#   npm run ios:testflight -- --channel production|staging [--no-upload]
+#   npm run ios:testflight -- --channel production|staging [--no-upload] [--public]
+# --public: no server preset on the login screen (the App Store build; docs/STORE-RELEASE.md), whatever .env.local sets.
 # Signing and upload use the Apple ID signed in to Xcode (Settings → Accounts): the Account Holder of the team in
 # UNTERWEGS_APPLE_TEAM_ID, since on an individual membership nobody else may sign.
 set -euo pipefail
@@ -10,13 +11,15 @@ export LANG="${LANG:-en_US.UTF-8}" LC_ALL="${LC_ALL:-en_US.UTF-8}"
 
 CHANNEL=production
 UPLOAD=1
+PUBLIC=0
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --channel)
       [[ $# -ge 2 ]] || { echo "Missing value for --channel" >&2; exit 1; }
       CHANNEL="$2"; shift 2 ;;
     --no-upload) UPLOAD=0; shift ;;
-    *) echo "Usage: $0 [--channel production|staging] [--no-upload]" >&2; exit 1 ;;
+    --public) PUBLIC=1; shift ;;
+    *) echo "Usage: $0 [--channel production|staging] [--no-upload] [--public]" >&2; exit 1 ;;
   esac
 done
 [[ "$CHANNEL" == production || "$CHANNEL" == staging ]] || { echo "Invalid channel: choose production or staging" >&2; exit 1; }
@@ -30,6 +33,8 @@ fi
 : "${UNTERWEGS_APPLE_TEAM_ID:?Set UNTERWEGS_APPLE_TEAM_ID in .env.local}"
 # The command argument wins over the ordinary development default in .env.local.
 export UNTERWEGS_UPDATE_CHANNEL="$CHANNEL"
+# Set but empty, so Expo's own .env.local loading doesn't fill it in again.
+if [[ $PUBLIC == 1 ]]; then export EXPO_PUBLIC_DEFAULT_SERVER_URL=""; fi
 unset DISABLE_CODE_SIGNING
 : "${UNTERWEGS_APP_ID:?Set UNTERWEGS_APP_ID in .env.local}"
 
@@ -49,7 +54,7 @@ OUT="build/testflight/${CHANNEL}-${VERSION}-${UNTERWEGS_BUILD_NUMBER}"
 mkdir -p "$OUT"
 ARCHIVE="$OUT/Unterwegs-${CHANNEL}.xcarchive"
 
-echo "${APP_NAME}: ${VERSION} (${UNTERWEGS_BUILD_NUMBER}), channel=${CHANNEL}, bundle=${BUNDLE_ID}"
+echo "${APP_NAME}: ${VERSION} (${UNTERWEGS_BUILD_NUMBER}), channel=${CHANNEL}, bundle=${BUNDLE_ID}, server preset: $([[ -n ${EXPO_PUBLIC_DEFAULT_SERVER_URL:-} ]] && echo yes || echo none)"
 echo "Expected App Store Connect record: ${APP_NAME} (matched by bundle ID)"
 npx expo prebuild --platform ios
 

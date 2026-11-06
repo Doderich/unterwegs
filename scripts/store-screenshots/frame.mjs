@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Frames raw app screenshots for the stores: a headline in the icon's palette (sand, teal) above the screen in a phone outline.
+// Frames raw app screenshots for the stores: a headline in the icon's palette (white and sand on its teal) above the screen in a phone outline.
 //   node scripts/store-screenshots/frame.mjs --platform ios|android [--in build/store-screens/raw] [--out build/store-screens]
 // Raw captures are named <platform>-<lang>-<shot>.png (shots and headlines: captions.json). Output keeps the name.
 // Sizes: iOS 1320×2868 (6.9" iPhone, the size App Store Connect requires); Android 1080×1920 (Play: the long side
@@ -58,8 +58,8 @@ function page(image, [line1, line2], lang) {
   * { margin: 0; box-sizing: border-box; }
   html, body { width: ${W}px; height: ${H}px; overflow: hidden; }
   body {
-    background: radial-gradient(120% 70% at 50% 0%, #FDF8F1 0%, #F7E6CF 55%, #EFD2AE 100%);
-    font-family: ${font}; color: #0B2E39;
+    background: linear-gradient(180deg, #4A9692 0%, #2F7672 100%);
+    font-family: ${font}; color: #FFFFFF;
     display: flex; flex-direction: column; align-items: center;
   }
   h1 {
@@ -68,7 +68,7 @@ function page(image, [line1, line2], lang) {
     letter-spacing: ${lang === 'ja' ? 0 : -0.02}em;
   }
   h1 span { display: block; }
-  h1 span + span { color: #2F7672; }
+  h1 span + span { color: #F7E6CF; }
   .phone {
     margin-top: ${phoneGap}px; padding: ${bezel}px; border-radius: ${radius + bezel}px;
     background: #1C1C1E; box-shadow: 0 ${Math.round(40 * u)}px ${Math.round(120 * u)}px rgba(11, 46, 57, .30);
