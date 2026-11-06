@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// Uploads the Play store graphics through the Play Developer API, in one edit per run: per language the 512 px icon,
-// the feature graphic and the phone screenshots (replacing the existing ones, in captions.json order). Languages
-// without a store listing yet are skipped: add the translation in the Play Console first.
+// Fills the Play store listing through the Play Developer API, in one edit per run: per language the texts
+// (scripts/store-screenshots/play-listing.json: title, short and full description), the 512 px icon, the feature
+// graphic and the phone screenshots (replacing the existing ones, in captions.json order). Missing languages are added.
 //   node scripts/play-graphics.mjs --credentials <service-account.json> --package <id> [--dir build/store-screens]
 //     [--dry-run]   lists the store listings and the files it would upload, then deletes the edit
 // Input: scripts/store-screenshots/frame.mjs (android-<lang>-<shot>.png) and feature-graphic.mjs (play/).
@@ -26,6 +26,7 @@ const LANGUAGES = { de: 'de-DE', en: 'en-US', ja: 'ja-JP' };
 const captions = JSON.parse(readFileSync(join(root, 'scripts/store-screenshots/captions.json'), 'utf8'));
 const dir = resolve(root, args.dir);
 const plan = Object.entries(LANGUAGES).map(([lang, language]) => ({
+  lang,
   language,
   icon: join(dir, 'play/icon-512.png'),
   featureGraphic: join(dir, `play/feature-${lang}.png`),
@@ -90,18 +91,14 @@ let committed = false;
 try {
   const { listings = [] } = await call('GET', `${API}${editPath}/listings`);
   console.log(`Store listings: ${listings.map((l) => l.language).join(', ') || 'none'}`);
-  const existing = new Set(listings.map((l) => l.language));
-  for (const { language, icon, featureGraphic, phoneScreenshots } of plan) {
-    if (!existing.has(language)) {
-      console.log(
-        `${language}: skipped, no store listing in this language yet (Play Console → Main store listing → Manage translations)`,
-      );
-      continue;
-    }
+  const texts = JSON.parse(readFileSync(join(root, 'scripts/store-screenshots/play-listing.json'), 'utf8'));
+  for (const { lang, language, icon, featureGraphic, phoneScreenshots } of plan) {
     if (args['dry-run']) {
-      console.log(`${language}: icon, feature graphic, ${phoneScreenshots.length} phone screenshots`);
+      console.log(`${language}: texts, icon, feature graphic, ${phoneScreenshots.length} phone screenshots`);
       continue;
     }
+    // Creates the listing in this language if it doesn't exist yet; images need one.
+    await call('PUT', `${API}${editPath}/listings/${language}`, { json: { language, ...texts[lang] } });
     const images = (type) => `${editPath}/listings/${language}/${type}`;
     for (const [type, file] of [
       ['icon', icon],
@@ -114,7 +111,7 @@ try {
     for (const file of phoneScreenshots) {
       await call('POST', `${UPLOAD_API}${images('phoneScreenshots')}?uploadType=media`, { file });
     }
-    console.log(`${language}: icon, feature graphic, ${phoneScreenshots.length} phone screenshots uploaded`);
+    console.log(`${language}: icon, feature graphic, ${phoneScreenshots.length} phone screenshots uploaded with texts`);
   }
   if (!args['dry-run']) {
     await call('POST', `${API}${editPath}:commit`);
