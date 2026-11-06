@@ -137,7 +137,7 @@ npm run ios:testflight -- --channel staging
 npm run ios:testflight -- --channel staging --no-upload
 ```
 
-`--public` builds without a server preset on the login screen, whatever `.env.local` sets: the App Store build ([STORE-RELEASE.md](STORE-RELEASE.md)). Over-the-air updates replace the whole JavaScript bundle, preset included, so publish production updates for a public runtime with `--public` as well (`scripts/publish-update.sh`, the `update:*` scripts pass it through); otherwise the next update puts the preset back into the store app.
+`--public` builds without a server preset on the login screen, whatever `.env.local` sets: the App Store build ([STORE-RELEASE.md](STORE-RELEASE.md)). The Android scripts take the same option (`npm run android:bundle -- --upload --public`, `npm run android:publish -- --public`). Over-the-air updates replace the whole JavaScript bundle, preset included, so publish production updates for a public runtime with `--public` as well (`scripts/publish-update.sh`, the `update:*` scripts pass it through); otherwise the next update puts the preset back into the store app.
 
 The command defaults to production when `--channel` is omitted; an explicit channel overrides `.env.local`. It prints the expected App Store Connect name and bundle id before building. Both channels use the existing Xcode signing identity. The staging app and App Group need provisioning just like production; automatic signing may create those assets. Set up the matching Apple app record before its first upload, then TestFlight → an internal group with the testers. Internal testers need no review.
 

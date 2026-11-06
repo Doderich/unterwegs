@@ -9,6 +9,9 @@ if [[ -f .env.local ]]; then
   source .env.local
   set +a
 fi
+# UNTERWEGS_PUBLIC=1 (the scripts' --public): no server preset on the login screen, whatever .env.local sets, for the
+# store build and the APKs on the same runtime (docs/RELEASING.md). Set but empty, so Expo's .env.local loading keeps it.
+if [[ "${UNTERWEGS_PUBLIC:-0}" == 1 ]]; then export EXPO_PUBLIC_DEFAULT_SERVER_URL=""; fi
 # Distribution scripts always build the family production variant.
 export UNTERWEGS_UPDATE_CHANNEL=production
 unset DISABLE_CODE_SIGNING

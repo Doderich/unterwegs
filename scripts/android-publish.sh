@@ -3,13 +3,20 @@
 # (UNTERWEGS_RELEASE_REPO), which phones follow with Obtainium (docs/RELEASING.md).
 #   npm run android:publish                 build, sign, verify, publish
 #   npm run android:publish -- --no-publish build, sign and verify only
+#   --public                                no server preset on the login screen (see android-signing.sh)
 # The upload keystore and its password come from 1Password (UNTERWEGS_KEYSTORE_OP_REF,
 # UNTERWEGS_KEYSTORE_PASSWORD_OP_REF in .env.local).
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
 PUBLISH=1
-[[ "${1:-}" == "--no-publish" ]] && PUBLISH=0
+for arg in "$@"; do
+  case "$arg" in
+    --no-publish) PUBLISH=0 ;;
+    --public) export UNTERWEGS_PUBLIC=1 ;;
+    *) echo "Usage: $0 [--no-publish] [--public]" >&2; exit 1 ;;
+  esac
+done
 
 # shellcheck source=scripts/android-signing.sh
 source scripts/android-signing.sh
