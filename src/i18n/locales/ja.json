@@ -853,7 +853,22 @@
     "theme": "テーマ",
     "tripYouOpenSavedFor": "開いたコレクションは自動的にオフライン用に保存されます。",
     "unknown": "不明",
-    "youllNeedNewQrCode": "その後、新しいQRコードまたはAPIキーが必要になります。"
+    "youllNeedNewQrCode": "その後、新しいQRコードまたはAPIキーが必要になります。",
+    "openSystemSettings": "設定を開く",
+    "reminderCheckIn": "チェックイン",
+    "reminderCheckOut": "チェックアウト",
+    "reminderCollectionStart": "コレクション前日の夜",
+    "reminderDeparture": "出発",
+    "reminderEndOfDay": "夜: 訪問した場所を記録",
+    "reminderOfflineReadiness": "未保存のオフラインファイル",
+    "reminderVisit": "予定した訪問",
+    "reminders": "リマインダー",
+    "remindersDenied": "通知がオフになっています",
+    "remindersDeniedHint": "端末の設定でUnterwegsの通知を許可してください。",
+    "remindersHint": "リマインダーはこの端末のオフラインコピーから作られ、通信がなくても届きます。予約番号は含まれません。",
+    "remindersOn": "リマインダー",
+    "travelActivity": "ロック画面に移動日を表示",
+    "travelActivityHint": "移動日にアプリを開くと、次の移動をカウントダウン付きで表示します。"
   },
   "share": {
     "attachFiles": "ファイルを添付",
@@ -938,7 +953,9 @@
   "transport": {
     "bookingWebsite": "予約 / ウェブサイト",
     "flightNumber": "フライト番号",
-    "number": "番号"
+    "number": "番号",
+    "showOnLockScreen": "ロック画面に表示",
+    "hideFromLockScreen": "ロック画面から削除"
   },
   "transportEdit": {
     "arrivalMustAfterDeparture": "到着は出発より後にしてください。",
@@ -1022,5 +1039,51 @@
     "notYet": "未訪問",
     "regions_other": "{count}地域",
     "showCities": "都市を表示"
+  },
+  "glances": {
+    "asOf": "{time} 時点",
+    "automatic": "自動",
+    "checkInFrom": "{time}からチェックイン",
+    "checkOutBy": "{time}までにチェックアウト",
+    "dayOf": "{total}日中{n}日目",
+    "dayShort": "日目",
+    "daysShort_other": "日",
+    "departure": "出発",
+    "inDays_other": "あと{count}日",
+    "nextDeparture": "次へ",
+    "nextStay": "次の宿泊先",
+    "nightAt": "宿泊: {name}",
+    "noCollection": "予定のコレクションはありません",
+    "noDeparture": "予定の移動はありません",
+    "noStay": "予定の宿泊先はありません",
+    "nothingPlanned": "今日の予定はありません。",
+    "startsOn": "{name}は{date}に始まります",
+    "startsTomorrow": "明日から",
+    "today": "今日",
+    "tomorrow": "明日",
+    "tonight": "今夜: {name}",
+    "tonightLabel": "今夜"
+  },
+  "reminders": {
+    "channelCollections": "コレクション",
+    "channelStays": "宿泊先",
+    "channelTravel": "出発",
+    "channelVisits": "場所",
+    "checkInFrom": "{name}: {time}からチェックイン",
+    "checkInToday": "{name}: 今日チェックイン",
+    "checkOutBy": "{name}: 今日{time}までにチェックアウト",
+    "checkOutToday": "{name}: 今日チェックアウト",
+    "departsAt": "{name} {time}発",
+    "downloadNow": "今すぐダウンロード",
+    "markVisited_other": "今日の場所のうち{count}件がまだ訪問済みになっていません。",
+    "notOffline_other": "{count}件の写真とファイルがまだこの端末にありません。",
+    "openInMaps": "マップで開く",
+    "startsTomorrow": "{name}は明日から始まります。",
+    "visitAt": "{name} {time}"
+  },
+  "travelActivity": {
+    "arrived": "到着",
+    "arrives": "到着",
+    "departs": "出発"
   }
 }

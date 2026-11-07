@@ -6,22 +6,23 @@ Work is ordered by need and dependencies, not by dates; the owner decides when d
 
 ## Decisions
 
-|                                                     |                                                            |
-| --------------------------------------------------- | ---------------------------------------------------------- |
-| [0001](adr/0001-one-request-per-collection.md)      | A collection is read with one request                      |
-| [0002](adr/0002-data-beyond-one-collection.md)      | Data outside a collection comes from its own endpoints     |
-| [0003](adr/0003-one-api-key-per-device.md)          | One API key per device, whatever the sign-in method        |
-| [0004](adr/0004-sso-through-the-website-session.md) | SSO signs in through the website, then makes the key there |
-| [0005](adr/0005-online-only-edits.md)               | Edits need a connection                                    |
-| [0006](adr/0006-times-in-their-own-time-zone.md)    | Every time is shown in its own time zone                   |
-| [0007](adr/0007-offline-copy-on-the-device.md)      | The offline copy lives in SQLite and the documents folder  |
-| [0008](adr/0008-native-controls-with-expo-ui.md)    | Native controls through @expo/ui                           |
-| [0009](adr/0009-maplibre-with-openfreemap.md)       | Maps with MapLibre and OpenFreeMap                         |
-| [0010](adr/0010-self-hosted-distribution.md)        | Distribution without app stores (superseded by 0014)       |
-| [0011](adr/0011-pinned-server-version.md)           | The app is tested against one pinned AdventureLog version  |
-| [0012](adr/0012-app-wide-text-size.md)              | App-wide text size through a local native module           |
-| [0013](adr/0013-translations-with-i18next.md)       | Translations with i18next, German text as the key          |
-| [0014](adr/0014-store-distribution.md)              | Distribution through the app stores                        |
+|                                                     |                                                              |
+| --------------------------------------------------- | ------------------------------------------------------------ |
+| [0001](adr/0001-one-request-per-collection.md)      | A collection is read with one request                        |
+| [0002](adr/0002-data-beyond-one-collection.md)      | Data outside a collection comes from its own endpoints       |
+| [0003](adr/0003-one-api-key-per-device.md)          | One API key per device, whatever the sign-in method          |
+| [0004](adr/0004-sso-through-the-website-session.md) | SSO signs in through the website, then makes the key there   |
+| [0005](adr/0005-online-only-edits.md)               | Edits need a connection                                      |
+| [0006](adr/0006-times-in-their-own-time-zone.md)    | Every time is shown in its own time zone                     |
+| [0007](adr/0007-offline-copy-on-the-device.md)      | The offline copy lives in SQLite and the documents folder    |
+| [0008](adr/0008-native-controls-with-expo-ui.md)    | Native controls through @expo/ui                             |
+| [0009](adr/0009-maplibre-with-openfreemap.md)       | Maps with MapLibre and OpenFreeMap                           |
+| [0010](adr/0010-self-hosted-distribution.md)        | Distribution without app stores (superseded by 0014)         |
+| [0011](adr/0011-pinned-server-version.md)           | The app is tested against one pinned AdventureLog version    |
+| [0012](adr/0012-app-wide-text-size.md)              | App-wide text size through a local native module             |
+| [0013](adr/0013-translations-with-i18next.md)       | Translations with i18next, German text as the key            |
+| [0014](adr/0014-store-distribution.md)              | Distribution through the app stores                          |
+| [0015](adr/0015-glances-from-the-offline-copy.md)   | Widgets, reminders and Live Activities from the offline copy |
 
 ## Current state
 
@@ -65,6 +66,7 @@ The Home/navigation extension is implemented: Home, Collections, Places and Worl
 5. **Activities/trails from integrations.** Strava, Endurain and Wanderer connections can now be managed in the app, but activity/trail import is still missing. Endurain/Wanderer setup and a real Strava OAuth round-trip need test integrations; Strava first needs server-side client credentials.
 6. **Store release.** Google Play and the App Store replace GitHub/Obtainium and TestFlight once live; checklist, security audit and decisions in [STORE-RELEASE.md](STORE-RELEASE.md).
 7. **Family rollout.** Confirm TestFlight processing and tester access (external testers may need beta review), onboard family phones to the store apps (Android: one uninstall of the Obtainium install, see [0014](adr/0014-store-distribution.md)), verify one update, and write a short install/help guide. Keep a second verified backup of the existing Android signing key; its 1Password copy and signing certificate were checked during release.
+8. **Widgets, reminders and Live Activities.** Built for 1.5.0 on branch `feat/glances` ([GLANCES.md](GLANCES.md), [0015](adr/0015-glances-from-the-offline-copy.md)): four widgets on both platforms (Next with lock-screen sizes, Today, Stay, Departure), seven local reminder kinds with settings, and the iOS travel-day Live Activity, all computed from the offline copy with no remote push. Unit tests pass. Device checks on both platforms remain, then a 1.5.0 build. What is missing is listed in GLANCES.md. Remote push (invites, collaborator changes) needs its own ADR and a relay.
 
 Self-hosted PMTiles remain an option when native map-pack size/detail limits are insufficient, rather than a prerequisite for offline downloads. Time-zone suggestions are implemented; near-boundary suggestions remain editable and should be checked when planning.
 

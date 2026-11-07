@@ -18,6 +18,30 @@ export const settingsSchema = z.object({
   /** Crash and start reports to the update server (`src/telemetry/health.ts`); update checks stay on. */
   healthReports: z.boolean().catch(true),
   mapApp: z.enum(['system', 'apple', 'google', 'organic', 'osmand']).catch('system'),
+  /** Local reminders (docs/GLANCES.md). Off until the user turns them on, which asks for the permission. */
+  reminders: z.boolean().catch(false),
+  /** Which reminders, once `reminders` is on. */
+  reminderKinds: z
+    .object({
+      collectionStart: z.boolean().catch(true),
+      offlineReadiness: z.boolean().catch(true),
+      departure: z.boolean().catch(true),
+      checkIn: z.boolean().catch(true),
+      checkOut: z.boolean().catch(false),
+      visit: z.boolean().catch(false),
+      endOfDay: z.boolean().catch(false),
+    })
+    .catch(() => ({
+      collectionStart: true,
+      offlineReadiness: true,
+      departure: true,
+      checkIn: true,
+      checkOut: false,
+      visit: false,
+      endOfDay: false,
+    })),
+  /** iOS: the travel-day Live Activity on the Lock Screen and in the Dynamic Island. */
+  travelActivity: z.boolean().catch(true),
 });
 
 export type Settings = z.infer<typeof settingsSchema>;
