@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { Collection } from '@/api/schemas';
 import { useCredentials } from '@/auth/session';
+import { isConnected } from '@/data/onlineWrite';
 import { collectionMediaUrls } from '@/data/selectors';
 import { collectionPhase, todayIn } from '@/time/today';
 import { daysBetween, deviceTimeZone } from '@/time/tz';
@@ -66,7 +67,7 @@ export function useMediaOffline(urls: string[], auto: boolean): CollectionOfflin
     }
   }, [credentials, urls]);
 
-  const online = network.isInternetReachable !== false && network.isConnected !== false;
+  const online = isConnected(network);
 
   // Once per screen visit (and again after coming back online), never in a loop on failing files.
   const autoRan = useRef(false);

@@ -14,6 +14,8 @@ import { Sub } from '@/ui/Sub';
 import { useTextPrompt } from '@/ui/TextPrompt';
 import { Text } from '@/ui/Text';
 import { Host } from '@/ui/Host';
+import { readsAffectedBy } from '@/data/affected';
+import { queryKeys } from '@/data/queries';
 
 type Key = z.infer<typeof apiKeySchema>;
 
@@ -29,7 +31,7 @@ export default function ApiKeysScreen() {
   const [busy, setBusy] = useState(false);
   // Never persist credentials or key listings to the offline query cache.
   const keys = useQuery({
-    queryKey: ['account-keys'],
+    queryKey: queryKeys.apiKeys,
     queryFn: () => client.listApiKeys(),
     enabled: action.online,
     retry: false,
@@ -45,7 +47,7 @@ export default function ApiKeysScreen() {
       onSave: async (name) => {
         if (!name.trim() || busy) return;
         setBusy(true);
-        const result = await action.run(() => client.edit.createApiKey(name.trim()), [['account-keys']]);
+        const result = await action.run(() => client.edit.createApiKey(name.trim()), readsAffectedBy('apiKeys'));
         setBusy(false);
         if (result) setNewKey(result.key);
       },
@@ -68,7 +70,7 @@ export default function ApiKeysScreen() {
                 await client.edit.deleteApiKey(key.id);
                 return true;
               },
-              isOwn(key) ? [] : [['account-keys']],
+              isOwn(key) ? [] : readsAffectedBy('apiKeys'),
             );
             if (result && isOwn(key)) await signOut();
             setBusy(false);

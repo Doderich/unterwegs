@@ -81,6 +81,9 @@ const defs = {
   warning: ['exclamationmark.triangle', require('@expo/material-symbols/warning.xml')],
   italic: ['italic', require('@expo/material-symbols/format_italic.xml')],
   heading: ['textformat.size', require('@expo/material-symbols/title.xml')],
+  textSize: ['textformat.size', require('@expo/material-symbols/format_size.xml')],
+  appearance: ['circle.lefthalf.filled', require('@expo/material-symbols/contrast.xml')],
+  reminders: ['bell', require('@expo/material-symbols/notifications.xml')],
   bulletList: ['list.bullet', require('@expo/material-symbols/format_list_bulleted.xml')],
 } as const satisfies Record<string, readonly [string, ImageSourcePropType]>;
 

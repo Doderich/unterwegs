@@ -24,7 +24,6 @@ export function resourceHeaderRows(
     icon,
     collectionId,
     ratio,
-    compact = false,
   }: {
     images: Image[];
     title: string;
@@ -33,12 +32,10 @@ export function resourceHeaderRows(
     collectionId?: string;
     /** Fixed width ÷ height; default: the screen-dependent frame. */
     ratio?: number;
-    /** A heading-sized title, for screens where something else (the journey) is the focus. */
-    compact?: boolean;
   },
 ): ReactElement[] {
   const titleText = (
-    <Text key="title" textStyle={{ ...(compact ? typeScale.heading : typeScale.title), color: t.colors.text }}>
+    <Text key="title" textStyle={{ ...typeScale.title, color: t.colors.text }}>
       {title}
     </Text>
   );
@@ -49,7 +46,7 @@ export function resourceHeaderRows(
   ) : null;
 
   const caption = (
-    <Column key="title" spacing={2} alignment="start">
+    <Column key="title" spacing={4} alignment="start">
       {titleText}
       {sub}
     </Column>
@@ -73,7 +70,7 @@ export function resourceHeaderRows(
   return [
     <Row key="title" spacing={12} alignment="center">
       <Icon name={icons[icon]} size={28} color={t.colors.tint} />
-      <Column spacing={2} alignment="start">
+      <Column spacing={4} alignment="start">
         {titleText}
         {sub}
       </Column>

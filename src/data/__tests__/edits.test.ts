@@ -2,16 +2,11 @@ import sample from '../../../docs/samples/collection-detail.json';
 import { collectionSchema } from '@/api/schemas';
 
 import {
-  moveToDay,
   moveWithinDay,
-  withAttachment,
-  withAttachmentName,
   withCollectionFields,
   withImage,
   withLodging,
   withOrder,
-  withoutAttachment,
-  withoutImage,
   withoutObject,
   withPrimaryImage,
 } from '../edits';
@@ -43,19 +38,6 @@ describe('moveWithinDay', () => {
   });
 });
 
-describe('moveToDay', () => {
-  it('appends the entry to the target day', () => {
-    const target = view.days.find((d) => d.date !== busyDay.date)!;
-    const targetIds = target.entries.filter((e) => e.itineraryId);
-    const [update] = moveToDay(target, ids[0]);
-    expect(update).toEqual({ id: ids[0], date: target.date, order: targetIds.length });
-
-    const moved = buildCollectionView(withOrder(collection, [update]));
-    expect(moved.days.find((d) => d.date === target.date)!.entries.some((e) => e.itineraryId === ids[0])).toBe(true);
-    expect(moved.days.find((d) => d.date === busyDay.date)!.entries.some((e) => e.itineraryId === ids[0])).toBe(false);
-  });
-});
-
 describe('withoutObject', () => {
   it('drops the note and its itinerary items', () => {
     const t = {
@@ -84,12 +66,10 @@ describe('objects and media', () => {
     }
   });
 
-  it('adds an image to the right object and removes it again', () => {
+  it('adds an image to the right object', () => {
     const image = { id: 'new-img', image: 'https://example.org/media/images/x.webp', is_primary: false };
     const added = withImage(collection, location.id, image);
     expect(added.locations.find((l) => l.id === location.id)!.images.at(-1)!.id).toBe('new-img');
-    const removed = withoutImage(added, 'new-img');
-    expect(removed.locations.find((l) => l.id === location.id)!.images).toHaveLength(location.images.length);
   });
 
   it('keeps exactly one primary image per object', () => {
@@ -102,18 +82,6 @@ describe('objects and media', () => {
     const next = withPrimaryImage(two, second);
     const images = next.locations.find((l) => l.id === location.id)!.images;
     expect(images.filter((i) => i.is_primary).map((i) => i.id)).toEqual([second]);
-  });
-
-  it('adds, renames and removes attachments', () => {
-    const a = { id: 'new-att', file: 'https://example.org/media/attachments/x.pdf', extension: 'pdf', name: null };
-    const added = withAttachment(collection, lodging.id, a);
-    const renamed = withAttachmentName(added, 'new-att', 'Buchung');
-    expect(renamed.lodging.find((l) => l.id === lodging.id)!.attachments.find((x) => x.id === 'new-att')!.name).toBe(
-      'Buchung',
-    );
-    expect(withoutAttachment(renamed, 'new-att').lodging.find((l) => l.id === lodging.id)!.attachments).toHaveLength(
-      lodging.attachments.length,
-    );
   });
 
   it('updates a lodging in place', () => {

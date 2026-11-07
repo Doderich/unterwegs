@@ -21,7 +21,7 @@ import { Sub } from '@/ui/Sub';
 import { SheetRow } from '@/ui/SheetRow';
 import { leadingFor } from '@/ui/entries';
 import { openInMaps, RowIcon, useRowTheme } from '@/ui/rows';
-import { useColors, useListColors } from '@/ui/theme';
+import { floatingShadow, useColors, useListColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { Host } from '@/ui/Host';
 import { useTabVisited } from '@/ui/useTabVisited';
@@ -255,15 +255,11 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   filter: {
     position: 'absolute',
-    left: 12,
-    right: 12,
-    borderRadius: 14,
+    left: 16,
+    right: 16,
+    borderRadius: 16,
     overflow: 'hidden',
     paddingVertical: Platform.OS === 'android' ? 0 : 4,
-    shadowColor: '#000',
-    shadowOpacity: 0.12,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 3,
+    ...floatingShadow,
   },
 });

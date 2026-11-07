@@ -8,6 +8,11 @@ colors:
   teal-bright: '#8FD3CD'
   teal-seed: '#428E8B'
   apricot: '#FDBA74'
+  apricot-ink: '#B45309'
+  apricot-ink-deep: '#92400E'
+  apricot-soft: '#FED7AA'
+  teal-wash: '#E4F1EF'
+  teal-wash-night: '#15302E'
   location-blue: '#2563EB'
   lodging-terracotta: '#C2410C'
   transit-violet: '#7C3AED'
@@ -30,47 +35,25 @@ colors:
   night-hairline: '#38383A'
   night-hairline-strong: '#636366'
 typography:
-  display:
-    fontFamily: 'SF Pro (iOS), Roboto (Android): system font'
-    fontSize: '30px'
-    fontWeight: 800
-    lineHeight: '34px'
-  headline:
-    fontFamily: 'SF Pro (iOS), Roboto (Android): system font'
-    fontSize: '24px'
-    fontWeight: 700
-  headline-small:
-    fontFamily: 'SF Pro (iOS), Roboto (Android): system font'
-    fontSize: '22px'
-    fontWeight: 700
   figure:
     fontFamily: 'SF Pro (iOS), Roboto (Android): system font'
     fontSize: '28px'
-    fontWeight: 700
+    fontWeight: 600
   title:
     fontFamily: 'SF Pro (iOS), Roboto (Android): system font'
-    fontSize: '20px'
+    fontSize: '22px'
     fontWeight: 600
   body:
     fontFamily: 'SF Pro (iOS), Roboto (Android): system font'
     fontSize: '17px'
     fontWeight: 400
-  supporting:
-    fontFamily: 'SF Pro (iOS), Roboto (Android): system font'
-    fontSize: '15px'
-    fontWeight: 400
   label:
     fontFamily: 'SF Pro (iOS), Roboto (Android): system font'
     fontSize: '13px'
-    fontWeight: 600
-  overline:
-    fontFamily: 'SF Pro (iOS), Roboto (Android): system font'
-    fontSize: '12px'
-    fontWeight: 700
-    letterSpacing: '0.8px'
+    fontWeight: 400
 rounded:
   image: '12px'
-  floating: '14px'
+  floating: '16px'
   frame: '24px'
   hero: '28px'
   pill: '999px'
@@ -86,19 +69,19 @@ components:
     backgroundColor: '{colors.teal}'
     textColor: '{colors.card-white}'
     rounded: '{rounded.hero}'
-    padding: '20px'
+    padding: '24px'
     height: '46% of the window, 320–560px'
   hero-badge:
     backgroundColor: 'rgba(255,255,255,0.22)'
     textColor: '{colors.card-white}'
-    typography: '{typography.overline}'
+    typography: '{typography.label}'
     rounded: '{rounded.pill}'
-    padding: '6px 12px'
+    padding: '4px 12px'
   hero-stat-chip:
     backgroundColor: 'rgba(255,255,255,0.18)'
     textColor: '{colors.card-white}'
     rounded: '{rounded.pill}'
-    padding: '5px 10px'
+    padding: '4px 12px'
   list-row:
     backgroundColor: '{colors.card-white}'
     textColor: '{colors.ink}'
@@ -119,7 +102,7 @@ components:
     backgroundColor: '{colors.card-white}'
     textColor: '{colors.ink}'
     rounded: '{rounded.floating}'
-    padding: '8px 10px 0'
+    padding: '8px 12px 0'
     width: 'min 56px'
   day-chip-selected:
     backgroundColor: '{colors.teal}'
@@ -140,12 +123,12 @@ Everything for the trip in your pocket, calm and always to hand. Unterwegs is op
 
 Density is that of a system settings screen: grouped lists of rows, each row one fact with a tinted icon (or an emoji the user chose), a value and a secondary line. The one exception is the collection hero (`CollectionHero`) on the home screen, a full-bleed photo card that is the app's only "loud" moment.
 
-**Direction, not yet decided:** the current look is deliberately plain, and the owner finds it a bit too boring. Future work may make it more playful. That should come from the trip itself (photos, locations, moments like "Heute" and the countdown) and stay within the accessibility rules below, rather than from decoration added on top of the native controls.
+**Direction: playful, from the trip itself.** The owner asked for more character and for looking back to feel like a pleasure rather than a record. The character comes from the trip, never from decoration on top of the native controls: your own photos (memory cards, the day's photo strip), time (apricot countdowns, "Noch 5 Mal schlafen!", "Als Nächstes in 25 Min."), places (passport stamps) and a few real milestones (a check that pops when a list is done). Copy is warm and short ("Nichts geplant – Zeit zum Treibenlassen."). Everything stays within the accessibility rules below; every flourish has a reduce-motion and screen-reader path.
 
 **Key Characteristics:**
 
 - Native grouped lists on a grey background; white (or near-black) rows.
-- One accent, Teal, for icons, the selected state and calls to action.
+- Two accents with separate jobs: Teal for icons, the selected state and actions; Apricot for time and what's next.
 - The trip's photos carry the colour; the chrome stays neutral.
 - Every text size follows the system and the app's own text-size setting.
 - Light, dark and a "Mehr Kontrast" palette for each.
@@ -160,7 +143,8 @@ A neutral canvas in the platform's own colours with one teal accent; colour beyo
 - **Teal Night** (`teal-night`): the same role in dark mode (6.9:1 on the night card).
 - **Deep Teal** (`teal-deep`) and **Bright Teal** (`teal-bright`): the "Mehr Kontrast" accent in light and dark mode (≥ 7:1).
 - **Teal Seed** (`teal-seed`): the icon's own hill colour. Android builds its whole Material 3 scheme from it (accent, surfaces, containers, outlines, error), the same on every phone and independent of the wallpaper; with "Mehr Kontrast" the accent there is Deep Teal / Bright Teal.
-- **Apricot** (`apricot`): the countdown on the hero photo ("Noch 44 Tage", "Tag 3 von 23"), where it needs to stand out against a dark scrim. It matches the sand of the icon's sky.
+- **Apricot** (`apricot`): the second accent, for time and what's next. On photos (hero countdown, "vor 2 Jahren" on memory cards) the icon's own apricot over the dark scrim; on light surfaces **Apricot Ink** (`apricot-ink`, 5:1 on white; contrast mode `apricot-ink-deep`), in dark mode Apricot itself (contrast mode `apricot-soft`). Used for the countdown on upcoming collections, "in 25 Min." on the Als-Nächstes card. In code: `colors.next` (`nextAccent` in `accent.ts`).
+- **Teal Wash** (`teal-wash` / `teal-wash-night`; Android: `primaryContainer`): the background of the one card that leads a screen (Als Nächstes, the passport page). Text on it keeps the normal text colours. In code: `colors.wash`.
 
 ### Secondary
 
@@ -187,7 +171,7 @@ iOS system colours reach JavaScript as `PlatformColor` objects typed as strings 
 
 ### Named Rules
 
-**The One Accent Rule.** Teal is the only UI accent. Blue, terracotta, violet and green exist only to tell map points apart; they never appear on buttons, icons or text.
+**The Two Accent Rule.** Teal is the accent of actions and state; Apricot only of time and what's next (countdowns, "in 25 Min.", how long ago). Never swap them, never use Apricot for a button. Blue, terracotta, violet and green exist only to tell map points apart; they never appear on buttons, icons or text.
 
 **The Contrast Twin Rule.** Every colour the UI uses has a "Mehr Kontrast" twin (darker in light mode, lighter in dark mode): the accent in `accent.ts`, the Android neutrals as the stronger Material roles in `palette.android.ts`, the iOS neutrals through the system "Increase Contrast" setting. A new colour is not done until its twin exists.
 
@@ -203,17 +187,14 @@ A folded paper map whose panels show a sunset landscape: sand sky, cream sun, te
 
 ### Hierarchy
 
-- **Display** (800, 30/34px): the collection name on the hero card only.
-- **Headline** (700, 24px): the name on a detail page (location, lodging, note). **Headline Small** (700, 22px): the date heading on "Heute" and a transportation's title.
-- **Figure** (700, 28px): departure and arrival times in the journey summary.
-- **Title** (600, 20px): titles of bottom sheets and pickers.
-- **Body** (400, 17px): row values and paragraph text; 600 for the places in the journey summary.
-- **Supporting** (400, 15px): the second line of a row and the hero's date line.
-- **Label** (400–600, 13px): captions, section footers, the "Stand: …" status, weekday and month on a day chip.
+Four sizes and two weights (regular 400, semibold 600), nothing else. On iOS they are the Dynamic Type styles title, title2, body and footnote, so what the code says is what renders.
 
-In code these are `typeScale` (`src/ui/typeScale.ts`: `title`, `heading`, `figure`, `body`, `bodyStrong`, `supporting`, `label`); use it instead of writing sizes by hand. Day headings on "Tage" are Supporting at 600 in sentence case, not uppercase labels.
+- **Figure** (600, 28px): the one large value on a screen: departure and arrival times in the journey summary, the collection name on the hero card.
+- **Title** (600, 22px): the name on a detail page (location, lodging, transportation, note), the date heading on "Heute", the day number on a day chip, titles of bottom sheets and pickers, Markdown headings.
+- **Body** (400 / 600, 17px): row values and paragraph text; 600 for the places in the journey summary and the hero's countdown.
+- **Label** (400 / 600, 13px): the second line of a row, captions, section footers, the "Stand: …" status, weekday and month on a day chip, the hero's badge (uppercase, 0.8px tracking), date line and stat chips.
 
-- **Overline** (700, 12px, 0.8px tracking, uppercase): the hero's "JETZT UNTERWEGS" / "NÄCHSTE REISE" badge.
+In code these are `typeScale` (`src/ui/typeScale.ts`: `figure`, `title`, `body`, `bodyStrong`, `supporting`, `label`; `supporting` and `label` share a size and differ only in role); use it instead of writing sizes by hand. Further hierarchy comes from colour (text vs. secondary, or white at 80% on the hero), never from a fifth size or a third weight. The bold-text setting may raise any weight; that is accessibility, not hierarchy. Widgets and the Live Activity use their platform's widget text styles. Day headings on "Tage" are Label at 600 in sentence case, not uppercase labels.
 
 ### Named Rules
 
@@ -223,7 +204,7 @@ In code these are `typeScale` (`src/ui/typeScale.ts`: `title`, `heading`, `figur
 
 ## Layout
 
-Single column. On phones it is full width; on wide Android windows (tablets, unfolded foldables) each screen's native list is capped at 720px and centred (`READABLE_WIDTH` in `src/ui/Host.android.tsx`). Screens are native grouped lists (`FieldGroup` sections) with the platform's own insets: 16px side margins, section headers above, footers below. Cards placed between sections (the hero) are the window width minus 32px. The rhythm uses 4 / 8 / 12 / 16 / 20 / 24px steps: 8px between images in a strip, 16px card margins, 20px inner padding on the hero.
+Single column. On phones it is full width; on wide Android windows (tablets, unfolded foldables) each screen's native list is capped at 720px and centred (`READABLE_WIDTH` in `src/ui/Host.android.tsx`). Screens are native grouped lists (`FieldGroup` sections) with the platform's own insets: 16px side margins, section headers above, footers below. Cards placed between sections (the hero) are the window width minus 32px. Every margin, padding and gap is a multiple of 4 (in practice 4 / 8 / 12 / 16 / 24px): 8px between images in a strip and between chips, 16px card and floating-control margins, 24px inner padding on the hero. Related things sit closer than unrelated ones (4px between a title and its secondary line, 8–12px inside a group, a new section after that).
 
 A detail screen's gallery takes about a third of the window height, kept between 4:3 and 16:10 of its width, so the facts below stay in view on any screen; transportation uses a compact 2:1 strip because the journey is the focus. The hero is 46% of the window height, clamped to 320–560px, so it stays a card on small phones and the Flip 5's folded-out screen. Everything else is content height; nothing assumes a screen size. A collection opens on native tabs (Heute, Tage, Karte, Unterkünfte, Notizen) and details are pushed on the native stack. A regular-width iPad window is specified separately in [docs/IPAD.md](docs/IPAD.md); until that ships, this single column is the layout.
 
@@ -233,7 +214,7 @@ Flat, tonal layering: white rows on a grey background (or dark-grey rows on blac
 
 ### Shadow Vocabulary
 
-- **Floating control** (shadow 0 2px 8px, 12% black; Android elevation 3): only for controls that float over the map (the day filter bar).
+- **Floating control** (`floatingShadow` in `src/ui/theme.ts`: 0 4px 16px, 16% of a deep teal `#0B2B29`; Android elevation 3): only for controls that float over the map (the day filter bar, the legend). Soft and tinted, never pure black.
 
 ### Named Rules
 
@@ -241,13 +222,13 @@ Flat, tonal layering: white rows on a grey background (or dark-grey rows on blac
 
 ## Shapes
 
-Native rows and sheets keep the platform's own shapes (iOS inset grouped corners, Material 3 list-item containers). Custom shapes are soft and rounded: a sixth of the side on list thumbnails, 12px on the detail gallery inside an Android card (edge to edge in the iOS card), 14px on floating controls and day chips, 24px on the QR scan frame, 28px on the hero card, and full pills for the badge and stat chips. No sharp corners on custom elements, no outlined boxes.
+Native rows and sheets keep the platform's own shapes (iOS inset grouped corners, Material 3 list-item containers). Custom shapes are soft and rounded: a sixth of the side on list thumbnails, 12px on the detail gallery inside an Android card (edge to edge in the iOS card), 16px on floating controls and day chips, 24px on the QR scan frame, 28px on the hero card, and full pills for the badge and stat chips. No sharp corners on custom elements, no outlined boxes.
 
 ## Components
 
 ### Hero Card (signature)
 
-The current or next collection as a large photo card on the home screen. Full-bleed cover photo (Teal fill until it loads) under the gradient scrim; top-left a frosted pill badge (22% white) with the overline; bottom: Apricot countdown, the collection name in Display, a date / today line in Supporting at 88% white, then frosted stat chips (18% white pills) for days, locations and lodgings. Pressed state: 90% opacity. One accessibility label reads name, countdown and dates.
+The current or next collection as a large photo card on the home screen. Full-bleed cover photo (Teal fill until it loads) under the gradient scrim; top-left a frosted pill badge (22% white) with the uppercase label; bottom: Apricot countdown in Body 600, the collection name in Figure, a date / today line in Label at 80% white, then frosted stat chips (18% white pills) for days, locations and lodgings. Pressed state: 90% opacity. One accessibility label reads name, countdown and dates.
 
 ### List Rows
 
@@ -283,7 +264,7 @@ Android pattern reference: [Material search component](https://github.com/materi
 
 ### Resource Header and Detail Gallery
 
-The top of every location, lodging and transportation (`resourceHeaderRows`): a swipeable gallery of the resource's photos with an "n / total" pill (capped at 1.4× text size), then the name in Headline and a short context line in Supporting on the card's solid surface. Tap opens the full-screen gallery; "Foto hinzufügen" and the gallery's cover/delete actions stay right below. Each photo is announced as "Name, Bild n von total". Without photos the header is a 28px Teal icon beside the title, never an empty frame or a collection photo. The frame is reserved in Hairline grey before photos load and stays when one can't.
+The top of every location, lodging and transportation (`resourceHeaderRows`): a swipeable gallery of the resource's photos with an "n / total" pill (capped at 1.4× text size), then the name in Title and a short context line in Label on the card's solid surface. Tap opens the full-screen gallery; "Foto hinzufügen" and the gallery's cover/delete actions stay right below. Each photo is announced as "Name, Bild n von total". Without photos the header is a 28px Teal icon beside the title, never an empty frame or a collection photo. The frame is reserved in Hairline grey before photos load and stays when one can't.
 
 ### List Thumbnail
 
@@ -291,7 +272,7 @@ One square crop for every list that shows a resource: itinerary entries, "Heute 
 
 ### Day Strip
 
-"Heute" opens on a horizontal strip of day chips above the swipeable days (`src/ui/DayNav.tsx`): weekday, day number, month. The selected day is filled Teal (black text in dark mode, white in light, both ≥ 4.5:1); the actual current day keeps a dot, so "selected" and "today" read apart. Chips are tabs with a selected state and a full-date label ("Freitag, 18. Dezember, Tag 2 von 23, Heute"). The strip scrolls the selected day into view; a tapped day jumps without animation when motion is reduced. The "Alle Tage" picker below the date stays for long jumps.
+"Heute" opens on a horizontal strip of day chips above the swipeable days (`src/ui/DayNav.tsx`): weekday, day number, month. The day number is Title, weekday and month Label. The selected day is filled Teal (black text in dark mode, white in light, both ≥ 4.5:1); the actual current day keeps a dot, so "selected" and "today" read apart. Chips are tabs with a selected state and a full-date label ("Freitag, 18. Dezember, Tag 2 von 23, Heute"). The strip scrolls the selected day into view; a tapped day jumps without animation when motion is reduced. The "Alle Tage" picker below the date stays for long jumps.
 
 ### Itinerary Entry and Stay Summary
 
@@ -299,7 +280,7 @@ An itinerary entry (`entryRow`) is a list row with the thumbnail or type icon, t
 
 ### Journey Summary
 
-The focus of a transportation (`journeyRows`): departure time in Figure, place with code in Body 600, then date, zone and UTC offset in Supporting; the travel time with the transport icon between; the arrival in the same form with "(+1 Tag)" when it lands on a later local date. Each end uses its own zone, never the phone's. Stacked vertically so it holds at the largest text sizes.
+The focus of a transportation (`journeyRows`): departure time in Figure, place with code in Body 600, then date, zone and UTC offset in Label; the travel time with the transport icon between; the arrival in the same form with "(+1 Tag)" when it lands on a later local date. Each end uses its own zone, never the phone's. Stacked vertically so it holds at the largest text sizes.
 
 ### Emoji Leading
 
@@ -308,6 +289,8 @@ Where the user or the server chose the symbol, a row leads with that emoji inste
 ### Toggle Rows
 
 Marking something on or off in a list (a visited region, "Öffentlich") is a whole-row tap with a checkbox icon: Teal when on, Pebble when off. Online only; the change shows at once and rolls back with an alert if the server refuses it.
+
+Ticking off a checklist item gives a selection tap; ticking off the last one is the list's small peak: a success haptic, and the “n of n done” line turns Teal.
 
 ### Photo Grid
 
@@ -341,15 +324,56 @@ Home, Collections, Places, World statistics/countries, search results, the colle
 
 The collection day footer uses one native refresh row with timestamp and media availability as supporting text. It is a direct section in the form, and Android does not mount the iOS tab-bar spacer; neither may create an extra empty card.
 
-Home uses a short “Nothing planned” empty state; creation stays in the header Add menu, with no duplicate New place row or instructional paragraph in the feed.
+An empty Collections library is a tappable “New collection” row with one line on what a collection holds, so the first one is a tap away inside the list rather than behind the header. Home uses a short “Nothing planned” empty state; creation stays in the header Add menu, with no duplicate New place row or instructional paragraph in the feed.
 
 ### Reading descriptions
 
 Place, location, lodging and transportation descriptions use native selectable Markdown text with extra reading space (iOS: 4pt extra line spacing; Android: 17sp body / 26sp line height; both add 8pt vertical and 4pt horizontal padding inside the native row). Descriptions longer than 500 graphemes start with a plain-text excerpt of about 280 graphemes, cut at a nearby word boundary, followed by a native Read more row. Expansion restores the complete Markdown and link rows; Show less restores the excerpt. Short descriptions stay fully visible. This is display-only: the source is never rewritten or given invented paragraph breaks. Notes and editor previews retain their existing presentation.
 
+### Offline Is Said Up Front
+
+Offline is the normal case, so it is stated at the top, not only in the footer: Home and the day view open with one row, "Offline – alles Gespeicherte ist da", with the "Stand" time as its second line (`offlineNoticeRow`). Edits made on the road work offline (ADR 0016): the edit shows at once and the collection's status row says "n Änderungen warten auf Netz" until it is sent. What still needs a connection (sharing, archive and the rest of the collection menu, web image search, nearby) is hidden offline. "Stand" times use the UI language's date format (`formatUpdatedAt`).
+
+### Peak and End
+
+The few moments a trip has get a word of their own, nothing louder:
+
+- On the morning of day 1, "Gute Reise!" in Body 600 Teal under the day heading; on the last day, "Letzter Tag – gute Heimreise!".
+- The last day ends with "Eure Reise": days, places (visited when known), stays and nights, connections, and the reassurance that everything stays in the collection. It also shows when a finished collection is opened again.
+- Ticking off the last checklist item (see Toggle Rows).
+
+### More on Detail Screens
+
+A detail screen shows what is needed at a glance first: when (planned/visited), where (maps), what to know (info), documents. Planning extras (Immich, trails, activities, sun times, rating, tags) fold into one "Mehr anzeigen" row whose second line names what is behind it (`useMoreSections`). Lodging and transportation are short enough without it.
+
+### Settings Order
+
+A category with more than one setting gets its own screen; a single setting stays on the overview. The overview opens with three navigation rows, each with its current state as the second line and a chevron: "Lesbarkeit und Bedienung" (text size with a live preview line, bold, contrast, motion, haptics), "Darstellung" (language, theme, iOS tab labels) and "Erinnerungen" (master switch, the seven kinds, the iOS Live Activity). Below them, inline: map app, offline data, account (with integrations), privacy, sign-out, version. Sign-out is one sheet with two plain choices, "Abmelden, Downloads behalten" and "Abmelden und alles löschen"; both revoke the device's key.
+
+### Als Nächstes
+
+Today's page opens with the one thing coming up, on a Teal Wash card (24px radius, 24px padding): how long until it in Apricot (Body 600), the time in Figure in its own zone, the name in Body 600, and its photo (88px, 16px radius) when it has one. It ticks once a minute, disappears when nothing timed is left, and opens the entry on tap. The day view also pulls to refresh.
+
+### Looking Back
+
+Finished things are memories, not records:
+
+- **Memory cards** (`MemoryCard`): a finished collection's cover photo (24px radius) under the hero's scrim, "vor 2 Jahren" in Apricot and the name in white Body 600. Collections shows past collections as a sideways strip of them; Home shows "Heute vor 1 Jahr" when an earlier collection ran over today's date.
+- **Fotos des Tages**: once a day is over, its page shows the day's photos as a sideways strip (120px, 16px radius); each opens what it shows.
+- **Eure Reise** closes the last day (see Peak and End).
+- **Passport stamps** (`PassportStamps`): World leads with the visited countries as stamps on a Teal Wash page: flag, country code in Teal, regions marked, a 2px dashed Teal border and a fixed tilt per country (−4° to 4°). Tapping opens the country.
+
+### Celebration
+
+`celebrate()` shows a Teal pill with a check that springs in, holds 1.8s and fades (reduce motion: a plain fade); screen readers hear the message. Only for milestones the person caused themselves, today the last checklist item. Never for an ordinary save, and never for background work: an "offline bereit" moment after downloads was tried and removed because it appeared out of nowhere (e.g. after opening a place) and read as confusing; the status row's "Bilder und PDFs offline verfügbar" line covers it.
+
+### Press Feedback
+
+Photo cards (hero, memories, Als Nächstes, stamps) give slightly under the thumb (scale 0.98, stamps 0.94) instead of dimming.
+
 ### Status Line
 
-"Stand: …" (or "Offline · Stand: …" in Alarm Red) in Label size at the top of collection screens, so people always know how fresh the data is.
+"Stand: …" (or "Offline · Stand: …" with the offline icon, in the secondary colour: offline is the normal case here, not an alarm) in Label size at the top of collection screens, so people always know how fresh the data is.
 
 ## Do's and Don'ts
 
@@ -357,7 +381,7 @@ Place, location, lodging and transportation descriptions use native selectable M
 
 - **Do** use the platform's own controls (`@expo/ui`) first; React Native views only where no native one exists (hero, map, gallery, day strip, thumbnails).
 - **Do** take colours from `useColors()` so light, dark and "Mehr Kontrast" all work; add the contrast twin with any new colour. Prefer a platform role (iOS system colour, Material role) over a new hex value.
-- **Do** give every row a leading icon in Teal and a plain-language secondary line.
+- **Do** give every row a leading icon in Teal and a plain-language secondary line. Leading icons sit in a fixed 28pt slot (`ROW_ICON_SLOT`) so row text lines up.
 - **Do** let text grow: check new screens at "Riesig" and with bold text on both platforms.
 - **Do** honour reduced motion: no stack animation, no image fades, no animated day jumps.
 - **Do** build resource screens from the shared pieces (`resourceHeaderRows`, `entryRow`, `stayRow`, `journeyRows`, `Thumb`, `typeScale`) and fix problems there, not per screen.

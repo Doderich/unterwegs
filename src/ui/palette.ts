@@ -1,7 +1,7 @@
 import { Color } from 'expo-router';
 import type { ColorValue } from 'react-native';
 
-import { accent } from './accent';
+import { accent, accentWash, nextAccent } from './accent';
 
 export type Palette = {
   background: string;
@@ -10,6 +10,10 @@ export type Palette = {
   secondary: string;
   border: string;
   tint: string;
+  /** Apricot: time and what's next. */
+  next: string;
+  /** Background of the leading card on a screen. */
+  wash: string;
   danger: string;
 };
 
@@ -32,6 +36,8 @@ export function usePalette(isDark: boolean, highContrast: boolean): Palette {
     secondary: system(Color.ios.secondaryLabel),
     border: system(Color.ios.opaqueSeparator),
     tint: accent(isDark, highContrast),
+    next: nextAccent(isDark, highContrast),
+    wash: accentWash(isDark),
     danger: system(Color.ios.systemRed),
   };
 }

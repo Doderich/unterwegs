@@ -7,13 +7,11 @@ import type { ReactElement } from 'react';
 import { Alert, Linking } from 'react-native';
 
 import type { MediaOwnerKind, UploadFile } from '@/api/client';
-import { discardUpload, trackUpload, usePendingUploads, type PendingUpload } from '@/data/uploads';
 import type { CollectionEdits } from '@/data/useCollectionEdits';
 import { tr } from '@/i18n';
 
 import type { useActionSheet } from './ActionSheet';
 import { RowIcon, type RowTheme } from './rows';
-import { Sub } from './Sub';
 
 /** Long edge of uploaded photos: a phone photo of several MB becomes a few hundred KB (roaming data). */
 const MAX_EDGE = 2048;
@@ -32,8 +30,8 @@ export async function shrinkPhoto(asset: { uri: string; width: number; height: n
 type ActionSheet = ReturnType<typeof useActionSheet>;
 
 /**
- * "Foto hinzufügen" and "Datei anhängen" for a location, lodging or transportation, plus rows for uploads that are
- * running or failed. Online only (the rows are hidden offline).
+ * "Foto hinzufügen" and "Datei anhängen" for a location, lodging or transportation. A picked photo or file shows at
+ * once and waits in the outbox until it is uploaded (ADR 0016); only images from the web need a connection.
  */
 export function useMediaUploads(
   t: RowTheme,
@@ -44,10 +42,9 @@ export function useMediaUploads(
   /** The object's name, to look for Wikipedia images (locations). */
   webName?: string,
 ) {
-  const pending = usePendingUploads(objectId);
-
   const uploadPhotos = (files: UploadFile[]) => {
-    for (const file of files) trackUpload(objectId, 'image', file, (f) => edits.uploadImage(kind, objectId, f));
+    // Shown in the gallery at once (the outbox overlay); waiting and failed uploads are the outbox's to report.
+    for (const file of files) void edits.uploadImage(kind, objectId, file);
   };
 
   const fromCamera = async () => {
@@ -81,7 +78,7 @@ export function useMediaUploads(
     for (const asset of result.assets) {
       const file = { uri: asset.uri, name: asset.name, type: asset.mimeType ?? 'application/octet-stream' };
       const name = asset.name.replace(/\.[^.]+$/, '');
-      trackUpload(objectId, 'file', file, (f) => edits.uploadAttachment(kind, objectId, f, name));
+      void edits.uploadAttachment(kind, objectId, file, name);
     }
   };
 
@@ -89,57 +86,30 @@ export function useMediaUploads(
     sheet.open(tr('media.addPhoto'), [
       { label: tr('media.takePhoto'), icon: 'camera', onPress: () => void fromCamera() },
       { label: tr('media.fromLibrary'), icon: 'library', onPress: () => void fromLibrary() },
-      {
-        label: webName ? tr('media.fromWikipediaOrWeb') : tr('media.fromImageAddress'),
-        icon: 'world',
-        onPress: () =>
-          router.push({
-            pathname: '/web-image/[collectionId]',
-            params: { collectionId: edits.collectionId, kind, objectId, ...(webName ? { name: webName } : {}) },
-          }),
-      },
+      ...(edits.can('importImages') ? [webImage()] : []),
     ]);
 
-  const pendingRow = (p: PendingUpload): ReactElement => (
-    <ListItem
-      key={p.key}
-      colors={p.status === 'failed' ? { ...t.listColors, contentColor: t.colors.danger } : t.listColors}
-      leading={<RowIcon name={p.media === 'image' ? 'image' : 'attachment'} />}
-      supportingText={<Sub>{p.status === 'failed' ? tr('media.tapRetryOrDiscard') : p.file.name}</Sub>}
-      onPress={
-        p.status === 'failed'
-          ? () =>
-              sheet.open(tr('media.uploadFailed'), [
-                { label: tr('common.tryAgain'), icon: 'refresh', onPress: () => p.retry() },
-                {
-                  label: tr('media.discard'),
-                  icon: 'delete',
-                  destructive: true,
-                  onPress: () => discardUpload(p.key),
-                },
-              ])
-          : undefined
-      }>
-      {p.status === 'failed'
-        ? tr('media.uploadFailed')
-        : p.media === 'image'
-          ? tr('media.uploadingPhoto')
-          : tr('media.uploadingFile')}
-    </ListItem>
-  );
+  const webImage = () => ({
+    label: webName ? tr('media.fromWikipediaOrWeb') : tr('media.fromImageAddress'),
+    icon: 'world' as const,
+    onPress: () =>
+      router.push({
+        pathname: '/web-image/[collectionId]',
+        params: { collectionId: edits.collectionId, kind, objectId, ...(webName ? { name: webName } : {}) },
+      }),
+  });
 
-  const photoRows: ReactElement[] = edits.online
+  // Photos and files work offline too (ADR 0016); only images from the web need a connection.
+  const photoRows: ReactElement[] = edits.canEdit
     ? [
-        ...pending.filter((p) => p.media === 'image').map(pendingRow),
         <ListItem key="add-photo" colors={t.listColors} leading={<RowIcon name="addPhoto" />} onPress={addPhoto}>
           {tr('media.addPhoto')}
         </ListItem>,
       ]
-    : pending.filter((p) => p.media === 'image').map(pendingRow);
+    : [];
 
-  const fileRows: ReactElement[] = edits.online
+  const fileRows: ReactElement[] = edits.canEdit
     ? [
-        ...pending.filter((p) => p.media === 'file').map(pendingRow),
         <ListItem
           key="attach-file"
           colors={t.listColors}
@@ -148,7 +118,7 @@ export function useMediaUploads(
           {tr('media.attachFile')}
         </ListItem>,
       ]
-    : pending.filter((p) => p.media === 'file').map(pendingRow);
+    : [];
 
   return { photoRows, fileRows, uploadPhotos };
 }

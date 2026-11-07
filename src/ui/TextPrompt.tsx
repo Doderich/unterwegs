@@ -41,7 +41,7 @@ export function useTextPrompt(t: RowTheme) {
       <Column
         spacing={Platform.OS === 'ios' ? 16 : 12}
         style={Platform.OS === 'ios' ? { paddingTop: 8, paddingBottom: 16 } : { padding: 16 }}>
-        <Text textStyle={{ fontSize: 20, fontWeight: '600', color: t.colors.text }}>{prompt?.title ?? ''}</Text>
+        <Text textStyle={{ fontSize: 22, fontWeight: '600', color: t.colors.text }}>{prompt?.title ?? ''}</Text>
         {prompt ? (
           <TextInput
             key={prompt.title + prompt.value}

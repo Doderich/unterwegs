@@ -28,3 +28,15 @@ export function useReduceMotion(): boolean {
   const system = useReducedMotion();
   return useSettings().reduceMotion || system;
 }
+
+/**
+ * The one shadow in the app, for controls floating over a map (DESIGN.md → Elevation). Soft and tinted with the
+ * deep teal instead of pure black, so it reads as depth on the map's colours rather than as a grey smudge.
+ */
+export const floatingShadow = {
+  shadowColor: '#0B2B29',
+  shadowOpacity: 0.16,
+  shadowRadius: 16,
+  shadowOffset: { width: 0, height: 4 },
+  elevation: 3,
+} as const;

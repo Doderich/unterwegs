@@ -109,7 +109,7 @@ export function DayStrip({
               </RNText>
               <RNText
                 allowFontScaling={rnTextScale(textSize) == null}
-                style={[text(20, '700'), styles.number, { color: fg }]}>
+                style={[text(22, '600'), styles.number, { color: fg }]}>
                 {p.day}
               </RNText>
               <RNText
@@ -130,8 +130,8 @@ export function DayStrip({
 
 const styles = StyleSheet.create({
   bar: { borderBottomWidth: StyleSheet.hairlineWidth },
-  strip: { paddingHorizontal: 16, paddingVertical: 10, gap: 8 },
-  chip: { minWidth: 56, minHeight: 48, paddingHorizontal: 10, paddingTop: 8, borderRadius: 14, alignItems: 'center' },
-  number: { fontVariant: ['tabular-nums'], marginVertical: 1 },
-  dot: { width: 6, height: 6, borderRadius: 3, marginTop: 4, marginBottom: 6 },
+  strip: { paddingHorizontal: 16, paddingVertical: 8, gap: 8 },
+  chip: { minWidth: 56, minHeight: 48, paddingHorizontal: 12, paddingTop: 8, borderRadius: 16, alignItems: 'center' },
+  number: { fontVariant: ['tabular-nums'] },
+  dot: { width: 8, height: 8, borderRadius: 4, marginTop: 4, marginBottom: 8 },
 });

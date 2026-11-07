@@ -240,7 +240,7 @@
     "note": "メモ",
     "notes": "メモ",
     "nothingFound": "見つかりませんでした",
-    "nothingPlanned": "予定はありません。",
+    "nothingPlanned": "予定なし – 気ままに過ごしましょう。",
     "offlineMaps": "オフライン地図",
     "offlineNoData": "この端末にはまだデータが保存されていません。インターネットに接続して読み込んでください。",
     "onlyWithInternet": "インターネット接続が必要です。",
@@ -295,7 +295,10 @@
     "website": "ウェブサイト",
     "whichDayConfirm": "どの日にしますか?",
     "world": "世界",
-    "youreNoLongerSignedIn": "ログアウトされました。"
+    "youreNoLongerSignedIn": "ログアウトされました。",
+    "offlineAllSaved": "オフライン – 保存済みの内容はすべて使えます",
+    "showMore": "もっと見る",
+    "showFewer": "表示を減らす"
   },
   "compat": {
     "title": "サーバーのデータの一部を読み取れません",
@@ -365,7 +368,7 @@
   },
   "feed": {
     "invitationHint": "コレクションを開いて返信",
-    "nothingPlanned": "予定はありません。",
+    "nothingPlanned": "まだ予定はありません。次はどこへ行きますか？",
     "recent": "最近保存した場所",
     "refreshFailed": "更新できませんでした。保存済みの内容は引き続き利用できます。",
     "today": "今日",
@@ -375,7 +378,12 @@
     "dayDayOfTotal": "{total}日中{day}日目",
     "daysToGo_other": "あと{count}日",
     "startsToday_other": "今日出発 · {count}日間",
-    "startsTomorrow": "明日出発"
+    "startsTomorrow": "明日出発",
+    "sleepsToGo_other": "あと{count}回寝たら出発！",
+    "agoDays_other": "{count}日前",
+    "agoWeeks_other": "{count}週間前",
+    "agoMonths_other": "{count}か月前",
+    "agoYears_other": "{count}年前"
   },
   "forms": {
     "noRating": "評価なし",
@@ -402,7 +410,7 @@
     "later": "後で",
     "noDate": "日付なし",
     "noTrips": "コレクションがありません",
-    "noTripsYetCreateOne": "コレクションはまだありません。+ で新しく作成できます。",
+    "noTripsYetHint": "日程・宿泊・移動をひとつにまとめて、電波がなくても読めます。",
     "pastTrips": "過去のコレクション",
     "tapAccept": "タップして承諾"
   },
@@ -651,16 +659,11 @@
   "media": {
     "addPhoto": "写真を追加",
     "attachFile": "ファイルを添付",
-    "discard": "破棄",
     "fromImageAddress": "画像のアドレスから",
     "fromLibrary": "ライブラリから",
     "fromWikipediaOrWeb": "Wikipedia またはウェブから",
     "noAccessCamera": "カメラにアクセスできません",
-    "takePhoto": "写真を撮影",
-    "tapRetryOrDiscard": "タップして再試行または破棄",
-    "uploadFailed": "アップロードに失敗しました",
-    "uploadingFile": "ファイルをアップロード中…",
-    "uploadingPhoto": "写真をアップロード中…"
+    "takePhoto": "写真を撮影"
   },
   "nearby": {
     "addAsLodging": "宿泊先として追加",
@@ -802,7 +805,7 @@
     "wrongUsernameOrPassword": "ユーザー名またはパスワードが違います。"
   },
   "settings": {
-    "accessibility": "アクセシビリティ",
+    "accessibility": "読みやすさと操作",
     "account": "アカウント",
     "appearance": "外観",
     "appleMaps": "Appleマップ",
@@ -811,7 +814,6 @@
     "boldText": "文字を太くする",
     "dark": "ダーク",
     "default": "標準",
-    "deleteDownloads": "削除",
     "deleteOfflineData": "オフラインデータを削除",
     "deleteOfflineDataConfirm": "オフラインデータを削除しますか?",
     "extraLarge": "とても大きい",
@@ -822,9 +824,6 @@
     "huge": "特大",
     "imagesPdfsDownloadedAgainNext": "画像とPDFは、次にコレクションを開いたときに再ダウンロードされます。",
     "increaseContrast": "コントラストを上げる",
-    "keepDownloads": "残す",
-    "keepDownloadsConfirm": "ダウンロードを残しますか？",
-    "keepDownloadsExplanation": "ダウンロードしたPDF、写真、地図はこの端末に残り、同じサーバーに再ログインしたときに使われます。他の人がこの端末を使う場合は削除してください。",
     "language": "言語",
     "large": "大",
     "light": "ライト",
@@ -844,8 +843,6 @@
     "showTabLabelsHint": "メインナビゲーションとコレクション内のラベルを表示します。",
     "signOut": "ログアウト",
     "signOutConfirm": "ログアウトしますか？",
-    "signOutDeleteKey": "ログアウトしてキーを削除",
-    "signOutOnDeviceOnly": "この端末のみログアウト",
     "signedInAs": "ログイン中のアカウント",
     "small": "小",
     "systemUsesPhonesSettings": "「システム」ではスマートフォンの設定に従います。",
@@ -868,7 +865,14 @@
     "remindersHint": "リマインダーはこの端末のオフラインコピーから作られ、通信がなくても届きます。予約番号は含まれません。",
     "remindersOn": "リマインダー",
     "travelActivity": "ロック画面に移動日を表示",
-    "travelActivityHint": "移動日にアプリを開くと、次の移動をカウントダウン付きで表示します。"
+    "travelActivityHint": "移動日にアプリを開くと、次の移動をカウントダウン付きで表示します。",
+    "signOutKeepDownloads": "サインアウト(ダウンロードは保持)",
+    "signOutKeepDownloadsHint": "写真・PDF・地図は次回のサインインまで残ります。",
+    "signOutEverything": "サインアウトしてすべて削除",
+    "signOutEverythingHint": "他の人がこの端末を使う場合に。",
+    "textSizePreview": "Unterwegsの文字はこの大きさです。",
+    "remindersOff": "オフ",
+    "remindersActive_other": "{count}件オン"
   },
   "share": {
     "attachFiles": "ファイルを添付",
@@ -948,7 +952,14 @@
     "noAccommodationAdded": "宿泊先が登録されていません。",
     "notesForDay": "その日のメモ",
     "tonight": "今夜",
-    "tripHasNoDayPlan": "このコレクションにはまだ日程がありません。"
+    "tripHasNoDayPlan": "このコレクションにはまだ日程がありません。",
+    "firstDayGreeting": "良い旅を！",
+    "lastDayGreeting": "最終日 – 気をつけてお帰りください！",
+    "summaryTitle": "今回の旅",
+    "summaryFooter": "すべてこのコレクションに残り、いつでも振り返れます。",
+    "connections_other": "{count}件の移動",
+    "visited_other": "{count}か所を訪問",
+    "photosOfDay": "この日の写真"
   },
   "transport": {
     "bookingWebsite": "予約 / ウェブサイト",
@@ -1084,5 +1095,25 @@
     "arrived": "到着",
     "arrives": "到着",
     "departs": "出発"
+  },
+  "nextUp": {
+    "title": "次の予定",
+    "inDuration": "あと{duration}"
+  },
+  "celebration": {
+    "checklistDone": "すべて完了！"
+  },
+  "memories": {
+    "onThisDay": "{ago}の今日",
+    "title": "思い出"
+  },
+  "outbox": {
+    "conflictCopyName": "{name}(オフライン)",
+    "notSaved_other": "{count}件の変更を保存できませんでした",
+    "conflictTitle": "他で変更されていました",
+    "conflictBody": "オフラインで書いた内容は「{name}」として隣に保存しました。何も失われていません。",
+    "waiting_other": "{count}件の変更が接続待ちです",
+    "signOutPending_other": "未送信の変更が{count}件あります。サインアウトすると失われます。",
+    "fieldsKept": "「{name}」の同じ項目が他の人によって変更されていたため、その内容を残しました。ほかの変更は保存されています。"
   }
 }

@@ -11,6 +11,7 @@ import { persistOptions, persister } from '@/data/persist';
 import { createQueryClient } from '@/data/queries';
 import { wipeLocalData } from '@/offline/wipe';
 import { tr } from '@/i18n';
+import { CelebrationHost } from '@/ui/Celebration';
 import { androidHeaderTitleSize, remountKey } from '@/settings/apply';
 import { useSettings } from '@/settings/store';
 import { reportAppStarted } from '@/telemetry/health';
@@ -31,6 +32,7 @@ export default function RootLayout() {
       <QueryProvider>
         <NavigationTheme>
           <RootStack key={remountKey(settings)} />
+          <CelebrationHost />
         </NavigationTheme>
       </QueryProvider>
     </SessionProvider>
@@ -116,7 +118,10 @@ function RootStack() {
       }}>
       <Stack.Protected guard={signedIn}>
         <Stack.Screen name="(main)" options={{ title: tr('shell.home'), headerShown: Platform.OS !== 'android' }} />
-        <Stack.Screen name="settings" options={{ title: tr('common.settings') }} />
+        <Stack.Screen name="settings/index" options={{ title: tr('common.settings') }} />
+        <Stack.Screen name="settings/reading" options={{ title: tr('settings.accessibility') }} />
+        <Stack.Screen name="settings/appearance" options={{ title: tr('settings.appearance') }} />
+        <Stack.Screen name="settings/reminders" options={{ title: tr('settings.reminders') }} />
         <Stack.Screen name="licenses/index" options={{ title: tr('settings.openSourceLicenses') }} />
         <Stack.Screen name="licenses/[index]" options={{ title: '' }} />
         <Stack.Screen name="integrations/index" options={{ title: tr('common.integrations') }} />

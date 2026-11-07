@@ -152,7 +152,7 @@ export function VisitEditor({
         <Stack.Toolbar.Button
           icon={androidToolbarIcon('check')}
           accessibilityLabel={tr('common.save')}
-          disabled={saving || !edits.online}
+          disabled={saving || !edits.canEdit}
           onPress={() => void save()}>
           {saving ? tr('common.saving') : tr('common.save')}
         </Stack.Toolbar.Button>

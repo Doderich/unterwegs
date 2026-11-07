@@ -38,7 +38,7 @@ export function useActionSheet(t: RowTheme) {
   const rows = (
     <Column spacing={0} style={{ paddingBottom: 16 }}>
       <Text
-        textStyle={{ fontSize: 20, fontWeight: '600', color: t.colors.text }}
+        textStyle={{ fontSize: 22, fontWeight: '600', color: t.colors.text }}
         style={{ paddingTop: 12, paddingBottom: 16 }}>
         {content?.title ?? ''}
       </Text>

@@ -44,7 +44,8 @@ function CollectionTitle({ fallback }: { fallback?: string }) {
     />
   );
   if (segments.includes('search')) return title;
-  if (!view || !actions.online || !isMember(view.collection))
+  // Creating works offline (ADR 0016); the collection menu (sharing, export, archive …) needs a connection.
+  if (!view || !isMember(view.collection))
     return (
       <>
         {title}
@@ -192,137 +193,139 @@ function CollectionTitle({ fallback }: { fallback?: string }) {
               ))
             : creationActions(creation.day)}
         </Stack.Toolbar.Menu>
-        <Stack.Toolbar.Menu icon={toolbarIcon('more') as never} accessibilityLabel={tr('collection.tripMenu')}>
-          {owner ? (
+        {actions.online ? (
+          <Stack.Toolbar.Menu icon={toolbarIcon('more') as never} accessibilityLabel={tr('collection.tripMenu')}>
+            {owner ? (
+              <Stack.Toolbar.MenuAction
+                icon={toolbarIcon('edit') as never}
+                onPress={() => router.push({ pathname: '/collection-edit', params: { collectionId } })}>
+                {tr('common.editTrip')}
+              </Stack.Toolbar.MenuAction>
+            ) : null}
             <Stack.Toolbar.MenuAction
-              icon={toolbarIcon('edit') as never}
-              onPress={() => router.push({ pathname: '/collection-edit', params: { collectionId } })}>
-              {tr('common.editTrip')}
+              icon={toolbarIcon('share') as never}
+              onPress={() => {
+                const share = (aspect: 'square' | 'story') =>
+                  void serverFile.share(
+                    `/api/collections/${collectionId}/share-image/${aspect}`,
+                    safeFileName(`${name}-${aspect}`, 'png'),
+                    'image/png',
+                    name,
+                  );
+                Alert.alert(tr('common.shareAsImage'), tr('collection.imageOfTripWithCover'), [
+                  { text: tr('common.cancel'), style: 'cancel' },
+                  { text: tr('common.square'), onPress: () => share('square') },
+                  { text: tr('common.portraitStory'), onPress: () => share('story') },
+                ]);
+              }}>
+              {tr('common.shareAsImage')}
             </Stack.Toolbar.MenuAction>
-          ) : null}
-          <Stack.Toolbar.MenuAction
-            icon={toolbarIcon('share') as never}
-            onPress={() => {
-              const share = (aspect: 'square' | 'story') =>
-                void serverFile.share(
-                  `/api/collections/${collectionId}/share-image/${aspect}`,
-                  safeFileName(`${name}-${aspect}`, 'png'),
-                  'image/png',
+            <Stack.Toolbar.MenuAction
+              icon={toolbarIcon('pdf') as never}
+              onPress={() =>
+                void serverFile.open(
+                  `/api/collections/${collectionId}/export-pdf`,
+                  safeFileName(name, 'pdf'),
+                  'application/pdf',
                   name,
-                );
-              Alert.alert(tr('common.shareAsImage'), tr('collection.imageOfTripWithCover'), [
-                { text: tr('common.cancel'), style: 'cancel' },
-                { text: tr('common.square'), onPress: () => share('square') },
-                { text: tr('common.portraitStory'), onPress: () => share('story') },
-              ]);
-            }}>
-            {tr('common.shareAsImage')}
-          </Stack.Toolbar.MenuAction>
-          <Stack.Toolbar.MenuAction
-            icon={toolbarIcon('pdf') as never}
-            onPress={() =>
-              void serverFile.open(
-                `/api/collections/${collectionId}/export-pdf`,
-                safeFileName(name, 'pdf'),
-                'application/pdf',
-                name,
-              )
-            }>
-            {tr('collection.itineraryAsPdf')}
-          </Stack.Toolbar.MenuAction>
-          <Stack.Toolbar.MenuAction
-            icon={toolbarIcon('file') as never}
-            onPress={() =>
-              void serverFile.share(
-                `/api/collections/${collectionId}/export`,
-                safeFileName(name, 'zip'),
-                'application/zip',
-                name,
-              )
-            }>
-            {tr('collection.exportZip')}
-          </Stack.Toolbar.MenuAction>
-          {owner ? (
+                )
+              }>
+              {tr('collection.itineraryAsPdf')}
+            </Stack.Toolbar.MenuAction>
             <Stack.Toolbar.MenuAction
-              icon={toolbarIcon('copy') as never}
+              icon={toolbarIcon('file') as never}
               onPress={() =>
-                Alert.alert(
-                  tr('collection.duplicateNameConfirm', { name }),
-                  tr('collection.lodgingTransportationNotesChecklistsDay'),
-                  [
-                    { text: tr('common.cancel'), style: 'cancel' },
-                    {
-                      text: tr('collection.duplicate'),
-                      onPress: async () => {
-                        const copy = await actions.duplicateCollection(collectionId, name);
-                        if (copy)
-                          router.replace({ pathname: '/collection/[id]', params: { id: copy.id, name: copy.name } });
+                void serverFile.share(
+                  `/api/collections/${collectionId}/export`,
+                  safeFileName(name, 'zip'),
+                  'application/zip',
+                  name,
+                )
+              }>
+              {tr('collection.exportZip')}
+            </Stack.Toolbar.MenuAction>
+            {owner ? (
+              <Stack.Toolbar.MenuAction
+                icon={toolbarIcon('copy') as never}
+                onPress={() =>
+                  Alert.alert(
+                    tr('collection.duplicateNameConfirm', { name }),
+                    tr('collection.lodgingTransportationNotesChecklistsDay'),
+                    [
+                      { text: tr('common.cancel'), style: 'cancel' },
+                      {
+                        text: tr('collection.duplicate'),
+                        onPress: async () => {
+                          const copy = await actions.duplicateCollection(collectionId, name);
+                          if (copy)
+                            router.replace({ pathname: '/collection/[id]', params: { id: copy.id, name: copy.name } });
+                        },
                       },
-                    },
-                  ],
-                )
-              }>
-              {tr('collection.duplicateTrip')}
-            </Stack.Toolbar.MenuAction>
-          ) : null}
-          {owner ? (
-            <Stack.Toolbar.MenuAction
-              icon={toolbarIcon('group') as never}
-              onPress={() => router.push({ pathname: '/collection-share/[collectionId]', params: { collectionId } })}>
-              {tr('common.share')}
-            </Stack.Toolbar.MenuAction>
-          ) : null}
-          {owner && view.collection.is_archived ? (
-            <Stack.Toolbar.MenuAction
-              icon={toolbarIcon('unarchive') as never}
-              onPress={() => void actions.setArchived(collectionId, false)}>
-              {tr('collection.restoreFromArchive')}
-            </Stack.Toolbar.MenuAction>
-          ) : null}
-          {owner && !view.collection.is_archived ? (
-            <Stack.Toolbar.MenuAction
-              icon={toolbarIcon('archive') as never}
-              onPress={() =>
-                confirm(
-                  tr('collection.archiveNameConfirm', { name }),
-                  tr('collection.itLeavesListStaysUnder'),
-                  tr('collection.archive'),
-                  () => actions.setArchived(collectionId, true),
-                )
-              }>
-              {tr('collection.archive')}
-            </Stack.Toolbar.MenuAction>
-          ) : null}
-          {owner ? (
-            <Stack.Toolbar.MenuAction
-              destructive
-              icon={toolbarIcon('delete') as never}
-              onPress={() =>
-                confirm(
-                  tr('common.deleteNameConfirm', { name }),
-                  tr('collection.tripPlanStaysConnectionsNotes'),
-                  tr('common.delete'),
-                  () => actions.deleteCollection(collectionId),
-                )
-              }>
-              {tr('collection.deleteTrip')}
-            </Stack.Toolbar.MenuAction>
-          ) : (
-            <Stack.Toolbar.MenuAction
-              destructive
-              icon={toolbarIcon('logout') as never}
-              onPress={() =>
-                confirm(
-                  tr('collection.leaveNameConfirm', { name }),
-                  tr('collection.tripDisappearsFromPhoneOwner'),
-                  tr('collection.leave'),
-                  () => actions.leave(collectionId),
-                )
-              }>
-              {tr('collection.leaveTrip')}
-            </Stack.Toolbar.MenuAction>
-          )}
-        </Stack.Toolbar.Menu>
+                    ],
+                  )
+                }>
+                {tr('collection.duplicateTrip')}
+              </Stack.Toolbar.MenuAction>
+            ) : null}
+            {owner ? (
+              <Stack.Toolbar.MenuAction
+                icon={toolbarIcon('group') as never}
+                onPress={() => router.push({ pathname: '/collection-share/[collectionId]', params: { collectionId } })}>
+                {tr('common.share')}
+              </Stack.Toolbar.MenuAction>
+            ) : null}
+            {owner && view.collection.is_archived ? (
+              <Stack.Toolbar.MenuAction
+                icon={toolbarIcon('unarchive') as never}
+                onPress={() => void actions.setArchived(collectionId, false)}>
+                {tr('collection.restoreFromArchive')}
+              </Stack.Toolbar.MenuAction>
+            ) : null}
+            {owner && !view.collection.is_archived ? (
+              <Stack.Toolbar.MenuAction
+                icon={toolbarIcon('archive') as never}
+                onPress={() =>
+                  confirm(
+                    tr('collection.archiveNameConfirm', { name }),
+                    tr('collection.itLeavesListStaysUnder'),
+                    tr('collection.archive'),
+                    () => actions.setArchived(collectionId, true),
+                  )
+                }>
+                {tr('collection.archive')}
+              </Stack.Toolbar.MenuAction>
+            ) : null}
+            {owner ? (
+              <Stack.Toolbar.MenuAction
+                destructive
+                icon={toolbarIcon('delete') as never}
+                onPress={() =>
+                  confirm(
+                    tr('common.deleteNameConfirm', { name }),
+                    tr('collection.tripPlanStaysConnectionsNotes'),
+                    tr('common.delete'),
+                    () => actions.deleteCollection(collectionId),
+                  )
+                }>
+                {tr('collection.deleteTrip')}
+              </Stack.Toolbar.MenuAction>
+            ) : (
+              <Stack.Toolbar.MenuAction
+                destructive
+                icon={toolbarIcon('logout') as never}
+                onPress={() =>
+                  confirm(
+                    tr('collection.leaveNameConfirm', { name }),
+                    tr('collection.tripDisappearsFromPhoneOwner'),
+                    tr('collection.leave'),
+                    () => actions.leave(collectionId),
+                  )
+                }>
+                {tr('collection.leaveTrip')}
+              </Stack.Toolbar.MenuAction>
+            )}
+          </Stack.Toolbar.Menu>
+        ) : null}
       </Stack.Toolbar>
     </>
   );

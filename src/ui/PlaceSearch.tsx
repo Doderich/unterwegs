@@ -91,7 +91,7 @@ export function usePlaceSearch(t: RowTheme, { withCurrentPosition = true }: { wi
     <BottomSheet isPresented={open} onDismiss={close} snapPoints={['full']}>
       <ScrollView>
         <Column spacing={8} style={{ padding: 16 }}>
-          <Text textStyle={{ fontSize: 20, fontWeight: '600', color: t.colors.text }}>{title}</Text>
+          <Text textStyle={{ fontSize: 22, fontWeight: '600', color: t.colors.text }}>{title}</Text>
           {open ? (
             <TextInput
               placeholder={tr('placeSearch.searchForPlaceAddressOr')}

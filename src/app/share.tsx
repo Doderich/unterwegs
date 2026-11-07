@@ -81,7 +81,7 @@ function ShareForm({ incoming, retry }: { incoming: UseIncomingShareResult; retr
     else router.replace('/');
   };
   const attach = async () => {
-    if (!target || !c || busy.current || !edits.online) return;
+    if (!target || !c || busy.current || !edits.canEdit) return;
     busy.current = true;
     setSaving(true);
     try {
@@ -172,7 +172,7 @@ function ShareForm({ incoming, retry }: { incoming: UseIncomingShareResult; retr
                   ))}
                 </FieldGroup.Section>
               ))}
-              {edits.online ? (
+              {edits.canEdit ? (
                 <FieldGroup.Section>
                   <ListItem
                     colors={rt.listColors}
@@ -203,10 +203,10 @@ function ShareForm({ incoming, retry }: { incoming: UseIncomingShareResult; retr
           <FieldGroup.Section>
             {target ? <Text>{tr('share.attachName', { name: target.name })}</Text> : null}
             {done ? <Text>{tr('common.doneOfTotalDone', { done, total: files.length })}</Text> : null}
-            {!edits.online ? <Text>{tr('share.youNeedInternetConnectionAttach')}</Text> : null}
+            {!edits.canEdit ? <Text>{tr('share.youNeedInternetConnectionAttach')}</Text> : null}
             <Button
               label={saving ? tr('share.uploading') : tr('common.attach')}
-              disabled={saving || !target || !edits.online || !files.length}
+              disabled={saving || !target || !edits.canEdit || !files.length}
               onPress={() => void attach()}
             />
             <Button label={tr('common.cancel')} variant="text" disabled={saving} onPress={close} />

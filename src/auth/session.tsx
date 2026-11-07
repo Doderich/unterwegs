@@ -3,6 +3,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { AuthError, createClient, type ApiClient, type Credentials } from '@/api/client';
 import { checkServer, clearCompatIssues } from '@/api/compat';
 import { isMissingEndpoint, isUnreadable } from '@/api/errors';
+import { clearOutbox } from '@/data/outbox';
 
 import { clearCredentials, loadCredentials, saveCredentials } from './keyStore';
 
@@ -61,6 +62,8 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         .catch(() => false);
     }
     await clearCredentials();
+    // Waiting edits belong to this account and server; Settings warns before signing out with any.
+    clearOutbox();
     clearCompatIssues();
     setWipe(!!options?.wipe);
     setCredentials(null);

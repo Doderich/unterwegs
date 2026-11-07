@@ -1,9 +1,11 @@
 import { QueryCache, QueryClient, queryOptions, useQuery } from '@tanstack/react-query';
-import { useMemo } from 'react';
+import { useCallback, useMemo, useSyncExternalStore } from 'react';
 
 import { AuthError, type ApiClient } from '@/api/client';
+import type { Collection } from '@/api/schemas';
 import { useClient } from '@/auth/session';
 
+import { applyPending, getOutbox, subscribeOutbox } from './outbox';
 import { buildCollectionView } from './selectors';
 
 export function createQueryClient(onAuthError: () => void): QueryClient {
@@ -40,6 +42,7 @@ export const queryKeys = {
   archived: ['collections-archived'] as const,
   calendar: ['calendar'] as const,
   integrations: ['integrations'] as const,
+  apiKeys: ['account-keys'] as const,
   world: {
     stats: ['world', 'stats'] as const,
     pins: ['world', 'pins'] as const,
@@ -73,9 +76,25 @@ export function collectionQueryOptions(client: ApiClient, id: string) {
   return queryOptions({ queryKey: queryKeys.collection(id), queryFn: () => client.getCollection(id) });
 }
 
-export function useCollection(id: string) {
+/**
+ * The offline copy of one collection: as the server last sent it, without waiting edits. For what is synced
+ * from the server (its photos and files); screens use `useCollection`.
+ */
+export function useOfflineCopy(id: string) {
   const client = useClient();
   return useQuery({ ...collectionQueryOptions(client, id), enabled: !!id });
+}
+
+/**
+ * One collection, with the edits still waiting for the server laid over it (ADR 0016): the screens show the
+ * collection as it will be, online or not.
+ */
+export function useCollection(id: string) {
+  const client = useClient();
+  const pending = useSyncExternalStore(subscribeOutbox, getOutbox);
+  const mine = useMemo(() => pending.filter((op) => op.collectionId === id), [pending, id]);
+  const select = useCallback((c: Collection) => (mine.length ? applyPending(c, mine) : c), [mine]);
+  return useQuery({ ...collectionQueryOptions(client, id), enabled: !!id, select });
 }
 
 /** The collection resolved into days, lodgings and map data. */

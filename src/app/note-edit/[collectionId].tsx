@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Alert } from 'react-native';
 
 import type { Note } from '@/api/schemas';
+import { realIdFor } from '@/data/outbox';
 import { useCollectionView } from '@/data/queries';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { tr } from '@/i18n';
@@ -28,7 +29,8 @@ export default function NoteEditScreen() {
   const edits = useCollectionEdits(view);
   const rt = useRowTheme();
   const colors = useColors();
-  const note = noteId ? view?.collection.notes.find((n) => n.id === noteId) : undefined;
+  // A note created offline keeps working here after it is sent and gets its server id.
+  const note = noteId ? view?.collection.notes.find((n) => n.id === realIdFor(noteId)) : undefined;
 
   const initialFocus = useInitialInputFocus(!note);
   const [name, setName] = useState(note?.name ?? '');

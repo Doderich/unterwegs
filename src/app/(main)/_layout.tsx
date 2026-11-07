@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import { NativeTabs } from 'expo-router/native-tabs';
 
 import { tr } from '@/i18n';
+import { useOutboxSync } from '@/data/useOutbox';
 import { usePrefetchMainData } from '@/data/usePrefetchMainData';
 import { useScreenBackground } from '@/ui/useScreenBackground';
 import { useSettings } from '@/settings/store';
@@ -26,6 +27,8 @@ function MainTabs() {
   const tabBar = useTabBarColors();
   const backgroundColor = useScreenBackground();
   usePrefetchMainData();
+  // Offline edits go out from here: this shell stays mounted under every collection screen (ADR 0016).
+  useOutboxSync();
   const { boldText, showTabLabels } = useSettings();
   return (
     <>

@@ -149,8 +149,8 @@
   },
   "collectionHero": {
     "day1Name": "Day 1: {name}",
-    "nextTrip": "NEXT COLLECTION",
-    "onRoad": "ON THE ROAD",
+    "nextTrip": "Next collection",
+    "onRoad": "On the road",
     "todayName": "Today: {name}"
   },
   "collectionShare": {
@@ -244,7 +244,7 @@
     "note": "Note",
     "notes": "Notes",
     "nothingFound": "Nothing found",
-    "nothingPlanned": "Nothing planned.",
+    "nothingPlanned": "Nothing planned – time to wander.",
     "offlineMaps": "Offline maps",
     "offlineNoData": "No data saved on this device yet. Connect to the internet to load it.",
     "onlyWithInternet": "Only with internet.",
@@ -301,7 +301,10 @@
     "website": "Website",
     "whichDayConfirm": "Which day?",
     "world": "World",
-    "youreNoLongerSignedIn": "You’re no longer signed in."
+    "youreNoLongerSignedIn": "You’re no longer signed in.",
+    "offlineAllSaved": "Offline – everything saved is here",
+    "showMore": "Show more",
+    "showFewer": "Show less"
   },
   "compat": {
     "title": "Not everything from the server is readable",
@@ -373,7 +376,7 @@
   },
   "feed": {
     "invitationHint": "Open Collections to respond",
-    "nothingPlanned": "Nothing planned.",
+    "nothingPlanned": "Nothing planned yet. Where to next?",
     "recent": "Recently saved",
     "refreshFailed": "Could not refresh. Previously saved content is still available.",
     "today": "Today",
@@ -385,7 +388,17 @@
     "daysToGo_other": "{count} days to go",
     "startsToday_one": "Starts today · {count} day",
     "startsToday_other": "Starts today · {count} days",
-    "startsTomorrow": "Starts tomorrow"
+    "startsTomorrow": "Starts tomorrow",
+    "sleepsToGo_one": "{count} more sleep!",
+    "sleepsToGo_other": "{count} more sleeps!",
+    "agoDays_one": "{count} day ago",
+    "agoDays_other": "{count} days ago",
+    "agoWeeks_one": "{count} week ago",
+    "agoWeeks_other": "{count} weeks ago",
+    "agoMonths_one": "{count} month ago",
+    "agoMonths_other": "{count} months ago",
+    "agoYears_one": "{count} year ago",
+    "agoYears_other": "{count} years ago"
   },
   "forms": {
     "noRating": "No rating",
@@ -412,7 +425,7 @@
     "later": "Later",
     "noDate": "No date",
     "noTrips": "No collections",
-    "noTripsYetCreateOne": "No collections yet. Create one with +.",
+    "noTripsYetHint": "Plan days, stays and connections in one place – readable without signal too.",
     "pastTrips": "Past collections",
     "tapAccept": "Tap to accept"
   },
@@ -664,16 +677,11 @@
   "media": {
     "addPhoto": "Add photo",
     "attachFile": "Attach file",
-    "discard": "Discard",
     "fromImageAddress": "From an image address",
     "fromLibrary": "From the library",
     "fromWikipediaOrWeb": "From Wikipedia or the web",
     "noAccessCamera": "No access to the camera",
-    "takePhoto": "Take photo",
-    "tapRetryOrDiscard": "Tap to retry or discard",
-    "uploadFailed": "Upload failed",
-    "uploadingFile": "Uploading file…",
-    "uploadingPhoto": "Uploading photo…"
+    "takePhoto": "Take photo"
   },
   "nearby": {
     "addAsLodging": "Add as lodging",
@@ -819,7 +827,7 @@
     "wrongUsernameOrPassword": "Wrong username or password."
   },
   "settings": {
-    "accessibility": "Accessibility",
+    "accessibility": "Reading and controls",
     "account": "Account",
     "appearance": "Appearance",
     "appleMaps": "Apple Maps",
@@ -828,7 +836,6 @@
     "boldText": "Bold text",
     "dark": "Dark",
     "default": "Default",
-    "deleteDownloads": "Delete",
     "deleteOfflineData": "Delete offline data",
     "deleteOfflineDataConfirm": "Delete offline data?",
     "extraLarge": "Extra large",
@@ -839,9 +846,6 @@
     "huge": "Huge",
     "imagesPdfsDownloadedAgainNext": "Images and PDFs are downloaded again the next time you open a collection.",
     "increaseContrast": "Increase contrast",
-    "keepDownloads": "Keep",
-    "keepDownloadsConfirm": "Keep downloads?",
-    "keepDownloadsExplanation": "Downloaded PDFs, photos and maps stay on this device and are used again when you sign in to the same server. Delete them if someone else uses the device.",
     "language": "Language",
     "large": "Large",
     "light": "Light",
@@ -861,8 +865,6 @@
     "showTabLabelsHint": "Labels in the main navigation and inside collections.",
     "signOut": "Sign out",
     "signOutConfirm": "Sign out?",
-    "signOutDeleteKey": "Sign out and delete key",
-    "signOutOnDeviceOnly": "Sign out on this device only",
     "signedInAs": "Signed in as",
     "small": "Small",
     "systemUsesPhonesSettings": "“System” uses your phone’s settings.",
@@ -885,7 +887,15 @@
     "remindersHint": "Reminders come from the offline copy on this phone, even without a connection. They never contain booking numbers.",
     "remindersOn": "Reminders",
     "travelActivity": "Travel day on the Lock Screen",
-    "travelActivityHint": "Shows the next transportation with a countdown when you open the app on a travel day."
+    "travelActivityHint": "Shows the next transportation with a countdown when you open the app on a travel day.",
+    "signOutKeepDownloads": "Sign out, keep downloads",
+    "signOutKeepDownloadsHint": "Photos, PDFs and maps stay for the next sign-in.",
+    "signOutEverything": "Sign out and delete everything",
+    "signOutEverythingHint": "When someone else will use this phone.",
+    "textSizePreview": "This is how large text is in Unterwegs.",
+    "remindersOff": "Off",
+    "remindersActive_one": "{count} reminder on",
+    "remindersActive_other": "{count} reminders on"
   },
   "share": {
     "attachFiles": "Attach files",
@@ -966,7 +976,16 @@
     "noAccommodationAdded": "No accommodation added.",
     "notesForDay": "Notes for the day",
     "tonight": "Tonight",
-    "tripHasNoDayPlan": "This collection has no day plan yet."
+    "tripHasNoDayPlan": "This collection has no day plan yet.",
+    "firstDayGreeting": "Have a good trip!",
+    "lastDayGreeting": "Last day – safe travels home!",
+    "summaryTitle": "Your trip",
+    "summaryFooter": "Everything stays in this collection to look back on.",
+    "connections_one": "{count} connection",
+    "connections_other": "{count} connections",
+    "visited_one": "{count} place visited",
+    "visited_other": "{count} places visited",
+    "photosOfDay": "Photos of the day"
   },
   "transport": {
     "bookingWebsite": "Booking / website",
@@ -1110,5 +1129,28 @@
     "arrived": "Arrived",
     "arrives": "Arrives",
     "departs": "Departs"
+  },
+  "nextUp": {
+    "title": "Next up",
+    "inDuration": "in {duration}"
+  },
+  "celebration": {
+    "checklistDone": "All ticked off!"
+  },
+  "memories": {
+    "onThisDay": "On this day, {ago}",
+    "title": "Memories"
+  },
+  "outbox": {
+    "conflictCopyName": "{name} (offline)",
+    "notSaved_one": "{count} change wasn’t saved",
+    "notSaved_other": "{count} changes weren’t saved",
+    "conflictTitle": "Changed meanwhile",
+    "conflictBody": "Your offline version is next to it as “{name}”. Nothing was lost.",
+    "waiting_one": "{count} change waiting for a connection",
+    "waiting_other": "{count} changes waiting for a connection",
+    "signOutPending_one": "{count} change hasn’t been sent yet and will be lost when you sign out.",
+    "signOutPending_other": "{count} changes haven’t been sent yet and will be lost when you sign out.",
+    "fieldsKept": "Someone else changed the same details of “{name}”. Theirs were kept; your other changes are saved."
   }
 }

@@ -18,7 +18,7 @@ export function journeyRows(t: RowTheme, j: Transportation, collectionZone: stri
   const { from, to, dayShift, duration } = journey(j, collectionZone);
 
   const end = (key: string, e: JourneyEnd, extra: string | null) => (
-    <Column key={key} spacing={2} alignment="start">
+    <Column key={key} spacing={4} alignment="start">
       <Text textStyle={{ ...typeScale.figure, color: t.colors.text }}>{extra ? `${e.time} ${extra}` : e.time}</Text>
       {e.place ? <Text textStyle={{ ...typeScale.bodyStrong, color: t.colors.text }}>{e.place}</Text> : null}
       {e.context ? <Text textStyle={{ ...typeScale.supporting, color: t.colors.secondary }}>{e.context}</Text> : null}

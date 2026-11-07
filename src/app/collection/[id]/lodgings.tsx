@@ -60,7 +60,7 @@ export default function LodgingsScreen() {
             </Text>
           </FieldGroup.SectionFooter>
         </FieldGroup.Section>
-        {edits.online ? (
+        {edits.canEdit ? (
           <FieldGroup.Section title={tr('common.new')}>
             <ListItem
               colors={listColors}

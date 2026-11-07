@@ -7,6 +7,7 @@ import { requestErrorText } from '@/api/errors';
 import { homeFeed, type FeedItem } from '@/data/homeFeed';
 import { queryKeys, useCollections, useInvites } from '@/data/queries';
 import { useClient } from '@/auth/session';
+import { useOnline } from '@/data/useOnlineAction';
 import { useLocations } from '@/data/useLocation';
 import { tr } from '@/i18n';
 import { deviceTimeZone, formatDayLabel, visitTime } from '@/time/tz';
@@ -17,13 +18,14 @@ import { CollectionHero } from '@/ui/CollectionHero';
 import { leadingFor } from '@/ui/entries';
 import { formatDateRange } from '@/ui/format';
 import { RefreshableFieldGroup } from '@/ui/RefreshableFieldGroup';
-import { RowIcon, useRowTheme } from '@/ui/rows';
+import { offlineNoticeRow, RowIcon, useRowTheme } from '@/ui/rows';
 import { Sub } from '@/ui/Sub';
 import { Host } from '@/ui/Host';
 import { Text } from '@/ui/Text';
 import { LoadingRows } from '@/ui/LoadingRows';
 import { GlobalSearchRow } from '@/ui/GlobalSearchRow';
 import { MainSearchScreen } from '@/ui/MainSearchScreen';
+import { MemoryCard, onThisDay, onThisDayCaption } from '@/ui/Memories';
 
 export default function HomeScreen() {
   const collections = useCollections();
@@ -49,7 +51,10 @@ export default function HomeScreen() {
       <ListItem
         key={item.key}
         colors={rt.listColors}
-        leading={<RowIcon name="luggage" />}
+        leading={leadingFor(
+          item.collection.primary_image ? [item.collection.primary_image] : item.collection.location_images,
+          <RowIcon name="luggage" />,
+        )}
         supportingText={<Sub>{formatDateRange(item.collection.start_date, item.collection.end_date)}</Sub>}
         onPress={() =>
           router.push({ pathname: '/collection/[id]', params: { id: item.collection.id, name: item.collection.name } })
@@ -77,6 +82,13 @@ export default function HomeScreen() {
       </ListItem>
     );
   const empty = !feed.current.length && !feed.upcoming.length;
+  const today = todayIn(deviceTimeZone());
+  const memory = onThisDay(collections.data ?? [], today);
+  const online = useOnline();
+  const offlineNoData =
+    !feed.recent.length &&
+    ((collections.isPending && collections.fetchStatus === 'paused') ||
+      (locations.isPending && locations.fetchStatus === 'paused'));
   const loading =
     empty &&
     !feed.recent.length &&
@@ -89,6 +101,10 @@ export default function HomeScreen() {
       <Host style={{ flex: 1 }}>
         <RefreshableFieldGroup onRefresh={refresh}>
           <GlobalSearchRow />
+          {/* Offline is the normal case on the road: say up front that the saved trip is all here. */}
+          {!online && !offlineNoData && !loading ? (
+            <FieldGroup.Section>{offlineNoticeRow(rt, collections.dataUpdatedAt)}</FieldGroup.Section>
+          ) : null}
           <CompatNotice />
           {featured?.kind === 'collection' ? (
             <CardRow>
@@ -126,20 +142,50 @@ export default function HomeScreen() {
           ) : empty && !collections.isError && !locations.isError ? (
             <FieldGroup.Section>
               <Text textStyle={{ color: rt.colors.secondary }}>
-                {!feed.recent.length &&
-                ((collections.isPending && collections.fetchStatus === 'paused') ||
-                  (locations.isPending && locations.fetchStatus === 'paused'))
-                  ? tr('common.offlineNoData')
-                  : tr('feed.nothingPlanned')}
+                {offlineNoData ? tr('common.offlineNoData') : tr('feed.nothingPlanned')}
               </Text>
+              {/* An empty feed offers the next step in reach of the thumb, not only in the header's + menu. */}
+              {online && !offlineNoData ? (
+                <ListItem
+                  colors={rt.listColors}
+                  leading={<RowIcon name="luggage" />}
+                  onPress={() => router.push('/collection-edit')}>
+                  {tr('common.newTrip')}
+                </ListItem>
+              ) : null}
+              {online && !offlineNoData ? (
+                <ListItem
+                  colors={rt.listColors}
+                  leading={<RowIcon name="location" />}
+                  onPress={() => router.push('/place-edit')}>
+                  {tr('common.newPlace')}
+                </ListItem>
+              ) : null}
             </FieldGroup.Section>
           ) : null}
           {collections.isError || locations.isError ? (
             <FieldGroup.Section>
-              <Text textStyle={{ color: rt.colors.secondary }}>
-                {`${tr('feed.refreshFailed')}\n${requestErrorText(collections.error ?? locations.error)}`}
-              </Text>
+              <ListItem
+                colors={rt.listColors}
+                leading={<RowIcon name="refresh" />}
+                supportingText={
+                  <Sub>{`${tr('feed.refreshFailed')}\n${requestErrorText(collections.error ?? locations.error)}`}</Sub>
+                }
+                onPress={() => void refresh()}>
+                {tr('common.tryAgain')}
+              </ListItem>
             </FieldGroup.Section>
+          ) : null}
+          {memory ? (
+            <CardRow title={tr('memories.title')}>
+              <MemoryCard
+                collection={memory}
+                today={today}
+                caption={onThisDayCaption(memory, today)}
+                width={cardRowWidth(width)}
+                height={200}
+              />
+            </CardRow>
           ) : null}
           {feed.recent.length ? (
             <FieldGroup.Section title={tr('feed.recent')}>

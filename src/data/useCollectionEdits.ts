@@ -1,7 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { useNetworkState } from 'expo-network';
 import { useMemo } from 'react';
-import { Alert } from 'react-native';
 
 import {
   ApiError,
@@ -17,197 +15,212 @@ import {
   type UploadFile,
   type VisitInput,
 } from '@/api/client';
-import { requestErrorText } from '@/api/errors';
 import type { Checklist, Location, Collection } from '@/api/schemas';
 import { useClient } from '@/auth/session';
 import { tr } from '@/i18n';
-import { seedCache } from '@/offline/fileCache';
 import { haptics } from '@/settings/haptics';
+import { celebrate } from '@/ui/celebrate';
 import { todayIn } from '@/time/today';
 
+import { moveWithinDay, tempId, withImage, withLocationObject, withLodging, type OrderUpdate } from './edits';
 import {
-  moveToDay,
-  moveWithinDay,
-  tempId,
-  withAttachment,
-  withAttachmentName,
-  withChecklist,
-  withCollectionFields,
-  withDay,
-  withImage,
-  withLocationObject,
-  withLodging,
-  withoutAttachment,
-  withoutImage,
-  withPrimaryImage,
-  withTransportation,
-  withItineraryItems,
-  withLocation,
-  withNote,
-  withOrder,
-  withoutItineraryItem,
-  withoutObject,
-  withoutVisit,
-  withVisit,
-  type OrderUpdate,
-} from './edits';
+  diffFields,
+  enqueue,
+  findChild,
+  findObject,
+  keepForUpload,
+  type ChecklistChange,
+  type ChildKind,
+  type EditableChild,
+  type Fields,
+  type NewOp,
+  type ObjectKind,
+  type PlanKind,
+} from './outbox';
+import { patch, reportWriteFailure, useOnline, writeOnline } from './onlineWrite';
 import { queryKeys } from './queries';
 import { isMember, locationZone, type DayEntry, type Day, type CollectionView } from './selectors';
+import { readsAffectedBy } from './affected';
 
-export class OfflineError extends Error {
-  constructor() {
-    super(tr('common.editingNeedsInternetConnection'));
-    this.name = 'OfflineError';
-  }
-}
-
-export function errorText(e: unknown): string {
-  if (e instanceof OfflineError) return e.message;
-  if (e instanceof ApiError && e.status === 403) return tr('useCollectionEdits.youreNotAllowedEditTrip');
-  return requestErrorText(e, { write: true });
-}
-
-const ITEM_KIND: Record<DayEntry['kind'], string> = {
-  transportation: 'transportation',
-  lodging: 'lodging',
-  location: 'location',
-  note: 'note',
-  checklist: 'checklist',
-};
+/** Edits that only make sense with the server at hand: they look something up or let the server compute. */
+const ONLINE_ONLY = new Set(['quickAdd', 'importImages', 'autoGenerateItinerary']);
 
 /**
- * Online-only edits of one collection. Each action updates the cached collection optimistically, sends the request,
- * rolls back and shows an alert on failure, and refetches the collection afterwards.
- * Actions resolve to `null` when they failed (the alert is already shown).
+ * Every edit of one collection's content, through one interface. Most go through the outbox (ADR 0016): saved on
+ * the phone at once, shown through the collection overlay, sent now or when the connection is back. The few in
+ * `ONLINE_ONLY` are online writes. Screens don't choose: they ask `can(action)` and call the action. Actions resolve
+ * to their (pending) result, or `null` when refused or failed (already reported).
  */
 export function useCollectionEdits(view: CollectionView | null) {
   const client = useClient();
   const queryClient = useQueryClient();
-  const network = useNetworkState();
-  const online = !(network.isInternetReachable === false || network.isConnected === false);
+  const online = useOnline();
   const collectionId = view?.collection.id ?? '';
+  const canEdit = !view || isMember(view.collection);
 
   return useMemo(() => {
     const key = queryKeys.collection(collectionId);
 
-    /** `confirmed`: applied to the cached collection with the server's answer, before the refetch. */
-    async function run<R>(
+    /** An online write on this collection: optimistic patch, rollback on failure, refetch afterwards. */
+    function run<R>(
       optimistic: ((t: Collection) => Collection) | null,
       request: () => Promise<R>,
       confirmed?: (t: Collection, result: R) => Collection,
     ): Promise<R | null> {
-      try {
-        if (!online) throw new OfflineError();
-        await queryClient.cancelQueries({ queryKey: key });
-        const previous = queryClient.getQueryData<Collection>(key);
-        if (previous && optimistic) queryClient.setQueryData(key, optimistic(previous));
-        try {
-          const result = await request();
-          if (confirmed) {
-            const current = queryClient.getQueryData<Collection>(key);
-            if (current) queryClient.setQueryData(key, confirmed(current, result));
-          }
-          return result;
-        } catch (e) {
-          if (previous) queryClient.setQueryData(key, previous);
-          throw e;
-        } finally {
-          void queryClient.invalidateQueries({ queryKey: key });
-        }
-      } catch (e) {
-        haptics.error();
-        Alert.alert(tr('common.notSaved'), errorText(e));
-        return null;
-      }
+      return writeOnline(queryClient, online, {
+        request,
+        optimistic: optimistic ? [patch(key, optimistic)] : [],
+        confirmed: confirmed
+          ? (result) => {
+              const current = queryClient.getQueryData<Collection>(key);
+              if (current) queryClient.setQueryData(key, confirmed(current, result));
+            }
+          : undefined,
+        refetch: readsAffectedBy({ collection: collectionId }),
+        forbidden: tr('useCollectionEdits.youreNotAllowedEditTrip'),
+      });
     }
 
-    const setChecklist = (checklist: Checklist, items: Checklist['items'], name = checklist.name) =>
-      run(
-        (t) => withChecklist(t, { ...checklist, name, items }),
-        () =>
-          client.edit.updateChecklist(checklist.id, {
-            collection: collectionId,
-            name,
-            items: items.map((i) => ({ name: i.name, is_checked: !!i.is_checked })),
-          }),
-      );
+    /**
+     * Edits that work offline go through the outbox (ADR 0016): saved on the phone at once, shown through the
+     * collection overlay, sent now or when the connection is back. Resolves like `run`: the (pending) result, or
+     * `null` when the collection can't be edited by this user.
+     */
+    function queue<R>(op: NewOp, result: R): Promise<R | null> {
+      if (!canEdit) {
+        reportWriteFailure(new ApiError('forbidden', 403, ''), tr('useCollectionEdits.youreNotAllowedEditTrip'));
+        return Promise.resolve(null);
+      }
+      enqueue(op);
+      return Promise.resolve(result);
+    }
 
-    const reorder = (updates: OrderUpdate[] | null) =>
+    const changeChecklist = (checklist: Checklist, change: ChecklistChange) =>
+      queue({ type: 'checklist', collectionId, checklistId: checklist.id, change }, true);
+
+    /** A day's entries in a new order (ids from `moveWithinDay`). */
+    const reorder = (date: string, updates: OrderUpdate[] | null) =>
       updates
-        ? run(
-            (t) => withOrder(t, updates),
-            () => client.edit.reorderItinerary(updates),
-          )
+        ? queue({ type: 'reorderDay', collectionId, date, order: updates.map((u) => u.id) }, true)
         : Promise.resolve(null);
 
-    const addToDay = async (date: string, kind: DayEntry['kind'], objectId: string) => {
-      const day = view?.days.find((d) => d.date === date);
-      const order = day?.entries.length ?? 0;
-      const id = tempId();
-      return run(
-        (t) =>
-          withItineraryItems(t, [
-            { id, content_type: kind, object_id: objectId, object_name: kind, date, is_global: false, order },
-          ]),
-        () =>
-          client.edit.addToItinerary({
-            collection: collectionId,
-            content_type: ITEM_KIND[kind],
-            object_id: objectId,
-            date,
-            order,
-          }),
+    const addToDay = (date: string, kind: DayEntry['kind'], objectId: string) =>
+      queue({ type: 'addToDay', collectionId, date, contentType: kind, objectId }, true);
+
+    /** The server's version of an object, as last read (not the overlay): what an offline edit starts from. */
+    const serverObject = (kind: ObjectKind, id: string): Fields => {
+      const saved = queryClient.getQueryData<Collection>(key);
+      return (saved && findObject(saved, kind, id)) ?? {};
+    };
+
+    /** The server's version of a visit, trail, activity or attachment, as last read. */
+    const serverChild = (kind: ChildKind, id: string): Fields => {
+      const saved = queryClient.getQueryData<Collection>(key);
+      return (saved && findChild(saved, kind, id)?.child) ?? {};
+    };
+
+    /** Create (`id` null) or update a visit, trail, activity or attachment, through the outbox. */
+    const saveChild = <R>(
+      kind: EditableChild,
+      parentId: string,
+      id: string | null,
+      input: Fields,
+      result: (id: string) => R,
+      extra: { ownerKind?: ObjectKind; file?: UploadFile } = {},
+    ) => {
+      if (id) {
+        const { patch, base } = diffFields(serverChild(kind, id), input);
+        if (Object.keys(patch).length === 0) return Promise.resolve(result(id));
+        return queue({ type: 'updateChild', collectionId, childKind: kind, childId: id, patch, base }, result(id));
+      }
+      const created = tempId();
+      return queue(
+        { type: 'createChild', collectionId, childKind: kind, parentId, tempId: created, input, ...extra },
+        result(created),
       );
     };
 
+    /** Create (id null; put on `onDay` when given) or update a stay, connection or place, through the outbox. */
+    const saveObject = (kind: ObjectKind, id: string | null, input: Fields, onDay?: string) => {
+      if (id) {
+        const { patch, base } = diffFields(serverObject(kind, id), input);
+        if (Object.keys(patch).length === 0) return Promise.resolve({ id, ...input });
+        return queue(
+          { type: 'updateObject', collectionId, objectKind: kind, objectId: id, patch, base },
+          { id, ...input },
+        );
+      }
+      const created = tempId();
+      const result = queue(
+        { type: 'createObject', collectionId, objectKind: kind, tempId: created, input },
+        {
+          id: created,
+          ...input,
+        },
+      );
+      if (canEdit && onDay)
+        enqueue({ type: 'addToDay', collectionId, date: onDay, contentType: kind, objectId: created });
+      return result;
+    };
+
     return {
-      /** Edits are possible: online, and the collection is the user's own or shared with them. */
-      online: online && (!view || isMember(view.collection)),
+      /** The user may edit this collection's content (own or shared with them), online or not. */
+      canEdit,
+      /** Whether `action` can be done right now: allowed, and connected when it needs the server. */
+      can: (action: string): boolean => canEdit && (online || !ONLINE_ONLY.has(action)),
       collectionId,
 
       toggleChecklistItem: (checklist: Checklist, index: number) => {
-        haptics.selection();
-        return setChecklist(
-          checklist,
-          checklist.items.map((it, i) => (i === index ? { ...it, is_checked: !it.is_checked } : it)),
-        );
+        const item = checklist.items[index];
+        const checked = !item.is_checked;
+        const allDone = checked && checklist.items.every((it, i) => i === index || it.is_checked);
+        // Ticking off the last item is the list's peak moment: a success tap instead of the plain selection one.
+        if (allDone) {
+          haptics.success();
+          celebrate(tr('celebration.checklistDone'));
+        } else haptics.selection();
+        return changeChecklist(checklist, { kind: 'toggle', itemId: item.id, name: item.name, checked });
       },
       addChecklistItem: (checklist: Checklist, name: string) =>
-        setChecklist(checklist, [...checklist.items, { id: tempId(), name: name.trim(), is_checked: false }]),
+        changeChecklist(checklist, { kind: 'add', itemId: tempId(), name: name.trim() }),
       removeChecklistItem: (checklist: Checklist, index: number) =>
-        setChecklist(
-          checklist,
-          checklist.items.filter((_, i) => i !== index),
-        ),
-      renameChecklist: (checklist: Checklist, name: string) => setChecklist(checklist, checklist.items, name.trim()),
+        changeChecklist(checklist, {
+          kind: 'remove',
+          itemId: checklist.items[index].id,
+          name: checklist.items[index].name,
+        }),
+      renameChecklist: (checklist: Checklist, name: string) =>
+        changeChecklist(checklist, { kind: 'rename', name: name.trim() }),
 
       createChecklist: async (name: string, date: string | null) => {
         const id = tempId();
-        const created = await run(
-          (t) => withChecklist(t, { id, name, date, items: [] }),
-          () => client.edit.createChecklist({ name, items: [], collection: collectionId }),
+        const created = await queue(
+          { type: 'createChecklist', collectionId, tempId: id, name, date },
+          {
+            id,
+            name,
+            date,
+            items: [] as Checklist['items'],
+          },
         );
-        if (created && date) await addToDay(date, 'checklist', created.id);
+        if (created && date) enqueue({ type: 'addToDay', collectionId, date, contentType: 'checklist', objectId: id });
         return created;
       },
 
       /** Create (noteId null) or update a note. A new note made from a day is also put on that day's plan. */
       saveNote: async (noteId: string | null, input: NoteInput, onDay?: string) => {
         if (noteId) {
-          return run(
-            (t) => {
-              const prev = t.notes.find((n) => n.id === noteId);
-              return prev ? withNote(t, { ...prev, ...input }) : t;
-            },
-            () => client.edit.updateNote(noteId, { ...input, collection: collectionId }),
+          // The version this edit starts from; a different one on the server at send time means a conflict.
+          const base = queryClient.getQueryData<Collection>(key)?.notes.find((n) => n.id === noteId)?.updated_at;
+          return queue(
+            { type: 'updateNote', collectionId, noteId, baseUpdatedAt: base ?? null, input },
+            { id: noteId },
           );
         }
         const id = tempId();
-        const created = await run(
-          (t) => withNote(t, { id, ...input }),
-          () => client.edit.createNote({ ...input, collection: collectionId }),
-        );
-        if (created && onDay) await addToDay(onDay, 'note', created.id);
+        const created = await queue({ type: 'createNote', collectionId, tempId: id, input }, { id, ...input });
+        if (created && onDay)
+          enqueue({ type: 'addToDay', collectionId, date: onDay, contentType: 'note', objectId: id });
         return created;
       },
 
@@ -215,85 +228,42 @@ export function useCollectionEdits(view: CollectionView | null) {
        * Copies a location into this collection (with its photos, without visits and attachments) and names it
        * "… (Kopie)". When only the renaming fails, the copy keeps the server's "Copy of …".
        */
-      duplicateLocation: (location: Location) =>
-        run(
-          null,
-          async () => {
-            const copy = await client.edit.duplicateLocation(location.id, collectionId);
-            const name = tr('common.nameCopy', { name: location.name });
-            return client.edit.updateLocation(copy.id, { name }).catch(() => copy);
+      duplicateLocation: (location: Location) => {
+        const id = tempId();
+        const name = tr('common.nameCopy', { name: location.name });
+        return queue(
+          { type: 'duplicateLocation', collectionId, locationId: location.id, tempId: id, name },
+          {
+            ...location,
+            id,
+            name,
           },
-          (t, saved) => withLocationObject(t, saved),
-        ),
-
-      /** Deletes the object; the server also removes its itinerary items (and for locations its visits). */
-      deleteObject: (kind: 'note' | 'checklist' | 'location' | 'lodging' | 'transportation', id: string) =>
-        run(
-          (t) => withoutObject(t, id),
-          () => {
-            switch (kind) {
-              case 'note':
-                return client.edit.deleteNote(id);
-              case 'checklist':
-                return client.edit.deleteChecklist(id);
-              case 'location':
-                return client.edit.deleteLocation(id);
-              case 'lodging':
-                return client.edit.deleteLodging(id);
-              case 'transportation':
-                return client.edit.deleteTransportation(id);
-            }
-          },
-        ),
-
-      renameChecklistItem: (checklist: Checklist, index: number, name: string) =>
-        setChecklist(
-          checklist,
-          checklist.items.map((it, i) => (i === index ? { ...it, name: name.trim() } : it)),
-        ),
-
-      /** Create (`visitId` null) or update a visit. */
-      saveVisit: (location: Location, visitId: string | null, input: VisitInput) => {
-        const id = visitId ?? tempId();
-        return run(
-          (t) => {
-            const activities = location.visits.find((v) => v.id === visitId)?.activities ?? [];
-            return withVisit(t, { id, activities, ...input }, location.id);
-          },
-          () =>
-            visitId
-              ? client.edit.updateVisit(visitId, input)
-              : client.edit.addVisit({ location: location.id, ...input }),
-          (t, saved) => withVisit(withoutVisit(t, id), saved, location.id),
         );
       },
 
-      /** Create (`locationId` null; put on `onDay` when given) or update a location. */
+      /** Deletes the object; the server also removes its itinerary items (and for locations its visits). */
+      deleteObject: (kind: PlanKind, id: string) =>
+        queue({ type: 'deleteObject', collectionId, objectKind: kind, objectId: id }, true),
+
+      renameChecklistItem: (checklist: Checklist, index: number, name: string) =>
+        changeChecklist(checklist, {
+          kind: 'renameItem',
+          itemId: checklist.items[index].id,
+          from: checklist.items[index].name,
+          name: name.trim(),
+        }),
+
+      /** Create (`visitId` null) or update a visit. */
+      saveVisit: (location: Location, visitId: string | null, input: VisitInput) =>
+        saveChild('visit', location.id, visitId, input as unknown as Fields, (id) => ({ id, ...input })),
+
+      /**
+       * Create (`locationId` null; put on `onDay` when given) or update a location. Offline too; a new place asked to
+       * be public is created first and made public with the next sync (the server sets it from its collections).
+       */
       saveLocation: async (locationId: string | null, input: LocationInput, onDay?: string) => {
-        if (locationId) {
-          return run(
-            (t) => {
-              const prev = t.locations.find((l) => l.id === locationId);
-              const { category: _category, ...fields } = input;
-              return prev ? withLocationObject(t, { ...prev, ...fields }) : t;
-            },
-            () => client.edit.updateLocation(locationId, input),
-            (t, saved) => withLocationObject(t, saved),
-          );
-        }
-        const created = await run(
-          null,
-          async () => {
-            const saved = await client.edit.createLocation({ ...input, collection: collectionId });
-            // The server sets a new location's `is_public` from its collections; a wanted "public" needs a second write.
-            return input.is_public && !saved.is_public
-              ? client.edit.updateLocation(saved.id, { name: saved.name, is_public: true })
-              : saved;
-          },
-          (t, saved) => withLocationObject(t, saved),
-        );
-        if (created && onDay) await addToDay(onDay, 'location', created.id);
-        return created;
+        const saved = await saveObject('location', locationId, input as unknown as Fields, onDay);
+        return saved as (Fields & { id: string }) | null;
       },
 
       /**
@@ -301,30 +271,32 @@ export function useCollectionEdits(view: CollectionView | null) {
        * `onDay` also puts it on that day's plan.
        */
       linkLocation: async (locationId: string, onDay?: string) => {
-        const linked = await run(
-          null,
-          async () => {
-            const current = await client.getLocation(locationId);
-            const collections = [...new Set([...(current.collections ?? []), collectionId])];
-            return client.edit.updateLocation(locationId, { name: current.name, collections });
+        // Shown from the place library on the phone until the server has it in this collection.
+        const known = queryClient.getQueryData<Location[]>(queryKeys.locations)?.find((l) => l.id === locationId);
+        const linked = await queue(
+          {
+            type: 'linkLocation',
+            collectionId,
+            locationId,
+            snapshot: (known ?? { name: '' }) as unknown as Fields,
           },
-          (t, saved) => withLocationObject(t, saved),
+          { id: locationId },
         );
-        if (linked && onDay) await addToDay(onDay, 'location', linked.id);
+        if (linked && onDay) await addToDay(onDay, 'location', locationId);
         return linked;
       },
 
-      /** Trails and activities: no optimistic patch, the refetch of the collection brings them. */
       saveTrail: (locationId: string, trailId: string | null, input: TrailInput) =>
-        run(null, () =>
-          trailId ? client.edit.updateTrail(trailId, input) : client.edit.createTrail(locationId, input),
-        ),
-      deleteTrail: (trailId: string) => run(null, () => client.edit.deleteTrail(trailId).then(() => true)),
-      saveActivity: (visitId: string, activityId: string | null, input: ActivityInput, gpx?: UploadFile) =>
-        run(null, () =>
-          activityId ? client.edit.updateActivity(activityId, input) : client.edit.createActivity(visitId, input, gpx),
-        ),
-      deleteActivity: (activityId: string) => run(null, () => client.edit.deleteActivity(activityId).then(() => true)),
+        saveChild('trail', locationId, trailId, input as Fields, (id) => ({ id, ...input })),
+      deleteTrail: (trailId: string) =>
+        queue({ type: 'deleteChild', collectionId, childKind: 'trail', childId: trailId }, true),
+      /** A GPX file waits in the app's documents like a photo. */
+      saveActivity: async (visitId: string, activityId: string | null, input: ActivityInput, gpx?: UploadFile) =>
+        saveChild('activity', visitId, activityId, input as unknown as Fields, (id) => ({ id, ...input }), {
+          file: gpx && !activityId ? await keepForUpload(gpx) : undefined,
+        }),
+      deleteActivity: (activityId: string) =>
+        queue({ type: 'deleteChild', collectionId, childKind: 'activity', childId: activityId }, true),
 
       /** A location or lodging from a found place, in one server call (address, photos, type). */
       quickAdd: (kind: 'location' | 'lodging', input: Omit<QuickAddInput, 'collection_id'>) =>
@@ -341,50 +313,29 @@ export function useCollectionEdits(view: CollectionView | null) {
             ),
 
       saveLodging: (lodgingId: string | null, input: Partial<LodgingInput> & { name: string }) =>
-        lodgingId
-          ? run(
-              (t) => {
-                const prev = t.lodging.find((l) => l.id === lodgingId);
-                return prev ? withLodging(t, { ...prev, ...input }) : t;
-              },
-              () => client.edit.updateLodging(lodgingId, { ...input, collection: collectionId }),
-              (t, saved) => withLodging(t, saved),
-            )
-          : run(
-              null,
-              () => client.edit.createLodging({ ...input, collection: collectionId }),
-              (t, saved) => withLodging(t, saved),
-            ),
+        saveObject('lodging', lodgingId, input as Fields) as Promise<(Fields & { id: string }) | null>,
 
       saveTransportation: (
         transportationId: string | null,
         input: Partial<TransportationInput> & { name: string; type: string },
-      ) =>
-        transportationId
-          ? run(
-              (t) => {
-                const prev = t.transportations.find((x) => x.id === transportationId);
-                return prev ? withTransportation(t, { ...prev, ...input }) : t;
-              },
-              () => client.edit.updateTransportation(transportationId, { ...input, collection: collectionId }),
-              (t, saved) => withTransportation(t, saved),
-            )
-          : run(
-              null,
-              () => client.edit.createTransportation({ ...input, collection: collectionId }),
-              (t, saved) => withTransportation(t, saved),
-            ),
+      ) => saveObject('transportation', transportationId, input as Fields) as Promise<(Fields & { id: string }) | null>,
 
-      /** Uploads one image; the local file goes into the offline cache under the server's URL. */
-      uploadImage: (kind: MediaOwnerKind, objectId: string, file: UploadFile) =>
-        run(
-          null,
-          () => client.edit.uploadImage(kind, objectId, file),
-          (t, image) => {
-            seedCache(image.image, file.uri);
-            return withImage(t, objectId, image);
+      /**
+       * Adds one photo, offline too: a copy of the file waits in the app's documents and shows at once; after the
+       * upload it goes into the offline cache under the server's URL.
+       */
+      uploadImage: async (kind: MediaOwnerKind, objectId: string, file: UploadFile) => {
+        const kept = await keepForUpload(file);
+        const id = tempId();
+        return queue(
+          { type: 'uploadImage', collectionId, ownerKind: kind, objectId, tempId: id, file: kept },
+          {
+            id,
+            image: kept.uri,
+            is_primary: false,
           },
-        ),
+        );
+      },
       /** Fills the empty day plan from dates on the server; the refetch brings the new items. */
       autoGenerateItinerary: () => run(null, () => client.edit.autoGenerateItinerary(collectionId)),
 
@@ -395,66 +346,72 @@ export function useCollectionEdits(view: CollectionView | null) {
           () => client.edit.importImages(kind, objectId, urls, source),
           (t, result) => result.created.reduce((acc, image) => withImage(acc, objectId, image), t),
         ),
-      setPrimaryImage: (imageId: string) =>
-        run(
-          (t) => withPrimaryImage(t, imageId),
-          () => client.edit.setPrimaryImage(imageId),
-        ),
+      setPrimaryImage: (imageId: string) => queue({ type: 'setPrimaryImage', collectionId, imageId }, true),
       deleteImage: (imageId: string) =>
-        run(
-          (t) => withoutImage(t, imageId),
-          () => client.edit.deleteImage(imageId),
-        ),
-      uploadAttachment: (kind: MediaOwnerKind, objectId: string, file: UploadFile, name?: string) =>
-        run(
-          null,
-          () => client.edit.uploadAttachment(kind, objectId, file, name),
-          (t, attachment) => {
-            seedCache(attachment.file, file.uri);
-            return withAttachment(t, objectId, attachment);
+        queue({ type: 'deleteChild', collectionId, childKind: 'image', childId: imageId }, true),
+      /** A file attached offline waits in the app's documents and shows at once; it opens from there meanwhile. */
+      uploadAttachment: async (kind: MediaOwnerKind, objectId: string, file: UploadFile, name?: string) => {
+        const kept = await keepForUpload(file);
+        const id = tempId();
+        return queue(
+          {
+            type: 'createChild',
+            collectionId,
+            childKind: 'attachment',
+            parentId: objectId,
+            ownerKind: kind,
+            tempId: id,
+            input: name ? { name } : {},
+            file: kept,
           },
-        ),
+          { id, file: kept.uri, name: name ?? file.name, extension: null },
+        );
+      },
       renameAttachment: (attachmentId: string, name: string) =>
-        run(
-          (t) => withAttachmentName(t, attachmentId, name),
-          () => client.edit.renameAttachment(attachmentId, name),
-        ),
+        saveChild('attachment', '', attachmentId, { name }, () => true),
       deleteAttachment: (attachmentId: string) =>
-        run(
-          (t) => withoutAttachment(t, attachmentId),
-          () => client.edit.deleteAttachment(attachmentId),
-        ),
+        queue({ type: 'deleteChild', collectionId, childKind: 'attachment', childId: attachmentId }, true),
 
-      /** Owner only. New dates drop itinerary items and days outside them (the screen asks first). */
-      saveCollection: (fields: Partial<CollectionInput>) =>
-        run(
-          (t) => withCollectionFields(t, fields),
-          () => client.edit.updateCollection(collectionId, fields),
-        ),
+      /**
+       * Owner only. New dates drop itinerary items and days outside them (the screen asks first). Offline too: only
+       * the changed fields are sent, field by field like everything else.
+       */
+      saveCollection: (fields: Partial<CollectionInput>) => {
+        const saved = queryClient.getQueryData<Collection>(key);
+        const { patch, base } = diffFields((saved ?? {}) as unknown as Fields, fields as Fields);
+        if (Object.keys(patch).length === 0) return Promise.resolve(true);
+        return queue({ type: 'saveCollection', collectionId, patch, base }, true);
+      },
       setCover: (imageId: string) =>
-        run(null, () => client.edit.updateCollection(collectionId, { primary_image_id: imageId })),
+        queue(
+          {
+            type: 'saveCollection',
+            collectionId,
+            patch: { primary_image_id: imageId },
+            base: { primary_image_id: queryClient.getQueryData<Collection>(key)?.primary_image?.id ?? null },
+          },
+          true,
+        ),
 
       saveDay: (date: string, name: string, description: string) => {
-        const existing = view?.collection.itinerary_days.find((d) => d.date === date);
-        return run(
-          (t) => withDay(t, { id: existing?.id ?? tempId(), date, name, description }),
-          () =>
-            existing
-              ? client.edit.updateDay(existing.id, { name, description })
-              : client.edit.createDay({ collection: collectionId, date, name, description }),
+        const existing = queryClient.getQueryData<Collection>(key)?.itinerary_days.find((d) => d.date === date);
+        const { patch, base } = diffFields((existing ?? {}) as Fields, { name, description });
+        if (existing && Object.keys(patch).length === 0) return Promise.resolve(true);
+        return queue(
+          { type: 'saveDay', collectionId, date, patch: existing ? patch : { name, description }, base },
+          true,
         );
       },
 
       moveEntry: (day: Day, entry: DayEntry, direction: -1 | 1) =>
-        entry.itineraryId ? reorder(moveWithinDay(day, entry.itineraryId, direction)) : Promise.resolve(null),
+        entry.itineraryId ? reorder(day.date, moveWithinDay(day, entry.itineraryId, direction)) : Promise.resolve(null),
       moveEntryToDay: (target: Day, entry: DayEntry) =>
-        entry.itineraryId ? reorder(moveToDay(target, entry.itineraryId)) : Promise.resolve(null),
+        entry.itineraryId
+          ? queue({ type: 'moveToDay', collectionId, itemId: entry.itineraryId, date: target.date }, true)
+          : Promise.resolve(null),
       removeEntry: (entry: DayEntry) =>
         entry.itineraryId
-          ? run(
-              (t) => withoutItineraryItem(t, entry.itineraryId!),
-              () => client.edit.removeFromItinerary(entry.itineraryId!),
-            )
+          ? queue({ type: 'removeFromDay', collectionId, itemId: entry.itineraryId }, true)
           : Promise.resolve(null),
       addToDay,
 
@@ -462,29 +419,17 @@ export function useCollectionEdits(view: CollectionView | null) {
       addVisitToday: (location: Location) => {
         const timeZone = view ? locationZone(view, location) : 'UTC';
         const date = `${todayIn(timeZone)}T00:00:00Z`;
-        const id = tempId();
-        return run(
-          (t) =>
-            withVisit(
-              t,
-              { id, start_date: date, end_date: date, timezone: timeZone, notes: null, activities: [] },
-              location.id,
-            ),
-          () => client.edit.addVisit({ location: location.id, start_date: date, end_date: date, timezone: timeZone }),
+        return queue(
+          { type: 'visitToday', collectionId, tempId: tempId(), locationId: location.id, date, timezone: timeZone },
+          true,
         );
       },
       deleteVisit: (visitId: string) =>
-        run(
-          (t) => withoutVisit(t, visitId),
-          () => client.edit.deleteVisit(visitId),
-        ),
+        queue({ type: 'deleteChild', collectionId, childKind: 'visit', childId: visitId }, true),
       rate: (location: Location, rating: number | null) =>
-        run(
-          (t) => withLocation(t, location.id, { rating }),
-          () => client.edit.rateLocation(location.id, rating),
-        ),
+        queue({ type: 'rate', collectionId, locationId: location.id, rating }, true),
     };
-  }, [client, queryClient, online, collectionId, view]);
+  }, [client, queryClient, online, canEdit, collectionId, view]);
 }
 
 export type CollectionEdits = ReturnType<typeof useCollectionEdits>;

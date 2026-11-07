@@ -14,6 +14,7 @@ import { useCredentials } from '@/auth/session';
 import { download } from '@/offline/fileCache';
 
 import { bookingListUrl } from './bookingLinks';
+import { formatUpdatedAt } from './format';
 import { openInMaps } from './mapLinks';
 
 import { icons, type IconKey } from './icons';
@@ -39,13 +40,29 @@ export function useRowTheme(): RowTheme {
   return useMemo(() => ({ colors, listColors }), [colors, listColors]);
 }
 
+/** Every leading icon sits in the same slot, so row text starts on one line however wide the symbol is. */
+export const ROW_ICON_SLOT = 28;
+
 /** Leading icon for list rows, tinted with the app accent. */
 export function RowIcon({ name, color }: { name: IconKey; color?: string }) {
   const colors = useColors();
-  return <Icon name={icons[name]} size={22} color={color ?? colors.tint} />;
+  return <Icon name={icons[name]} size={22} color={color ?? colors.tint} style={{ width: ROW_ICON_SLOT }} />;
 }
 
 const trailingIcon = (name: IconKey, color: string, size = 16) => <Icon name={icons[name]} size={size} color={color} />;
+
+/** The top-of-screen offline line: reassurance first ("everything saved is here"), then how fresh it is. */
+export function offlineNoticeRow(t: RowTheme, updatedAt: number, key = 'offline-notice'): ReactElement {
+  return (
+    <ListItem
+      key={key}
+      colors={t.listColors}
+      leading={<RowIcon name="offline" />}
+      supportingText={<Sub>{tr('statusRows.updatedTime', { time: formatUpdatedAt(updatedAt) })}</Sub>}>
+      {tr('common.offlineAllSaved')}
+    </ListItem>
+  );
+}
 
 /** Label below, value as headline. Tappable when `onPress` is set. */
 export function infoRow(
@@ -214,6 +231,7 @@ export function useOpenAttachment() {
     if (!credentials) return;
     setBusyId(attachment.id);
     try {
+      // A file attached offline is still only on the phone: `download` opens it from there.
       const file: File = await download(attachment.file, credentials);
       const title = attachment.name || tr('common.attachment');
       try {

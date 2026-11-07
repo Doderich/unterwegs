@@ -1,49 +1,19 @@
-import { useQueryClient, type QueryKey } from '@tanstack/react-query';
-import { useNetworkState } from 'expo-network';
+import type { QueryKey } from '@tanstack/react-query';
 import { useCallback } from 'react';
-import { Alert } from 'react-native';
 
-import { ApiError } from '@/api/client';
-import { requestErrorText } from '@/api/errors';
-import { tr } from '@/i18n';
-import { haptics } from '@/settings/haptics';
+import { useOnlineWrite } from './onlineWrite';
 
-import { OfflineError } from './useCollectionEdits';
-
-export function useOnline(): boolean {
-  const network = useNetworkState();
-  return !(network.isInternetReachable === false || network.isConnected === false);
-}
-
-export function actionErrorText(e: unknown): string {
-  if (e instanceof OfflineError) return e.message;
-  if (e instanceof ApiError && e.status === 403) return tr('useOnlineAction.youDoNotHavePermission');
-  return requestErrorText(e, { write: true });
-}
+export { useOnline } from './onlineWrite';
 
 /**
- * Online-only write without an optimistic update (sharing, categories, archive): sends the request, shows an alert
- * on failure, and refetches the given queries either way. Resolves to the result, or `null` after a failure.
+ * Online-only write without an optimistic update (sharing, categories, archive, account): sends the request, shows
+ * an alert on failure, and refetches the given queries. Resolves to the result, or `null` after a failure.
  */
 export function useOnlineAction() {
-  const online = useOnline();
-  const queryClient = useQueryClient();
+  const { online, write } = useOnlineWrite();
   const run = useCallback(
-    async <R>(request: () => Promise<R>, refetch: QueryKey[] = []): Promise<R | null> => {
-      try {
-        if (!online) throw new OfflineError();
-        const result = await request();
-        haptics.success();
-        return result;
-      } catch (e) {
-        haptics.error();
-        Alert.alert(tr('common.notSaved'), actionErrorText(e));
-        return null;
-      } finally {
-        if (online) for (const queryKey of refetch) void queryClient.invalidateQueries({ queryKey });
-      }
-    },
-    [online, queryClient],
+    <R>(request: () => Promise<R>, refetch: QueryKey[] = []) => write({ request, refetch, successHaptic: true }),
+    [write],
   );
   return { online, run };
 }

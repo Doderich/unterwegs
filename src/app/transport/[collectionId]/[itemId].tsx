@@ -4,6 +4,7 @@ import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Platform } from 'react-native';
 
+import { realIdFor } from '@/data/outbox';
 import { useCollectionView } from '@/data/queries';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { TRAVEL_TAIL } from '@/glances/compute';
@@ -39,7 +40,7 @@ export default function TransportScreen() {
   const media = useMediaUploads(rt, edits, sheet, 'transportation', itemId);
   const copier = useCopy();
   const opener = useOpenAttachment();
-  const t = view?.collection.transportations.find((x) => x.id === itemId);
+  const t = view?.collection.transportations.find((x) => x.id === realIdFor(itemId));
   const descriptionRows = useDescriptionRows(rt, t?.description);
   const [pinned, setPinned] = useState(() => pinnedTravel());
   // When the screen opened: enough to decide whether the journey is still ahead.
@@ -62,7 +63,7 @@ export default function TransportScreen() {
   return (
     <>
       <Stack.Screen options={{ title: typeLabel }} />
-      {edits.online ? (
+      {edits.canEdit ? (
         <Stack.Toolbar placement="right">
           <Stack.Toolbar.Button
             icon={androidToolbarIcon('edit')}
@@ -86,7 +87,6 @@ export default function TransportScreen() {
               collectionId,
               // Photos stay compact here: the journey is the focus.
               ratio: 2,
-              compact: true,
             })}
             {media.photoRows}
           </FieldGroup.Section>

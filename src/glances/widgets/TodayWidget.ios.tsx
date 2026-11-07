@@ -30,7 +30,7 @@ const TodayWidget = (raw: Pickable<TodayWidgetProps>, environment: WidgetEnviron
   return (
     <VStack
       alignment="leading"
-      spacing={5}
+      spacing={4}
       modifiers={[
         containerBackground({ type: 'hierarchical', style: 'quinary' }, 'widget'),
         frame({ maxWidth: 10000, maxHeight: 10000, alignment: 'topLeading' }),
@@ -56,7 +56,7 @@ const TodayWidget = (raw: Pickable<TodayWidgetProps>, environment: WidgetEnviron
       {rows.map((row, i) => (
         // Each row opens its own object (medium and large sizes; the small size only has `widgetURL`).
         <Link key={String(i)} destination={row.url}>
-          <HStack spacing={6} modifiers={row.done ? [opacity(0.5)] : []}>
+          <HStack spacing={8} modifiers={row.done ? [opacity(0.5)] : []}>
             <Image systemName={(row.done ? 'checkmark.circle.fill' : row.symbol) as never} color={accent} size={14} />
             {row.time ? (
               <Text
@@ -70,7 +70,7 @@ const TodayWidget = (raw: Pickable<TodayWidgetProps>, environment: WidgetEnviron
       ))}
       <Spacer />
       {day.night ? (
-        <HStack spacing={6}>
+        <HStack spacing={8}>
           <Image systemName="bed.double.fill" color={accent} size={12} />
           <Text modifiers={[font({ textStyle: 'caption' }), lineLimit(1)]}>{day.night}</Text>
         </HStack>

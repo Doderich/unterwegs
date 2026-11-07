@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { AppState, Platform } from 'react-native';
 
 import type { Collection, CollectionSummary } from '@/api/schemas';
+import { applyPending, getOutbox, subscribeOutbox } from '@/data/outbox';
 import { queryKeys } from '@/data/queries';
 import { collectionMediaUrls } from '@/data/selectors';
 import { cachedCount } from '@/offline/fileCache';
@@ -39,8 +40,10 @@ const link = (path: string) => Linking.createURL(path.replace(/^\//, ''));
 function cachedCollections(cache: QueryClient): Map<string, CachedCollection> {
   const out = new Map<string, CachedCollection>();
   for (const query of cache.getQueryCache().findAll({ queryKey: ['collection'] })) {
-    const collection = query.state.data as Collection | undefined;
-    if (collection?.id) out.set(collection.id, { collection, updatedAt: query.state.dataUpdatedAt });
+    const saved = query.state.data as Collection | undefined;
+    // What the app shows: the offline copy with the edits still waiting to be sent (ADR 0016).
+    const collection = saved?.id ? applyPending(saved, getOutbox()) : undefined;
+    if (collection) out.set(collection.id, { collection, updatedAt: query.state.dataUpdatedAt });
   }
   return out;
 }
@@ -139,10 +142,13 @@ export function useGlances(status: 'loading' | 'signedIn' | 'signedOut') {
       if (state === 'active') schedule(0);
     });
     const unsubscribePin = onGlancesRefresh(() => schedule(0));
+    // An edit made offline changes what the widgets should show, before the server has it.
+    const unsubscribeOutbox = subscribeOutbox(() => schedule(1000));
     return () => {
       clearTimeout(timer);
       unsubscribeCache();
       unsubscribePin();
+      unsubscribeOutbox();
       appState.remove();
     };
   }, [cache, restoring, status, signedIn, language, reminders, reminderKinds, activity]);

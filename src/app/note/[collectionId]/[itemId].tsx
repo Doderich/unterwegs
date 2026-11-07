@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { Alert } from 'react-native';
 
 import type { Checklist } from '@/api/schemas';
+import { realIdFor } from '@/data/outbox';
 import { useCollectionView } from '@/data/queries';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { tr } from '@/i18n';
@@ -38,15 +39,15 @@ export default function NoteScreen() {
   const [name, setName] = useState<string | null>(null);
   if (!view) return null;
 
-  const note = view.collection.notes.find((n) => n.id === itemId);
-  const checklist = note ? undefined : view.collection.checklists.find((c) => c.id === itemId);
+  // Something created offline keeps working here after it is sent and gets its server id.
+  const id = realIdFor(itemId);
+  const note = view.collection.notes.find((n) => n.id === id);
+  const checklist = note ? undefined : view.collection.checklists.find((c) => c.id === id);
   const item = note ?? checklist;
   if (!item) return null;
 
   const plannedDays = view.days.filter((d) =>
-    d.entries.some(
-      (e) => (e.kind === 'note' && e.note.id === itemId) || (e.kind === 'checklist' && e.checklist.id === itemId),
-    ),
+    d.entries.some((e) => (e.kind === 'note' && e.note.id === id) || (e.kind === 'checklist' && e.checklist.id === id)),
   );
 
   const confirmDelete = () =>
@@ -108,7 +109,17 @@ export default function NoteScreen() {
             ) : (
               <Text textStyle={{ ...typeScale.title, color: colors.text }}>{item.name}</Text>
             )}
-            {checklist ? <Text textStyle={{ color: colors.secondary }}>{checklistProgress(checklist)}</Text> : null}
+            {checklist ? (
+              <Text
+                textStyle={{
+                  color:
+                    checklist.items.length > 0 && checklist.items.every((it) => it.is_checked)
+                      ? colors.tint
+                      : colors.secondary,
+                }}>
+                {checklistProgress(checklist)}
+              </Text>
+            ) : null}
           </FieldGroup.Section>
 
           {note ? (

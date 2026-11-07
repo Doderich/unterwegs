@@ -23,7 +23,7 @@ const TodayWidget = (props: TodayWidgetProps, environment: WidgetEnvironment) =>
   const rows = day.rows.slice(0, 4);
   const timed = rows.some((r) => r.time);
   return (
-    <Box modifiers={[fillMaxSize(), cornerRadius(22), background(surface), paddingAll(14)]}>
+    <Box modifiers={[fillMaxSize(), cornerRadius(22), background(surface), paddingAll(16)]}>
       <Column verticalArrangement={{ spacedBy: 3 }} modifiers={[fillMaxSize()]}>
         {/* Room on the right for the switch. */}
         <Text

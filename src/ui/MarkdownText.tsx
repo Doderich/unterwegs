@@ -27,7 +27,7 @@ export function MarkdownText({
       {lines.map((line, i) => (
         <ComposeText
           key={i}
-          style={line.kind === 'heading' ? { fontSize: 20, fontWeight: 'bold' } : undefined}
+          style={line.kind === 'heading' ? { fontSize: 22, fontWeight: '600' } : undefined}
           color={color}>
           {i > 0 ? '\n' : ''}
           {line.kind === 'bullet' ? '• ' : ''}
@@ -35,7 +35,7 @@ export function MarkdownText({
             <ComposeText
               key={j}
               style={{
-                fontWeight: run.bold || line.kind === 'heading' ? 'bold' : 'normal',
+                fontWeight: run.bold || line.kind === 'heading' ? '600' : 'normal',
                 fontStyle: run.italic ? 'italic' : 'normal',
               }}
               color={run.url ? tint : color}>

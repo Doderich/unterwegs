@@ -38,7 +38,7 @@ export default function DaysScreen() {
   const itemActions = (u: UnscheduledItem) =>
     sheet.open(u.title, [
       { label: tr('common.open'), icon: 'chevron', onPress: () => openItem(u) },
-      ...(edits.online
+      ...(edits.canEdit
         ? [
             {
               label: tr('days.addDay'),
@@ -59,7 +59,8 @@ export default function DaysScreen() {
         : []),
     ]);
 
-  const canGenerate = edits.online && view.collection.itinerary.length === 0 && !!view.collection.start_date;
+  const canGenerate =
+    edits.can('autoGenerateItinerary') && view.collection.itinerary.length === 0 && !!view.collection.start_date;
   const generate = () =>
     Alert.alert(tr('days.fillDayPlanFromDatesConfirm'), tr('days.visitsGoOnTheirDays'), [
       { text: tr('common.cancel'), style: 'cancel' },

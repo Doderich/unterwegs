@@ -1,12 +1,14 @@
 import { FieldGroup, ListItem } from '@expo/ui';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Alert } from 'react-native';
+import { Alert, useWindowDimensions } from 'react-native';
 
 import { useCountries, usePins, useWorldStats } from '@/data/queries';
 import { useMarkFromLocations } from '@/data/useRegionEdits';
-import { countrySections, flagEmoji } from '@/data/world';
+import { countrySections } from '@/data/world';
 import { tr } from '@/i18n';
+import { CardRow, cardRowWidth } from '@/ui/CardRow';
+import { PassportStamps } from '@/ui/PassportStamps';
 import { RefreshableFieldGroup } from '@/ui/RefreshableFieldGroup';
 import { RowIcon, useRowTheme } from '@/ui/rows';
 import { statRows } from '@/ui/statRows';
@@ -19,6 +21,7 @@ import { MainSearchScreen } from '@/ui/MainSearchScreen';
 /** Everything outside one collection: counts, the map of all locations, visited countries. */
 export default function WorldScreen() {
   const rt = useRowTheme();
+  const { width: windowWidth } = useWindowDimensions();
   const stats = useWorldStats();
   const pins = usePins();
   const countries = useCountries();
@@ -50,6 +53,13 @@ export default function WorldScreen() {
       <Host style={{ flex: 1 }}>
         <RefreshableFieldGroup onRefresh={refresh}>
           <GlobalSearchRow />
+          {/* The countries you've been to, as stamps in a passport: the travel record, before the numbers. */}
+          {visited.length > 0 ? (
+            <CardRow title={tr('world.visitedCountries')}>
+              <PassportStamps countries={visited} width={cardRowWidth(windowWidth)} />
+            </CardRow>
+          ) : null}
+
           <FieldGroup.Section title={tr('common.statistics')}>
             {stats.data ? (
               statRows(rt, stats.data)
@@ -89,20 +99,8 @@ export default function WorldScreen() {
             </ListItem>
           </FieldGroup.Section>
 
-          <FieldGroup.Section title={tr('world.visitedCountries')}>
+          <FieldGroup.Section title={visited.length > 0 ? undefined : tr('world.visitedCountries')}>
             {countries.isPending && countries.isFetching ? <LoadingRows rows={3} /> : null}
-            {visited.map((c) => (
-              <ListItem
-                key={c.country_code}
-                colors={rt.listColors}
-                leading={<Sub>{flagEmoji(c.country_code)}</Sub>}
-                supportingText={<Sub>{tr('common.nOfTotalRegions', { n: c.num_visits, total: c.num_regions })}</Sub>}
-                onPress={() =>
-                  router.push({ pathname: '/world/[code]', params: { code: c.country_code, name: c.displayName } })
-                }>
-                {c.displayName}
-              </ListItem>
-            ))}
             <ListItem
               colors={rt.listColors}
               leading={<RowIcon name="flag" />}

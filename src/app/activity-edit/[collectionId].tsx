@@ -120,7 +120,7 @@ export default function ActivityEditScreen() {
         <Stack.Toolbar.Button
           icon={androidToolbarIcon('check')}
           accessibilityLabel={tr('common.save')}
-          disabled={!name.trim() || saving || !edits.online}
+          disabled={!name.trim() || saving || !edits.canEdit}
           onPress={() => void save()}>
           {saving ? tr('common.saving') : tr('common.save')}
         </Stack.Toolbar.Button>

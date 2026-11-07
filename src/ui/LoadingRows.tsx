@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   list: { gap: 20, paddingVertical: 4 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 56 },
   thumbnail: { width: 56, height: 56, borderRadius: 9 },
-  lines: { flex: 1, gap: 10 },
+  lines: { flex: 1, gap: 8 },
   line: { height: 16, borderRadius: 4 },
   caption: { height: 12, borderRadius: 4 },
 });

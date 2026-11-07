@@ -6,6 +6,7 @@ import type { Location } from '@/api/schemas';
 import { useMediaOffline } from '@/offline/useCollectionOffline';
 import { mainQueryOptions, queryKeys } from './queries';
 import { useOnlineAction } from './useOnlineAction';
+import { readsAffectedBy } from './affected';
 
 export function useLocations(enabled = true) {
   const client = useClient();
@@ -35,14 +36,6 @@ export function useLocationAction(id = '') {
   const action = useOnlineAction();
   return {
     online: action.online,
-    run: <T>(request: () => Promise<T>) =>
-      action.run(request, [
-        queryKeys.locations,
-        queryKeys.location(id),
-        ['collection'],
-        queryKeys.world.pins,
-        queryKeys.world.stats,
-        queryKeys.calendar,
-      ]),
+    run: <T>(request: () => Promise<T>) => action.run(request, readsAffectedBy({ location: id })),
   };
 }

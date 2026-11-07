@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Alert } from 'react-native';
 
 import { categoryName, GENERAL_CATEGORY } from '@/data/categories';
-import { queryKeys, useCategoriesWithCount } from '@/data/queries';
+import { useCategoriesWithCount } from '@/data/queries';
 import { useOnlineAction } from '@/data/useOnlineAction';
 import { tr } from '@/i18n';
 import { androidToolbarIcon } from '@/ui/icons';
@@ -14,6 +14,7 @@ import { Text } from '@/ui/Text';
 import { useClient } from '@/auth/session';
 import { Host } from '@/ui/Host';
 import { TextInput } from '@/ui/TextInput';
+import { readsAffectedBy } from '@/data/affected';
 
 /** Create (`id` missing) or edit a category: shown name and emoji icon. */
 export default function CategoryEditScreen() {
@@ -31,7 +32,7 @@ export default function CategoryEditScreen() {
 
   if (id && !category) return null;
   // Locations that would lose it: refetch the collections too, their locations embed the category.
-  const refetch = [queryKeys.categories, queryKeys.categoriesWithCount, ['collection'], queryKeys.world.pins];
+  const refetch = readsAffectedBy('categories');
 
   const save = async () => {
     const name = displayName.trim();

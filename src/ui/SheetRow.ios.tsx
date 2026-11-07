@@ -42,7 +42,7 @@ export function SheetRow({ children, leading, trailing, supportingText, onPress,
         {leading ? <VStack modifiers={[frame({ width: 24 }), frame({ minHeight: 24 })]}>{leading}</VStack> : null}
         <VStack
           alignment="leading"
-          spacing={6}
+          spacing={8}
           modifiers={[
             frame({ maxWidth: Infinity, alignment: 'leading' }),
             fixedSize({ horizontal: false, vertical: true }),

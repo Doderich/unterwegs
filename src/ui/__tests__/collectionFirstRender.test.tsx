@@ -22,7 +22,7 @@ jest.mock('@/data/CollectionContext', () => {
   });
   return { useCollectionContext: () => ({ view: buildCollectionView(collection), collectionId: collection.id }) };
 });
-jest.mock('@/data/useCollectionEdits', () => ({ useCollectionEdits: () => ({ online: true }) }));
+jest.mock('@/data/useCollectionEdits', () => ({ useCollectionEdits: () => ({ canEdit: true, can: () => true }) }));
 jest.mock('@/ui/useTabVisited', () => ({ useTabVisited: () => false }));
 jest.mock('@/ui/Host', () => ({ Host: 'Host' }));
 jest.mock('@/ui/Text', () => ({ Text: 'Text' }));

@@ -149,8 +149,8 @@
   },
   "collectionHero": {
     "day1Name": "Tag 1: {name}",
-    "nextTrip": "NÄCHSTE SAMMLUNG",
-    "onRoad": "JETZT UNTERWEGS",
+    "nextTrip": "Nächste Sammlung",
+    "onRoad": "Jetzt unterwegs",
     "todayName": "Heute: {name}"
   },
   "collectionShare": {
@@ -244,7 +244,7 @@
     "note": "Notiz",
     "notes": "Notizen",
     "nothingFound": "Nichts gefunden",
-    "nothingPlanned": "Nichts eingeplant.",
+    "nothingPlanned": "Nichts geplant – Zeit zum Treibenlassen.",
     "offlineMaps": "Offline-Karten",
     "offlineNoData": "Noch keine Daten auf diesem Gerät. Verbinde dich zum Laden mit dem Internet.",
     "onlyWithInternet": "Nur mit Internet.",
@@ -301,7 +301,10 @@
     "website": "Website",
     "whichDayConfirm": "Auf welchen Tag?",
     "world": "Welt",
-    "youreNoLongerSignedIn": "Du bist nicht mehr angemeldet."
+    "youreNoLongerSignedIn": "Du bist nicht mehr angemeldet.",
+    "offlineAllSaved": "Offline – alles Gespeicherte ist da",
+    "showMore": "Mehr anzeigen",
+    "showFewer": "Weniger anzeigen"
   },
   "compat": {
     "title": "Nicht alles vom Server lesbar",
@@ -373,7 +376,7 @@
   },
   "feed": {
     "invitationHint": "In den Sammlungen öffnen und beantworten",
-    "nothingPlanned": "Noch nichts geplant.",
+    "nothingPlanned": "Noch nichts geplant. Wohin soll’s als Nächstes gehen?",
     "recent": "Zuletzt gespeichert",
     "refreshFailed": "Daten konnten nicht aktualisiert werden. Bereits gespeicherte Inhalte bleiben verfügbar.",
     "today": "Heute",
@@ -385,7 +388,17 @@
     "daysToGo_other": "Noch {count} Tage",
     "startsToday_one": "Heute geht’s los · {count} Tag",
     "startsToday_other": "Heute geht’s los · {count} Tage",
-    "startsTomorrow": "Morgen geht’s los"
+    "startsTomorrow": "Morgen geht’s los",
+    "sleepsToGo_one": "Noch {count} Mal schlafen!",
+    "sleepsToGo_other": "Noch {count} Mal schlafen!",
+    "agoDays_one": "vor {count} Tag",
+    "agoDays_other": "vor {count} Tagen",
+    "agoWeeks_one": "vor {count} Woche",
+    "agoWeeks_other": "vor {count} Wochen",
+    "agoMonths_one": "vor {count} Monat",
+    "agoMonths_other": "vor {count} Monaten",
+    "agoYears_one": "vor {count} Jahr",
+    "agoYears_other": "vor {count} Jahren"
   },
   "forms": {
     "noRating": "Keine Bewertung",
@@ -412,7 +425,7 @@
     "later": "Später",
     "noDate": "Ohne Datum",
     "noTrips": "Keine Sammlungen",
-    "noTripsYetCreateOne": "Noch keine Sammlungen. Lege mit + eine neue an.",
+    "noTripsYetHint": "Plane Tage, Unterkünfte und Verbindungen an einem Ort – lesbar auch ohne Netz.",
     "pastTrips": "Vergangene Sammlungen",
     "tapAccept": "Antippen zum Annehmen"
   },
@@ -664,16 +677,11 @@
   "media": {
     "addPhoto": "Foto hinzufügen",
     "attachFile": "Datei anhängen",
-    "discard": "Verwerfen",
     "fromImageAddress": "Von einer Bildadresse",
     "fromLibrary": "Aus der Mediathek",
     "fromWikipediaOrWeb": "Aus Wikipedia oder dem Web",
     "noAccessCamera": "Kein Zugriff auf die Kamera",
-    "takePhoto": "Foto aufnehmen",
-    "tapRetryOrDiscard": "Tippen zum erneuten Versuchen oder Verwerfen",
-    "uploadFailed": "Hochladen fehlgeschlagen",
-    "uploadingFile": "Datei wird hochgeladen…",
-    "uploadingPhoto": "Foto wird hochgeladen…"
+    "takePhoto": "Foto aufnehmen"
   },
   "nearby": {
     "addAsLodging": "Als Unterkunft hinzufügen",
@@ -819,7 +827,7 @@
     "wrongUsernameOrPassword": "Benutzername oder Passwort falsch."
   },
   "settings": {
-    "accessibility": "Bedienungshilfen",
+    "accessibility": "Lesbarkeit und Bedienung",
     "account": "Konto",
     "appearance": "Darstellung",
     "appleMaps": "Apple Karten",
@@ -828,7 +836,6 @@
     "boldText": "Fettere Schrift",
     "dark": "Dunkel",
     "default": "Normal",
-    "deleteDownloads": "Löschen",
     "deleteOfflineData": "Offline-Daten löschen",
     "deleteOfflineDataConfirm": "Offline-Daten löschen?",
     "extraLarge": "Sehr groß",
@@ -839,9 +846,6 @@
     "huge": "Riesig",
     "imagesPdfsDownloadedAgainNext": "Bilder und PDFs werden beim nächsten Öffnen einer Sammlung neu geladen.",
     "increaseContrast": "Mehr Kontrast",
-    "keepDownloads": "Behalten",
-    "keepDownloadsConfirm": "Downloads behalten?",
-    "keepDownloadsExplanation": "Heruntergeladene PDFs, Fotos und Karten bleiben auf diesem Gerät und werden wieder genutzt, wenn du dich beim selben Server anmeldest. Lösche sie, wenn jemand anderes das Gerät nutzt.",
     "language": "Sprache",
     "large": "Groß",
     "light": "Hell",
@@ -861,8 +865,6 @@
     "showTabLabelsHint": "Beschriftungen in der Hauptnavigation und innerhalb von Sammlungen.",
     "signOut": "Abmelden",
     "signOutConfirm": "Abmelden?",
-    "signOutDeleteKey": "Abmelden und Schlüssel löschen",
-    "signOutOnDeviceOnly": "Nur hier abmelden",
     "signedInAs": "Angemeldet als",
     "small": "Klein",
     "systemUsesPhonesSettings": "„System“ übernimmt die Einstellungen des Telefons.",
@@ -885,7 +887,15 @@
     "remindersHint": "Erinnerungen kommen aus der Offline-Kopie auf diesem Gerät, auch ohne Verbindung. Sie enthalten keine Buchungsnummern.",
     "remindersOn": "Erinnerungen",
     "travelActivity": "Reisetag auf dem Sperrbildschirm",
-    "travelActivityHint": "Zeigt die nächste Verbindung mit Countdown, sobald du die App am Reisetag öffnest."
+    "travelActivityHint": "Zeigt die nächste Verbindung mit Countdown, sobald du die App am Reisetag öffnest.",
+    "signOutKeepDownloads": "Abmelden, Downloads behalten",
+    "signOutKeepDownloadsHint": "Fotos, PDFs und Karten bleiben für die nächste Anmeldung.",
+    "signOutEverything": "Abmelden und alles löschen",
+    "signOutEverythingHint": "Wenn jemand anderes dieses Telefon nutzt.",
+    "textSizePreview": "So groß ist Text in Unterwegs.",
+    "remindersOff": "Aus",
+    "remindersActive_one": "{count} Erinnerung an",
+    "remindersActive_other": "{count} Erinnerungen an"
   },
   "share": {
     "attachFiles": "Dateien anhängen",
@@ -966,7 +976,16 @@
     "noAccommodationAdded": "Keine Unterkunft eingetragen.",
     "notesForDay": "Notizen zum Tag",
     "tonight": "Heute Nacht",
-    "tripHasNoDayPlan": "Für diese Sammlung ist noch kein Tagesplan angelegt."
+    "tripHasNoDayPlan": "Für diese Sammlung ist noch kein Tagesplan angelegt.",
+    "firstDayGreeting": "Gute Reise!",
+    "lastDayGreeting": "Letzter Tag – gute Heimreise!",
+    "summaryTitle": "Eure Reise",
+    "summaryFooter": "Alles bleibt in dieser Sammlung zum Nachlesen.",
+    "connections_one": "{count} Verbindung",
+    "connections_other": "{count} Verbindungen",
+    "visited_one": "{count} Ort besucht",
+    "visited_other": "{count} Orte besucht",
+    "photosOfDay": "Fotos des Tages"
   },
   "transport": {
     "bookingWebsite": "Buchung / Website",
@@ -1110,5 +1129,28 @@
     "arrived": "Angekommen",
     "arrives": "Ankunft",
     "departs": "Abfahrt"
+  },
+  "nextUp": {
+    "title": "Als Nächstes",
+    "inDuration": "in {duration}"
+  },
+  "celebration": {
+    "checklistDone": "Alles abgehakt!"
+  },
+  "memories": {
+    "onThisDay": "Heute {ago}",
+    "title": "Erinnerungen"
+  },
+  "outbox": {
+    "conflictCopyName": "{name} (offline)",
+    "notSaved_one": "{count} Änderung wurde nicht gespeichert",
+    "notSaved_other": "{count} Änderungen wurden nicht gespeichert",
+    "conflictTitle": "Inzwischen geändert",
+    "conflictBody": "Deine Offline-Fassung steht daneben als „{name}“. Es ging nichts verloren.",
+    "waiting_one": "{count} Änderung wartet auf Netz",
+    "waiting_other": "{count} Änderungen warten auf Netz",
+    "signOutPending_one": "{count} Änderung ist noch nicht gesendet und geht beim Abmelden verloren.",
+    "signOutPending_other": "{count} Änderungen sind noch nicht gesendet und gehen beim Abmelden verloren.",
+    "fieldsKept": "Bei „{name}“ hatte jemand anderes dieselben Angaben geändert. Diese wurden behalten, deine übrigen Änderungen sind gespeichert."
   }
 }

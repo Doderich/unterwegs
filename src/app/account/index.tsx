@@ -6,7 +6,7 @@ import { Alert } from 'react-native';
 
 import type { User } from '@/api/schemas';
 import { useClient } from '@/auth/session';
-import { queryKeys, useUser } from '@/data/queries';
+import { useUser } from '@/data/queries';
 import { changedFields } from '@/data/selectors';
 import { useOnlineAction } from '@/data/useOnlineAction';
 import { tr } from '@/i18n';
@@ -19,6 +19,7 @@ import { useServerFile } from '@/ui/serverFile';
 import { Text } from '@/ui/Text';
 import { Host } from '@/ui/Host';
 import { TextInput } from '@/ui/TextInput';
+import { readsAffectedBy } from '@/data/affected';
 
 export default function AccountScreen() {
   const user = useUser();
@@ -99,7 +100,7 @@ function AccountForm({ user }: { user: User }) {
     };
     const result = await action.run(
       () => client.edit.updateAccount(changedFields(user, input)),
-      [queryKeys.user, queryKeys.collections, queryKeys.invites, queryKeys.users],
+      readsAffectedBy('account'),
     );
     setBusy(false);
     if (result) router.back();
@@ -221,6 +222,7 @@ function AccountForm({ user }: { user: User }) {
             <FieldGroup.Section>
               <ListItem
                 colors={{ ...rt.listColors, contentColor: rt.colors.danger }}
+                leading={<RowIcon name="delete" color={rt.colors.danger} />}
                 onPress={() => router.push('/account/delete')}>
                 {tr('common.deleteAccount')}
               </ListItem>

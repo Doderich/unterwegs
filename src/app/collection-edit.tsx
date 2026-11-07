@@ -106,7 +106,8 @@ export default function CollectionEditScreen() {
     } else await run();
   };
 
-  const online = collection ? edits.online : actions.online;
+  // Editing an existing collection works offline (ADR 0016); creating or importing one needs the server.
+  const online = collection ? edits.canEdit : actions.online;
 
   /** A new collection from a ZIP export (this app's or the website's). */
   const importZip = async () => {

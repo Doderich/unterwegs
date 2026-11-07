@@ -2,6 +2,7 @@ import { useDescriptionRows } from '@/ui/useDescriptionRows';
 import { FieldGroup } from '@expo/ui';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 
+import { realIdFor } from '@/data/outbox';
 import { useCollectionView } from '@/data/queries';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { tr } from '@/i18n';
@@ -25,7 +26,7 @@ export default function LodgingScreen() {
   const media = useMediaUploads(rt, edits, sheet, 'lodging', itemId);
   const copier = useCopy();
   const opener = useOpenAttachment();
-  const lodging = view?.collection.lodging.find((l) => l.id === itemId);
+  const lodging = view?.collection.lodging.find((l) => l.id === realIdFor(itemId));
   const descriptionRows = useDescriptionRows(rt, lodging?.description);
   if (!view || !lodging) return null;
 
@@ -35,7 +36,7 @@ export default function LodgingScreen() {
   return (
     <>
       <Stack.Screen options={{ title: lodgingLabel(lodging.type) }} />
-      {edits.online ? (
+      {edits.canEdit ? (
         <Stack.Toolbar placement="right">
           <Stack.Toolbar.Button
             icon={androidToolbarIcon('edit')}

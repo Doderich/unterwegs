@@ -2,7 +2,7 @@ import { createContext, useContext, useState, type ReactNode } from 'react';
 
 import { useCollectionOffline, type CollectionOfflineState } from '@/offline/useCollectionOffline';
 
-import { useCollectionView } from './queries';
+import { useCollectionView, useOfflineCopy } from './queries';
 import type { CollectionView } from './selectors';
 
 type CollectionContextValue = {
@@ -20,7 +20,8 @@ const CollectionContext = createContext<CollectionContextValue | null>(null);
 
 export function CollectionProvider({ collectionId, children }: { collectionId: string; children: ReactNode }) {
   const query = useCollectionView(collectionId);
-  const offline = useCollectionOffline(query.data);
+  // Photos and files to keep offline come from the server's version: a waiting upload is already on the phone.
+  const offline = useCollectionOffline(useOfflineCopy(collectionId).data);
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const [planMode, setPlanMode] = useState<'day' | 'overview'>('day');
   return (

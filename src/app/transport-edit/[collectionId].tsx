@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Alert } from 'react-native';
 
 import type { TransportationInput } from '@/api/client';
+import { realIdFor } from '@/data/outbox';
 import { useCollectionView } from '@/data/queries';
 import { changedFields, nearestZone } from '@/data/selectors';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
@@ -56,7 +57,7 @@ export default function TransportEditScreen() {
   const sheet = useActionSheet(rt);
   const prompt = useTextPrompt(rt);
   const places = usePlaceSearch(rt, { withCurrentPosition: false });
-  const t = itemId ? view?.collection.transportations.find((x) => x.id === itemId) : undefined;
+  const t = itemId ? view?.collection.transportations.find((x) => x.id === realIdFor(itemId)) : undefined;
 
   const init = (() => {
     const fallbackZone = view?.days.find((d) => d.date === day)?.nightLodging?.timezone ?? view?.timeZone ?? 'UTC';
@@ -293,7 +294,7 @@ export default function TransportEditScreen() {
         <Stack.Toolbar.Button
           icon={androidToolbarIcon('check')}
           accessibilityLabel={tr('common.save')}
-          disabled={!title || saving || !edits.online}
+          disabled={!title || saving || !edits.canEdit}
           onPress={() => void save()}>
           {saving ? tr('common.saving') : tr('common.save')}
         </Stack.Toolbar.Button>
