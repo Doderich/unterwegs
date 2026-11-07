@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Alert } from 'react-native';
 
 import type { LodgingInput } from '@/api/client';
+import { realIdFor } from '@/data/outbox';
 import { useCollectionView } from '@/data/queries';
 import { changedFields, nearestZone } from '@/data/selectors';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
@@ -65,7 +66,7 @@ export default function LodgingEditScreen() {
   const sheet = useActionSheet(rt);
   const prompt = useTextPrompt(rt);
   const places = usePlaceSearch(rt, { withCurrentPosition: false });
-  const lodging = itemId ? view?.collection.lodging.find((l) => l.id === itemId) : undefined;
+  const lodging = itemId ? view?.collection.lodging.find((l) => l.id === realIdFor(itemId)) : undefined;
 
   const init = (() => {
     const zone =
@@ -243,7 +244,7 @@ export default function LodgingEditScreen() {
         <Stack.Toolbar.Button
           icon={androidToolbarIcon('check')}
           accessibilityLabel={tr('common.save')}
-          disabled={!name.trim() || saving || !edits.online}
+          disabled={!name.trim() || saving || !edits.canEdit}
           onPress={() => void save()}>
           {saving ? tr('common.saving') : tr('common.save')}
         </Stack.Toolbar.Button>

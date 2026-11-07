@@ -7,13 +7,13 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { WebView } from 'react-native-webview';
 
 import { useClient } from '@/auth/session';
-import { queryKeys } from '@/data/queries';
 import { useOnlineAction } from '@/data/useOnlineAction';
 import { tr } from '@/i18n';
 import { stravaAuthorizationUrl, stravaCallback } from '@/integrations/connection';
 import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { Host } from '@/ui/Host';
+import { readsAffectedBy } from '@/data/affected';
 
 /** Provider approval stays inside the app. The callback code is exchanged by the server using our API key. */
 export default function StravaConnectScreen() {
@@ -43,7 +43,7 @@ export default function StravaConnectScreen() {
     if (handled.current) return;
     handled.current = true;
     setFinishing(true);
-    const result = await action.run(() => client.edit.completeStrava(code), [queryKeys.integrations]);
+    const result = await action.run(() => client.edit.completeStrava(code), readsAffectedBy('integrations'));
     if (!mounted.current) return;
     setFinishing(false);
     if (result) router.back();

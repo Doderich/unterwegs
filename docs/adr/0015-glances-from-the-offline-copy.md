@@ -14,3 +14,4 @@ Consequences:
 - iOS keeps at most 64 pending local notifications, so the app schedules only the soonest ones and tops up on each recompute. Android 14 and later deny exact alarms by default, so reminders are inexact unless the user grants exact alarms.
 - iOS can start a Live Activity only while the app is in the foreground (push-to-start would need APNs). The app therefore starts it whenever it is opened on a travel day, unless the user has turned that off in Settings.
 - The details are in [docs/GLANCES.md](../GLANCES.md).
+- Since [0016](0016-offline-edits-through-an-outbox.md), the offline copy is read with its pending edits laid over it, like the screens do: an edit made without a connection shows in the glances at once.

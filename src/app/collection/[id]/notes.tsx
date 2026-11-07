@@ -84,7 +84,8 @@ export default function NotesScreen() {
           </FieldGroup.Section>
         ) : null}
 
-        {edits.online ? (
+        {/* Notes and checklists can be written offline too; they wait in the outbox (ADR 0016). */}
+        {edits.canEdit ? (
           <FieldGroup.Section title={tr('common.new')}>
             <ListItem
               colors={rt.listColors}

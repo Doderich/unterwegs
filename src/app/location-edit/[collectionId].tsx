@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Alert } from 'react-native';
 
 import type { CategoryInput, LocationInput } from '@/api/client';
+import { realIdFor } from '@/data/outbox';
 import { useCategories, useCollectionView } from '@/data/queries';
 import { changedFields } from '@/data/selectors';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
@@ -42,7 +43,7 @@ export default function LocationEditScreen() {
   const sheet = useActionSheet(rt);
   const prompt = useTextPrompt(rt);
   const places = usePlaceSearch(rt);
-  const location = itemId ? view?.collection.locations.find((l) => l.id === itemId) : undefined;
+  const location = itemId ? view?.collection.locations.find((l) => l.id === realIdFor(itemId)) : undefined;
 
   // Reset uncontrolled inputs only when a picked place supplies new text, never while typing.
   const [placeRevision, setPlaceRevision] = useState(0);
@@ -227,7 +228,7 @@ export default function LocationEditScreen() {
         <Stack.Toolbar.Button
           icon={androidToolbarIcon('check')}
           accessibilityLabel={tr('common.save')}
-          disabled={!name.trim() || saving || !edits.online}
+          disabled={!name.trim() || saving || !edits.canEdit}
           onPress={() => void save()}>
           {saving ? tr('common.saving') : tr('common.save')}
         </Stack.Toolbar.Button>
@@ -283,7 +284,7 @@ export default function LocationEditScreen() {
               autoCorrect={false}
             />
             {markdown.row}
-            {edits.online && name.trim() ? (
+            {edits.can('importImages') && name.trim() ? (
               <ListItem colors={rt.listColors} leading={<RowIcon name="world" />} onPress={() => void fromWikipedia()}>
                 {fetchingWiki ? tr('common.loading') : tr('locationEdit.descriptionFromWikipedia')}
               </ListItem>

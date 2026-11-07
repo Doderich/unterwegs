@@ -1,15 +1,12 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { useNetworkState } from 'expo-network';
 import { useMemo } from 'react';
-import { Alert } from 'react-native';
 
 import type { CollectionInput, UploadFile } from '@/api/client';
 import { useClient } from '@/auth/session';
 import { tr } from '@/i18n';
-import { haptics } from '@/settings/haptics';
 
-import { queryKeys } from './queries';
-import { errorText, OfflineError } from './useCollectionEdits';
+import { useOnline, writeOnline } from './onlineWrite';
+import { readsAffectedBy } from './affected';
 
 /**
  * Online-only actions on whole collections: create, import, duplicate, invites, sharing, leave, archive, delete.
@@ -18,25 +15,15 @@ import { errorText, OfflineError } from './useCollectionEdits';
 export function useCollectionsActions() {
   const client = useClient();
   const queryClient = useQueryClient();
-  const network = useNetworkState();
-  const online = !(network.isInternetReachable === false || network.isConnected === false);
+  const online = useOnline();
 
   return useMemo(() => {
-    async function run<R>(request: () => Promise<R>, collectionId?: string): Promise<R | null> {
-      try {
-        if (!online) throw new OfflineError();
-        return await request();
-      } catch (e) {
-        haptics.error();
-        Alert.alert(tr('common.notSaved'), errorText(e));
-        return null;
-      } finally {
-        void queryClient.invalidateQueries({ queryKey: queryKeys.collections });
-        void queryClient.invalidateQueries({ queryKey: queryKeys.invites });
-        void queryClient.invalidateQueries({ queryKey: queryKeys.archived });
-        if (collectionId) void queryClient.invalidateQueries({ queryKey: queryKeys.collection(collectionId) });
-      }
-    }
+    /** Refreshes the collection lists (and the collection) afterwards, success or not. */
+    const run = <R>(request: () => Promise<R>, collectionId?: string) =>
+      writeOnline(queryClient, online, {
+        request,
+        refetch: readsAffectedBy('collections', ...(collectionId ? [{ collection: collectionId }] : [])),
+      });
     /** `send` resolves to null on success; turn that into `true` so callers can tell success from failure. */
     const ok = (p: Promise<unknown>) => p.then(() => true as const);
 

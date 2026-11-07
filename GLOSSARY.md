@@ -138,7 +138,11 @@ The current date in the time zone of tonight's night lodging, or the collection 
 A credential granting access as its user. Unterwegs keeps one for this device after sign-in; account settings can also create or revoke keys for other clients. Sign-out can leave the key intact or revoke it.
 
 **Offline copy**:
-The last loaded state of a collection, with its images and attachments, kept on the device so it can be read without a connection. Edits always need a connection.
+The last loaded state of a collection, with its images and attachments, kept on the device so it can be read without a connection.
+
+**Pending edit**:
+A change to a collection made on the device that the server does not have yet. It shows at once, also in widgets and reminders, and is sent when there is a connection. When someone else changed the same thing meanwhile, their version stays and the user is told; a note changed on both sides is kept as a copy. Sharing, invites, archiving and creating a collection are never pending edits: they need the connection at the time.
+_Avoid_: Offline change, queued change, outbox entry
 
 **Offline map**:
 A saved geographic area with a chosen level of detail, readable without a connection. It is separate from the collection's offline copy; a collection overview and detailed areas can be saved independently.

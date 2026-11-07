@@ -7,9 +7,9 @@ import type { ReactElement } from 'react';
 export const cardRowWidth = (_windowWidth: number): number | undefined => undefined;
 
 /** A React Native card shown edge to edge in a `FieldGroup`: no row padding, no row background. */
-export function CardRow({ children }: { children: ReactElement }) {
+export function CardRow({ children, title }: { children: ReactElement; title?: string }) {
   return (
-    <FieldGroup.Section>
+    <FieldGroup.Section title={title}>
       <VStack modifiers={[listRowInsets({ top: 0, leading: 0, bottom: 0, trailing: 0 }), listRowBackground('clear')]}>
         <RNHostView matchContents={{ vertical: true }}>{children}</RNHostView>
       </VStack>

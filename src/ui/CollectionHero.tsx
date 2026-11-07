@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { Pressable, StyleSheet, Text, View, useWindowDimensions, type TextProps, type TextStyle } from 'react-native';
+import { Pressable, StyleSheet, View, useWindowDimensions, type TextProps, type TextStyle } from 'react-native';
 
 import type { CollectionSummary } from '@/api/schemas';
 import { useCollectionView } from '@/data/queries';
@@ -10,6 +10,7 @@ import { useSettings } from '@/settings/store';
 
 import { AuthImage } from './AuthImage';
 import { formatDateRange, collectionCountdown } from './format';
+import { ScaledText } from './ScaledText';
 import { useColors } from './theme';
 
 /**
@@ -107,36 +108,15 @@ export function CollectionHero({
 
 /** The card has a fixed height, so text grows at most this much. */
 const MAX_SCALE = 1.4;
-const BOLDER: Record<string, TextStyle['fontWeight']> = { '400': '600', '600': '800', '700': '800', '800': '900' };
 
-/**
- * React Native text that follows the app's text size and bold-text settings (native list rows do
- * that by themselves).
- */
-function Label({ style, ...props }: TextProps & { style: TextStyle }) {
-  const { textSize, boldText } = useSettings();
-  const scale = rnTextScale(textSize);
-  const factor = Math.min(scale ?? 1, MAX_SCALE);
-  return (
-    <Text
-      {...props}
-      allowFontScaling={scale === null}
-      maxFontSizeMultiplier={MAX_SCALE}
-      style={[
-        style,
-        scale !== null && {
-          fontSize: (style.fontSize ?? 15) * factor,
-          lineHeight: style.lineHeight ? style.lineHeight * factor : undefined,
-        },
-        boldText && { fontWeight: BOLDER[String(style.fontWeight ?? '400')] ?? style.fontWeight },
-      ]}
-    />
-  );
+function Label(props: TextProps & { style: TextStyle }) {
+  return <ScaledText {...props} maxScale={MAX_SCALE} />;
 }
 
 const styles = StyleSheet.create({
   card: { borderRadius: 28, overflow: 'hidden', justifyContent: 'space-between' },
-  pressed: { opacity: 0.9 },
+  // The card gives a little under the thumb, like a ticket pressed on a counter.
+  pressed: { transform: [{ scale: 0.98 }], opacity: 0.95 },
   scrim: {
     backgroundImage:
       'linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.82) 100%)',
@@ -145,22 +125,24 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     margin: 16,
     paddingHorizontal: 12,
-    paddingVertical: 6,
+    paddingVertical: 4,
     borderRadius: 999,
     backgroundColor: 'rgba(255,255,255,0.22)',
   },
-  badgeText: { color: '#fff', fontSize: 12, fontWeight: '700', letterSpacing: 0.8 },
-  bottom: { padding: 20, gap: 4 },
+  // Written in sentence case and uppercased only visually, so screen readers read words, not letters.
+  badgeText: { color: '#fff', fontSize: 13, fontWeight: '600', letterSpacing: 0.8, textTransform: 'uppercase' },
+  bottom: { padding: 24, gap: 4 },
   countdown: {
     color: '#FDBA74',
-    fontSize: 15,
-    fontWeight: '700',
+    fontSize: 17,
+    fontWeight: '600',
     textShadowColor: 'rgba(0,0,0,0.4)',
-    textShadowRadius: 6,
+    textShadowRadius: 8,
   },
-  title: { color: '#fff', fontSize: 30, fontWeight: '800', lineHeight: 34 },
-  meta: { color: 'rgba(255,255,255,0.88)', fontSize: 15 },
-  stats: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 10 },
-  stat: { paddingHorizontal: 10, paddingVertical: 5, borderRadius: 999, backgroundColor: 'rgba(255,255,255,0.18)' },
+  title: { color: '#fff', fontSize: 28, fontWeight: '600', lineHeight: 32 },
+  // Secondary text is the same white at 80%: hierarchy by opacity, not another colour.
+  meta: { color: 'rgba(255,255,255,0.8)', fontSize: 13 },
+  stats: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 8 },
+  stat: { paddingHorizontal: 12, paddingVertical: 4, borderRadius: 999, backgroundColor: 'rgba(255,255,255,0.18)' },
   statText: { color: '#fff', fontSize: 13, fontWeight: '600' },
 });

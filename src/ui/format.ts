@@ -16,14 +16,30 @@ export function formatDateRange(start: string | null | undefined, end: string | 
   return formatPlainDate(start ?? end);
 }
 
-/** Headline of the next-collection card: `Noch 44 Tage`, `Morgen geht's los`, `Tag 3 von 23`. */
+/** Within two weeks the countdown is counted in nights, the way children count to a trip. */
+const SLEEPS_FROM = 14;
+
+/**
+ * Headline of the next-collection card: `Noch 44 Tage`, `Noch 5 Mal schlafen!`, `Morgen geht's los`,
+ * `Tag 3 von 23`.
+ */
 export function collectionCountdown(start: string, end: string, today: string): string {
   const untilStart = daysBetween(today, start);
-  if (untilStart > 1) return tr('format.daysToGo', { count: untilStart });
+  if (untilStart > SLEEPS_FROM) return tr('format.daysToGo', { count: untilStart });
+  if (untilStart > 1) return tr('format.sleepsToGo', { count: untilStart });
   if (untilStart === 1) return tr('format.startsTomorrow');
   const total = daysBetween(start, end) + 1;
   const day = Math.min(daysBetween(start, today) + 1, total);
   return day === 1 ? tr('format.startsToday', { count: total }) : tr('format.dayDayOfTotal', { day, total });
+}
+
+/** How long ago a plain date was, for looking back: `vor 3 Wochen`, `vor 2 Jahren`. */
+export function timeAgo(date: string, today: string): string {
+  const days = daysBetween(date, today);
+  if (days < 14) return tr('format.agoDays', { count: Math.max(1, days) });
+  if (days < 60) return tr('format.agoWeeks', { count: Math.floor(days / 7) });
+  if (days < 365) return tr('format.agoMonths', { count: Math.floor(days / 30) });
+  return tr('format.agoYears', { count: Math.floor(days / 365) });
 }
 
 export function formatPrice(
@@ -62,4 +78,15 @@ export function wikimediaThumb(url: string): string {
 /** "Alex Beispiel", else the username. */
 export function personName(u: { first_name?: string | null; last_name?: string | null; username: string }): string {
   return [u.first_name, u.last_name].filter(Boolean).join(' ') || u.username;
+}
+
+/** When this phone last refreshed something ("Stand"), in the phone's own zone and the UI language's format. */
+export function formatUpdatedAt(ms: number): string {
+  if (!ms) return tr('statusRows.never');
+  return new Intl.DateTimeFormat(locale(), {
+    day: '2-digit',
+    month: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(new Date(ms));
 }

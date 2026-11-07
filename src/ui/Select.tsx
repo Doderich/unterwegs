@@ -106,7 +106,7 @@ export function useSelect(t: RowTheme, { options, value, onChange, hint, title, 
     <BottomSheet isPresented={open} onDismiss={() => setOpen(false)} snapPoints={['half', 'full']}>
       <ScrollView>
         <Column spacing={0}>
-          <Text textStyle={{ fontSize: 20, fontWeight: '600', color: t.colors.text }} style={{ padding: 16 }}>
+          <Text textStyle={{ fontSize: 22, fontWeight: '600', color: t.colors.text }} style={{ padding: 16 }}>
             {title}
           </Text>
           {options.map((o) => (

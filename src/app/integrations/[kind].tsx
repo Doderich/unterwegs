@@ -6,7 +6,7 @@ import { Alert } from 'react-native';
 
 import type { IntegrationSettings } from '@/api/schemas';
 import { useClient } from '@/auth/session';
-import { queryKeys, useIntegrations } from '@/data/queries';
+import { useIntegrations } from '@/data/queries';
 import { useOnlineAction } from '@/data/useOnlineAction';
 import { tr } from '@/i18n';
 import { integrationServerUrl, isIntegrationKind, type IntegrationKind } from '@/integrations/connection';
@@ -16,6 +16,7 @@ import { infoRow, switchRow, useRowTheme } from '@/ui/rows';
 import { Text } from '@/ui/Text';
 import { Host } from '@/ui/Host';
 import { TextInput } from '@/ui/TextInput';
+import { readsAffectedBy } from '@/data/affected';
 
 export default function IntegrationScreen() {
   const { kind } = useLocalSearchParams<{ kind: string }>();
@@ -94,7 +95,7 @@ function ConnectionForm({ kind, existing }: { kind: IntegrationKind; existing: I
     if (mfaToken) {
       const result = await action.run(
         () => client.edit.confirmEndurainMfa(mfaToken, mfaCode.trim()),
-        [queryKeys.integrations],
+        readsAffectedBy('integrations'),
       );
       // The server consumes the pending challenge even on a wrong code; restart login after failure.
       setMfaToken(null);
@@ -104,7 +105,7 @@ function ConnectionForm({ kind, existing }: { kind: IntegrationKind; existing: I
     } else if (isEndurain) {
       const result = await action.run(
         () => client.edit.connectEndurain(normalized!, username.trim(), password),
-        [queryKeys.integrations],
+        readsAffectedBy('integrations'),
       );
       if (result) {
         clearSecrets();
@@ -119,7 +120,7 @@ function ConnectionForm({ kind, existing }: { kind: IntegrationKind; existing: I
             ...(apiKey.trim() ? { api_key: apiKey.trim() } : {}),
             ...(kind === 'immich' ? { copy_locally: copyLocally } : {}),
           }),
-        [queryKeys.integrations],
+        readsAffectedBy('integrations'),
       );
       if (result) {
         clearSecrets();
@@ -145,7 +146,7 @@ function ConnectionForm({ kind, existing }: { kind: IntegrationKind; existing: I
             const result = await action.run(async () => {
               await client.edit.disconnectIntegration(kind, existing?.id);
               return true;
-            }, [queryKeys.integrations]);
+            }, readsAffectedBy('integrations'));
             setBusy(false);
             if (result) router.back();
           },
@@ -307,7 +308,7 @@ function StravaSettings() {
           await action.run(async () => {
             await client.edit.disconnectIntegration('strava');
             return true;
-          }, [queryKeys.integrations]);
+          }, readsAffectedBy('integrations'));
           setBusy(false);
         },
       },

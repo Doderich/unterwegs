@@ -51,7 +51,7 @@ export default function NearbyScreen() {
   const places = useQuery({
     queryKey: ['recommendations', latitude, longitude, category, sources],
     queryFn: () => client.recommendations(latitude, longitude, category, sources),
-    enabled: edits.online && Number.isFinite(latitude) && Number.isFinite(longitude),
+    enabled: edits.can('quickAdd') && Number.isFinite(latitude) && Number.isFinite(longitude),
     // Not part of the offline copy: an old list of places is worth less than the storage.
     gcTime: 0,
     retry: false,
@@ -108,7 +108,7 @@ export default function NearbyScreen() {
       {
         label: tr('nearby.addTripAsPlace'),
         icon: 'add',
-        disabled: !edits.online || !!adding || p.latitude == null,
+        disabled: !edits.can('quickAdd') || !!adding || p.latitude == null,
         onPress: () => addLocation(p),
       },
       ...(category === 'lodging'
@@ -116,7 +116,7 @@ export default function NearbyScreen() {
             {
               label: tr('nearby.addAsLodging'),
               icon: 'lodging' as const,
-              disabled: !edits.online || !!adding || p.latitude == null,
+              disabled: !edits.can('quickAdd') || !!adding || p.latitude == null,
               onPress: () => addLodging(p),
             },
           ]
@@ -127,7 +127,7 @@ export default function NearbyScreen() {
     sheet.open(p.name, actions);
   };
 
-  const status = !edits.online
+  const status = !edits.can('quickAdd')
     ? tr('common.onlyWithInternet')
     : places.isPending
       ? tr('nearby.searchingCanTakeUpMinute')

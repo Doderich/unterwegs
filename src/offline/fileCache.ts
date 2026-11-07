@@ -52,12 +52,21 @@ export function cachedFile(url: string): File {
 }
 
 /** Local `file://` URI if the media is cached, else null. */
+/**
+ * A media reference that is already a file on this phone: a photo or file added offline that waits in the outbox
+ * (ADR 0016). It is its own local copy and is never downloaded.
+ */
+export const isLocalFile = (url: string): boolean => url.startsWith('file://');
+
+/** The file on this phone for a media URL (downloaded copy, or the file itself while it waits to upload), or null. */
 export function localUri(url: string): string | null {
+  if (isLocalFile(url)) return url;
   const file = cachedFile(url);
   return file.exists && (file.size ?? 0) > 0 ? file.uri : null;
 }
 
 export async function download(url: string, credentials: Credentials): Promise<File> {
+  if (isLocalFile(url)) return new File(url);
   const target = cachedFile(url);
   if (target.exists && (target.size ?? 0) > 0) return target;
   ensureFolder(url);

@@ -76,7 +76,7 @@ export default function GalleryScreen() {
           title: urls.length > 1 ? tr('gallery.nOfTotal', { n: index + 1, total: urls.length }) : (params.title ?? ''),
         }}
       />
-      {image && edits.online ? (
+      {image && edits.canEdit ? (
         <Stack.Toolbar placement="right">
           <Stack.Toolbar.Button
             icon={androidToolbarIcon('more')}

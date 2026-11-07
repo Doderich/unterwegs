@@ -4,6 +4,7 @@ import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { Alert } from 'react-native';
 
 import type { Visit } from '@/api/schemas';
+import { realIdFor } from '@/data/outbox';
 import { useCollectionView, useIntegrations } from '@/data/queries';
 import { useOnline } from '@/data/useOnlineAction';
 import { locationZone, viewToday, type Day, type CollectionView } from '@/data/selectors';
@@ -26,6 +27,7 @@ import {
   useOpenAttachment,
   useRowTheme,
 } from '@/ui/rows';
+import { useMoreSections } from '@/ui/MoreSection';
 import { useSelect } from '@/ui/Select';
 import { parseServerDuration } from '@/ui/formValues';
 import { sportLabel } from '@/ui/sports';
@@ -45,7 +47,7 @@ export default function LocationScreen() {
   const opener = useOpenAttachment();
   const edits = useCollectionEdits(view);
   const sheet = useActionSheet(rt);
-  const location = view?.collection.locations.find((l) => l.id === itemId);
+  const location = view?.collection.locations.find((l) => l.id === realIdFor(itemId));
   const descriptionRows = useDescriptionRows(rt, location?.description);
   const media = useMediaUploads(rt, edits, sheet, 'location', itemId, location?.name);
   const integrations = useIntegrations();
@@ -53,6 +55,7 @@ export default function LocationScreen() {
   const serverFile = useServerFile();
   const prompt = useTextPrompt(rt);
   const rating = ratingStars(location?.rating);
+  const more = useMoreSections(rt);
   const ratingSelect = useSelect(rt, {
     title: tr('common.rating'),
     value: String(rating),
@@ -104,7 +107,7 @@ export default function LocationScreen() {
 
   const trailActions = (t: (typeof location.trails)[number]) => {
     const link = t.link ?? t.wanderer_link;
-    if (!edits.online) return link ? openUrl(link) : undefined;
+    if (!edits.canEdit) return link ? openUrl(link) : undefined;
     sheet.open(t.name, [
       ...(link ? [{ label: tr('common.open'), icon: 'external' as const, onPress: () => openUrl(link) }] : []),
       {
@@ -176,10 +179,10 @@ export default function LocationScreen() {
           icon: s.offItinerary ? 'visit' : 'days',
           label: s.label,
           value: s.value,
-          onPress: s.visitId && edits.online ? () => editVisit(s.visitId!) : undefined,
+          onPress: s.visitId && edits.canEdit ? () => editVisit(s.visitId!) : undefined,
         }),
       )}
-      {visitedToday || !edits.online ? null : (
+      {visitedToday || !edits.canEdit ? null : (
         <ListItem
           colors={rt.listColors}
           leading={<RowIcon name="visit" />}
@@ -187,7 +190,7 @@ export default function LocationScreen() {
           {tr('location.visitedToday')}
         </ListItem>
       )}
-      {edits.online ? (
+      {edits.canEdit ? (
         <ListItem colors={rt.listColors} leading={<RowIcon name="add" />} onPress={() => editVisit()}>
           {tr('common.addVisit')}
         </ListItem>
@@ -195,10 +198,128 @@ export default function LocationScreen() {
     </FieldGroup.Section>
   );
 
+  // Planning extras sit behind one "Mehr anzeigen" row, so the facts needed on the road stay on the first screen.
+  const immichSection =
+    integrations.data?.immich?.exists && online ? (
+      <FieldGroup.Section key="immich">
+        <ListItem
+          colors={rt.listColors}
+          leading={<RowIcon name="library" />}
+          onPress={() =>
+            router.push({
+              pathname: '/immich/[collectionId]/[locationId]',
+              params: { collectionId, locationId: location.id },
+            })
+          }>
+          {tr('location.addPhotoFromImmich')}
+        </ListItem>
+      </FieldGroup.Section>
+    ) : null;
+  const trailsSection =
+    location.trails.length || edits.canEdit ? (
+      <FieldGroup.Section key="trails" title={tr('location.trails')}>
+        {location.trails.map((t) => (
+          <ListItem
+            key={t.id}
+            colors={rt.listColors}
+            leading={<RowIcon name="walk" />}
+            supportingText={
+              t.link || t.provider ? (
+                <Sub>{t.provider || t.link?.replace(/^https?:\/\/(www\.)?/, '').split('/')[0]}</Sub>
+              ) : undefined
+            }
+            onPress={() => trailActions(t)}>
+            {t.name}
+          </ListItem>
+        ))}
+        {edits.canEdit ? (
+          <ListItem colors={rt.listColors} leading={<RowIcon name="add" />} onPress={addTrail}>
+            {tr('location.addTrail')}
+          </ListItem>
+        ) : null}
+      </FieldGroup.Section>
+    ) : null;
+  const activitiesSection =
+    activities.length || (edits.canEdit && location.visits.length) ? (
+      <FieldGroup.Section key="activities" title={tr('location.activities')}>
+        {activities.map((a) => (
+          <ListItem
+            key={a.id}
+            colors={rt.listColors}
+            leading={<RowIcon name="walk" />}
+            supportingText={
+              <Sub>
+                {[
+                  sportLabel(a.sport_type),
+                  formatDistance(a.distance != null ? a.distance / 1000 : null),
+                  parseServerDuration(a.moving_time)
+                    ? formatDuration(Math.round(parseServerDuration(a.moving_time)! / 60))
+                    : null,
+                  a.elevation_gain ? `↑ ${Math.round(a.elevation_gain)} m` : null,
+                  a.visitDate ? formatDayLabel(localDate(a.visitDate, view.timeZone)) : null,
+                ]
+                  .filter(Boolean)
+                  .join(' · ')}
+              </Sub>
+            }
+            onPress={() =>
+              sheet.open(a.name, [
+                ...(a.gpx_file
+                  ? [
+                      {
+                        label: tr('location.openGpxTrack'),
+                        icon: 'file' as const,
+                        onPress: () =>
+                          void opener.open({
+                            id: a.id,
+                            file: a.gpx_file!,
+                            name: `${a.name}.gpx`,
+                            extension: 'gpx',
+                          }),
+                      },
+                    ]
+                  : []),
+                ...(edits.canEdit
+                  ? [
+                      {
+                        label: tr('common.edit'),
+                        icon: 'edit' as const,
+                        onPress: () => editActivity(a.visitId, a.id),
+                      },
+                    ]
+                  : []),
+              ])
+            }>
+            {a.name}
+          </ListItem>
+        ))}
+        {edits.canEdit && location.visits.length ? (
+          <ListItem colors={rt.listColors} leading={<RowIcon name="add" />} onPress={addActivity}>
+            {tr('location.addActivity')}
+          </ListItem>
+        ) : null}
+      </FieldGroup.Section>
+    ) : null;
+  const sunSection = sun.length ? (
+    <FieldGroup.Section key="sun" title={tr('location.sun')}>
+      {sun.map((s) => infoRow(rt, { key: s.date, icon: 'sun', label: s.label, value: s.value }))}
+    </FieldGroup.Section>
+  ) : null;
+  const ratingSection = (
+    <FieldGroup.Section key="rating" title={tr('common.rating')}>
+      {ratingSelect.row}
+    </FieldGroup.Section>
+  );
+  const tagsSection = location.tags?.length ? (
+    <FieldGroup.Section key="tags" title={tr('location.tags')}>
+      <Text textStyle={{ color: colors.secondary }}>{location.tags.join(' · ')}</Text>
+    </FieldGroup.Section>
+  ) : null;
+
   return (
     <>
       <Stack.Screen options={{ title: location.category?.display_name ?? tr('common.place') }} />
-      {edits.online ? (
+      {edits.canEdit ? (
         <Stack.Toolbar placement="right">
           <Stack.Toolbar.Button
             icon={androidToolbarIcon('edit')}
@@ -222,22 +343,6 @@ export default function LocationScreen() {
             })}
             {media.photoRows}
           </FieldGroup.Section>
-
-          {integrations.data?.immich?.exists && online ? (
-            <FieldGroup.Section>
-              <ListItem
-                colors={rt.listColors}
-                leading={<RowIcon name="library" />}
-                onPress={() =>
-                  router.push({
-                    pathname: '/immich/[collectionId]/[locationId]',
-                    params: { collectionId, locationId: location.id },
-                  })
-                }>
-                {tr('location.addPhotoFromImmich')}
-              </ListItem>
-            </FieldGroup.Section>
-          ) : null}
 
           {plannedSection}
 
@@ -289,110 +394,11 @@ export default function LocationScreen() {
             ) : null}
           </FieldGroup.Section>
 
-          {location.trails.length || edits.online ? (
-            <FieldGroup.Section title={tr('location.trails')}>
-              {location.trails.map((t) => (
-                <ListItem
-                  key={t.id}
-                  colors={rt.listColors}
-                  leading={<RowIcon name="walk" />}
-                  supportingText={
-                    t.link || t.provider ? (
-                      <Sub>{t.provider || t.link?.replace(/^https?:\/\/(www\.)?/, '').split('/')[0]}</Sub>
-                    ) : undefined
-                  }
-                  onPress={() => trailActions(t)}>
-                  {t.name}
-                </ListItem>
-              ))}
-              {edits.online ? (
-                <ListItem colors={rt.listColors} leading={<RowIcon name="add" />} onPress={addTrail}>
-                  {tr('location.addTrail')}
-                </ListItem>
-              ) : null}
-            </FieldGroup.Section>
-          ) : null}
-
-          {activities.length || (edits.online && location.visits.length) ? (
-            <FieldGroup.Section title={tr('location.activities')}>
-              {activities.map((a) => (
-                <ListItem
-                  key={a.id}
-                  colors={rt.listColors}
-                  leading={<RowIcon name="walk" />}
-                  supportingText={
-                    <Sub>
-                      {[
-                        sportLabel(a.sport_type),
-                        formatDistance(a.distance != null ? a.distance / 1000 : null),
-                        parseServerDuration(a.moving_time)
-                          ? formatDuration(Math.round(parseServerDuration(a.moving_time)! / 60))
-                          : null,
-                        a.elevation_gain ? `↑ ${Math.round(a.elevation_gain)} m` : null,
-                        a.visitDate ? formatDayLabel(localDate(a.visitDate, view.timeZone)) : null,
-                      ]
-                        .filter(Boolean)
-                        .join(' · ')}
-                    </Sub>
-                  }
-                  onPress={() =>
-                    sheet.open(a.name, [
-                      ...(a.gpx_file
-                        ? [
-                            {
-                              label: tr('location.openGpxTrack'),
-                              icon: 'file' as const,
-                              onPress: () =>
-                                void opener.open({
-                                  id: a.id,
-                                  file: a.gpx_file!,
-                                  name: `${a.name}.gpx`,
-                                  extension: 'gpx',
-                                }),
-                            },
-                          ]
-                        : []),
-                      ...(edits.online
-                        ? [
-                            {
-                              label: tr('common.edit'),
-                              icon: 'edit' as const,
-                              onPress: () => editActivity(a.visitId, a.id),
-                            },
-                          ]
-                        : []),
-                    ])
-                  }>
-                  {a.name}
-                </ListItem>
-              ))}
-              {edits.online && location.visits.length ? (
-                <ListItem colors={rt.listColors} leading={<RowIcon name="add" />} onPress={addActivity}>
-                  {tr('location.addActivity')}
-                </ListItem>
-              ) : null}
-            </FieldGroup.Section>
-          ) : null}
-
-          {sun.length ? (
-            <FieldGroup.Section title={tr('location.sun')}>
-              {sun.map((s) => infoRow(rt, { key: s.date, icon: 'sun', label: s.label, value: s.value }))}
-            </FieldGroup.Section>
-          ) : null}
-
-          <FieldGroup.Section title={tr('common.rating')}>{ratingSelect.row}</FieldGroup.Section>
-
           {location.description || location.link || price ? (
             <FieldGroup.Section title={tr('location.info')}>
               {price ? infoRow(rt, { icon: 'price', label: tr('common.price'), value: price }) : null}
               {descriptionRows}
               {location.link ? linkRows(rt, { label: tr('common.website'), url: location.link }) : null}
-            </FieldGroup.Section>
-          ) : null}
-
-          {location.tags?.length ? (
-            <FieldGroup.Section title={tr('location.tags')}>
-              <Text textStyle={{ color: colors.secondary }}>{location.tags.join(' · ')}</Text>
             </FieldGroup.Section>
           ) : null}
 
@@ -402,6 +408,14 @@ export default function LocationScreen() {
               {media.fileRows}
             </FieldGroup.Section>
           ) : null}
+          {more([
+            { title: 'Immich', node: immichSection },
+            { title: tr('location.trails'), node: trailsSection },
+            { title: tr('location.activities'), node: activitiesSection },
+            { title: tr('location.sun'), node: sunSection },
+            { title: tr('common.rating'), node: ratingSection },
+            { title: tr('location.tags'), node: tagsSection },
+          ])}
         </FieldGroup>
       </Host>
       {sheet.sheet}

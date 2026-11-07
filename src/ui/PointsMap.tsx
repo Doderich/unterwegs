@@ -10,7 +10,7 @@ import { useHeaderHeight } from 'expo-router/react-navigation';
 
 import { pinBounds } from '@/data/world';
 import { tr } from '@/i18n';
-import { useColors } from '@/ui/theme';
+import { floatingShadow, useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { Host } from './Host';
 
@@ -98,7 +98,7 @@ export function PointsMap({
 
       <View style={[styles.legend, { top: headerOffset, backgroundColor: colors.card }]}>
         <Host matchContents={{ vertical: true }} style={{ width: '100%' }}>
-          <Row alignment="center" style={{ paddingHorizontal: 12, paddingVertical: 10 }}>
+          <Row alignment="center" style={{ paddingHorizontal: 16, paddingVertical: 12 }}>
             <Text textStyle={{ color: colors.secondary }}>{loading ? tr('common.loading') : countLabel}</Text>
             <Spacer flexible />
             <Text textStyle={{ color: VISITED }}>{'● '}</Text>
@@ -123,14 +123,10 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   legend: {
     position: 'absolute',
-    left: 12,
-    right: 12,
-    borderRadius: 14,
+    left: 16,
+    right: 16,
+    borderRadius: 16,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOpacity: 0.12,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 3,
+    ...floatingShadow,
   },
 });

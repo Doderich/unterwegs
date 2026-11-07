@@ -1,4 +1,4 @@
-import { Button, FieldGroup } from '@expo/ui';
+import { FieldGroup, ListItem } from '@expo/ui';
 import { Stack } from 'expo-router';
 import { useState } from 'react';
 import { Alert } from 'react-native';
@@ -8,7 +8,7 @@ import { useUser } from '@/data/queries';
 import { useOnlineAction } from '@/data/useOnlineAction';
 import { tr } from '@/i18n';
 import { FormHost } from '@/ui/FormHost';
-import { useRowTheme } from '@/ui/rows';
+import { RowIcon, useRowTheme } from '@/ui/rows';
 import { Text } from '@/ui/Text';
 import { TextInput } from '@/ui/TextInput';
 
@@ -73,12 +73,13 @@ export default function DeleteAccountScreen() {
                 autoCorrect={false}
               />
             ) : null}
-            <Button
-              label={busy ? tr('accountDelete.deleting') : tr('accountDelete.permanentlyDeleteAccount')}
-              variant="text"
-              disabled={!allowed}
-              onPress={remove}
-            />
+            {/* Red only once the confirmation is complete; the alert still asks once more before anything happens. */}
+            <ListItem
+              colors={allowed ? { ...rt.listColors, contentColor: rt.colors.danger } : rt.listColors}
+              leading={<RowIcon name="delete" color={allowed ? rt.colors.danger : rt.colors.secondary} />}
+              onPress={allowed ? remove : undefined}>
+              {busy ? tr('accountDelete.deleting') : tr('accountDelete.permanentlyDeleteAccount')}
+            </ListItem>
           </FieldGroup.Section>
         </FieldGroup>
       </FormHost>

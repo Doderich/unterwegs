@@ -89,7 +89,7 @@ export default function ScanScreen() {
       />
       <View style={[styles.frame, { borderColor: colors.tint }]} pointerEvents="none" />
       <Host matchContents style={styles.status}>
-        <Text textStyle={{ color: '#FFFFFF', fontSize: 16, textAlign: 'center' }}>{status}</Text>
+        <Text textStyle={{ color: '#FFFFFF', fontSize: 17, textAlign: 'center' }}>{status}</Text>
       </Host>
     </View>
   );
@@ -103,8 +103,8 @@ const styles = StyleSheet.create({
     bottom: 64,
     left: 24,
     right: 24,
-    padding: 12,
-    borderRadius: 14,
+    padding: 16,
+    borderRadius: 16,
     backgroundColor: 'rgba(0,0,0,0.6)',
   },
 });

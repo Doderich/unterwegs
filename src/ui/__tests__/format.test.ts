@@ -1,4 +1,11 @@
-import { formatDateRange, formatDistance, formatPlainDate, collectionCountdown, wikimediaThumb } from '../format';
+import {
+  formatDateRange,
+  formatDistance,
+  formatPlainDate,
+  collectionCountdown,
+  timeAgo,
+  wikimediaThumb,
+} from '../format';
 
 it('formats plain dates in de-DE without time-zone shifts', () => {
   expect(formatPlainDate('2026-12-17')).toBe('17.12.2026');
@@ -8,9 +15,17 @@ it('formats plain dates in de-DE without time-zone shifts', () => {
 
 it('counts down to a collection and through it', () => {
   expect(collectionCountdown('2026-12-17', '2027-01-08', '2026-11-03')).toBe('Noch 44 Tage');
+  expect(collectionCountdown('2026-12-17', '2027-01-08', '2026-12-12')).toBe('Noch 5 Mal schlafen!');
   expect(collectionCountdown('2026-12-17', '2027-01-08', '2026-12-16')).toBe('Morgen geht’s los');
   expect(collectionCountdown('2026-12-17', '2027-01-08', '2026-12-17')).toBe('Heute geht’s los · 23 Tage');
   expect(collectionCountdown('2026-12-17', '2027-01-08', '2026-12-19')).toBe('Tag 3 von 23');
+});
+
+it('says how long ago something was, coarser the longer it is', () => {
+  expect(timeAgo('2026-11-04', '2026-11-07')).toBe('vor 3 Tagen');
+  expect(timeAgo('2026-10-10', '2026-11-07')).toBe('vor 4 Wochen');
+  expect(timeAgo('2026-05-01', '2026-11-07')).toBe('vor 6 Monaten');
+  expect(timeAgo('2024-08-01', '2026-11-07')).toBe('vor 2 Jahren');
 });
 
 it('formats distances in metres below a kilometre, else in km', () => {

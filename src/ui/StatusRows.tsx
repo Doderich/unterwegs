@@ -5,22 +5,18 @@ import { requestErrorText } from '@/api/errors';
 import { useCollectionContext } from '@/data/CollectionContext';
 import { tr } from '@/i18n';
 
+import { usePendingCount } from '@/data/useOutbox';
+
 import { CompatNotice } from './CompatNotice';
+import { formatUpdatedAt } from './format';
 import { useRowTheme, RowIcon } from './rows';
 import { Sub } from './Sub';
-
-function formatStand(ms: number): string {
-  if (!ms) return tr('statusRows.never');
-  const d = new Date(ms);
-  const pad = (n: number) => String(n).padStart(2, '0');
-  return `${pad(d.getDate())}.${pad(d.getMonth() + 1)}., ${pad(d.getHours())}:${pad(d.getMinutes())}`;
-}
 
 /** Footer section: data freshness, offline state, offline-download progress and a manual sync button. */
 export function useStatusRows({ offline }: { offline: boolean }) {
   const { query, offline: media } = useCollectionContext();
   const rt = useRowTheme();
-  const stand = tr('statusRows.updatedTime', { time: formatStand(query.dataUpdatedAt) });
+  const stand = tr('statusRows.updatedTime', { time: formatUpdatedAt(query.dataUpdatedAt) });
   const mediaLine = media.running
     ? tr('statusRows.savingOfflineDoneTotal', { done: media.progress?.done ?? media.cached, total: media.total })
     : media.total === 0
@@ -29,6 +25,8 @@ export function useStatusRows({ offline }: { offline: boolean }) {
         ? tr('statusRows.imagesPdfsAvailableOfflineTotal', { total: media.total })
         : tr('statusRows.cachedOfTotalImagesPdfs', { cached: media.cached, total: media.total });
 
+  const pending = usePendingCount(query.data?.id);
+  const pendingLine = pending > 0 ? tr('outbox.waiting', { count: pending }) : null;
   const busy = query.isFetching || media.running;
   // The last refresh failed while saved data is shown: say why, the saved trip stays readable.
   const refreshError = !offline && !busy && query.isError ? requestErrorText(query.error) : null;
@@ -41,7 +39,7 @@ export function useStatusRows({ offline }: { offline: boolean }) {
           leading={<RowIcon name={offline ? 'offline' : 'refresh'} />}
           supportingText={
             <Sub>
-              {[offline ? tr('statusRows.offlineStand', { stand }) : stand, refreshError, mediaLine]
+              {[offline ? tr('statusRows.offlineStand', { stand }) : stand, pendingLine, refreshError, mediaLine]
                 .filter(Boolean)
                 .join('\n')}
             </Sub>

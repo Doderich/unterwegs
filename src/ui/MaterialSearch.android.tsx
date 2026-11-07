@@ -49,7 +49,7 @@ export function SearchLauncher({ placeholder, onPress }: SearchLauncherProps) {
         allowFontScaling={scale == null}
         style={{
           color: highContrast ? colors.secondary : palette.onSurfaceVariant,
-          fontSize: 16 * (scale ?? 1),
+          fontSize: 17 * (scale ?? 1),
           fontWeight: boldText ? '700' : '400',
           flex: 1,
         }}>
@@ -99,7 +99,7 @@ export function SearchHeader({ query, onChange, placeholder, onBack }: SearchHea
           selectionColor={colors.tint}
           style={[
             styles.input,
-            { color: colors.text, fontSize: 16 * (scale ?? 1), fontWeight: boldText ? '700' : '400' },
+            { color: colors.text, fontSize: 17 * (scale ?? 1), fontWeight: boldText ? '700' : '400' },
           ]}
         />
         {query ? (
@@ -138,5 +138,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   action: { width: 48, height: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 24 },
-  input: { flex: 1, minWidth: 0, minHeight: 56, fontSize: 16, paddingHorizontal: 4 },
+  input: { flex: 1, minWidth: 0, minHeight: 56, fontSize: 17, paddingHorizontal: 4 },
 });

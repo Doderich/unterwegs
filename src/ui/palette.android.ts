@@ -1,6 +1,6 @@
 import { useMaterialColors } from '@expo/ui/jetpack-compose';
 
-import { ACCENT_SEED, accent } from './accent';
+import { ACCENT_SEED, accent, nextAccent } from './accent';
 import type { Palette } from './palette';
 
 /**
@@ -17,6 +17,9 @@ export function usePalette(isDark: boolean, highContrast: boolean): Palette {
     secondary: highContrast ? m.onSurface : m.onSurfaceVariant,
     border: highContrast ? m.outline : m.outlineVariant,
     tint: highContrast ? accent(isDark, true) : m.primary,
+    next: nextAccent(isDark, highContrast),
+    // The Material container role is the scheme's own teal wash.
+    wash: m.primaryContainer,
     danger: m.error,
   };
 }

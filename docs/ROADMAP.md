@@ -12,7 +12,7 @@ Work is ordered by need and dependencies, not by dates; the owner decides when d
 | [0002](adr/0002-data-beyond-one-collection.md)      | Data outside a collection comes from its own endpoints       |
 | [0003](adr/0003-one-api-key-per-device.md)          | One API key per device, whatever the sign-in method          |
 | [0004](adr/0004-sso-through-the-website-session.md) | SSO signs in through the website, then makes the key there   |
-| [0005](adr/0005-online-only-edits.md)               | Edits need a connection                                      |
+| [0005](adr/0005-online-only-edits.md)               | Edits need a connection (partly superseded by 0016)          |
 | [0006](adr/0006-times-in-their-own-time-zone.md)    | Every time is shown in its own time zone                     |
 | [0007](adr/0007-offline-copy-on-the-device.md)      | The offline copy lives in SQLite and the documents folder    |
 | [0008](adr/0008-native-controls-with-expo-ui.md)    | Native controls through @expo/ui                             |
@@ -23,6 +23,7 @@ Work is ordered by need and dependencies, not by dates; the owner decides when d
 | [0013](adr/0013-translations-with-i18next.md)       | Translations with i18next, German text as the key            |
 | [0014](adr/0014-store-distribution.md)              | Distribution through the app stores                          |
 | [0015](adr/0015-glances-from-the-offline-copy.md)   | Widgets, reminders and Live Activities from the offline copy |
+| [0016](adr/0016-offline-edits-through-an-outbox.md) | Edits on the road work offline through an outbox             |
 
 ## Current state
 

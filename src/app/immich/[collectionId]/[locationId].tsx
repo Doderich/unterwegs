@@ -6,7 +6,6 @@ import { ActivityIndicator, Pressable, StyleSheet, useWindowDimensions, View } f
 
 import type { ImmichAsset } from '@/api/schemas';
 import { useClient } from '@/auth/session';
-import { queryKeys } from '@/data/queries';
 import { useOnlineAction } from '@/data/useOnlineAction';
 import { tr } from '@/i18n';
 import { AuthImage } from '@/ui/AuthImage';
@@ -15,6 +14,7 @@ import { Sub } from '@/ui/Sub';
 import { formatDateRange } from '@/ui/format';
 import { Host } from '@/ui/Host';
 import { TextInput } from '@/ui/TextInput';
+import { readsAffectedBy } from '@/data/affected';
 
 type Source = { kind: 'search'; query: string } | { kind: 'album'; id: string; name: string };
 
@@ -48,7 +48,7 @@ export default function ImmichPickerScreen() {
     setAdding(asset.id);
     const done = await run(
       () => client.edit.addImmichImage(locationId, asset.id),
-      [queryKeys.collection(collectionId)],
+      readsAffectedBy({ collection: collectionId }),
     );
     setAdding(null);
     if (done) router.back();

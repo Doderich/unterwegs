@@ -197,12 +197,15 @@ export default function WebLoginScreen() {
           accessibilityRole="alert"
           style={[styles.banner, { backgroundColor: colors.card, borderColor: colors.border }]}>
           <Text textStyle={{ fontSize: 17, fontWeight: '600', color: colors.text }}>{tr('loginWeb.passkeyTitle')}</Text>
-          <Text textStyle={{ fontSize: 15, color: colors.secondary }}>{tr('loginWeb.passkeyBody')}</Text>
+          <Text textStyle={{ fontSize: 13, color: colors.secondary }}>{tr('loginWeb.passkeyBody')}</Text>
           <View style={styles.bannerActions}>
-            <Pressable accessibilityRole="button" hitSlop={8} onPress={() => setPasskey('dismissed')}>
+            <Pressable accessibilityRole="button" style={styles.bannerAction} onPress={() => setPasskey('dismissed')}>
               <Text textStyle={{ fontSize: 17, color: colors.tint }}>{tr('loginWeb.continueHere')}</Text>
             </Pressable>
-            <Pressable accessibilityRole="button" hitSlop={8} onPress={() => router.replace('/login/scan')}>
+            <Pressable
+              accessibilityRole="button"
+              style={styles.bannerAction}
+              onPress={() => router.replace('/login/scan')}>
               <Text textStyle={{ fontSize: 17, fontWeight: '600', color: colors.tint }}>{tr('login.scanQrCode')}</Text>
             </Pressable>
           </View>
@@ -212,7 +215,7 @@ export default function WebLoginScreen() {
         <View style={[styles.cover, { backgroundColor: colors.background }]}>
           <ActivityIndicator size="large" color={colors.tint} />
           {firstLoad ? null : (
-            <Text textStyle={{ fontSize: 15, color: colors.secondary }}>{tr('loginWeb.finishingSignin')}</Text>
+            <Text textStyle={{ fontSize: 13, color: colors.secondary }}>{tr('loginWeb.finishingSignin')}</Text>
           )}
         </View>
       ) : null}
@@ -225,14 +228,16 @@ const styles = StyleSheet.create({
   web: { flex: 1, backgroundColor: 'transparent' },
   banner: {
     position: 'absolute',
-    left: 12,
-    right: 12,
+    left: 16,
+    right: 16,
     bottom: 24,
     padding: 16,
     gap: 8,
     borderRadius: 16,
     borderWidth: StyleSheet.hairlineWidth,
   },
-  bannerActions: { flexDirection: 'row', justifyContent: 'flex-end', gap: 24, marginTop: 4 },
+  bannerActions: { flexDirection: 'row', justifyContent: 'flex-end', gap: 24 },
+  // 44pt tap height without hitSlop, so the targets stay inside the banner.
+  bannerAction: { minHeight: 44, justifyContent: 'center' },
   cover: { ...StyleSheet.absoluteFill, alignItems: 'center', justifyContent: 'center', gap: 12 },
 });

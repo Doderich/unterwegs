@@ -42,7 +42,7 @@ A later option is a background task (`expo-background-task`) that refetches the 
 | **Departure** | Small, medium; lock-screen rectangular        | The next transportation: type icon, origin → destination, departure and arrival times, each in its own zone                                           | The transportation             |
 | **Countdown** | Lock-screen circular/inline                   | "12 d" before the collection, "Day 4/10" during it                                                                                                    | The focus collection           |
 
-Later candidates: two clocks (home zone and today's zone), checklist tick-off (iOS 17+ interactive; edits need a connection under [0005](adr/0005-online-only-edits.md), so ticking offline would need a queue first), world statistics, "on this day" photos from past collections, a mini-map of today's locations rendered into `widgetsDirectory`.
+Later candidates: two clocks (home zone and today's zone), checklist tick-off (iOS 17+ interactive; checklist edits can now wait offline in the outbox of [0016](adr/0016-offline-edits-through-an-outbox.md), which a widget tick could use), world statistics, "on this day" photos from past collections, a mini-map of today's locations rendered into `widgetsDirectory`.
 
 Rules:
 

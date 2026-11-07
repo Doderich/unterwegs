@@ -38,7 +38,7 @@ export default function WebImageScreen() {
   const wiki = useQuery({
     queryKey: ['wikipedia-images', name, getLanguage()],
     queryFn: () => client.wikipediaImages(name!, getLanguage()),
-    enabled: !!name && edits.online,
+    enabled: !!name && edits.can('importImages'),
     gcTime: 0,
     retry: false,
   });
@@ -74,7 +74,7 @@ export default function WebImageScreen() {
             <ListItem
               colors={rt.listColors}
               leading={<RowIcon name="add" />}
-              onPress={validUrl && edits.online ? () => void add(typed, 'url') : undefined}>
+              onPress={validUrl && edits.can('importImages') ? () => void add(typed, 'url') : undefined}>
               {adding === typed && typed ? tr('common.adding') : tr('webImage.addImage')}
             </ListItem>
           </FieldGroup.Section>
@@ -82,7 +82,7 @@ export default function WebImageScreen() {
           {name ? (
             <FieldGroup.Section
               title={
-                !edits.online
+                !edits.can('importImages')
                   ? tr('common.onlyWithInternet')
                   : wiki.isPending
                     ? tr('common.loading')

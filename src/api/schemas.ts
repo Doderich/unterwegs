@@ -164,12 +164,15 @@ export const noteSchema = z.object({
   date: optStr,
   links: z.array(str).nullish(),
   is_public: z.boolean().nullish(),
+  /** Compared before an offline edit is sent: changed meanwhile means someone else edited it. */
+  updated_at: optStr,
 });
 
 export const checklistSchema = z.object({
   id: str,
   name: str,
   date: optStr,
+  updated_at: optStr,
   items: z.array(z.object({ id: str, name: str, is_checked: z.boolean().nullish() })).default([]),
 });
 

@@ -78,15 +78,6 @@ function mapMediaOwner(collection: Collection, objectId: string, fn: <T extends 
 export const withImage = (collection: Collection, objectId: string, image: Image): Collection =>
   mapMediaOwner(collection, objectId, (o) => ({ ...o, images: upsert(o.images, image) }));
 
-export const withoutImage = (collection: Collection, imageId: string): Collection => {
-  const owner = [...collection.locations, ...collection.lodging, ...collection.transportations].find((o) =>
-    o.images.some((i) => i.id === imageId),
-  );
-  return owner
-    ? mapMediaOwner(collection, owner.id, (o) => ({ ...o, images: o.images.filter((i) => i.id !== imageId) }))
-    : collection;
-};
-
 /** The only primary image of its object, like `toggle_primary` on the server. */
 export const withPrimaryImage = (collection: Collection, imageId: string): Collection => {
   const owner = [...collection.locations, ...collection.lodging, ...collection.transportations].find((o) =>
@@ -96,34 +87,6 @@ export const withPrimaryImage = (collection: Collection, imageId: string): Colle
     ? mapMediaOwner(collection, owner.id, (o) => ({
         ...o,
         images: o.images.map((i) => ({ ...i, is_primary: i.id === imageId })),
-      }))
-    : collection;
-};
-
-export const withAttachment = (collection: Collection, objectId: string, attachment: Attachment): Collection =>
-  mapMediaOwner(collection, objectId, (o) => ({ ...o, attachments: upsert(o.attachments, attachment) }));
-
-/** Renames (when `name` is given) or removes an attachment wherever it is. */
-export const withoutAttachment = (collection: Collection, attachmentId: string): Collection => {
-  const owner = [...collection.locations, ...collection.lodging, ...collection.transportations].find((o) =>
-    o.attachments.some((a) => a.id === attachmentId),
-  );
-  return owner
-    ? mapMediaOwner(collection, owner.id, (o) => ({
-        ...o,
-        attachments: o.attachments.filter((a) => a.id !== attachmentId),
-      }))
-    : collection;
-};
-
-export const withAttachmentName = (collection: Collection, attachmentId: string, name: string): Collection => {
-  const owner = [...collection.locations, ...collection.lodging, ...collection.transportations].find((o) =>
-    o.attachments.some((a) => a.id === attachmentId),
-  );
-  return owner
-    ? mapMediaOwner(collection, owner.id, (o) => ({
-        ...o,
-        attachments: o.attachments.map((a) => (a.id === attachmentId ? { ...a, name } : a)),
       }))
     : collection;
 };
@@ -175,11 +138,6 @@ export const withVisit = (
   locations: collection.locations.map((l) => (l.id === locationId ? { ...l, visits: upsert(l.visits, visit) } : l)),
 });
 
-export const withoutVisit = (collection: Collection, visitId: string): Collection => ({
-  ...collection,
-  locations: collection.locations.map((l) => ({ ...l, visits: l.visits.filter((v) => v.id !== visitId) })),
-});
-
 export type OrderUpdate = { id: string; date: string; order: number };
 
 /** Itinerary ids of a day in the order the app shows them (entries without an itinerary item are skipped). */
@@ -193,12 +151,6 @@ export function moveWithinDay(day: Day, itineraryId: string, direction: -1 | 1):
   if (i < 0 || j < 0 || j >= ids.length) return null;
   [ids[i], ids[j]] = [ids[j], ids[i]];
   return ids.map((id, order) => ({ id, date: day.date, order }));
-}
-
-/** Put an entry at the end of another day. */
-export function moveToDay(target: Day, itineraryId: string): OrderUpdate[] {
-  const ids = dayOrder(target).filter((id) => id !== itineraryId);
-  return [{ id: itineraryId, date: target.date, order: ids.length }];
 }
 
 export const withOrder = (collection: Collection, updates: OrderUpdate[]): Collection => {
