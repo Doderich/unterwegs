@@ -20,9 +20,22 @@ The signed APK, checksum and matching R8/JavaScript maps are retained under `bui
 
 ## Next native version
 
-The source is at **1.4.1** (not built yet): the security-audit fixes turn off Android backup and block unneeded Android permissions, and Android trusts user-installed certificates (network security config), so the runtime changes: OTA updates published from this source reach only 1.4.1 builds. Build and install 1.4.1 on both platforms; checks in [STORE-RELEASE.md](STORE-RELEASE.md#2-security-and-privacy-audit).
+None pending: the 1.4.1 source (security-audit fixes: Android backup off, unneeded Android permissions blocked, user-installed certificates trusted) is built and live on both platforms, see below. The next native change needs a `version` bump.
 
 ## Current release
+
+Release record, **07.11.2026** (runtime **1.4.1**):
+
+| Platform | Version / build          | Result                                                                                                                                                                                 |
+| -------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android  | **1.4.1-29898758**       | Latest GitHub release (06.11.2026), available through Obtainium. Its JavaScript bundle has no server preset (`--public`).                                                              |
+| iOS      | **1.4.1 (202611060026)** | Submitted to App Review (first App Store submission). Apple asked for more information (guideline 2.1: review notes, screen recording, demo account); resubmission pending. No preset. |
+
+Over-the-air update on **07.11.2026**: `730c170` (PR #8, native fields no longer re-render on every keystroke, which made the iOS autofill bar flicker) to branch `staging` at 16:09 UTC (ios `17940677638751`, android `17940677638742`, group `676555ef-1c26-46f7-99fd-4d699cdedff2`), then to `production` with `--public` at 16:11 UTC (ios `17940678773511`, android `17940678773412`, group `ce798e85-c2d4-4c70-b388-762f0503956b`). The production manifests at runtime 1.4.1 return the new update on both platforms; the published bundles contain no server preset. It reaches every 1.4.1 build, including the one in App Review, on the next start after download. The flicker fix itself still needs a check on a phone (see [UI-NOTES.md](UI-NOTES.md#text-fields-and-the-ios-autofill-bar-07112026)). The xprem token came from the shell (`EOO_TOKEN`) because the 1Password CLI approval timed out.
+
+The xprem dashboard calls its API at the public name (`VITE_OTA_API_URL`), so it can only sign in when opened under that name at home or over the VPN (Pi-hole resolves it locally); under the `.local` name the API answers without CORS headers, and through Cloudflare the API is not public.
+
+### 1.4.0 release
 
 Release record, **05.11.2026**:
 
