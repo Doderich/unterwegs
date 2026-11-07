@@ -1,4 +1,4 @@
-import { FieldGroup, ListItem, RNHostView, TextInput } from '@expo/ui';
+import { FieldGroup, ListItem, RNHostView } from '@expo/ui';
 import { useQuery } from '@tanstack/react-query';
 import { Image } from 'expo-image';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
@@ -14,6 +14,7 @@ import { getLanguage, tr } from '@/i18n';
 import { wikimediaThumb } from '@/ui/format';
 import { RowIcon, useRowTheme } from '@/ui/rows';
 import { Host } from '@/ui/Host';
+import { TextInput } from '@/ui/TextInput';
 
 /**
  * Add a photo from the web to a location, lodging or transportation: Wikipedia images found by the object's name,

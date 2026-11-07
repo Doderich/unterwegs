@@ -1,6 +1,6 @@
 import { ListItem } from '@expo/ui';
 import { DateTimePicker } from '@expo/ui/community/datetime-picker';
-import { DatePicker } from '@expo/ui/swift-ui';
+import { DatePicker as NativeDatePicker } from '@expo/ui/swift-ui';
 import { tint } from '@expo/ui/swift-ui/modifiers';
 import { useState, type ReactElement } from 'react';
 import { Platform } from 'react-native';
@@ -11,7 +11,11 @@ import { SERVER_ZONES } from '@/time/zones';
 
 import { RowIcon, type RowTheme } from './rows';
 import { useSelect } from './Select';
+import { stableNative } from './stableNative';
 import { Sub } from './Sub';
+
+/** `selection` is a new `Date` on every render; compare it (and the shown components) by value. */
+const DatePicker = stableNative(NativeDatePicker, { byValue: ['selection', 'displayedComponents'] });
 
 type Props = {
   label: string;

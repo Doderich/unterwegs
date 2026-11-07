@@ -1,5 +1,5 @@
 import { suggestedZone } from '@/time/placeZone';
-import { FieldGroup, ListItem, TextInput } from '@expo/ui';
+import { FieldGroup, ListItem } from '@expo/ui';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Alert } from 'react-native';
@@ -32,6 +32,7 @@ import { useSelect } from '@/ui/Select';
 import { useTextPrompt } from '@/ui/TextPrompt';
 import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
+import { TextInput } from '@/ui/TextInput';
 
 const TYPES = ['plane', 'train', 'bus', 'boat', 'car', 'bike', 'walking', 'other'];
 

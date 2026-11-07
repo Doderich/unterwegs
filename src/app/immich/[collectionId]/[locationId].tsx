@@ -1,4 +1,4 @@
-import { FieldGroup, ListItem, RNHostView, TextInput } from '@expo/ui';
+import { FieldGroup, ListItem, RNHostView } from '@expo/ui';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
@@ -14,6 +14,7 @@ import { RowIcon, useRowTheme } from '@/ui/rows';
 import { Sub } from '@/ui/Sub';
 import { formatDateRange } from '@/ui/format';
 import { Host } from '@/ui/Host';
+import { TextInput } from '@/ui/TextInput';
 
 type Source = { kind: 'search'; query: string } | { kind: 'album'; id: string; name: string };
 

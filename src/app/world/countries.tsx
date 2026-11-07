@@ -1,4 +1,4 @@
-import { FieldGroup, ListItem, TextInput } from '@expo/ui';
+import { FieldGroup, ListItem } from '@expo/ui';
 import { router } from 'expo-router';
 import { useMemo, useState, type ReactElement } from 'react';
 
@@ -9,6 +9,7 @@ import { RefreshableFieldGroup } from '@/ui/RefreshableFieldGroup';
 import { useRowTheme, type RowTheme } from '@/ui/rows';
 import { Sub } from '@/ui/Sub';
 import { Host } from '@/ui/Host';
+import { TextInput } from '@/ui/TextInput';
 
 type Row = ReturnType<typeof countrySections>['visited'][number];
 

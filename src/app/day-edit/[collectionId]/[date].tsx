@@ -1,4 +1,4 @@
-import { FieldGroup, ListItem, TextInput } from '@expo/ui';
+import { FieldGroup, ListItem } from '@expo/ui';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Alert } from 'react-native';
@@ -17,6 +17,7 @@ import { androidToolbarIcon, transportIcon } from '@/ui/icons';
 import { RowIcon, useRowTheme } from '@/ui/rows';
 import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
+import { TextInput } from '@/ui/TextInput';
 
 /** Plan one day: name + description, reorder / move / remove entries, add notes, checklists and collection items. */
 export default function DayEditScreen() {

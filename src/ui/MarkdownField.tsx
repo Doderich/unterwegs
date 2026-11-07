@@ -1,4 +1,4 @@
-import { Button, Icon, ListItem, TextInput, useNativeState, type ObservableState, type TextInputRef } from '@expo/ui';
+import { Button, Icon, ListItem, useNativeState, type ObservableState } from '@expo/ui';
 import { Button as SwiftButton, HStack, Menu, Spacer, ToolbarItem } from '@expo/ui/swift-ui';
 import { accessibilityIdentifier, labelStyle } from '@expo/ui/swift-ui/modifiers';
 import { useRef, useState, type ReactElement } from 'react';
@@ -12,6 +12,7 @@ import { icons, sfSymbol, type IconKey } from './icons';
 import { formatMarkdown, type MarkdownCommand, type TextSelection } from './markdownEditing';
 import { markdownRows, RowIcon, type RowTheme } from './rows';
 import { Text } from './Text';
+import { TextInput, type TextInputRef } from '@/ui/TextInput';
 
 const IOS = Platform.OS === 'ios';
 

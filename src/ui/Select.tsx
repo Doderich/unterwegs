@@ -7,6 +7,7 @@ import { Platform } from 'react-native';
 import { icons } from './icons';
 import type { RowTheme } from './rows';
 import { Sub } from './Sub';
+import { stableNative } from './stableNative';
 import { Text } from './Text';
 
 export type SelectOption = { value: string; label: string };
@@ -22,6 +23,37 @@ type SelectProps = {
   label?: string;
 };
 
+type MenuPickerProps = {
+  label: string;
+  value: string;
+  options: SelectOption[];
+  tintColor: string;
+  onChange: (value: string) => void;
+};
+
+/**
+ * The iOS menu picker, built from data so it can skip renders of the form around it (`stableNative`): its option
+ * rows would otherwise be new elements, and every keystroke elsewhere in the form would rebuild the native menu.
+ */
+const MenuPicker = stableNative(
+  function MenuPicker({ label, value, options, tintColor, onChange }: MenuPickerProps) {
+    return (
+      <SwiftUIPicker
+        label={label}
+        selection={value}
+        onSelectionChange={(v) => onChange(String(v))}
+        modifiers={[pickerStyle('menu'), tint(tintColor)]}>
+        {options.map((o) => (
+          <SwiftUIText key={o.value} modifiers={[tag(o.value)]}>
+            {o.label}
+          </SwiftUIText>
+        ))}
+      </SwiftUIPicker>
+    );
+  },
+  { byValue: ['options'] },
+);
+
 /**
  * Single choice that fits each platform:
  * - iOS: SwiftUI `Picker` (menu) — native Form row.
@@ -36,18 +68,14 @@ export function useSelect(t: RowTheme, { options, value, onChange, hint, title, 
 
   if (Platform.OS === 'ios') {
     const row: ReactElement = (
-      <SwiftUIPicker
+      <MenuPicker
         key={`select-${title}`}
         label={label ?? ''}
-        selection={value}
-        onSelectionChange={(v) => onChange(String(v))}
-        modifiers={[pickerStyle('menu'), tint(t.colors.tint)]}>
-        {options.map((o) => (
-          <SwiftUIText key={o.value} modifiers={[tag(o.value)]}>
-            {o.label}
-          </SwiftUIText>
-        ))}
-      </SwiftUIPicker>
+        value={value}
+        options={options}
+        tintColor={t.colors.tint}
+        onChange={onChange}
+      />
     );
     return { row, sheet: null };
   }

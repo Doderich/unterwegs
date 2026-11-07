@@ -1,4 +1,4 @@
-import { Button, FieldGroup, ListItem, TextInput } from '@expo/ui';
+import { Button, FieldGroup, ListItem } from '@expo/ui';
 import { useQuery } from '@tanstack/react-query';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
@@ -15,6 +15,7 @@ import { androidToolbarIcon } from '@/ui/icons';
 import { infoRow, switchRow, useRowTheme } from '@/ui/rows';
 import { Text } from '@/ui/Text';
 import { Host } from '@/ui/Host';
+import { TextInput } from '@/ui/TextInput';
 
 export default function IntegrationScreen() {
   const { kind } = useLocalSearchParams<{ kind: string }>();
