@@ -1,0 +1,89 @@
+src/app/account/delete.tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,13
+src/app/immich/[collectionId]/[locationId].tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,17
+src/app/world/countries.tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,12
+src/ui/Select.tsx
+  s_1faf81aa8bcd1a::t_c49301d33397fc 54
+  s_1faf81aa8bcd1a::t_876099ae5b24f6 10,26-37,56,71,74-78
+  s_1faf81aa8bcd1a::t_0493252cce5fdc 38-53,55
+src/app/category-edit.tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,16
+src/app/day-edit/[collectionId]/[date].tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,20
+src/ui/TextPrompt.tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,10
+src/app/account/index.tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,21
+src/ui/DateTimeRow.tsx
+  s_1faf81aa8bcd1a::t_876099ae5b24f6 3,14,17
+  s_1faf81aa8bcd1a::t_f5fa91f7d308f6 18-19
+eslint.config.js
+  s_1faf81aa8bcd1a::t_aad9cbc5f9a81d 26-31
+  s_1faf81aa8bcd1a::t_0493252cce5fdc 10
+src/ui/TextInput.tsx
+  s_1faf81aa8bcd1a::t_8d8b63e252d3ed 1,3,5
+  s_1faf81aa8bcd1a::t_850cd142b98e0b 2,4,6-10,13
+  s_1faf81aa8bcd1a::t_294cdae11661e5 11-12,14
+docs/UI-NOTES.md
+  s_1faf81aa8bcd1a::t_ff6eaea3af59de 212-214,216
+  s_1faf81aa8bcd1a::t_e8ab9ee6f5b33d 215,217-218
+  s_1faf81aa8bcd1a::t_2c59b0cce772d6 219
+src/app/lodging-edit/[collectionId].tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 2,37
+src/app/people/index.tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,12
+src/app/activity-edit/[collectionId].tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,21
+src/app/integrations/[kind].tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,18
+src/app/web-image/[collectionId].tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,17
+src/app/note-edit/[collectionId].tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,20
+src/ui/MarkdownField.tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,15
+src/ui/__tests__/stableNative.test.tsx
+  s_1faf81aa8bcd1a::t_1fce0fcef46c81 39-46
+  s_1faf81aa8bcd1a::t_0493252cce5fdc 1-38
+src/app/location-edit/[collectionId].tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,27
+src/app/login/index.tsx
+  s_1faf81aa8bcd1a::t_452b51ecd01bf6 155
+  s_1faf81aa8bcd1a::t_281821c503f0b0 4,22,34-50,80,97,104-105,142,152-154,167,214,216,227,248-249,336,349-350,360,372,382-383,397-400,405-406,417
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1
+src/app/transport-edit/[collectionId].tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 2,35
+src/app/collection-edit.tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,22
+src/ui/PlaceSearch.tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,14
+src/ui/stableNative.tsx
+  s_1faf81aa8bcd1a::t_5c88532ae819fa 43
+  s_1faf81aa8bcd1a::t_0493252cce5fdc 52
+  s_1faf81aa8bcd1a::t_6273a22e9574e0 1-13,15-17,19-34,37-39,41-42,45-51,53-66
+  s_1faf81aa8bcd1a::t_e89fcb6aff5ea6 14,18,35-36,40,44
+src/screens/VisitEditor.tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,22
+src/app/note/[collectionId]/[itemId].tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,21
+src/screens/PlaceEditor.tsx
+  s_1faf81aa8bcd1a::t_3c63877ac64527 1,17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6cc7c4a2621037eb249fd067537bf15ea73affba",
+  "prompts": {},
+  "sessions": {
+    "s_1faf81aa8bcd1a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c382a084-bea9-4c3f-9b1f-fe137a2b49dc",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
