@@ -1,0 +1,192 @@
+scripts/licenses.mjs
+  s_efa0122b95adf2::t_c9e465978b0c34 21-32
+src/i18n/locales/de.json
+  s_efa0122b95adf2::t_83dedfbea086b4 1077,1086-1087
+  s_efa0122b95adf2::t_f52b5bba166bf1 1079
+  s_efa0122b95adf2::t_ecfefb00b71775 873-888,1064-1066,1068-1076,1078,1080-1085,1088-1100,1102-1105,1107-1113
+  s_efa0122b95adf2::t_5569e50079c849 974-976,1067,1101,1106
+app.json
+  s_efa0122b95adf2::t_05f396ea7f4a32 99,108,118-119,122,127,145-146,150-151,154,159,175-176,189-190
+  s_efa0122b95adf2::t_bbb0a7f33cd3a5 5,90-98,100-107,109-115,135-144,147,167-174,177-188,191-202
+  s_efa0122b95adf2::t_5569e50079c849 116-117,120-121,123-126,128-134,148-149,152-153,155-158,160-166
+plugins/widget-languages.json
+  s_efa0122b95adf2::t_ffc83744f2fa38 1-31
+docs/GLANCES.md
+  s_efa0122b95adf2::t_621f5a734dadb4 135,137-141
+  s_efa0122b95adf2::t_82fa413d2a7d69 37-43,58-66
+  s_efa0122b95adf2::t_7ad9607157a5fb 91,129-134,142-143
+  s_efa0122b95adf2::t_fbfdc7b4e3275e 1-2,4-17,19-21,23-27,30,33-36,44-57,67-90,92,94-104,109-114,126-127,147-151
+  s_efa0122b95adf2::t_393bf5cdec76bc 3,18,22,28-29,31-32,93,105-108,115,128,144-146
+  s_efa0122b95adf2::t_3b6b1e001278df 125
+  s_efa0122b95adf2::t_454e452fe8716d 136
+  s_efa0122b95adf2::t_6c0b066e2e2d2b 116-124
+src/glances/useGlances.ts
+  s_efa0122b95adf2::t_08d87db20c22c3 13,26,60-72,100-105
+  s_efa0122b95adf2::t_2af97ebe35d717 12,27,154-159
+  s_efa0122b95adf2::t_b23d8c85ddac09 28,85-95,99,141,145
+  s_efa0122b95adf2::t_e396aceda21b45 109-111,122,148
+  s_efa0122b95adf2::t_47c9a3c513aa35 1-11,14-25,29-59,73-84,96-98,106-108,112-121,123-140,142-144,146-147,149-153,160-170
+src/glances/surfaces.ts
+  s_efa0122b95adf2::t_ba46edaae187bc 3-5,7-10
+  s_efa0122b95adf2::t_08d87db20c22c3 1-2,6
+src/glances/surfaces.ios.ts
+  s_efa0122b95adf2::t_e81c46c44a4beb 1,9-13,16,35-36,39-72,74-75,77-81
+  s_efa0122b95adf2::t_08d87db20c22c3 3,14,21
+  s_efa0122b95adf2::t_d478b4a46c1fd7 2,15,17-20,22-34,37-38
+  s_efa0122b95adf2::t_4fed5f8cb3f52c 4-8,73,76
+src/i18n/locales/en.json
+  s_efa0122b95adf2::t_83dedfbea086b4 1077,1086-1087
+  s_efa0122b95adf2::t_5569e50079c849 974-976,1067,1101,1106
+  s_efa0122b95adf2::t_59c24ce8e6422b 1078,1081-1082,1093
+  s_efa0122b95adf2::t_ecfefb00b71775 873-888,1064-1066,1068-1076,1080,1083-1085,1088-1092,1094-1100,1102-1105,1107-1113
+  s_efa0122b95adf2::t_f52b5bba166bf1 1079
+src/glances/widgets/StayWidget.android.tsx
+  s_efa0122b95adf2::t_a47087813ff0c5 2-7,10-48
+  s_efa0122b95adf2::t_3c87df0ca2f2b8 8-9
+  s_efa0122b95adf2::t_322684ad55ae5a 1
+src/glances/TravelActivity.ios.tsx
+  s_efa0122b95adf2::t_e8bf113c148a3c 1-60,66-118
+  s_efa0122b95adf2::t_bbb0a7f33cd3a5 61-65
+site/en/privacy.html
+  s_efa0122b95adf2::t_c718d4aa68a5b5 21,138-140,163
+  s_efa0122b95adf2::t_0e8377337968c1 137,159-162
+src/glances/widgets/TodayWidget.ios.tsx
+  s_efa0122b95adf2::t_441af128c2c295 1,57-69
+  s_efa0122b95adf2::t_bc54b63ede7434 12,25,40,49,74
+  s_efa0122b95adf2::t_1b3ff75d805e27 2,4,6-11,13-16,18-19,21,30-38,53-56,70-71,73,76-91
+  s_efa0122b95adf2::t_f455a64b4e370d 17,20,22-24,92
+  s_efa0122b95adf2::t_cbcd2ba34dac9a 3,5,26-29,39,41-48,50-52,72,75
+src/glances/widgets/NextWidget.ios.tsx
+  s_efa0122b95adf2::t_f455a64b4e370d 3-4,11,16,24-26,60,64,97-106,108-114,117
+  s_efa0122b95adf2::t_bcade225cbf0db 2,5-10,12-15,17-21,23,27-53,55-59,61-63,65-70,83-95,115-116
+  s_efa0122b95adf2::t_5569e50079c849 22,96
+  s_efa0122b95adf2::t_f3ed34a46920c8 107
+  s_efa0122b95adf2::t_bbb0a7f33cd3a5 54
+  s_efa0122b95adf2::t_441af128c2c295 1,71-82
+src/i18n/locales/ja.json
+  s_efa0122b95adf2::t_5569e50079c849 956-958,1045,1077,1080
+  s_efa0122b95adf2::t_83dedfbea086b4 1053,1062-1063
+  s_efa0122b95adf2::t_f52b5bba166bf1 1055
+  s_efa0122b95adf2::t_ecfefb00b71775 856-871,1042-1044,1046-1052,1054,1056-1061,1064-1076,1078-1079,1081-1087
+src/glances/compute.ts
+  s_efa0122b95adf2::t_bbb0a7f33cd3a5 13-21,335-339,523
+  s_efa0122b95adf2::t_55e9017b479353 1-12,22-24,26-124,126-129,131-135,138-147,149-160,162-172,174-182,191-212,214-218,221-234,237-243,254-274,299-308,312-334,340-342,344-349,357-360,362-363,367-374,392-394,399-406,420-423,426-428,431-444,453-488,493-494,510-522,524,526,529-544,546-553,555-567,569,571-586,588,590-602,604-610,612-613,615-622,625,627-636,639,641-666,669-681,683,685-707,711-714
+  s_efa0122b95adf2::t_b1c57d1a438e81 183-186,188-190
+  s_efa0122b95adf2::t_f52b5bba166bf1 248
+  s_efa0122b95adf2::t_5569e50079c849 275-285,611
+  s_efa0122b95adf2::t_2317aff28613ad 545,554,568,587,603,623-624,637-638,708-710
+  s_efa0122b95adf2::t_907cb04a36d49c 667-668,682,684
+  s_efa0122b95adf2::t_bc465c6c186f93 219-220,407-419,424-425,429-430,445-452
+  s_efa0122b95adf2::t_8bb669ad90392b 343
+  s_efa0122b95adf2::t_46b2dea712a02c 489-492,495-509,525,527-528,570,589,614,626,640
+  s_efa0122b95adf2::t_451613289968aa 187
+  s_efa0122b95adf2::t_999de3dbd9bfa6 25,235-236,244-246,249-253,286-298,309-311,350-356,361,364-366,375-391,395-398
+  s_efa0122b95adf2::t_e32af9fe71c076 125,130,136-137,148,161,173,213,247
+src/app/_layout.tsx
+  s_efa0122b95adf2::t_e396aceda21b45 9,94
+src/app/settings.tsx
+  s_efa0122b95adf2::t_cdb24f5e972e20 7,11,185-210
+  s_efa0122b95adf2::t_9f4586f1498fbc 87-96,292-302
+  s_efa0122b95adf2::t_1500c20e41ee5d 211-213,303-304
+plugins/with-widget-languages.js
+  s_efa0122b95adf2::t_05f396ea7f4a32 119-123
+  s_efa0122b95adf2::t_ba60fce11d373a 1-118,124-181
+src/glances/widgets/DepartureWidget.ios.tsx
+  s_efa0122b95adf2::t_bc54b63ede7434 11,21,52-53,66
+  s_efa0122b95adf2::t_c03f49b24e569d 1,3,5,39-41,49,54,56-65,67-68,70-71,78,82,84
+  s_efa0122b95adf2::t_b98ac771d08810 2,4,6-10,12-20,22-38,42-48,50-51,55,69,72-77,79-81,83,85-101
+site/ja/privacy.html
+  s_efa0122b95adf2::t_c718d4aa68a5b5 21,137,156-157
+  s_efa0122b95adf2::t_0e8377337968c1 134-136,155
+src/glances/widgets/DepartureWidget.android.tsx
+  s_efa0122b95adf2::t_3e23f74d48544e 1,8-10,18-20,26,28,30,33,35,38,40,42-53
+  s_efa0122b95adf2::t_a47087813ff0c5 2-7,11-17,21-25,27,29,31-32,34,36-37,39,41,54-64
+src/legal/licenses.json
+  s_efa0122b95adf2::t_454e452fe8716d 53,205-211,240-246,261-267,291,394-400,464-466
+  s_efa0122b95adf2::t_c9e465978b0c34 467,470-476,532-537
+  s_efa0122b95adf2::t_f8b4e62f03cc4d 468-469
+src/glances/widgets/StayWidget.ios.tsx
+  s_efa0122b95adf2::t_95d16f071d9506 1-55
+site/de/privacy.html
+  s_efa0122b95adf2::t_c718d4aa68a5b5 21,150,171,174
+  s_efa0122b95adf2::t_0e8377337968c1 147-149,170,172-173
+src/glances/notifications.ts
+  s_efa0122b95adf2::t_2af97ebe35d717 7,64-73,79-82,90,110-115,138-139,141-144,146-156
+  s_efa0122b95adf2::t_19bc85784b23c1 2,41
+  s_efa0122b95adf2::t_bf12a3e6f96bea 1,3-6,8-40,42-63,83-89,91-109,116-137,140,145,157
+  s_efa0122b95adf2::t_5569e50079c849 74-78
+src/settings/store.ts
+  s_efa0122b95adf2::t_8f77a5f453d632 21-44
+package.json
+  s_efa0122b95adf2::t_65ec4fc95cba2b 32,44
+  s_efa0122b95adf2::t_5d7bc2a15a9fc9 94-95
+  s_efa0122b95adf2::t_79e132deaa6e87 66
+src/glances/widgets/TodayWidget.android.tsx
+  s_efa0122b95adf2::t_441af128c2c295 1,33-38
+  s_efa0122b95adf2::t_3e23f74d48544e 8-10,18-19,25,27,32,40,42,44-52
+  s_efa0122b95adf2::t_a47087813ff0c5 2-7,11-17,20-24,26,28-31,39,41,43,53-63
+README.md
+  s_efa0122b95adf2::t_449baa2ad5ae30 17
+docs/ROADMAP.md
+  s_efa0122b95adf2::t_393bf5cdec76bc 69
+  s_efa0122b95adf2::t_82fa413d2a7d69 9-24
+  s_efa0122b95adf2::t_449baa2ad5ae30 25
+src/app/transport/[collectionId]/[itemId].tsx
+  s_efa0122b95adf2::t_218090cb9e53a9 45-46,51
+  s_efa0122b95adf2::t_9e8e82cd08cfa0 2,4-5,9-10,44,49-50,52-57,94-103
+docs/adr/0015-glances-from-the-offline-copy.md
+  s_efa0122b95adf2::t_f2b24d7e733e75 12
+  s_efa0122b95adf2::t_efaf6920b40f42 1-11,13-14,16
+  s_efa0122b95adf2::t_f89205fdcfeed8 15
+src/glances/widgets/NextWidget.android.tsx
+  s_efa0122b95adf2::t_3c87df0ca2f2b8 15-16
+  s_efa0122b95adf2::t_f455a64b4e370d 28-34
+  s_efa0122b95adf2::t_a47087813ff0c5 10-14,17-27,35-41,48-58
+  s_efa0122b95adf2::t_441af128c2c295 1,42-47
+  s_efa0122b95adf2::t_5569e50079c849 2-9
+src/glances/__tests__/compute.test.ts
+  s_efa0122b95adf2::t_1fde8888576f64 220-261
+  s_efa0122b95adf2::t_cafdb96bb88140 285-291,297-299
+  s_efa0122b95adf2::t_3d9c5de95b908c 292-296
+  s_efa0122b95adf2::t_83dedfbea086b4 262-279,281-284
+  s_efa0122b95adf2::t_82583f5dde3120 300-309
+  s_efa0122b95adf2::t_a856742e647651 1-54,59-68,75-219
+  s_efa0122b95adf2::t_5569e50079c849 55-58,69-74
+  s_efa0122b95adf2::t_f52b5bba166bf1 280
+patches/expo-widgets+58.0.27.patch
+  s_efa0122b95adf2::t_441af128c2c295 1-52
+  s_efa0122b95adf2::t_54144158a56bf3 53-90
+src/glances/types.ts
+  s_efa0122b95adf2::t_d7cef9e07f6563 109
+  s_efa0122b95adf2::t_08d87db20c22c3 119-128
+  s_efa0122b95adf2::t_bc465c6c186f93 18-19,111-118
+  s_efa0122b95adf2::t_999de3dbd9bfa6 32-34,44-50,61-71,87-92
+  s_efa0122b95adf2::t_e32af9fe71c076 7-8
+  s_efa0122b95adf2::t_c2aadfaad0c445 1-6,9-17,20-31,35-43,51-60,72-86,93-108,110
+src/glances/cover.ts
+  s_efa0122b95adf2::t_1b9dc156abbae5 1-68
+src/glances/surfaces.android.ts
+  s_efa0122b95adf2::t_08d87db20c22c3 1-2,10-11,15
+  s_efa0122b95adf2::t_4fed5f8cb3f52c 3-6
+  s_efa0122b95adf2::t_5fb84b726aeeca 7-9,12-14,16-26
+src/glances/pinnedTravel.ts
+  s_efa0122b95adf2::t_9f16dd056161ea 1-34
+package-lock.json
+  s_efa0122b95adf2::t_2a611fe2c817c8 37,49,71,2298-2300,2765-2767,6916-6922,6940-6951,7561-7566,9476-9484,9759-9761,9764,10094-10111,10451-10465,10865-10874,10978-10992,16368-16387,16413-16435,16462-16471,18380-18449,20428-20437,20778-20787,21288-21303
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "91a3ad67129edbf004212a33b42e41b788661b23",
+  "prompts": {},
+  "sessions": {
+    "s_efa0122b95adf2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ff109c87-3f3b-4b9a-9402-b8ce57798121",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
