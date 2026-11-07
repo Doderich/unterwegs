@@ -1,0 +1,20 @@
+docs/RELEASING.md
+  s_1faf81aa8bcd1a::t_b298d92e22e935 23,27-38
+  s_1faf81aa8bcd1a::t_bdba9e515f6d1a 39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c3c99483450c3b2aee8574bae2f7a4e682d2acb4",
+  "prompts": {},
+  "sessions": {
+    "s_1faf81aa8bcd1a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c382a084-bea9-4c3f-9b1f-fe137a2b49dc",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
