@@ -1,4 +1,4 @@
-import { Button, FieldGroup, TextInput } from '@expo/ui';
+import { Button, FieldGroup } from '@expo/ui';
 import { Stack } from 'expo-router';
 import { useState } from 'react';
 import { Alert } from 'react-native';
@@ -10,6 +10,7 @@ import { tr } from '@/i18n';
 import { FormHost } from '@/ui/FormHost';
 import { useRowTheme } from '@/ui/rows';
 import { Text } from '@/ui/Text';
+import { TextInput } from '@/ui/TextInput';
 
 export default function DeleteAccountScreen() {
   const client = useClient();

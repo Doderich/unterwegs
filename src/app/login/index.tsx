@@ -1,7 +1,7 @@
-import { Button, FieldGroup, ListItem, TextInput } from '@expo/ui';
+import { Button, FieldGroup, ListItem } from '@expo/ui';
 import { useQuery } from '@tanstack/react-query';
 import { router } from 'expo-router';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Keyboard } from 'react-native';
 
 import { AuthError, normalizeServerUrl } from '@/api/client';
@@ -19,6 +19,7 @@ import { Sub } from '@/ui/Sub';
 import { RowIcon } from '@/ui/rows';
 import { useColors, useListColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
+import { TextInput } from '@/ui/TextInput';
 
 const DEMO_SERVER_URL = 'https://demo.adventurelog.app';
 
@@ -30,7 +31,23 @@ export default function LoginScreen() {
   const listColors = useListColors();
   const { signIn } = useSession();
   const colors = useColors();
-  const [serverInput, setServerInput] = useState(DEFAULT_SERVER_URL);
+  // Typed values live here and in the native fields; state only tracks what the screen shows (empty or not), so
+  // typing doesn't re-render the screen.
+  const values = useRef({ server: DEFAULT_SERVER_URL, username: '', password: '', code: '', apiKey: '' });
+  const [filled, setFilled] = useState({
+    server: !!DEFAULT_SERVER_URL.trim(),
+    username: false,
+    password: false,
+    code: false,
+    apiKey: false,
+  });
+  // What a field shows when it mounts again (after Change server, MFA Cancel or reopening Advanced).
+  const [initial, setInitial] = useState({ server: DEFAULT_SERVER_URL, username: '', apiKey: '' });
+  function setValue(field: keyof typeof values.current, text: string) {
+    values.current[field] = text;
+    const has = field === 'password' ? text.length > 0 : !!text.trim();
+    setFilled((f) => (f[field] === has ? f : { ...f, [field]: has }));
+  }
   const [server, setServer] = useState('');
   const [serverError, setServerError] = useState<'invalid' | 'insecure' | false>(false);
   const [advanced, setAdvanced] = useState(false);
@@ -54,17 +71,13 @@ export default function LoginScreen() {
     networkMode: 'online',
   });
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [mfa, setMfa] = useState<{ sessionToken: string } | null>(null);
   const mfaFocus = useInitialInputFocus(!!mfa);
-  const [code, setCode] = useState('');
-  const [apiKey, setApiKey] = useState('');
   const [busy, setBusy] = useState<'sso' | 'password' | 'key' | null>(null);
   const [error, setError] = useState<{ section: 'sso' | 'password' | 'key'; text: string } | null>(null);
 
   function commitServer() {
-    const next = normalizeServerUrl(serverInput);
+    const next = normalizeServerUrl(values.current.server);
     // The API key travels in a header: never over plain HTTP.
     if (/^http:\/\//i.test(next)) {
       setServerError('insecure');
@@ -81,17 +94,16 @@ export default function LoginScreen() {
     }
     Keyboard.dismiss();
     setServerError(false);
+    setInitial((i) => ({ ...i, server: values.current.server }));
     setServer(next);
   }
 
   function changeServer() {
     if (busy) return;
     setServer('');
-    setUsername('');
-    setPassword('');
+    for (const field of ['username', 'password', 'code', 'apiKey'] as const) setValue(field, '');
+    setInitial((i) => ({ ...i, username: '', apiKey: '' }));
     setMfa(null);
-    setCode('');
-    setApiKey('');
     setAdvanced(false);
     setError(null);
   }
@@ -127,6 +139,7 @@ export default function LoginScreen() {
   }
 
   async function submitPassword() {
+    const { username, password, code } = values.current;
     if (busy || (mfa ? !code.trim() : !username.trim() || !password)) return;
     setBusy('password');
     setError(null);
@@ -136,8 +149,10 @@ export default function LoginScreen() {
         return;
       }
       const result = await passwordLogin(server, username, password);
-      if (result.status === 'mfa') setMfa({ sessionToken: result.sessionToken });
-      else await finish(result.apiKey);
+      if (result.status === 'mfa') {
+        setInitial((i) => ({ ...i, username }));
+        setMfa({ sessionToken: result.sessionToken });
+      } else await finish(result.apiKey);
     } catch (e) {
       setError({
         section: 'password',
@@ -149,6 +164,7 @@ export default function LoginScreen() {
   }
 
   async function submitKey() {
+    const { apiKey } = values.current;
     if (!apiKey.trim() || busy) return;
     setBusy('key');
     setError(null);
@@ -195,9 +211,9 @@ export default function LoginScreen() {
         <FieldGroup>
           <FieldGroup.Section title={tr('login.adventurelogServer')}>
             <TextInput
-              defaultValue={serverInput}
+              defaultValue={initial.server}
               onChangeText={(value) => {
-                setServerInput(value);
+                setValue('server', value);
                 setServerError(false);
               }}
               onSubmitEditing={commitServer}
@@ -208,7 +224,7 @@ export default function LoginScreen() {
               keyboardType="url"
               returnKeyType="go"
             />
-            <Button label={tr('login.continue')} disabled={!serverInput.trim()} onPress={commitServer} />
+            <Button label={tr('login.continue')} disabled={!filled.server} onPress={commitServer} />
             <FieldGroup.SectionFooter>
               <Text textStyle={{ ...typeScale.label, color: serverError ? colors.danger : colors.secondary }}>
                 {serverError === 'insecure'
@@ -229,7 +245,8 @@ export default function LoginScreen() {
               onPress={() => {
                 Keyboard.dismiss();
                 setServerError(false);
-                setServerInput(DEMO_SERVER_URL);
+                setValue('server', DEMO_SERVER_URL);
+                setInitial((i) => ({ ...i, server: DEMO_SERVER_URL }));
                 setServer(DEMO_SERVER_URL);
               }}>
               {tr('login.tryPublicDemo')}
@@ -316,7 +333,7 @@ export default function LoginScreen() {
             {mfa ? (
               <TextInput
                 key="totp"
-                onChangeText={setCode}
+                onChangeText={(text) => setValue('code', text)}
                 placeholder={tr('login.codeFromAuthenticatorApp')}
                 accessibilityLabel={tr('login.codeFromAuthenticatorApp')}
                 editable={!busy}
@@ -329,8 +346,8 @@ export default function LoginScreen() {
               [
                 <TextInput
                   key="user"
-                  defaultValue={username}
-                  onChangeText={setUsername}
+                  defaultValue={initial.username}
+                  onChangeText={(text) => setValue('username', text)}
                   placeholder={tr('login.usernameOrEmail')}
                   accessibilityLabel={tr('login.usernameOrEmail')}
                   editable={!busy}
@@ -340,7 +357,7 @@ export default function LoginScreen() {
                 />,
                 <TextInput
                   key="password"
-                  onChangeText={setPassword}
+                  onChangeText={(text) => setValue('password', text)}
                   placeholder={tr('common.password')}
                   accessibilityLabel={tr('common.password')}
                   editable={!busy}
@@ -352,7 +369,7 @@ export default function LoginScreen() {
             )}
             <Button
               label={busy === 'password' ? tr('login.signingIn') : mfa ? tr('login.confirm') : tr('common.signIn')}
-              disabled={!!busy || (mfa ? !code.trim() : !username.trim() || !password)}
+              disabled={!!busy || (mfa ? !filled.code : !filled.username || !filled.password)}
               onPress={() => void submitPassword()}
             />
             {mfa ? (
@@ -362,8 +379,8 @@ export default function LoginScreen() {
                 disabled={!!busy}
                 onPress={() => {
                   setMfa(null);
-                  setCode('');
-                  setPassword('');
+                  setValue('code', '');
+                  setValue('password', '');
                   setError(null);
                 }}
               />
@@ -377,13 +394,16 @@ export default function LoginScreen() {
             label={advanced ? tr('login.hideApiKey') : tr('login.signInWithApiKey')}
             variant="text"
             disabled={!!busy}
-            onPress={() => setAdvanced(!advanced)}
+            onPress={() => {
+              if (advanced) setInitial((i) => ({ ...i, apiKey: values.current.apiKey }));
+              setAdvanced(!advanced);
+            }}
           />
           {advanced ? (
             <>
               <TextInput
-                onChangeText={setApiKey}
-                defaultValue={apiKey}
+                onChangeText={(text) => setValue('apiKey', text)}
+                defaultValue={initial.apiKey}
                 placeholder={tr('login.apiKey')}
                 accessibilityLabel={tr('login.apiKey')}
                 editable={!busy}
@@ -394,7 +414,7 @@ export default function LoginScreen() {
               />
               <Button
                 label={busy === 'key' ? tr('login.checking') : tr('common.signIn')}
-                disabled={!!busy || !apiKey.trim()}
+                disabled={!!busy || !filled.apiKey}
                 onPress={() => void submitKey()}
               />
               {errorFooter('key') ?? (

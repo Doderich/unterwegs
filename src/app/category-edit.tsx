@@ -1,4 +1,4 @@
-import { FieldGroup, ListItem, TextInput } from '@expo/ui';
+import { FieldGroup, ListItem } from '@expo/ui';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Alert } from 'react-native';
@@ -13,6 +13,7 @@ import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { useClient } from '@/auth/session';
 import { Host } from '@/ui/Host';
+import { TextInput } from '@/ui/TextInput';
 
 /** Create (`id` missing) or edit a category: shown name and emoji icon. */
 export default function CategoryEditScreen() {

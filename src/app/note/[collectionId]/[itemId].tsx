@@ -1,4 +1,4 @@
-import { FieldGroup, Icon, ListItem, TextInput, type TextInputRef } from '@expo/ui';
+import { FieldGroup, Icon, ListItem } from '@expo/ui';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useRef, useState } from 'react';
 import { Alert } from 'react-native';
@@ -18,6 +18,7 @@ import { infoRow, RowIcon, useRowTheme, type RowTheme } from '@/ui/rows';
 import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { typeScale } from '@/ui/typeScale';
+import { TextInput, type TextInputRef } from '@/ui/TextInput';
 
 export default function NoteScreen() {
   const { collectionId, itemId, edit } = useLocalSearchParams<{

@@ -1,4 +1,4 @@
-import { FieldGroup, ListItem, TextInput } from '@expo/ui';
+import { FieldGroup, ListItem } from '@expo/ui';
 import { router } from 'expo-router';
 import { useMemo, useState } from 'react';
 
@@ -9,6 +9,7 @@ import { RefreshableFieldGroup } from '@/ui/RefreshableFieldGroup';
 import { RowIcon, useRowTheme } from '@/ui/rows';
 import { Sub } from '@/ui/Sub';
 import { Host } from '@/ui/Host';
+import { TextInput } from '@/ui/TextInput';
 
 /** Everyone on the server with a public profile (like the website's user list). */
 export default function PeopleScreen() {

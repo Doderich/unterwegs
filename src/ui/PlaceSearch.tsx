@@ -1,4 +1,4 @@
-import { BottomSheet, Column, ScrollView, TextInput } from '@expo/ui';
+import { BottomSheet, Column, ScrollView } from '@expo/ui';
 import * as Location from 'expo-location';
 import { useRef, useState, type ReactElement } from 'react';
 import { Alert, Linking } from 'react-native';
@@ -11,6 +11,7 @@ import { RowIcon, type RowTheme } from './rows';
 import { Sub } from './Sub';
 import { SheetRow } from './SheetRow';
 import { Text } from './Text';
+import { TextInput } from '@/ui/TextInput';
 
 /** A picked place: name, full address and coordinates. */
 export type PickedPlace = { name: string; address: string | null; latitude: number; longitude: number };

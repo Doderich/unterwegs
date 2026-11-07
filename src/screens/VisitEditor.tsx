@@ -1,4 +1,4 @@
-import { FieldGroup, ListItem, TextInput } from '@expo/ui';
+import { FieldGroup, ListItem } from '@expo/ui';
 import { router, Stack } from 'expo-router';
 import { useState } from 'react';
 import { Alert } from 'react-native';
@@ -19,6 +19,7 @@ import { androidToolbarIcon } from '@/ui/icons';
 import { RowIcon, switchRow, useRowTheme } from '@/ui/rows';
 import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
+import { TextInput } from '@/ui/TextInput';
 
 /** The website's placeholder note for visits it creates from the itinerary; never shown or written back. */
 const GENERATED_VISIT_NOTE = 'Created from itinerary planning';

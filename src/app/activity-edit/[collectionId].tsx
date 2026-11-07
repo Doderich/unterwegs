@@ -1,4 +1,4 @@
-import { FieldGroup, ListItem, TextInput } from '@expo/ui';
+import { FieldGroup, ListItem } from '@expo/ui';
 import * as DocumentPicker from 'expo-document-picker';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
@@ -18,6 +18,7 @@ import { Sub } from '@/ui/Sub';
 import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { useInitialInputFocus } from '@/ui/useInitialInputFocus';
+import { TextInput } from '@/ui/TextInput';
 
 /** `5400` → `1:30` for the duration field. */
 const typedDuration = (seconds: number | null) =>

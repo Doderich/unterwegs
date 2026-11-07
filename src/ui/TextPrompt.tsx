@@ -1,4 +1,4 @@
-import { BottomSheet, Button, Column, TextInput } from '@expo/ui';
+import { BottomSheet, Button, Column } from '@expo/ui';
 import { useState, type ReactElement } from 'react';
 import { Platform } from 'react-native';
 import { frame, tint } from '@expo/ui/swift-ui/modifiers';
@@ -7,6 +7,7 @@ import { tr } from '@/i18n';
 
 import type { RowTheme } from './rows';
 import { Text } from './Text';
+import { TextInput } from '@/ui/TextInput';
 
 type Prompt = { title: string; value: string; placeholder?: string; onSave: (value: string) => unknown };
 

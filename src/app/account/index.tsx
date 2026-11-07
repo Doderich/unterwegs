@@ -1,4 +1,4 @@
-import { FieldGroup, ListItem, TextInput } from '@expo/ui';
+import { FieldGroup, ListItem } from '@expo/ui';
 import * as WebBrowser from 'expo-web-browser';
 import { router, Stack } from 'expo-router';
 import { useState } from 'react';
@@ -18,6 +18,7 @@ import { useSelect } from '@/ui/Select';
 import { useServerFile } from '@/ui/serverFile';
 import { Text } from '@/ui/Text';
 import { Host } from '@/ui/Host';
+import { TextInput } from '@/ui/TextInput';
 
 export default function AccountScreen() {
   const user = useUser();

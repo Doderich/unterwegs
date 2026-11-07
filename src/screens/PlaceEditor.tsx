@@ -1,4 +1,4 @@
-import { FieldGroup, ListItem, TextInput } from '@expo/ui';
+import { FieldGroup, ListItem } from '@expo/ui';
 import { router, Stack } from 'expo-router';
 import { useState } from 'react';
 
@@ -14,6 +14,7 @@ import { RowIcon, useRowTheme } from '@/ui/rows';
 import { androidToolbarIcon } from '@/ui/icons';
 import { Text } from '@/ui/Text';
 import { useSelect } from '@/ui/Select';
+import { TextInput } from '@/ui/TextInput';
 
 /** Location editing is independent of collection membership; adding a collection is optional. */
 export function PlaceEditor({ location }: { location?: Location }) {

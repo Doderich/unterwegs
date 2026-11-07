@@ -1,4 +1,4 @@
-import { FieldGroup, ListItem, TextInput } from '@expo/ui';
+import { FieldGroup, ListItem } from '@expo/ui';
 import * as DocumentPicker from 'expo-document-picker';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
@@ -19,6 +19,7 @@ import { RowIcon, useRowTheme } from '@/ui/rows';
 import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { useInitialInputFocus } from '@/ui/useInitialInputFocus';
+import { TextInput } from '@/ui/TextInput';
 
 /** Create a collection (`collectionId` missing) or edit its name, dates, description and link (owner only). */
 export default function CollectionEditScreen() {
