@@ -1,0 +1,426 @@
+src/ui/NextUp.tsx
+  s_c011c8ec3f274a::t_196223d84e0467 81,84-86,92-94
+  s_c011c8ec3f274a::t_8cc02740fa55e8 16,53-64
+  s_c011c8ec3f274a::t_793a152b1f8be9 1-15,17-52,65-80,82-83,87-91,95-107
+src/ui/rows.tsx
+  s_c011c8ec3f274a::t_0ad2a0485e59ba 43-45,49
+  s_c011c8ec3f274a::t_cb50baf8a9a47f 234
+  s_c011c8ec3f274a::t_74f964c5ca3111 17,54-65
+  s_c011c8ec3f274a::t_b1d4bc1ae499ab 66
+src/ui/palette.android.ts
+  s_c011c8ec3f274a::t_0ad2a0485e59ba 3,20-22
+src/ui/palette.ts
+  s_c011c8ec3f274a::t_0ad2a0485e59ba 4,13-16,39-40
+src/app/gallery.tsx
+  s_c011c8ec3f274a::t_341a5d19561d9d 79
+src/ui/StatusRows.tsx
+  s_c011c8ec3f274a::t_48faa55309cdf3 8-9,28-29,42
+  s_c011c8ec3f274a::t_74f964c5ca3111 11,19
+src/ui/MoreSection.tsx
+  s_c011c8ec3f274a::t_88d35d3079e2dc 1-32
+src/data/outbox/fields.ts
+  s_c011c8ec3f274a::t_1f370971f4bec2 1-36
+src/ui/PhotoPager.tsx
+  s_c011c8ec3f274a::t_6c345dbc4af203 109
+src/data/outbox/model.ts
+  s_c011c8ec3f274a::t_8fab1e60810874 62-66
+  s_c011c8ec3f274a::t_864abd8c1bb69b 1-61,67-89
+src/ui/ScaledText.tsx
+  s_c011c8ec3f274a::t_9ca9d1333130ed 1-32
+docs/adr/0016-offline-edits-through-an-outbox.md
+  s_c011c8ec3f274a::t_97065a29a16015 1-2,4,6-9,16-19
+  s_c011c8ec3f274a::t_0c43f9dbcf98c7 3,13-14
+  s_c011c8ec3f274a::t_a98064a5fef311 5,20,22-24
+  s_c011c8ec3f274a::t_8449a1bca5669f 10-12,15,21
+  s_c011c8ec3f274a::t_b13e24c6afe91c 25-26
+src/app/collection/[id]/lodgings.tsx
+  s_c011c8ec3f274a::t_341a5d19561d9d 63
+docs/FEATURES.md
+  s_c011c8ec3f274a::t_a98064a5fef311 54
+  s_c011c8ec3f274a::t_0c43f9dbcf98c7 106
+src/ui/Celebration.tsx
+  s_c011c8ec3f274a::t_6303e306fdc30f 1-2,4-6,8-13,15-20,22-68
+  s_c011c8ec3f274a::t_022fa5d4e8e04c 3,7,14,21
+src/ui/theme.ts
+  s_c011c8ec3f274a::t_8e8d9c75e5225a 31-42
+src/data/useOutbox.ts
+  s_c011c8ec3f274a::t_ae03b969c2ed08 1-7,19,21-40,42,46,48,50,65-66,72-73,75-76,78,80-86,88,91
+  s_c011c8ec3f274a::t_d821cd98aed068 8-18,51-64
+  s_c011c8ec3f274a::t_262decab05dd1a 74
+  s_c011c8ec3f274a::t_073fecce687784 43-45,47,49,77,79,87,89-90
+  s_c011c8ec3f274a::t_73e2587bfc8c6f 20,41,67-71
+src/app/collection/[id]/_layout.tsx
+  s_c011c8ec3f274a::t_3899856555e3b6 47-48,196-204,206-221,224,226-230,233,236,238-242,245,247-328
+src/data/outbox/types.ts
+  s_c011c8ec3f274a::t_714d61667e3d16 1-100
+src/ui/typeScale.ts
+  s_c011c8ec3f274a::t_bbb8b485e77fa1 4-5,7-13,18-19,22
+src/ui/CollectionHero.tsx
+  s_c011c8ec3f274a::t_793a152b1f8be9 118-119
+  s_c011c8ec3f274a::t_66850e6f1974f7 132-133
+  s_c011c8ec3f274a::t_9ca9d1333130ed 2,13,112-113
+  s_c011c8ec3f274a::t_6c345dbc4af203 128,134,137-138,140,142-146
+src/api/schemas.ts
+  s_c011c8ec3f274a::t_77d7293de08ea7 167-168,175
+src/app/(main)/_layout.tsx
+  s_c011c8ec3f274a::t_48faa55309cdf3 6,30-31
+src/app/collection-edit.tsx
+  s_c011c8ec3f274a::t_341a5d19561d9d 110
+  s_c011c8ec3f274a::t_75c0cbd4e607ec 109
+src/offline/useCollectionOffline.ts
+  s_c011c8ec3f274a::t_7bc24966350112 6,70
+src/ui/icons.ts
+  s_c011c8ec3f274a::t_90a832ee798593 84-86
+src/ui/ActionSheet.tsx
+  s_c011c8ec3f274a::t_bbb8b485e77fa1 41
+src/app/(main)/world/index.tsx
+  s_c011c8ec3f274a::t_cafad26180b22a 8,10-11,24,56-62,102
+  s_c011c8ec3f274a::t_fa3f8bc2eab53c 4
+src/app/activity-edit/[collectionId].tsx
+  s_c011c8ec3f274a::t_341a5d19561d9d 123
+src/ui/PlaceSearch.tsx
+  s_c011c8ec3f274a::t_bbb8b485e77fa1 94
+src/data/CollectionContext.tsx
+  s_c011c8ec3f274a::t_cb50baf8a9a47f 5,23-24
+src/app/login/web.tsx
+  s_c011c8ec3f274a::t_56953c74d3452d 205-208
+  s_c011c8ec3f274a::t_fafabe5c46d3ea 200,202,218,231-232,239-241
+src/screens/DaysScreen.tsx
+  s_c011c8ec3f274a::t_78638e91084e4f 62-63
+  s_c011c8ec3f274a::t_341a5d19561d9d 41
+src/i18n/locales/de.json
+  s_c011c8ec3f274a::t_262decab05dd1a 1148,1153-1154
+  s_c011c8ec3f274a::t_14a4e62296c484 304
+  s_c011c8ec3f274a::t_4d073dce97cea4 428
+  s_c011c8ec3f274a::t_2588c31d92d3ed 1143-1147,1149-1152
+  s_c011c8ec3f274a::t_43329b3877e456 979-986
+  s_c011c8ec3f274a::t_d226b16ae52be3 1138
+  s_c011c8ec3f274a::t_a84200e479e690 890-894
+  s_c011c8ec3f274a::t_b2bc425f869bed 987-988,1139-1142
+  s_c011c8ec3f274a::t_66850e6f1974f7 152-153
+  s_c011c8ec3f274a::t_3259727b874a56 247,379
+  s_c011c8ec3f274a::t_88d35d3079e2dc 305-307
+  s_c011c8ec3f274a::t_f493b75551574b 684
+  s_c011c8ec3f274a::t_c0793c3ce8334a 830
+  s_c011c8ec3f274a::t_08863083e533e8 895-898
+  s_c011c8ec3f274a::t_2de475453bf461 1136-1137
+  s_c011c8ec3f274a::t_f87deefe6f9a33 391-401,1132-1135
+src/app/settings/appearance.tsx
+  s_c011c8ec3f274a::t_f6ba0394831f19 1-51
+src/screens/settings/options.ts
+  s_c011c8ec3f274a::t_f6ba0394831f19 1-62
+src/app/lodging-edit/[collectionId].tsx
+  s_c011c8ec3f274a::t_341a5d19561d9d 247
+  s_c011c8ec3f274a::t_cb50baf8a9a47f 8,69
+src/data/outbox/kinds.ts
+  s_c011c8ec3f274a::t_8fab1e60810874 76-79,197-204,568-575
+  s_c011c8ec3f274a::t_4b715ec115b676 1-75,80-196,205-567,576-589
+src/ui/media.tsx
+  s_c011c8ec3f274a::t_341a5d19561d9d 89,103,111
+  s_c011c8ec3f274a::t_b1dc3bfcc891e0 92-100
+  s_c011c8ec3f274a::t_731ce21d6d03c6 33-34,46-47,81,102,109,121
+src/app/transport/[collectionId]/[itemId].tsx
+  s_c011c8ec3f274a::t_341a5d19561d9d 66
+  s_c011c8ec3f274a::t_cb50baf8a9a47f 7,43
+src/ui/CardRow.ios.tsx
+  s_c011c8ec3f274a::t_0e625e8b25cb18 10,12
+src/ui/__tests__/format.test.ts
+  s_c011c8ec3f274a::t_196223d84e0467 1-8
+  s_c011c8ec3f274a::t_f87deefe6f9a33 18,24-28
+  s_c011c8ec3f274a::t_d0e23d6384e8d2 29-30
+src/app/transport-edit/[collectionId].tsx
+  s_c011c8ec3f274a::t_cb50baf8a9a47f 8,60
+  s_c011c8ec3f274a::t_341a5d19561d9d 297
+src/app/web-image/[collectionId].tsx
+  s_c011c8ec3f274a::t_341a5d19561d9d 41,77,85
+src/data/__tests__/affected.test.ts
+  s_c011c8ec3f274a::t_d074b94ae52eb8 1-21
+src/ui/DayNav.tsx
+  s_c011c8ec3f274a::t_6f856f4bcc1cd3 134
+  s_c011c8ec3f274a::t_6c345dbc4af203 112,133,135-136
+src/ui/Memories.tsx
+  s_c011c8ec3f274a::t_89ae43ae12c7c8 62,123-124
+  s_c011c8ec3f274a::t_88e58d7dcc7092 125
+  s_c011c8ec3f274a::t_c00660b7a27fc5 75-83,85-86
+  s_c011c8ec3f274a::t_196223d84e0467 87-89,126,128-152
+  s_c011c8ec3f274a::t_72fecacd8220db 1-61,63-74,84,90-122,127
+src/data/outbox/children.ts
+  s_c011c8ec3f274a::t_36d02124cff4ff 1-95
+src/app/settings/index.tsx
+  s_c011c8ec3f274a::t_08863083e533e8 1-2,6,18,20-23,37,39-42,51,69-72,98-114,136-150,161,165-170,183,188-200
+  s_c011c8ec3f274a::t_2be2f552210a85 7,15
+  s_c011c8ec3f274a::t_9ccd03ddc664f6 74-91
+  s_c011c8ec3f274a::t_48faa55309cdf3 11,38
+src/data/outbox/queue.ts
+  s_c011c8ec3f274a::t_8fab1e60810874 73
+  s_c011c8ec3f274a::t_d821cd98aed068 130-138,162
+  s_c011c8ec3f274a::t_864abd8c1bb69b 1-72,74-129,139-161,163-191
+src/ui/Today.tsx
+  s_c011c8ec3f274a::t_65faec69637665 9,141
+  s_c011c8ec3f274a::t_bbb8b485e77fa1 148-149
+  s_c011c8ec3f274a::t_065d4a7dc568f5 6,16,19,100-101,103-106,140,143,145-146,200
+  s_c011c8ec3f274a::t_196223d84e0467 22-23,122-123,190-195,234-256
+  s_c011c8ec3f274a::t_7bc24966350112 10,98
+  s_c011c8ec3f274a::t_9dc796076f9ed6 20-21,110-121,155,196-197,207-232
+  s_c011c8ec3f274a::t_9ccd03ddc664f6 11,25,166-167,179
+  s_c011c8ec3f274a::t_8cc02740fa55e8 18,102,142,144
+  s_c011c8ec3f274a::t_cd46a7a3b1b022 233,257
+src/ui/JourneySummary.tsx
+  s_c011c8ec3f274a::t_bbb8b485e77fa1 21
+src/ui/MaterialSearch.android.tsx
+  s_c011c8ec3f274a::t_fafabe5c46d3ea 52,102,141
+src/data/outbox/index.ts
+  s_c011c8ec3f274a::t_864abd8c1bb69b 1-6,8-11,13-57
+  s_c011c8ec3f274a::t_d821cd98aed068 7
+  s_c011c8ec3f274a::t_75c2c60e288172 12
+src/i18n/locales/en.json
+  s_c011c8ec3f274a::t_88d35d3079e2dc 305-307
+  s_c011c8ec3f274a::t_f493b75551574b 684
+  s_c011c8ec3f274a::t_3259727b874a56 247,379
+  s_c011c8ec3f274a::t_f87deefe6f9a33 391-401,1132-1135
+  s_c011c8ec3f274a::t_08863083e533e8 895-898
+  s_c011c8ec3f274a::t_d226b16ae52be3 1138
+  s_c011c8ec3f274a::t_a84200e479e690 890-894
+  s_c011c8ec3f274a::t_14a4e62296c484 304
+  s_c011c8ec3f274a::t_c0793c3ce8334a 830
+  s_c011c8ec3f274a::t_2de475453bf461 1136-1137
+  s_c011c8ec3f274a::t_2588c31d92d3ed 1143-1147,1149-1152
+  s_c011c8ec3f274a::t_66850e6f1974f7 152-153
+  s_c011c8ec3f274a::t_262decab05dd1a 1148,1153-1154
+  s_c011c8ec3f274a::t_43329b3877e456 979-986
+  s_c011c8ec3f274a::t_b2bc425f869bed 987-988,1139-1142
+  s_c011c8ec3f274a::t_4d073dce97cea4 428
+src/ui/MarkdownText.tsx
+  s_c011c8ec3f274a::t_bbb8b485e77fa1 30
+  s_c011c8ec3f274a::t_fafabe5c46d3ea 38
+src/app/settings/reminders.tsx
+  s_c011c8ec3f274a::t_f6ba0394831f19 1-64
+src/data/affected.ts
+  s_c011c8ec3f274a::t_6ec9f00e563e49 1-54
+src/ui/accent.ts
+  s_c011c8ec3f274a::t_0ad2a0485e59ba 14-35
+src/app/collection/[id]/map.tsx
+  s_c011c8ec3f274a::t_8e8d9c75e5225a 258-260,263
+  s_c011c8ec3f274a::t_6f856f4bcc1cd3 24
+docs/adr/0005-online-only-edits.md
+  s_c011c8ec3f274a::t_97065a29a16015 3-4
+src/data/outbox/__tests__/queue.test.ts
+  s_c011c8ec3f274a::t_c28aff7adc0d92 110-111,113-114
+  s_c011c8ec3f274a::t_afc80b29c00932 1-109,112,115-170
+src/app/immich/[collectionId]/[locationId].tsx
+  s_c011c8ec3f274a::t_6ec9f00e563e49 17,51
+src/data/useLocation.ts
+  s_c011c8ec3f274a::t_6ec9f00e563e49 9
+  s_c011c8ec3f274a::t_d074b94ae52eb8 39
+src/data/useRegionEdits.ts
+  s_c011c8ec3f274a::t_6ec9f00e563e49 10,29,65,95
+  s_c011c8ec3f274a::t_7ecd72fcda794d 13-14,19,22-25,28,30-31,36,42,52-53,58,61-63,66-67,72,77,85,89,92-94,96-97
+  s_c011c8ec3f274a::t_5c82d4a1be560f 7,26-27,64
+src/glances/widgets/TodayWidget.ios.tsx
+  s_c011c8ec3f274a::t_75f8ad4dbec476 33,59,73
+docs/adr/0015-glances-from-the-offline-copy.md
+  s_c011c8ec3f274a::t_a98064a5fef311 17
+src/data/onlineWrite.ts
+  s_c011c8ec3f274a::t_5c82d4a1be560f 50-55
+  s_c011c8ec3f274a::t_1ea07f0b86e2ed 1-2,4-49,56-103,108
+  s_c011c8ec3f274a::t_37f13f7d43e918 3,104-107
+src/app/integrations/[kind].tsx
+  s_c011c8ec3f274a::t_6ec9f00e563e49 19,98,108,123,149,311
+  s_c011c8ec3f274a::t_d074b94ae52eb8 9
+src/app/settings/reading.tsx
+  s_c011c8ec3f274a::t_f6ba0394831f19 1-64
+src/ui/format.ts
+  s_c011c8ec3f274a::t_14a4e62296c484 43,82-92
+  s_c011c8ec3f274a::t_f87deefe6f9a33 19-25,28-29,36-42
+  s_c011c8ec3f274a::t_71ae7154539cc3 44
+src/data/__tests__/onlineWrite.test.ts
+  s_c011c8ec3f274a::t_c99db897bb111c 1-12,14-57
+  s_c011c8ec3f274a::t_25af380c014b7c 13
+src/app/note-edit/[collectionId].tsx
+  s_c011c8ec3f274a::t_0708f23a5ed8ed 7,32-33
+src/app/account/delete.tsx
+  s_c011c8ec3f274a::t_d5c4e103528206 1,11,76-82
+docs/ROADMAP.md
+  s_c011c8ec3f274a::t_8449a1bca5669f 26
+  s_c011c8ec3f274a::t_97065a29a16015 15
+src/ui/PassportStamps.tsx
+  s_c011c8ec3f274a::t_196223d84e0467 47-50
+  s_c011c8ec3f274a::t_88e58d7dcc7092 1-46,51-85
+src/data/__tests__/edits.test.ts
+  s_c011c8ec3f274a::t_13dd2c34848319 69
+src/ui/SheetRow.ios.tsx
+  s_c011c8ec3f274a::t_bbb8b485e77fa1 45
+src/app/account/keys.tsx
+  s_c011c8ec3f274a::t_daaaa38b863311 18
+  s_c011c8ec3f274a::t_6ec9f00e563e49 17,34,50,73
+src/data/outbox/__tests__/overlay.test.ts
+  s_c011c8ec3f274a::t_afc80b29c00932 1,4-27,29-34
+src/app/lodging/[collectionId]/[itemId].tsx
+  s_c011c8ec3f274a::t_cb50baf8a9a47f 5,29
+  s_c011c8ec3f274a::t_341a5d19561d9d 39
+src/app/integrations/strava-connect.tsx
+  s_c011c8ec3f274a::t_6ec9f00e563e49 16,46
+src/ui/LoadingRows.tsx
+  s_c011c8ec3f274a::t_6c345dbc4af203 57
+GLOSSARY.md
+  s_c011c8ec3f274a::t_e5abe833157545 141-145
+src/ui/Select.tsx
+  s_c011c8ec3f274a::t_bbb8b485e77fa1 109
+src/app/location-edit/[collectionId].tsx
+  s_c011c8ec3f274a::t_61d1a4042d55db 7
+  s_c011c8ec3f274a::t_cb50baf8a9a47f 46
+  s_c011c8ec3f274a::t_341a5d19561d9d 231,287
+src/app/location/[collectionId]/[itemId].tsx
+  s_c011c8ec3f274a::t_cb50baf8a9a47f 7,50
+  s_c011c8ec3f274a::t_08802266611459 30,58,201-218,220-234,236-242,244-281,283-295,297-318,411,413-418
+  s_c011c8ec3f274a::t_341a5d19561d9d 110,182,185,193,219,235,243,282,296,322
+  s_c011c8ec3f274a::t_2ca913f21ba7fb 412
+src/app/collection/[id]/notes.tsx
+  s_c011c8ec3f274a::t_0708f23a5ed8ed 87
+  s_c011c8ec3f274a::t_341a5d19561d9d 88
+src/ui/Sub.tsx
+  s_c011c8ec3f274a::t_2b949165a1f554 9,12
+src/data/useOnlineAction.ts
+  s_c011c8ec3f274a::t_1ea07f0b86e2ed 1,4,6,9-10,13,15-16
+src/glances/useGlances.ts
+  s_c011c8ec3f274a::t_cb50baf8a9a47f 9,43-46,145-146,151
+src/app/_layout.tsx
+  s_c011c8ec3f274a::t_2de475453bf461 14,35
+  s_c011c8ec3f274a::t_08863083e533e8 121-124
+src/ui/celebrate.ts
+  s_c011c8ec3f274a::t_022fa5d4e8e04c 1-21
+src/ui/CardRow.tsx
+  s_c011c8ec3f274a::t_0e625e8b25cb18 3-7,16-35,37-38
+src/app/share.tsx
+  s_c011c8ec3f274a::t_341a5d19561d9d 84,175,206,209
+src/ui/PointsMap.tsx
+  s_c011c8ec3f274a::t_6f856f4bcc1cd3 13
+  s_c011c8ec3f274a::t_6c345dbc4af203 101
+  s_c011c8ec3f274a::t_8e8d9c75e5225a 126-128,130
+src/screens/VisitEditor.tsx
+  s_c011c8ec3f274a::t_341a5d19561d9d 155
+src/i18n/locales/ja.json
+  s_c011c8ec3f274a::t_2de475453bf461 1102-1103
+  s_c011c8ec3f274a::t_4d073dce97cea4 413
+  s_c011c8ec3f274a::t_2588c31d92d3ed 1109-1112,1114-1115
+  s_c011c8ec3f274a::t_08863083e533e8 873-875
+  s_c011c8ec3f274a::t_c0793c3ce8334a 808
+  s_c011c8ec3f274a::t_f493b75551574b 666
+  s_c011c8ec3f274a::t_88d35d3079e2dc 299-301
+  s_c011c8ec3f274a::t_a84200e479e690 868-872
+  s_c011c8ec3f274a::t_3259727b874a56 243,371
+  s_c011c8ec3f274a::t_b2bc425f869bed 961-962,1105-1108
+  s_c011c8ec3f274a::t_f87deefe6f9a33 381-386,1098-1101
+  s_c011c8ec3f274a::t_14a4e62296c484 298
+  s_c011c8ec3f274a::t_d226b16ae52be3 1104
+  s_c011c8ec3f274a::t_43329b3877e456 955-960
+  s_c011c8ec3f274a::t_262decab05dd1a 1113,1116-1117
+src/offline/fileCache.ts
+  s_c011c8ec3f274a::t_cb50baf8a9a47f 55-61,63,69
+src/data/useCollectionEdits.ts
+  s_c011c8ec3f274a::t_73e2587bfc8c6f 40
+  s_c011c8ec3f274a::t_9ccd03ddc664f6 27,30,32,35-38,104,148-151,154-162,245-246,330-335,337,400-402
+  s_c011c8ec3f274a::t_7e0c989607c905 59,84-90,92,94-95,98-99,174-176,178,182,185,187-193,213-214,221,249-254,422-424,430,432
+  s_c011c8ec3f274a::t_630ceccaa33f47 197-204,206,215-217,222-223
+  s_c011c8ec3f274a::t_5d261bec313400 177
+  s_c011c8ec3f274a::t_e35f4efeb487c9 101-102,107-115,143-147,152-153,163,260-263,265-266,316,321,323-329,338,397-399,407,409-411,414
+  s_c011c8ec3f274a::t_6ec9f00e563e49 43,79
+  s_c011c8ec3f274a::t_341a5d19561d9d 170
+  s_c011c8ec3f274a::t_537d3480b7fad8 116-139,164,231-239,241-242,257-258,274-281,283,285,290-299,349,351-365,367-369,371,373,375-384,386-394,428
+  s_c011c8ec3f274a::t_2de475453bf461 179-181
+  s_c011c8ec3f274a::t_02ce54d2d13277 45-46,49-52,57,64-65,70-78,80-81,91,167-169
+  s_c011c8ec3f274a::t_ab8675e2fbbcbe 25
+  s_c011c8ec3f274a::t_864abd8c1bb69b 28-29,31,33-34,39
+  s_c011c8ec3f274a::t_022fa5d4e8e04c 22
+  s_c011c8ec3f274a::t_4214c6c356b57a 82-83,165
+src/glances/widgets/TodayWidget.android.tsx
+  s_c011c8ec3f274a::t_75f8ad4dbec476 26
+src/app/category-edit.tsx
+  s_c011c8ec3f274a::t_d074b94ae52eb8 7
+  s_c011c8ec3f274a::t_6ec9f00e563e49 17,35
+src/__e2e__/offlineSync.e2e.test.ts
+  s_c011c8ec3f274a::t_c5fea2c25d1e3d 228-234,249-273,281-283,291-299,306-322
+  s_c011c8ec3f274a::t_1919c543562d08 2-4
+  s_c011c8ec3f274a::t_f68f07151ea21e 10,34-56,63
+  s_c011c8ec3f274a::t_b13e24c6afe91c 143-149,193-198,235-248,274-280,284-290,300-305
+  s_c011c8ec3f274a::t_bc2628ecb23c5a 1,5-9,11-33,57-62,64-142,150-192,199-227,323
+src/data/queries.ts
+  s_c011c8ec3f274a::t_864abd8c1bb69b 8
+  s_c011c8ec3f274a::t_cb50baf8a9a47f 80-83,88
+  s_c011c8ec3f274a::t_993c23b0b1e385 2,5
+  s_c011c8ec3f274a::t_bb59935c5bb484 79,89-97
+  s_c011c8ec3f274a::t_6ec9f00e563e49 45
+  s_c011c8ec3f274a::t_0e0aaac91ecd27 98-99
+src/app/(main)/(home)/index.tsx
+  s_c011c8ec3f274a::t_cafad26180b22a 28,54-57,85-86,179-188
+  s_c011c8ec3f274a::t_2d5fed90f63d12 21,104-107,189
+  s_c011c8ec3f274a::t_cc18c225ca13cd 10,145,147-163
+  s_c011c8ec3f274a::t_d5c4e103528206 87-91
+  s_c011c8ec3f274a::t_9f86c8b05d6f9e 168-176
+src/ui/__tests__/collectionFirstRender.test.tsx
+  s_c011c8ec3f274a::t_78638e91084e4f 25
+src/auth/session.tsx
+  s_c011c8ec3f274a::t_6754d769498c25 6
+  s_c011c8ec3f274a::t_48faa55309cdf3 65-66
+src/data/outbox/__tests__/model.test.ts
+  s_c011c8ec3f274a::t_8fab1e60810874 1-416
+src/app/nearby/[collectionId].tsx
+  s_c011c8ec3f274a::t_341a5d19561d9d 54,111,119,130
+src/app/login/scan.tsx
+  s_c011c8ec3f274a::t_fafabe5c46d3ea 92
+  s_c011c8ec3f274a::t_75f8ad4dbec476 106-107
+DESIGN.md
+  s_c011c8ec3f274a::t_81fefaf2d22c74 267,283,327
+  s_c011c8ec3f274a::t_0c43f9dbcf98c7 335
+  s_c011c8ec3f274a::t_68eddbc4d04ff2 126,368
+  s_c011c8ec3f274a::t_e1ee6f771b3e83 333-334,336-339,341-350,352
+  s_c011c8ec3f274a::t_e0b25c69cbb3cb 351
+  s_c011c8ec3f274a::t_0169214bd6c8d7 41,44,53,56,72,77,79,84,105,190,192-195,197,207,217,225,231,275,376
+  s_c011c8ec3f274a::t_522179cb6e076e 293-294
+  s_c011c8ec3f274a::t_33ee283d453925 340,360
+  s_c011c8ec3f274a::t_841dba08397e47 11-15,131,146-147,174,353-359,361-367,369-373,384
+src/ui/ResourceHeader.tsx
+  s_c011c8ec3f274a::t_bbb8b485e77fa1 38,49,73
+docs/GLANCES.md
+  s_c011c8ec3f274a::t_97065a29a16015 45
+src/data/outbox/lookups.ts
+  s_c011c8ec3f274a::t_1f370971f4bec2 1-95
+src/app/account/index.tsx
+  s_c011c8ec3f274a::t_d074b94ae52eb8 9
+  s_c011c8ec3f274a::t_d5c4e103528206 225
+  s_c011c8ec3f274a::t_6ec9f00e563e49 22,103
+src/data/useCollectionsActions.ts
+  s_c011c8ec3f274a::t_37f13f7d43e918 8,18,21-24,26
+  s_c011c8ec3f274a::t_6ec9f00e563e49 9,25
+src/app/(main)/collections/index.tsx
+  s_c011c8ec3f274a::t_b2bc425f869bed 22,121
+  s_c011c8ec3f274a::t_c00660b7a27fc5 4,23,36,124
+  s_c011c8ec3f274a::t_2b949165a1f554 15,117-119,129,134,144-154,166-169
+  s_c011c8ec3f274a::t_4d073dce97cea4 46,51,99-100,103-110
+  s_c011c8ec3f274a::t_0e625e8b25cb18 123,125
+  s_c011c8ec3f274a::t_1d57903f61e3e5 111
+src/app/note/[collectionId]/[itemId].tsx
+  s_c011c8ec3f274a::t_9ccd03ddc664f6 50
+  s_c011c8ec3f274a::t_5d261bec313400 112-122
+  s_c011c8ec3f274a::t_0708f23a5ed8ed 7,42-45
+src/ui/TextPrompt.tsx
+  s_c011c8ec3f274a::t_bbb8b485e77fa1 44
+docs/SERVER.md
+  s_c011c8ec3f274a::t_33ee283d453925 86
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a7d20dbf088ac0bfa4b2def5b53b37a8e8a895cf",
+  "prompts": {},
+  "sessions": {
+    "s_c011c8ec3f274a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a4c7eb95-0520-466e-b968-2031783e5a5d",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
