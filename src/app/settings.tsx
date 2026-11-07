@@ -4,10 +4,11 @@ import { useQueryClient } from '@tanstack/react-query';
 import Constants from 'expo-constants';
 import * as Updates from 'expo-updates';
 import { useState } from 'react';
-import { Alert, Platform } from 'react-native';
+import { Alert, Linking, Platform } from 'react-native';
 
 import { useCredentials, useSession } from '@/auth/session';
 import { useUser } from '@/data/queries';
+import { requestRemindersPermission } from '@/glances/notifications';
 import { tr } from '@/i18n';
 import { cacheSizeBytes, clearFileCache, formatBytes } from '@/offline/fileCache';
 import { privacyPolicyUrl } from '@/legal/links';
@@ -82,6 +83,16 @@ export default function SettingsScreen() {
       { value: 'osmand', label: tr('settings.osmand') },
     ],
   });
+
+  /** Turning reminders on asks for the permission; when the system refuses, its settings are the only way. */
+  async function toggleReminders(on: boolean) {
+    if (!on) return updateSettings({ reminders: false });
+    if (await requestRemindersPermission()) return updateSettings({ reminders: true });
+    Alert.alert(tr('settings.remindersDenied'), tr('settings.remindersDeniedHint'), [
+      { text: tr('common.cancel'), style: 'cancel' },
+      { text: tr('settings.openSystemSettings'), onPress: () => void Linking.openSettings() },
+    ]);
+  }
 
   function confirmClearCache() {
     Alert.alert(tr('settings.deleteOfflineDataConfirm'), tr('settings.imagesPdfsDownloadedAgainNext'), [
@@ -171,6 +182,35 @@ export default function SettingsScreen() {
             </FieldGroup.SectionFooter>
           </FieldGroup.Section>
 
+          <FieldGroup.Section title={tr('settings.reminders')}>
+            {switchRow(rt, {
+              label: tr('settings.remindersOn'),
+              value: settings.reminders,
+              onChange: (on) => void toggleReminders(on),
+            })}
+            {settings.reminders
+              ? reminderRows().map(({ kind, label }) =>
+                  switchRow(rt, {
+                    label,
+                    value: settings.reminderKinds[kind],
+                    onChange: (value) =>
+                      updateSettings({ reminderKinds: { ...settings.reminderKinds, [kind]: value } }),
+                  }),
+                )
+              : null}
+            {Platform.OS === 'ios'
+              ? switchRow(rt, {
+                  label: tr('settings.travelActivity'),
+                  hint: tr('settings.travelActivityHint'),
+                  value: settings.travelActivity,
+                  onChange: (travelActivity) => updateSettings({ travelActivity }),
+                })
+              : null}
+            <FieldGroup.SectionFooter>
+              <Text textStyle={{ fontSize: 13, color: colors.secondary }}>{tr('settings.remindersHint')}</Text>
+            </FieldGroup.SectionFooter>
+          </FieldGroup.Section>
+
           <FieldGroup.Section title={tr('settings.accessibility')}>
             {textSizeSelect.row}
             {switchRow(rt, {
@@ -247,6 +287,19 @@ export default function SettingsScreen() {
       {mapAppSelect.sheet}
     </>
   );
+}
+
+/** The reminder kinds in the order of a collection: before it, travel, stays, the day. */
+function reminderRows(): { kind: keyof Settings['reminderKinds']; label: string }[] {
+  return [
+    { kind: 'collectionStart', label: tr('settings.reminderCollectionStart') },
+    { kind: 'offlineReadiness', label: tr('settings.reminderOfflineReadiness') },
+    { kind: 'departure', label: tr('settings.reminderDeparture') },
+    { kind: 'checkIn', label: tr('settings.reminderCheckIn') },
+    { kind: 'checkOut', label: tr('settings.reminderCheckOut') },
+    { kind: 'visit', label: tr('settings.reminderVisit') },
+    { kind: 'endOfDay', label: tr('settings.reminderEndOfDay') },
+  ];
 }
 
 /** `Unterwegs 1.0.0`, plus the over-the-air update's date while one is running instead of the built-in code. */

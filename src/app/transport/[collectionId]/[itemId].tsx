@@ -1,9 +1,13 @@
 import { useDescriptionRows } from '@/ui/useDescriptionRows';
-import { FieldGroup } from '@expo/ui';
+import { Button, FieldGroup } from '@expo/ui';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
+import { useState } from 'react';
+import { Platform } from 'react-native';
 
 import { useCollectionView } from '@/data/queries';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
+import { TRAVEL_TAIL } from '@/glances/compute';
+import { pinnedTravel, pinTravel } from '@/glances/pinnedTravel';
 import { tr } from '@/i18n';
 import { useActionSheet } from '@/ui/ActionSheet';
 import { useMediaUploads } from '@/ui/media';
@@ -37,7 +41,19 @@ export default function TransportScreen() {
   const opener = useOpenAttachment();
   const t = view?.collection.transportations.find((x) => x.id === itemId);
   const descriptionRows = useDescriptionRows(rt, t?.description);
+  const [pinned, setPinned] = useState(() => pinnedTravel());
+  // When the screen opened: enough to decide whether the journey is still ahead.
+  const [openedAt] = useState(() => Date.now());
   if (!view || !t) return null;
+
+  // iOS Live Activity: until half an hour after arrival (docs/GLANCES.md).
+  const endsAt = t.end_date || t.date ? Date.parse((t.end_date ?? t.date)!) + TRAVEL_TAIL : 0;
+  const canPin = Platform.OS === 'ios' && !!t.date && openedAt < endsAt;
+  const togglePin = () => {
+    const next = pinned === t.id ? null : t.id;
+    pinTravel(next);
+    setPinned(next);
+  };
 
   const price = formatPrice(t.price, t.price_currency);
   const stars = starsLabel(t.rating);
@@ -75,7 +91,16 @@ export default function TransportScreen() {
             {media.photoRows}
           </FieldGroup.Section>
 
-          <FieldGroup.Section>{journeyRows(rt, t, view.timeZone)}</FieldGroup.Section>
+          <FieldGroup.Section>
+            {journeyRows(rt, t, view.timeZone)}
+            {canPin ? (
+              <Button
+                label={pinned === t.id ? tr('transport.hideFromLockScreen') : tr('transport.showOnLockScreen')}
+                variant="text"
+                onPress={togglePin}
+              />
+            ) : null}
+          </FieldGroup.Section>
 
           <FieldGroup.Section>
             {t.from_location

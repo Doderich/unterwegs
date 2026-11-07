@@ -1,0 +1,31 @@
+{
+  "de": {
+    "Unterwegs": "Unterwegs",
+    "Your next collection and what's on today": "Die nächste Sammlung und was heute ansteht",
+    "Today": "Heute",
+    "Today's plan": "Der Plan für heute",
+    "Accommodation": "Unterkunft",
+    "Where you sleep tonight": "Wo du heute Nacht schläfst",
+    "Departure": "Abfahrt",
+    "Your next transport": "Die nächste Verbindung",
+    "Collection Configuration": "Sammlung",
+    "Which collection the widget shows": "Welche Sammlung das Widget zeigt",
+    "Collection": "Sammlung"
+  },
+  "en": {
+    "Collection Configuration": "Collection"
+  },
+  "ja": {
+    "Unterwegs": "Unterwegs",
+    "Your next collection and what's on today": "次のコレクションと今日の予定",
+    "Today": "今日",
+    "Today's plan": "今日の予定",
+    "Accommodation": "宿泊先",
+    "Where you sleep tonight": "今夜泊まる場所",
+    "Departure": "出発",
+    "Your next transport": "次の移動",
+    "Collection Configuration": "コレクション",
+    "Which collection the widget shows": "ウィジェットに表示するコレクション",
+    "Collection": "コレクション"
+  }
+}

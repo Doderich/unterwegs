@@ -14,6 +14,7 @@ Each fact lives in one file; update the file that owns it.
 | [DESIGN.md](DESIGN.md)                             | Design system: colours, type, components, rules   | A visual pattern is added or changed          |
 | [docs/DESIGN-PLAN.md](docs/DESIGN-PLAN.md)         | Proposed UI direction, screen changes and rollout | The UI design plan is refined or implemented  |
 | [docs/IPAD.md](docs/IPAD.md)                       | Proposed iPad layout                              | The iPad layout is refined or implemented     |
+| [docs/GLANCES.md](docs/GLANCES.md)                 | Proposed widgets, reminders and Live Activities   | Glances are refined or implemented            |
 | [docs/HOME-NAVIGATION.md](docs/HOME-NAVIGATION.md) | Home feed, app tabs and collection workspace      | Navigation or feed behavior changes           |
 | [GLOSSARY.md](GLOSSARY.md)                         | Domain terms (AdventureLog's language)            | A new concept appears                         |
 | [docs/FEATURES.md](docs/FEATURES.md)               | What the app does, compared with the website      | A feature ships                               |

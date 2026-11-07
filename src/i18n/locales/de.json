@@ -870,7 +870,22 @@
     "theme": "Design",
     "tripYouOpenSavedFor": "Die aktuelle Sammlung wird beim Öffnen automatisch offline gespeichert.",
     "unknown": "Unbekannt",
-    "youllNeedNewQrCode": "Danach brauchst du einen neuen QR-Code oder API-Key."
+    "youllNeedNewQrCode": "Danach brauchst du einen neuen QR-Code oder API-Key.",
+    "openSystemSettings": "Einstellungen öffnen",
+    "reminderCheckIn": "Check-in",
+    "reminderCheckOut": "Check-out",
+    "reminderCollectionStart": "Am Vorabend einer Sammlung",
+    "reminderDeparture": "Abfahrten",
+    "reminderEndOfDay": "Am Abend: besuchte Orte markieren",
+    "reminderOfflineReadiness": "Fehlende Offline-Dateien",
+    "reminderVisit": "Geplante Besuche",
+    "reminders": "Erinnerungen",
+    "remindersDenied": "Mitteilungen sind ausgeschaltet",
+    "remindersDeniedHint": "Erlaube Mitteilungen für Unterwegs in den Einstellungen des Telefons.",
+    "remindersHint": "Erinnerungen kommen aus der Offline-Kopie auf diesem Gerät, auch ohne Verbindung. Sie enthalten keine Buchungsnummern.",
+    "remindersOn": "Erinnerungen",
+    "travelActivity": "Reisetag auf dem Sperrbildschirm",
+    "travelActivityHint": "Zeigt die nächste Verbindung mit Countdown, sobald du die App am Reisetag öffnest."
   },
   "share": {
     "attachFiles": "Dateien anhängen",
@@ -956,7 +971,9 @@
   "transport": {
     "bookingWebsite": "Buchung / Website",
     "flightNumber": "Flugnummer",
-    "number": "Nummer"
+    "number": "Nummer",
+    "showOnLockScreen": "Auf dem Sperrbildschirm zeigen",
+    "hideFromLockScreen": "Vom Sperrbildschirm entfernen"
   },
   "transportEdit": {
     "arrivalMustAfterDeparture": "Die Ankunft muss nach der Abfahrt liegen.",
@@ -1044,5 +1061,54 @@
     "regions_one": "{count} Region",
     "regions_other": "{count} Regionen",
     "showCities": "Städte ansehen"
+  },
+  "glances": {
+    "asOf": "Stand: {time}",
+    "automatic": "Automatisch",
+    "checkInFrom": "Check-in ab {time}",
+    "checkOutBy": "Check-out bis {time}",
+    "dayOf": "Tag {n} von {total}",
+    "dayShort": "Tag",
+    "daysShort_one": "Tag",
+    "daysShort_other": "Tage",
+    "departure": "Abfahrt",
+    "inDays_one": "in {count} Tag",
+    "inDays_other": "in {count} Tagen",
+    "nextStay": "Nächste Unterkunft",
+    "nightAt": "Übernachtung: {name}",
+    "noCollection": "Keine anstehende Sammlung",
+    "noDeparture": "Keine anstehende Verbindung",
+    "noStay": "Keine anstehende Unterkunft",
+    "nothingPlanned": "Für heute ist nichts geplant.",
+    "startsOn": "{name} beginnt am {date}",
+    "startsTomorrow": "beginnt morgen",
+    "today": "Heute",
+    "tomorrow": "Morgen",
+    "tonight": "Heute Nacht: {name}",
+    "tonightLabel": "Heute Nacht"
+  },
+  "reminders": {
+    "channelCollections": "Sammlungen",
+    "channelStays": "Unterkünfte",
+    "channelTravel": "Abfahrten",
+    "channelVisits": "Orte",
+    "checkInFrom": "{name}: Check-in ab {time}",
+    "checkInToday": "{name}: heute Check-in",
+    "checkOutBy": "{name}: Check-out heute bis {time}",
+    "checkOutToday": "{name}: heute Check-out",
+    "departsAt": "{name} um {time}",
+    "downloadNow": "Jetzt laden",
+    "markVisited_one": "Ein Ort von heute ist noch nicht als besucht markiert.",
+    "markVisited_other": "{count} Orte von heute sind noch nicht als besucht markiert.",
+    "notOffline_one": "Ein Foto oder eine Datei ist noch nicht auf diesem Gerät.",
+    "notOffline_other": "{count} Fotos und Dateien sind noch nicht auf diesem Gerät.",
+    "openInMaps": "In Karten öffnen",
+    "startsTomorrow": "{name} beginnt morgen.",
+    "visitAt": "{name} um {time}"
+  },
+  "travelActivity": {
+    "arrived": "Angekommen",
+    "arrives": "Ankunft",
+    "departs": "Abfahrt"
   }
 }

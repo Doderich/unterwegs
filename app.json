@@ -2,7 +2,7 @@
   "expo": {
     "name": "Unterwegs",
     "slug": "unterwegs",
-    "version": "1.4.1",
+    "version": "1.5.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "unterwegs",
@@ -86,6 +86,119 @@
         "expo-location",
         {
           "locationWhenInUsePermission": "Unterwegs nutzt deinen Standort nur, wenn du einen Ort an deiner aktuellen Position anlegst."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "enableRemoteNotifications": false,
+          "icon": "./assets/images/android-icon-monochrome.png",
+          "color": "#2F7672"
+        }
+      ],
+      "./plugins/with-widget-languages",
+      [
+        "expo-widgets",
+        {
+          "enableAndroid": true,
+          "widgets": [
+            {
+              "name": "NextWidget",
+              "displayName": "Unterwegs",
+              "description": "Your next collection and what's on today",
+              "ios": {
+                "supportedFamilies": [
+                  "systemSmall",
+                  "systemMedium",
+                  "accessoryCircular",
+                  "accessoryRectangular",
+                  "accessoryInline"
+                ],
+                "configuration": {
+                  "title": "Collection",
+                  "description": "Which collection the widget shows",
+                  "parameters": {
+                    "collection": {
+                      "title": "Collection",
+                      "type": "enum",
+                      "default": "auto",
+                      "values": [
+                        {
+                          "name": "Automatic",
+                          "value": "auto"
+                        }
+                      ],
+                      "dynamic": true
+                    }
+                  }
+                }
+              },
+              "android": {
+                "targetCellWidth": 2,
+                "targetCellHeight": 2,
+                "minWidth": 110,
+                "minHeight": 110
+              }
+            },
+            {
+              "name": "TodayWidget",
+              "displayName": "Today",
+              "description": "Today's plan",
+              "ios": {
+                "supportedFamilies": ["systemMedium", "systemLarge"],
+                "configuration": {
+                  "title": "Collection",
+                  "description": "Which collection the widget shows",
+                  "parameters": {
+                    "collection": {
+                      "title": "Collection",
+                      "type": "enum",
+                      "default": "auto",
+                      "values": [
+                        {
+                          "name": "Automatic",
+                          "value": "auto"
+                        }
+                      ],
+                      "dynamic": true
+                    }
+                  }
+                }
+              },
+              "android": {
+                "targetCellWidth": 4,
+                "targetCellHeight": 2
+              }
+            },
+            {
+              "name": "StayWidget",
+              "displayName": "Accommodation",
+              "description": "Where you sleep tonight",
+              "ios": {
+                "supportedFamilies": ["systemSmall", "systemMedium"]
+              },
+              "android": {
+                "targetCellWidth": 2,
+                "targetCellHeight": 2,
+                "minWidth": 110,
+                "minHeight": 110
+              }
+            },
+            {
+              "name": "DepartureWidget",
+              "displayName": "Departure",
+              "description": "Your next transport",
+              "ios": {
+                "supportedFamilies": ["systemSmall", "systemMedium", "accessoryRectangular"]
+              },
+              "android": {
+                "targetCellWidth": 2,
+                "targetCellHeight": 2,
+                "minWidth": 110,
+                "minHeight": 110
+              }
+            }
+          ]
         }
       ]
     ],

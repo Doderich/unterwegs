@@ -19,6 +19,18 @@ const NATIVE = [
     text: null,
   },
   {
+    name: 'Peek emittables (expo-widgets, Android)',
+    license: 'MIT',
+    url: 'https://github.com/expo/expo/tree/main/packages/expo-widgets',
+    text: null,
+  },
+  {
+    name: 'Firebase Cloud Messaging (expo-notifications, Android; unused without a Firebase config)',
+    license: 'Apache-2.0',
+    url: 'https://github.com/firebase/firebase-android-sdk',
+    text: null,
+  },
+  {
     name: 'ReachabilitySwift',
     license: 'MIT',
     url: 'https://github.com/ashleymills/Reachability.swift',

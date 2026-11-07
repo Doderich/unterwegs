@@ -6,6 +6,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { Platform, useColorScheme } from 'react-native';
 
 import { SessionProvider, useSession } from '@/auth/session';
+import { useGlances } from '@/glances/useGlances';
 import { persistOptions, persister } from '@/data/persist';
 import { createQueryClient } from '@/data/queries';
 import { wipeLocalData } from '@/offline/wipe';
@@ -90,6 +91,7 @@ function NavigationTheme({ children }: { children: ReactNode }) {
 function RootStack() {
   const { session } = useSession();
   const restoring = useIsRestoring();
+  useGlances(session.status);
   useEffect(() => {
     if (session.status === 'loading' || restoring) return;
     const frame = requestAnimationFrame(reportAppStarted);
