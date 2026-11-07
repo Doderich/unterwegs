@@ -180,6 +180,23 @@ function entryRow(view: CollectionView, entry: DayEntry, zone: string, link: Lin
 
 const strip = ({ at: _at, ...row }: Row): GlanceRow => row;
 
+/** What the Next widget lists: what is still ahead today, else where the night is spent, so it is never empty. */
+function nextRows(view: CollectionView, rowsToday: Row[], today: string, now: Date, link: LinkFn): GlanceRow[] {
+  const rows = ahead(rowsToday, now).slice(0, 3).map(strip);
+  if (rows.length) return rows;
+  const night = view.days.find((d) => d.date === today)?.nightLodging;
+  if (!night) return [];
+  return [
+    {
+      symbol: 'bed.double.fill',
+      time: '',
+      title: tr('glances.tonight', { name: night.name }),
+      done: false,
+      url: link(`/lodging/${view.collection.id}/${night.id}`),
+    },
+  ];
+}
+
 /**
  * Rows still ahead, soonest first: timed ones until they start, then the untimed ones (all day, in plan order).
  * Locations already marked visited are done.
@@ -226,7 +243,7 @@ export function widgetGlances(focus: CachedCollection | null, now: Date, link: L
         : tr('glances.inDays', { count: daysUntil }),
     short: current ? `${dayNumber}/${view.days.length}` : String(daysUntil),
     shortCaption: current ? tr('glances.dayShort') : tr('glances.daysShort', { count: daysUntil }),
-    rows: current ? ahead(rowsToday, now).slice(0, 3).map(strip) : [],
+    rows: current ? nextRows(view, rowsToday, today, now, link) : [],
     footer,
     url,
   };
@@ -308,7 +325,6 @@ function emptyWidgets(link: LinkFn): WidgetGlances {
       day: '',
       items: [],
       index: 0,
-      nextLabel: '',
       footer: '',
       url,
     },
@@ -395,7 +411,6 @@ function departureProps(
     ...items[0],
     items,
     index: 0,
-    nextLabel: tr('glances.nextDeparture'),
     footer,
   };
 }

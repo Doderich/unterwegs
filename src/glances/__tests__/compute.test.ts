@@ -269,7 +269,6 @@ describe('widget buttons', () => {
     expect(departure.index).toBe(0);
     expect(departure.items[0]).toMatchObject({ departs: departure.departs, url: departure.url });
     expect(departure.items[1].url).not.toBe(departure.items[0].url);
-    expect(departure.nextLabel).toBe('Next');
   });
 
   it('gives the Today widget tomorrow, when tomorrow is a day of the collection', () => {

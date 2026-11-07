@@ -88,8 +88,6 @@ export type DepartureWidgetProps = Base & {
   items: DepartureItem[];
   /** Which item shows; set by the button, reset by the app on its next update. */
   index: number;
-  /** "Next" button label. */
-  nextLabel: string;
 };
 
 export type TravelActivityProps = {

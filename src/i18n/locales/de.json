@@ -1074,7 +1074,6 @@
     "departure": "Abfahrt",
     "inDays_one": "in {count} Tag",
     "inDays_other": "in {count} Tagen",
-    "nextDeparture": "Weiter",
     "nextStay": "Nächste Unterkunft",
     "nightAt": "Übernachtung: {name}",
     "noCollection": "Keine anstehende Sammlung",

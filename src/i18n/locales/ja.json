@@ -1050,7 +1050,6 @@
     "daysShort_other": "日",
     "departure": "出発",
     "inDays_other": "あと{count}日",
-    "nextDeparture": "次へ",
     "nextStay": "次の宿泊先",
     "nightAt": "宿泊: {name}",
     "noCollection": "予定のコレクションはありません",

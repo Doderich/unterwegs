@@ -49,15 +49,49 @@ const DepartureWidget = (props: DepartureWidgetProps, environment: WidgetEnviron
         widgetURL(d.url),
       ]}>
       <HStack spacing={4}>
-        <Image systemName={d.symbol as never} color={accent} size={12} />
-        <Text modifiers={[font({ textStyle: 'caption', weight: 'semibold' }), foregroundStyle(accent), lineLimit(1)]}>
-          {d.day ? `${props.label} · ${d.day}` : props.label}
+        <Image systemName={d.symbol as never} color={accent} size={11} />
+        <Text modifiers={[font({ textStyle: 'caption2', weight: 'bold' }), foregroundStyle(accent), lineLimit(1)]}>
+          {(d.day ? `${props.label} · ${d.day}` : props.label).toLocaleUpperCase()}
         </Text>
+      </HStack>
+      {d.title || d.route ? (
+        <Text modifiers={[font({ textStyle: 'headline' }), lineLimit(2)]}>{d.title || d.route}</Text>
+      ) : null}
+      {d.route && d.title && d.route !== d.title ? (
+        <Text
+          modifiers={[
+            font({ textStyle: 'caption' }),
+            foregroundStyle({ type: 'hierarchical', style: 'secondary' }),
+            lineLimit(1),
+          ]}>
+          {d.route}
+        </Text>
+      ) : null}
+      <Spacer />
+      <HStack alignment="lastTextBaseline" spacing={4}>
+        <VStack alignment="leading" spacing={0}>
+          {d.departs ? (
+            <Text modifiers={[font({ size: 28, weight: 'bold', design: 'rounded' }), monospacedDigit(), lineLimit(1)]}>
+              {d.departs}
+            </Text>
+          ) : null}
+          {d.arrives ? (
+            <Text
+              modifiers={[
+                font({ textStyle: 'caption' }),
+                foregroundStyle({ type: 'hierarchical', style: 'secondary' }),
+                monospacedDigit(),
+                lineLimit(1),
+              ]}>
+              {`→ ${d.arrives}`}
+            </Text>
+          ) : null}
+        </VStack>
         <Spacer />
         {more > 1 ? (
           <Button
             target="next"
-            label={props.nextLabel}
+            label={`${props.index + 1}/${more}`}
             systemImage="chevron.right"
             onPress={() => {
               const index = (props.index + 1) % more;
@@ -67,23 +101,6 @@ const DepartureWidget = (props: DepartureWidgetProps, environment: WidgetEnviron
           />
         ) : null}
       </HStack>
-      {d.route ? <Text modifiers={[font({ textStyle: 'headline' }), lineLimit(2)]}>{d.route}</Text> : null}
-      {d.title && d.title !== d.route ? (
-        <Text
-          modifiers={[
-            font({ textStyle: 'caption' }),
-            foregroundStyle({ type: 'hierarchical', style: 'secondary' }),
-            lineLimit(1),
-          ]}>
-          {d.title}
-        </Text>
-      ) : null}
-      <Spacer />
-      {d.departs ? (
-        <Text modifiers={[font({ textStyle: 'title3', weight: 'semibold' }), monospacedDigit(), lineLimit(1)]}>
-          {d.arrives ? `${d.departs} → ${d.arrives}` : d.departs}
-        </Text>
-      ) : null}
       {props.footer ? (
         <Text
           modifiers={[
