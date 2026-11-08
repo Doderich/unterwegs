@@ -1,8 +1,31 @@
 import type { ResolvedSharePayload } from 'expo-sharing';
 
 import type { UploadFile } from '@/api/client';
+import { cleanSharedLink } from './linkPreview';
 
 export type SharedFile = { key: string; media: 'image' | 'file'; file: UploadFile };
+
+/** The first http(s) address in a share. Tracking queries on a social link are dropped. */
+export function sharedUrl(payloads: ResolvedSharePayload[]): string | null {
+  for (const payload of payloads) {
+    const raw =
+      payload.contentType === 'website' && payload.contentUri
+        ? payload.contentUri
+        : payload.shareType === 'url'
+          ? payload.value
+          : (payload.value ?? '').match(/https?:\/\/[^\s]+/i)?.[0];
+    if (!raw) continue;
+    try {
+      const url = new URL(raw.replace(/[),.;]+$/, ''));
+      if (url.protocol !== 'http:' && url.protocol !== 'https:') continue;
+      cleanSharedLink(url);
+      return url.href;
+    } catch {
+      continue;
+    }
+  }
+  return null;
+}
 
 /** Only local files may be uploaded; text and web links are not attachments. */
 export function sharedFiles(payloads: ResolvedSharePayload[]): SharedFile[] {

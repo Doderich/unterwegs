@@ -9,6 +9,7 @@ import { useLocation, useLocationAction, useLocationFiles } from '@/data/useLoca
 import { tr } from '@/i18n';
 import { deviceTimeZone, formatDayLabel, visitTime } from '@/time/tz';
 import { useActionSheet } from '@/ui/ActionSheet';
+import { choosePhotos, takePhoto } from '@/ui/media';
 import { Host } from '@/ui/Host';
 import { LoadingRows } from '@/ui/LoadingRows';
 import { resourceHeaderRows } from '@/ui/ResourceHeader';
@@ -44,6 +45,32 @@ export default function PlaceScreen() {
         </FieldGroup>
       </Host>
     );
+  const addPhoto = () =>
+    sheet.open(tr('media.addPhoto'), [
+      {
+        label: tr('media.takePhoto'),
+        icon: 'camera',
+        onPress: () =>
+          void takePhoto().then((file) => file && action.run(() => client.edit.uploadImage('location', id, file))),
+      },
+      {
+        label: tr('media.fromLibrary'),
+        icon: 'library',
+        onPress: () =>
+          void choosePhotos().then((picked) =>
+            Promise.all(picked.map((file) => action.run(() => client.edit.uploadImage('location', id, file)))),
+          ),
+      },
+      {
+        label: tr('media.fromWikipediaOrWeb'),
+        icon: 'world',
+        onPress: () =>
+          router.push({
+            pathname: '/web-image/[collectionId]',
+            params: { collectionId: 'library', kind: 'location', objectId: id, name: place.name, library: '1' },
+          }),
+      },
+    ]);
   const addToCollection = () =>
     sheet.open(
       tr('places.addToCollection'),
@@ -82,6 +109,11 @@ export default function PlaceScreen() {
               subtitle: place.category?.display_name,
               icon: 'location',
             })}
+            {action.online ? (
+              <ListItem colors={rt.listColors} leading={<RowIcon name="addPhoto" />} onPress={addPhoto}>
+                {tr('media.addPhoto')}
+              </ListItem>
+            ) : null}
           </FieldGroup.Section>
           <FieldGroup.Section>
             {mapsRow(rt, {

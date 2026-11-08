@@ -10,6 +10,7 @@ import type { WebImage } from '@/api/schemas';
 import { useClient } from '@/auth/session';
 import { useCollectionView } from '@/data/queries';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
+import { useLocationAction } from '@/data/useLocation';
 import { getLanguage, tr } from '@/i18n';
 import { wikimediaThumb } from '@/ui/format';
 import { RowIcon, useRowTheme } from '@/ui/rows';
@@ -21,24 +22,29 @@ import { TextInput } from '@/ui/TextInput';
  * or any public image address. The server downloads the image. Online only.
  */
 export default function WebImageScreen() {
-  const { collectionId, kind, objectId, name } = useLocalSearchParams<{
+  const { collectionId, kind, objectId, name, library } = useLocalSearchParams<{
     collectionId: string;
     kind: MediaOwnerKind;
     objectId: string;
     name?: string;
+    /** A place in the library, not a location opened from a collection. */
+    library?: string;
   }>();
+  const standalone = library === '1';
   const client = useClient();
-  const { view } = useCollectionView(collectionId);
-  const edits = useCollectionEdits(view);
+  const { view } = useCollectionView(standalone ? '' : collectionId);
+  const edits = useCollectionEdits(standalone ? null : view);
+  const placeWrite = useLocationAction(objectId);
   const rt = useRowTheme();
   const { width } = useWindowDimensions();
   const [url, setUrl] = useState('');
   const [adding, setAdding] = useState<string | null>(null);
+  const canImport = standalone ? placeWrite.online : edits.can('importImages');
 
   const wiki = useQuery({
     queryKey: ['wikipedia-images', name, getLanguage()],
     queryFn: () => client.wikipediaImages(name!, getLanguage()),
-    enabled: !!name && edits.can('importImages'),
+    enabled: !!name && canImport,
     gcTime: 0,
     retry: false,
   });
@@ -46,7 +52,9 @@ export default function WebImageScreen() {
   const add = async (address: string, source: 'wikipedia' | 'url') => {
     if (adding || !address) return;
     setAdding(address);
-    const result = await edits.importImages(kind, objectId, [address], source);
+    const result = standalone
+      ? await placeWrite.run(() => client.edit.importImages(kind, objectId, [address], source))
+      : await edits.importImages(kind, objectId, [address], source);
     setAdding(null);
     if (result) router.back();
   };
@@ -74,7 +82,7 @@ export default function WebImageScreen() {
             <ListItem
               colors={rt.listColors}
               leading={<RowIcon name="add" />}
-              onPress={validUrl && edits.can('importImages') ? () => void add(typed, 'url') : undefined}>
+              onPress={validUrl && canImport ? () => void add(typed, 'url') : undefined}>
               {adding === typed && typed ? tr('common.adding') : tr('webImage.addImage')}
             </ListItem>
           </FieldGroup.Section>
@@ -82,7 +90,7 @@ export default function WebImageScreen() {
           {name ? (
             <FieldGroup.Section
               title={
-                !edits.can('importImages')
+                !canImport
                   ? tr('common.onlyWithInternet')
                   : wiki.isPending
                     ? tr('common.loading')

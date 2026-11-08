@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Alert } from 'react-native';
 
 import type { MediaOwnerKind } from '@/api/client';
-import { sharedFiles, uploadSharedFiles } from '@/data/incomingShare';
+import { sharedFiles, sharedUrl, uploadSharedFiles } from '@/data/incomingShare';
 import { useCollections, useCollectionView } from '@/data/queries';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { tr } from '@/i18n';
@@ -49,6 +49,8 @@ function ShareForm({ incoming, retry }: { incoming: UseIncomingShareResult; retr
   const completed = useRef(new Set<string>());
   const [done, setDone] = useState(0);
   const files = sharedFiles(incoming.resolvedSharedPayloads);
+  const url = sharedUrl(incoming.resolvedSharedPayloads);
+  const leftover = incoming.resolvedSharedPayloads.length - files.length - (url ? 1 : 0);
   const select = useSelect(rt, {
     title: tr('share.chooseTrip'),
     label: tr('common.trip'),
@@ -79,6 +81,11 @@ function ShareForm({ incoming, retry }: { incoming: UseIncomingShareResult; retr
     if (router.canGoBack()) router.back();
     else router.replace('/');
   };
+  const saveAsPlace = () => {
+    if (!url || busy.current) return;
+    incoming.clearSharedPayloads();
+    router.replace({ pathname: '/place-edit', params: { link: url } });
+  };
   const attach = async () => {
     if (!target || !c || busy.current || !edits.canEdit) return;
     busy.current = true;
@@ -108,7 +115,13 @@ function ShareForm({ incoming, retry }: { incoming: UseIncomingShareResult; retr
   };
   return (
     <>
-      <Stack.Screen options={{ title: tr('share.attachFiles'), gestureEnabled: !saving, headerBackVisible: !saving }} />
+      <Stack.Screen
+        options={{
+          title: files.length === 0 && url ? tr('share.saveAsPlace') : tr('share.attachFiles'),
+          gestureEnabled: !saving,
+          headerBackVisible: !saving,
+        }}
+      />
       <Host style={{ flex: 1 }}>
         <FieldGroup>
           <FieldGroup.Section title={tr('share.received')}>
@@ -117,6 +130,7 @@ function ShareForm({ incoming, retry }: { incoming: UseIncomingShareResult; retr
               <Text textStyle={{ color: rt.colors.danger }}>{tr('share.fileCouldNotRead')}</Text>
             ) : null}
             {incoming.error ? <Button label={tr('common.tryAgain')} onPress={retry} /> : null}
+            {url ? infoRow(rt, { icon: 'link', value: url, label: tr('share.sharedLink') }) : null}
             {files.map((f, index) =>
               infoRow(rt, {
                 key: f.key,
@@ -125,12 +139,15 @@ function ShareForm({ incoming, retry }: { incoming: UseIncomingShareResult; retr
                 label: index < done ? tr('share.saved') : f.file.type,
               }),
             )}
-            {!incoming.isResolving && !incoming.error && files.length === 0 ? (
+            {url && !saving ? (
+              <ListItem colors={rt.listColors} leading={<RowIcon name="add" />} onPress={saveAsPlace}>
+                {tr('share.saveAsPlace')}
+              </ListItem>
+            ) : null}
+            {!incoming.isResolving && !incoming.error && files.length === 0 && !url ? (
               <Text>{tr('share.sharePdfOrPhotoWith')}</Text>
             ) : null}
-            {files.length < incoming.resolvedSharedPayloads.length ? (
-              <Text>{tr('share.onlyPdfsPhotosCanAttached')}</Text>
-            ) : null}
+            {leftover > 0 ? <Text>{tr('share.onlyPdfsPhotosCanAttached')}</Text> : null}
           </FieldGroup.Section>
           {files.length > 0 && !saving && done === 0 ? <FieldGroup.Section>{select.row}</FieldGroup.Section> : null}
           {collections.isError && !collections.data ? (
@@ -190,18 +207,24 @@ function ShareForm({ incoming, retry }: { incoming: UseIncomingShareResult; retr
             </>
           ) : null}
           <FieldGroup.Section>
-            {target ? <Text>{tr('share.attachName', { name: target.name })}</Text> : null}
-            {done ? <Text>{tr('common.doneOfTotalDone', { done, total: files.length })}</Text> : null}
-            {!edits.canEdit ? <Text>{tr('share.youNeedInternetConnectionAttach')}</Text> : null}
-            <Button
-              label={saving ? tr('share.uploading') : tr('common.attach')}
-              disabled={saving || !target || !edits.canEdit || !files.length}
-              onPress={() => void attach()}
-            />
+            {files.length > 0 ? (
+              <>
+                {target ? <Text>{tr('share.attachName', { name: target.name })}</Text> : null}
+                {done ? <Text>{tr('common.doneOfTotalDone', { done, total: files.length })}</Text> : null}
+                {!edits.canEdit ? <Text>{tr('share.youNeedInternetConnectionAttach')}</Text> : null}
+                <Button
+                  label={saving ? tr('share.uploading') : tr('common.attach')}
+                  disabled={saving || !target || !edits.canEdit}
+                  onPress={() => void attach()}
+                />
+              </>
+            ) : null}
             <Button label={tr('common.cancel')} variant="text" disabled={saving} onPress={close} />
-            <FieldGroup.SectionFooter>
-              <Sub>{tr('share.ifUploadFailsFilesStay')}</Sub>
-            </FieldGroup.SectionFooter>
+            {files.length > 0 ? (
+              <FieldGroup.SectionFooter>
+                <Sub>{tr('share.ifUploadFailsFilesStay')}</Sub>
+              </FieldGroup.SectionFooter>
+            ) : null}
           </FieldGroup.Section>
         </FieldGroup>
       </Host>

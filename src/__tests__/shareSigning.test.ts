@@ -5,8 +5,10 @@ const withShareSigning = require('../../plugins/with-share-signing');
 
 it('configures App Groups and the build team for both app and share extension', () => {
   const attributes = { TargetAttributes: {} };
-  const appSettings = { PRODUCT_BUNDLE_IDENTIFIER: 'com.example.unterwegs' };
-  const shareSettings = { PRODUCT_BUNDLE_IDENTIFIER: 'com.example.unterwegs.expo-sharing-extension' };
+  const appSettings: Record<string, string> = { PRODUCT_BUNDLE_IDENTIFIER: 'com.example.unterwegs' };
+  const shareSettings: Record<string, string> = {
+    PRODUCT_BUNDLE_IDENTIFIER: '"com.example.unterwegs.expo-sharing-extension"',
+  };
   const project = {
     getFirstProject: () => ({ firstProject: { attributes } }),
     pbxNativeTargetSection: () => ({
@@ -19,7 +21,7 @@ it('configures App Groups and the build team for both app and share extension', 
       share: { buildSettings: shareSettings },
     }),
   };
-  const apply = withShareSigning({ ios: { appleTeamId: 'EXAMPLETEAM' } });
+  const apply = withShareSigning({ name: 'Unterwegs', ios: { appleTeamId: 'EXAMPLETEAM' } });
   apply({ modResults: project, modRequest: { projectName: 'Unterwegs' } });
   const expected = {
     ProvisioningStyle: 'Automatic',
@@ -28,7 +30,12 @@ it('configures App Groups and the build team for both app and share extension', 
   };
   expect(attributes.TargetAttributes).toEqual({ app: expected, share: expected });
   expect(appSettings).toMatchObject({ DEVELOPMENT_TEAM: 'EXAMPLETEAM', CODE_SIGN_STYLE: 'Automatic' });
-  expect(shareSettings).toMatchObject({ DEVELOPMENT_TEAM: 'EXAMPLETEAM', CODE_SIGN_STYLE: 'Automatic' });
+  expect(appSettings.INFOPLIST_KEY_CFBundleDisplayName).toBeUndefined();
+  expect(shareSettings).toMatchObject({
+    DEVELOPMENT_TEAM: 'EXAMPLETEAM',
+    CODE_SIGN_STYLE: 'Automatic',
+    INFOPLIST_KEY_CFBundleDisplayName: 'Unterwegs',
+  });
 });
 
 it('registers the signing fix before expo-sharing so it runs after the extension is generated', () => {

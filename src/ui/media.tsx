@@ -44,6 +44,33 @@ export async function enqueueLocalFile(
   return edits.uploadAttachment(kind, objectId, item.file, attachmentDisplayName(item.file.name));
 }
 
+/** One photo from the camera, already shrunk. Null when the person cancels or the camera is unavailable. */
+export async function takePhoto(): Promise<UploadFile | null> {
+  const permission = await ImagePicker.requestCameraPermissionsAsync();
+  if (!permission.granted) {
+    Alert.alert(tr('media.noAccessCamera'), tr('common.allowAccessInSettings'), [
+      { text: tr('common.cancel'), style: 'cancel' },
+      { text: tr('common.settings'), onPress: () => void Linking.openSettings() },
+    ]);
+    return null;
+  }
+  const result = await ImagePicker.launchCameraAsync({ mediaTypes: ['images'], quality: 1 });
+  if (result.canceled || !result.assets[0]) return null;
+  return shrinkPhoto(result.assets[0]);
+}
+
+/** Up to five photos from the library, already shrunk. Empty when the person cancels. */
+export async function choosePhotos(): Promise<UploadFile[]> {
+  const result = await ImagePicker.launchImageLibraryAsync({
+    mediaTypes: ['images'],
+    allowsMultipleSelection: true,
+    selectionLimit: 5,
+    quality: 1,
+  });
+  if (result.canceled) return [];
+  return Promise.all(result.assets.map(shrinkPhoto));
+}
+
 /** Shrinks a picked photo to JPEG with at most `MAX_EDGE` px on the long side. */
 export async function shrinkPhoto(asset: { uri: string; width: number; height: number }): Promise<UploadFile> {
   const context = ImageManipulator.manipulate(asset.uri);
@@ -76,29 +103,11 @@ export function useMediaUploads(
   };
 
   const fromCamera = async () => {
-    const permission = await ImagePicker.requestCameraPermissionsAsync();
-    if (!permission.granted) {
-      Alert.alert(tr('media.noAccessCamera'), tr('common.allowAccessInSettings'), [
-        { text: tr('common.cancel'), style: 'cancel' },
-        { text: tr('common.settings'), onPress: () => void Linking.openSettings() },
-      ]);
-      return;
-    }
-    const result = await ImagePicker.launchCameraAsync({ mediaTypes: ['images'], quality: 1 });
-    if (result.canceled) return;
-    uploadPhotos(await Promise.all(result.assets.map(shrinkPhoto)));
+    const file = await takePhoto();
+    if (file) uploadPhotos([file]);
   };
 
-  const fromLibrary = async () => {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images'],
-      allowsMultipleSelection: true,
-      selectionLimit: 5,
-      quality: 1,
-    });
-    if (result.canceled) return;
-    uploadPhotos(await Promise.all(result.assets.map(shrinkPhoto)));
-  };
+  const fromLibrary = async () => uploadPhotos(await choosePhotos());
 
   const attachFile = async () => {
     const result = await DocumentPicker.getDocumentAsync({ type: '*/*', copyToCacheDirectory: true });

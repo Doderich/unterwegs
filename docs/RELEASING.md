@@ -20,9 +20,22 @@ The signed APK, checksum and matching R8/JavaScript maps are retained under `bui
 
 ## Next native version
 
-None pending: the 1.4.1 source (security-audit fixes: Android backup off, unneeded Android permissions blocked, user-installed certificates trusted) is built and live on both platforms, see below. The next native change needs a `version` bump.
+**1.5.1** is not built yet. The share extension also accepts a link (`text/plain` and a web URL), so Unterwegs can appear in the system share sheet. That is a native change: the 1.5.0 builds do not receive it over the air.
 
 ## Current release
+
+Release record, **08.11.2026** (runtime **1.5.0**):
+
+| Platform | Version / build          | Result                                                                                                                                                                                                                                                                                     |
+| -------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Android  | **1.5.0-29902077**       | Latest GitHub release, available through Obtainium. ARM64 APK **33,207,842 bytes**, universal APK **78,447,416 bytes**. Published SHA-256 digests match the local APKs (`4eb51eea…` and `fba27f20…`); both certificates match the upload key. No server preset (`--public`).               |
+| iOS      | **1.5.0 (202611080757)** | Archive and App Store Connect upload succeeded. Processing and TestFlight tester availability are not independently confirmed. No preset. Apple again reported non-blocking missing vendor-framework dSYM warnings. Archive: `build/testflight/production-1.5.0-202611080757/`.          |
+
+Both builds are `035f3f4` (merge of PR #12). This is a native release, so 1.4.1 builds do not receive it over the air. It adds widgets, reminders and the travel-day Live Activity, offline edits through the outbox, the design pass, and the shared object forms, day plan, map chrome and transportation titles. Preflight: typecheck, **64 suites / 484 tests**, lint (one existing warning). The JavaScript was checked on the iOS simulator inside the test collection; the release binaries have not had a separate installed-device pass. Checksums and matching R8/JavaScript maps are retained under `build/android/`.
+
+Over-the-air update on **08.11.2026**, 08:07 UTC: `035f3f4` published for both platforms to branch `production` with `--public` (ios `17941252622541`, android `17941252622542`, group `e545ac09-6bc9-4ab1-b656-a1fb58d8b3d7`). It reaches 1.5.0 builds on the next start after download. The published bundles contain no server preset.
+
+### 1.4.1 release
 
 Release record, **07.11.2026** (runtime **1.4.1**):
 
@@ -124,7 +137,7 @@ Before a native release, run `npm run licenses` and commit `src/legal/licenses.j
 
   `xcrun devicectl list devices` shows the udid.
 
-- Keep `./plugins/with-share-signing` before `expo-sharing` in the plugin list so generated extension targets receive the team and App Groups signing settings.
+- Keep `./plugins/with-share-signing` before `expo-sharing` in the plugin list. Listed first, its Xcode edit runs after the extension target exists: it sets the team and App Groups signing, and names the extension Unterwegs in the share sheet.
 - After native changes that `expo prebuild` can't merge (removed plugins, SDK upgrade), run `npm run native:clean` first. It deletes `android/local.properties`; Gradle then finds the SDK through `ANDROID_HOME`.
 
 ## TestFlight (iOS)
