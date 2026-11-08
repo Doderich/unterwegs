@@ -128,7 +128,7 @@ These need a relay that polls AdventureLog for each user and sends through APNs/
 
 ## Also built
 
-- **Cover photo** in the Next widget (medium size on iOS, a strip on Android). `src/glances/cover.ts` copies the cached cover, or the first location photo, as a 600 px JPEG into `widgetsDirectory`. Without a cached photo there is none: widgets have no API key.
+- **Cover photo** in the Next widget (medium size on iOS, a strip on Android). `src/glances/cover.ts` copies the cached cover, or the first location photo, as a 600 px JPEG into `widgetsDirectory`. Without a cached photo there is none: widgets have no API key. On a clear or tinted Home Screen the photo stays full color (`widgetAccentedRenderingMode`); otherwise iOS paints the opaque JPEG as a solid white block.
 - **Reminder action buttons.** "Open in Maps" on reminders with a place (departure point, lodging, location; it follows Settings → Maps), and "Download now" on offline readiness. "Download now" opens the collection, which downloads its files by itself within 45 days of the start.
 - **"Show on Lock Screen" button** on a transportation (iOS), shown until 30 min after arrival. It pins that transportation (`src/glances/pinnedTravel.ts`): it shows from now on, wins over the automatic choice, and shows even with the automatic Live Activity turned off. It unpins itself after arrival.
 - **Collection picker** for Next and Today on iOS 17+ (long-press → Edit Widget). It offers "Automatic" plus every current or upcoming collection on the device; the props carry each of them (`Pickable` in `src/glances/types.ts`).
