@@ -6,7 +6,10 @@ import type { ReactElement } from 'react';
 import type { Checklist, Image, Lodging, Note, Transportation } from '@/api/schemas';
 import { firstImage } from '@/data/images';
 import type { Day, DayEntry, CollectionView } from '@/data/selectors';
+import { categoryLabel } from '@/data/categories';
+import { transportTitle } from '@/data/transportName';
 import { tr } from '@/i18n';
+import { arrivalZone, departureZone, lodgingZone } from '@/time/ownZone';
 import { formatDateTime, formatSpan, formatTime, localDate, zoned } from '@/time/tz';
 
 import { lodgingLabel, transportIcon, transportLabel } from './icons';
@@ -15,27 +18,16 @@ import { staySubtitle } from './stay';
 import { Thumb } from './Thumb';
 import { Sub } from './Sub';
 
-export function transportTitle(t: Transportation): string {
-  if (t.from_location && t.to_location) {
-    const from = t.start_code ? `${t.from_location} (${t.start_code})` : t.from_location;
-    const to = t.end_code ? `${t.to_location} (${t.end_code})` : t.to_location;
-    return `${from} → ${to}`;
-  }
-  return t.name;
-}
-
 /** `14:00 Deutschland → 10:45 (+1) · Flug LH716` */
 export function transportSubtitle(t: Transportation, collectionZone: string): string {
-  const start = t.date ? zoned(t.date, t.start_timezone ?? collectionZone, collectionZone) : null;
-  const end = t.end_date
-    ? zoned(t.end_date, t.end_timezone ?? t.start_timezone ?? collectionZone, collectionZone)
-    : null;
+  const start = t.date ? zoned(t.date, departureZone(t, collectionZone), collectionZone) : null;
+  const end = t.end_date ? zoned(t.end_date, arrivalZone(t, collectionZone), collectionZone) : null;
   const label = [transportLabel(t.type), t.flight_number].filter(Boolean).join(' ');
   return [start ? formatSpan(start, end) : null, label].filter(Boolean).join(' · ');
 }
 
 export function lodgingSubtitle(l: Lodging, day: string | null, collectionZone: string): string {
-  const tz = l.timezone ?? collectionZone;
+  const tz = lodgingZone(l, collectionZone);
   const parts: string[] = [];
   if (day && l.check_in && localDate(l.check_in, tz) === day)
     parts.push(tr('entries.checkinTime', { time: formatTime(l.check_in, tz) }));
@@ -173,9 +165,7 @@ export function entryRow(
   }
   const loc = entry.location;
   const time = entry.startUtc ? formatTime(entry.startUtc, view.timeZone) : null;
-  const category = loc.category
-    ? `${loc.category.icon ?? ''} ${loc.category.display_name ?? loc.category.name}`.trim()
-    : null;
+  const category = loc.category ? categoryLabel(loc.category) : null;
   return (
     <ListItem
       key={entry.key}

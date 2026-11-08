@@ -1,0 +1,27 @@
+/** Cache keys of every server read; the outbox updates collections under these too. */
+export const queryKeys = {
+  locations: ['locations'] as const,
+  location: (id: string) => ['location', id] as const,
+  collections: ['collections'] as const,
+  collection: (id: string) => ['collection', id] as const,
+  user: ['user'] as const,
+  invites: ['invites'] as const,
+  categories: ['categories'] as const,
+  users: ['users'] as const,
+  profile: (username: string) => ['profile', username] as const,
+  profileStats: (username: string) => ['profile', username, 'stats'] as const,
+  categoriesWithCount: ['categories', 'with-count'] as const,
+  archived: ['collections-archived'] as const,
+  calendar: ['calendar'] as const,
+  integrations: ['integrations'] as const,
+  apiKeys: ['account-keys'] as const,
+  world: {
+    stats: ['world', 'stats'] as const,
+    pins: ['world', 'pins'] as const,
+    countries: ['world', 'countries'] as const,
+    regions: (code: string) => ['world', 'regions', code] as const,
+    regionVisits: (code: string) => ['world', 'region-visits', code] as const,
+    cities: (regionId: string) => ['world', 'cities', regionId] as const,
+    cityVisits: (regionId: string) => ['world', 'city-visits', regionId] as const,
+  },
+};

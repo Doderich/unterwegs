@@ -1,34 +1,27 @@
-import { suggestedZone } from '@/time/placeZone';
 import { FieldGroup, ListItem } from '@expo/ui';
-import { router, Stack, useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Alert } from 'react-native';
 
 import type { LodgingInput } from '@/api/client';
-import { realIdFor } from '@/data/outbox';
-import { useCollectionView } from '@/data/queries';
-import { changedFields, nearestZone } from '@/data/selectors';
+import { findItem, useCollectionView } from '@/data/queries';
+import { zoneOn } from '@/data/selectors';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
+import { confirmDeleteFromEditor, leaveAfterSave } from '@/ui/editorExit';
 import { tr } from '@/i18n';
 import { FormHost } from '@/ui/FormHost';
 import { useMarkdownEditor } from '@/ui/MarkdownEditor';
 import { useInitialInputFocus } from '@/ui/useInitialInputFocus';
+import { suggestionZones } from '@/time/suggestionZones';
 import { deviceTimeZone, formatDateTime } from '@/time/tz';
-import { utcToZoned, zonedToUtc } from '@/time/zonedInput';
+import { endsAfterStart, utcToZoned } from '@/time/zonedInput';
 import { useActionSheet } from '@/ui/ActionSheet';
-import { useDateTimeRow, useZoneSelect } from '@/ui/DateTimeRow';
-import {
-  attachmentEditRows,
-  currencyOptions,
-  defaultCurrency,
-  nextDate,
-  parsePrice,
-  publicRow,
-  ratingOptions,
-  ratingStars,
-} from '@/ui/forms';
+import { useZoneSelect } from '@/ui/DateTimeRow';
+import { defaultCurrency, nextDate, parsePrice, ratingStars } from '@/ui/forms';
 import { androidToolbarIcon, lodgingTypeLabel } from '@/ui/icons';
 import { useMediaUploads } from '@/ui/media';
+import { objectEditorTail, priceLinkFields, useCurrencySelect, useRatingSelect } from '@/ui/objectForm';
+import { fieldsFromPick } from '@/ui/pickedPlace';
 import { usePlaceSearch } from '@/ui/PlaceSearch';
 import { RowIcon, useRowTheme } from '@/ui/rows';
 import { useSelect } from '@/ui/Select';
@@ -36,6 +29,7 @@ import { useTextPrompt } from '@/ui/TextPrompt';
 import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { TextInput } from '@/ui/TextInput';
+import { useZonedMoment } from '@/ui/zonedMoment';
 
 const TYPES = [
   'hotel',
@@ -66,11 +60,10 @@ export default function LodgingEditScreen() {
   const sheet = useActionSheet(rt);
   const prompt = useTextPrompt(rt);
   const places = usePlaceSearch(rt, { withCurrentPosition: false });
-  const lodging = itemId ? view?.collection.lodging.find((l) => l.id === realIdFor(itemId)) : undefined;
+  const lodging = view ? findItem(view.collection, 'lodging', itemId) : undefined;
 
   const init = (() => {
-    const zone =
-      lodging?.timezone ?? view?.days.find((d) => d.date === day)?.nightLodging?.timezone ?? view?.timeZone ?? 'UTC';
+    const zone = lodging?.timezone ?? (view ? zoneOn(view, day) : 'UTC');
     const inDate = day ?? view?.days[0]?.date ?? '2000-01-01';
     const checkIn = lodging?.check_in ? utcToZoned(lodging.check_in, zone) : { date: inDate, time: '15:00' };
     const checkOut = lodging?.check_out
@@ -83,10 +76,18 @@ export default function LodgingEditScreen() {
   const [name, setName] = useState(lodging?.name ?? '');
   const [type, setType] = useState(lodging?.type ?? 'hotel');
   const [zone, setZone] = useState(init.zone);
-  const [inDate, setInDate] = useState(init.checkIn.date);
-  const [inTime, setInTime] = useState(init.checkIn.time);
-  const [outDate, setOutDate] = useState(init.checkOut.date);
-  const [outTime, setOutTime] = useState(init.checkOut.time);
+  const inMoment = useZonedMoment(rt, {
+    initial: init.checkIn,
+    zone,
+    dateLabel: tr('common.checkin'),
+    timeLabel: tr('lodgingEdit.checkinFrom'),
+  });
+  const outMoment = useZonedMoment(rt, {
+    initial: init.checkOut,
+    zone,
+    dateLabel: tr('common.checkout'),
+    timeLabel: tr('lodgingEdit.checkoutBy'),
+  });
   const [reservation, setReservation] = useState(lodging?.reservation_number ?? '');
   const [price, setPrice] = useState(lodging?.price ? String(lodging.price) : '');
   const [currency, setCurrency] = useState(
@@ -116,61 +117,23 @@ export default function LodgingEditScreen() {
   const zoneSelect = useZoneSelect(rt, {
     label: tr('common.timeZone'),
     value: zone,
-    suggestions: view
-      ? [view.timeZone, ...view.collection.lodging.flatMap((l) => (l.timezone ? [l.timezone] : [])), deviceTimeZone()]
-      : [],
-    at: `${inDate}T12:00:00Z`,
+    suggestions: view ? suggestionZones(view.timeZone, view.collection, deviceTimeZone()) : [],
+    at: `${inMoment.date}T12:00:00Z`,
     onChange: setZone,
   });
-  const currencySelect = useSelect(rt, {
-    title: tr('common.currency'),
-    label: tr('common.currency'),
-    value: currency,
-    onChange: setCurrency,
-    options: currencyOptions(currency),
-  });
-  const ratingSelect = useSelect(rt, {
-    title: tr('common.rating'),
-    label: tr('common.rating'),
-    value: String(rating),
-    onChange: (v) => setRating(Number(v)),
-    options: ratingOptions(),
-  });
-  const inDateRow = useDateTimeRow(rt, {
-    label: tr('common.checkin'),
-    value: inDate,
-    mode: 'date',
-    onChange: setInDate,
-  });
-  const inTimeRow = useDateTimeRow(rt, {
-    label: tr('lodgingEdit.checkinFrom'),
-    value: inTime,
-    mode: 'time',
-    onChange: setInTime,
-  });
-  const outDateRow = useDateTimeRow(rt, {
-    label: tr('common.checkout'),
-    value: outDate,
-    mode: 'date',
-    onChange: setOutDate,
-  });
-  const outTimeRow = useDateTimeRow(rt, {
-    label: tr('lodgingEdit.checkoutBy'),
-    value: outTime,
-    mode: 'time',
-    onChange: setOutTime,
-  });
+  const currencySelect = useCurrencySelect(rt, currency, setCurrency);
+  const ratingSelect = useRatingSelect(rt, rating, setRating);
   const media = useMediaUploads(rt, edits, sheet, 'lodging', itemId ?? '');
 
   if (!view || (itemId && !lodging)) return null;
 
-  const checkIn = zonedToUtc({ date: inDate, time: inTime }, zone).iso;
-  const checkOut = zonedToUtc({ date: outDate, time: outTime }, zone).iso;
+  const checkIn = inMoment.iso;
+  const checkOut = outMoment.iso;
   const reference = zone === view.timeZone ? null : view.timeZone;
 
   const save = async () => {
     if (!name.trim() || saving) return;
-    if (Date.parse(checkOut) <= Date.parse(checkIn)) {
+    if (!endsAfterStart(checkIn, checkOut)) {
       Alert.alert(tr('common.checkTime'), tr('lodgingEdit.checkoutMustAfterCheckin'));
       return;
     }
@@ -197,45 +160,29 @@ export default function LodgingEditScreen() {
       is_public: isPublic,
     };
     setSaving(true);
-    const saved = lodging
-      ? await edits.saveLodging(lodging.id, { name: input.name, ...changedFields(lodging, input) })
-      : await edits.saveLodging(null, input);
+    const saved = await edits.saveLodging(lodging ? lodging.id : null, input);
     setSaving(false);
     if (!saved) return;
-    if (fromShare === '1')
-      router.dismissTo({ pathname: '/share', params: { collectionId, objectId: saved.id, kind: 'lodging' } });
-    else if (lodging) router.back();
-    // A new lodging opens its detail screen, where photos and files can be added.
-    else router.replace({ pathname: '/lodging/[collectionId]/[itemId]', params: { collectionId, itemId: saved.id } });
+    leaveAfterSave('lodging', { collectionId, savedId: saved.id, created: !lodging, fromShare: fromShare === '1' });
   };
 
   const searchAddress = () =>
     places.start(tr('lodgingEdit.searchAddress'), (p) => {
+      const picked = fieldsFromPick(p, view.collection);
       setPlaceRevision((revision) => revision + 1);
-      setAddress(p.address ?? p.name);
-      if (!name.trim()) setName(p.name);
-      setCoords({ latitude: p.latitude, longitude: p.longitude });
-      const guess = suggestedZone(p.latitude, p.longitude) ?? nearestZone(view.collection, p.latitude, p.longitude);
-      if (guess && guess !== zone) setZone(guess);
+      setAddress(picked.address ?? picked.name);
+      if (!name.trim()) setName(picked.name);
+      setCoords({ latitude: picked.latitude, longitude: picked.longitude });
+      if (picked.zone && picked.zone !== zone) setZone(picked.zone);
     });
 
   const confirmDelete = () =>
     lodging &&
-    Alert.alert(
-      tr('common.deleteNameConfirm', { name: lodging.name }),
-      tr('common.includingPhotosAttachmentsPlanEntries'),
-      [
-        { text: tr('common.cancel'), style: 'cancel' },
-        {
-          text: tr('common.delete'),
-          style: 'destructive',
-          onPress: async () => {
-            router.dismiss(2);
-            await edits.deleteObject('lodging', lodging.id);
-          },
-        },
-      ],
-    );
+    confirmDeleteFromEditor({
+      name: lodging.name,
+      consequence: tr('common.includingPhotosAttachmentsPlanEntries'),
+      onDelete: () => edits.deleteObject('lodging', lodging.id),
+    });
 
   return (
     <>
@@ -284,10 +231,8 @@ export default function LodgingEditScreen() {
                 {tr('common.placeSearchSuggestsTimeZone')}
               </Text>
             </FieldGroup.SectionFooter>
-            {inDateRow.row}
-            {inTimeRow.row}
-            {outDateRow.row}
-            {outTimeRow.row}
+            {inMoment.rows}
+            {outMoment.rows}
             {reference ? (
               <FieldGroup.SectionFooter>
                 <Text textStyle={{ fontSize: 13, color: colors.secondary }}>
@@ -302,65 +247,47 @@ export default function LodgingEditScreen() {
           </FieldGroup.Section>
 
           <FieldGroup.Section title={tr('common.booking')}>
-            <TextInput
-              defaultValue={reservation}
-              onChangeText={setReservation}
-              placeholder={tr('common.bookingNumber')}
-              autoCapitalize="characters"
-              autoCorrect={false}
-            />
-            <TextInput
-              defaultValue={price}
-              onChangeText={setPrice}
-              placeholder={tr('common.price')}
-              keyboardType="decimal-pad"
-            />
-            {currencySelect.row}
-            <TextInput
-              defaultValue={link}
-              onChangeText={setLink}
-              placeholder={tr('common.linkHttps')}
-              keyboardType="url"
-              autoCapitalize="none"
-              autoCorrect={false}
-            />
+            {priceLinkFields({
+              leading: (
+                <TextInput
+                  defaultValue={reservation}
+                  onChangeText={setReservation}
+                  placeholder={tr('common.bookingNumber')}
+                  autoCapitalize="characters"
+                  autoCorrect={false}
+                />
+              ),
+              price,
+              onPrice: setPrice,
+              pricePlaceholder: tr('common.price'),
+              currencyRow: currencySelect.row,
+              link,
+              onLink: setLink,
+            })}
           </FieldGroup.Section>
 
-          <FieldGroup.Section title={tr('common.visibility')}>
-            {publicRow(rt, isPublic, setIsPublic)}
-          </FieldGroup.Section>
-
-          <FieldGroup.Section title={tr('common.rating')}>{ratingSelect.row}</FieldGroup.Section>
-
-          <FieldGroup.Section title={tr('common.notes')}>{markdown.row}</FieldGroup.Section>
-
-          {lodging ? (
-            <FieldGroup.Section title={tr('common.attachments')}>
-              {attachmentEditRows(rt, lodging.attachments, sheet, prompt, edits)}
-              {media.fileRows}
-            </FieldGroup.Section>
-          ) : null}
-
-          {lodging ? (
-            <FieldGroup.Section>
-              <ListItem
-                colors={{ ...rt.listColors, contentColor: colors.danger }}
-                leading={<RowIcon name="delete" color={colors.danger} />}
-                onPress={confirmDelete}>
-                <Text textStyle={{ color: colors.danger }}>{tr('lodgingEdit.deleteStay')}</Text>
-              </ListItem>
-            </FieldGroup.Section>
-          ) : null}
+          {objectEditorTail(rt, colors, {
+            isPublic,
+            onPublic: setIsPublic,
+            ratingRow: ratingSelect.row,
+            notes: markdown.row,
+            attachments: lodging ? lodging.attachments : null,
+            attachmentTitle: tr('common.attachments'),
+            sheet,
+            prompt,
+            edits,
+            fileRows: media.fileRows,
+            deleteLabel: tr('lodgingEdit.deleteStay'),
+            onDelete: lodging ? confirmDelete : undefined,
+          })}
         </FieldGroup>
       </FormHost>
       {typeSelect.sheet}
       {zoneSelect.sheet}
       {currencySelect.sheet}
       {ratingSelect.sheet}
-      {inDateRow.sheet}
-      {inTimeRow.sheet}
-      {outDateRow.sheet}
-      {outTimeRow.sheet}
+      {inMoment.sheets}
+      {outMoment.sheets}
       {sheet.sheet}
       {prompt.sheet}
       {places.sheet}

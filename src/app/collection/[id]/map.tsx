@@ -1,27 +1,27 @@
-import { MapCanvas } from '@/ui/MapCanvas';
+import { MapFrame } from '@/ui/MapFrame';
+import { PointLayer } from '@/ui/mapPoints';
 import { useScreenBackground } from '@/ui/useScreenBackground';
 import { MAP_STYLE } from '@/maps/regions';
 import { useOfflineMaps } from '@/maps/useOfflineMaps';
 import { useOnline } from '@/data/useOnlineAction';
-import { BottomSheet, Column, Row, Spacer } from '@expo/ui';
+import { Column, Row, Spacer } from '@expo/ui';
 import { frame } from '@expo/ui/swift-ui/modifiers';
-import { Camera, GeoJSONSource, Layer } from '@maplibre/maplibre-react-native';
+import { GeoJSONSource, Layer } from '@maplibre/maplibre-react-native';
 import { router } from 'expo-router';
-import { useHeaderHeight } from 'expo-router/react-navigation';
 import { useMemo, useState } from 'react';
-import { Platform, StyleSheet, useColorScheme, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Platform, useColorScheme, View } from 'react-native';
 
 import { useCollectionContext } from '@/data/CollectionContext';
 import { mapData, type MapPoint } from '@/data/selectors';
+import { pinBounds } from '@/data/world';
 import { tr } from '@/i18n';
-import { formatDayLabel } from '@/time/tz';
+import { dayLabel } from '@/ui/dayPlan';
 import { useSelect } from '@/ui/Select';
 import { Sub } from '@/ui/Sub';
 import { SheetRow } from '@/ui/SheetRow';
 import { leadingFor } from '@/ui/entries';
 import { openInMaps, RowIcon, useRowTheme } from '@/ui/rows';
-import { floatingShadow, useColors, useListColors } from '@/ui/theme';
+import { useColors, useListColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { Host } from '@/ui/Host';
 import { useTabVisited } from '@/ui/useTabVisited';
@@ -54,10 +54,6 @@ function MapScreenContent() {
   const colors = useColors();
   const backgroundColor = useScreenBackground();
   const scheme = useColorScheme();
-  const insets = useSafeAreaInsets();
-  const headerHeight = useHeaderHeight();
-  // iOS draws the map under the translucent navigation bar; Android lays the tab content out below it.
-  const headerOffset = Platform.OS === 'ios' ? headerHeight + 12 : 12;
   const [day, setDay] = useState<string>('all');
   const [selected, setSelected] = useState<MapPoint | null>(null);
 
@@ -96,17 +92,7 @@ function MapScreenContent() {
   const bounds = useMemo(() => {
     // Fit where we actually are (lodgings + locations); far-away departure airports only when nothing else is shown.
     const local = points.filter((p) => p.kind === 'location' || p.kind === 'lodging');
-    const coords = (local.length > 0 ? local : points).map((p) => [p.longitude, p.latitude] as const);
-    if (coords.length === 0) return null;
-    const lngs = coords.map((c) => c[0]);
-    const lats = coords.map((c) => c[1]);
-    const pad = coords.length === 1 ? 0.02 : 0;
-    return [Math.min(...lngs) - pad, Math.min(...lats) - pad, Math.max(...lngs) + pad, Math.max(...lats) + pad] as [
-      number,
-      number,
-      number,
-      number,
-    ];
+    return pinBounds(local.length > 0 ? local : points);
   }, [points]);
 
   const daySelect = useSelect(useRowTheme(), {
@@ -118,7 +104,7 @@ function MapScreenContent() {
       { value: 'all', label: tr('map.wholeTrip') },
       ...(view?.days ?? []).map((d) => ({
         value: d.date,
-        label: `${tr('common.dayN', { n: d.number })} · ${formatDayLabel(d.date)}`,
+        label: dayLabel(d),
       })),
     ],
   });
@@ -142,59 +128,19 @@ function MapScreenContent() {
         ? view.collection.lodging.find((l) => l.id === p.id)?.images
         : view.collection.transportations.find((t) => t.id === p.id)?.images;
 
-  const padding = { top: headerOffset + 120, bottom: 100 + insets.bottom, left: 40, right: 40 };
+  const mapStyle =
+    !online && offline.regions.length ? MAP_STYLE.light : scheme === 'dark' ? MAP_STYLE.dark : MAP_STYLE.light;
 
   return (
-    <View style={[styles.container, { backgroundColor }]}>
-      <MapCanvas
-        style={StyleSheet.absoluteFill}
-        mapStyle={
-          !online && offline.regions.length ? MAP_STYLE.light : scheme === 'dark' ? MAP_STYLE.dark : MAP_STYLE.light
-        }
-        logo={false}
-        compass>
-        <Camera
-          {...(bounds ? { bounds, padding, duration: 600, easing: 'ease' as const } : {})}
-          initialViewState={bounds ? { bounds, padding } : undefined}
-        />
-        <GeoJSONSource id="lines" data={linesGeo}>
-          <Layer
-            type="line"
-            id="transport-lines"
-            paint={{ 'line-color': KIND_COLORS['transport-start'], 'line-width': 2.5, 'line-dasharray': [2, 1.5] }}
-          />
-        </GeoJSONSource>
-        <GeoJSONSource
-          id="points"
-          data={pointsGeo}
-          hitbox={{ top: 22, right: 22, bottom: 22, left: 22 }}
-          onPress={(e) => {
-            const key = e.nativeEvent.features[0]?.properties?.key as string | undefined;
-            const point = key ? points.find((p) => p.key === key) : undefined;
-            if (point) setSelected(point);
-          }}>
-          <Layer
-            type="circle"
-            id="point-circles"
-            paint={{
-              'circle-radius': ['match', ['get', 'kind'], 'lodging', 9, 7],
-              'circle-color': [
-                'match',
-                ['get', 'kind'],
-                'lodging',
-                KIND_COLORS.lodging,
-                'location',
-                KIND_COLORS.location,
-                KIND_COLORS['transport-start'],
-              ],
-              'circle-stroke-width': 2,
-              'circle-stroke-color': '#FFFFFF',
-            }}
-          />
-        </GeoJSONSource>
-      </MapCanvas>
-
-      <View style={[styles.filter, { top: headerOffset, backgroundColor: colors.card }]}>
+    <MapFrame
+      bounds={bounds}
+      topReserve={120}
+      mapStyle={mapStyle}
+      topStyle={{ paddingVertical: Platform.OS === 'android' ? 0 : 4, backgroundColor: colors.card }}
+      presented={!!selected}
+      onDismiss={() => setSelected(null)}
+      extra={daySelect.sheet}
+      top={
         <Host matchContents={{ vertical: true }} style={{ width: '100%' }}>
           <Column spacing={0} style={{ paddingHorizontal: Platform.OS === 'ios' ? 8 : 0 }}>
             {Platform.OS === 'android' ? (
@@ -217,14 +163,9 @@ function MapScreenContent() {
             </SheetRow>
           </Column>
         </Host>
-      </View>
-      {daySelect.sheet}
-
-      <BottomSheet
-        isPresented={!!selected}
-        onDismiss={() => setSelected(null)}
-        contentPadding={{ top: 20, bottom: 16, left: 16, right: 16 }}>
-        {selected ? (
+      }
+      sheet={
+        selected ? (
           <Column spacing={0}>
             <SheetRow
               colors={listColors}
@@ -245,21 +186,38 @@ function MapScreenContent() {
               {tr('common.openInMaps')}
             </SheetRow>
           </Column>
-        ) : null}
-      </BottomSheet>
-    </View>
+        ) : null
+      }>
+      <GeoJSONSource id="lines" data={linesGeo}>
+        <Layer
+          type="line"
+          id="transport-lines"
+          paint={{ 'line-color': KIND_COLORS['transport-start'], 'line-width': 2.5, 'line-dasharray': [2, 1.5] }}
+        />
+      </GeoJSONSource>
+      <PointLayer
+        id="points"
+        data={pointsGeo}
+        paint={{
+          'circle-radius': ['match', ['get', 'kind'], 'lodging', 9, 7],
+          'circle-color': [
+            'match',
+            ['get', 'kind'],
+            'lodging',
+            KIND_COLORS.lodging,
+            'location',
+            KIND_COLORS.location,
+            KIND_COLORS['transport-start'],
+          ],
+          'circle-stroke-width': 2,
+          'circle-stroke-color': '#FFFFFF',
+        }}
+        onPress={(properties) => {
+          const key = properties.key;
+          const point = typeof key === 'string' ? points.find((p) => p.key === key) : undefined;
+          if (point) setSelected(point);
+        }}
+      />
+    </MapFrame>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-  filter: {
-    position: 'absolute',
-    left: 16,
-    right: 16,
-    borderRadius: 16,
-    overflow: 'hidden',
-    paddingVertical: Platform.OS === 'android' ? 0 : 4,
-    ...floatingShadow,
-  },
-});

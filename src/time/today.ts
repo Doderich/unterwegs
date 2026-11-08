@@ -1,5 +1,6 @@
 import type { Collection } from '@/api/schemas';
 
+import { lodgingZone, sleepsThere, stayDates } from './ownZone';
 import { deviceTimeZone, localDate } from './tz';
 
 /**
@@ -41,10 +42,9 @@ export function todayFor(
   now: Date = new Date(),
 ): { date: string; timeZone: string } {
   for (const l of lodging) {
-    if (!l.check_in || !l.check_out) continue;
-    const zone = l.timezone ?? fallbackZone;
+    const zone = lodgingZone(l, fallbackZone);
     const date = localDate(now, zone);
-    if (localDate(l.check_in, zone) <= date && date < localDate(l.check_out, zone)) return { date, timeZone: zone };
+    if (sleepsThere(stayDates(l, fallbackZone), date)) return { date, timeZone: zone };
   }
   return { date: todayIn(fallbackZone, now), timeZone: fallbackZone };
 }

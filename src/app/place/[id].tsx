@@ -12,7 +12,8 @@ import { useActionSheet } from '@/ui/ActionSheet';
 import { Host } from '@/ui/Host';
 import { LoadingRows } from '@/ui/LoadingRows';
 import { resourceHeaderRows } from '@/ui/ResourceHeader';
-import { attachmentRows, infoRow, linkRow, mapsRow, RowIcon, useOpenAttachment, useRowTheme } from '@/ui/rows';
+import { filesSection } from '@/ui/resourceDetail';
+import { infoRow, linkRow, mapsRow, RowIcon, useOpenAttachment, useRowTheme } from '@/ui/rows';
 import { Sub } from '@/ui/Sub';
 import { Text } from '@/ui/Text';
 import { toolbarIcon } from '@/ui/icons';
@@ -150,11 +151,7 @@ export default function PlaceScreen() {
               </ListItem>
             ) : null}
           </FieldGroup.Section>
-          {place.attachments.length ? (
-            <FieldGroup.Section title={tr('common.attachments')}>
-              {attachmentRows(rt, place.attachments, opener)}
-            </FieldGroup.Section>
-          ) : null}
+          {filesSection(rt, opener, tr('common.attachments'), place.attachments)}
           <FieldGroup.Section>
             {infoRow(rt, { label: tr('places.offlineMedia'), value: `${files.cached} / ${files.total}` })}
             {action.online ? (

@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 
 import { useCities, useCityVisits, usePins, useRegions, useRegionVisits } from '@/data/queries';
 import { useCityEdits, useRegionEdits } from '@/data/useRegionEdits';
+import { categoryLabel } from '@/data/categories';
 import { cityRows, placedPins, regionRows } from '@/data/world';
 import { tr } from '@/i18n';
 import { icons } from '@/ui/icons';
@@ -50,9 +51,7 @@ function AllLocationsMap() {
               supportingText={
                 <Sub>
                   {[
-                    pin.category
-                      ? `${pin.category.icon ?? ''} ${pin.category.display_name ?? pin.category.name}`.trim()
-                      : null,
+                    pin.category ? categoryLabel(pin.category) : null,
                     pin.is_visited ? tr('common.visited') : null,
                   ]
                     .filter(Boolean)

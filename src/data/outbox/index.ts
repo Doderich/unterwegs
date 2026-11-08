@@ -1,11 +1,15 @@
-import type { UploadFile } from '@/api/client';
+import type { QueryClient } from '@tanstack/react-query';
+
+import type { ApiClient, UploadFile } from '@/api/client';
 
 import { tempId } from '../edits';
 import { createOutbox, type FileKeeper } from './queue';
+import { syncOutbox as syncWith } from './sync';
+import type { ConflictTexts } from './types';
 
 export { applyPending } from './model';
 export { replaceId } from './kinds';
-export { diffFields } from './fields';
+export { diffFields, editOf } from './fields';
 export { findObject } from './lookups';
 export { findChild, type ChildKind } from './children';
 export type { FlushReport } from './queue';
@@ -54,4 +58,6 @@ export const keepForUpload = outbox.keep;
 export const realIdFor = outbox.realIdFor;
 export const onFlushRequested = outbox.onFlushRequested;
 export const clearOutbox = outbox.clear;
-export const flushOutbox = outbox.flush;
+/** Sends the app's waiting edits and updates the cached collections (`sync.ts`). */
+export const syncOutbox = (client: ApiClient, cache: QueryClient, texts: ConflictTexts) =>
+  syncWith(outbox, client, cache, texts);

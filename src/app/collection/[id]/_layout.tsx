@@ -10,7 +10,7 @@ import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { useCollectionsActions } from '@/data/useCollectionsActions';
 import { tr } from '@/i18n';
 import { useSettings } from '@/settings/store';
-import { formatDayLabel } from '@/time/tz';
+import { dayLabel } from '@/ui/dayPlan';
 import { sfSymbol, toolbarIcon } from '@/ui/icons';
 import { safeFileName, useServerFile } from '@/ui/serverFile';
 import { useColors } from '@/ui/theme';
@@ -187,7 +187,7 @@ function CollectionTitle({ fallback }: { fallback?: string }) {
             ? view.days.map((day) => (
                 <Stack.Toolbar.Menu
                   key={day.date}
-                  title={`${tr('common.dayN', { n: day.number })} · ${formatDayLabel(day.date)}`}>
+                  title={dayLabel(day)}>
                   {creationActions(day.date)}
                 </Stack.Toolbar.Menu>
               ))

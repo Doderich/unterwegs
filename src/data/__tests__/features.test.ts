@@ -1,7 +1,7 @@
 import { calendarEventSchema, inviteSchema } from '@/api/schemas';
 
 import { agenda, eventDate } from '../calendar';
-import { categoryName, sortCategories } from '../categories';
+import { categoryChoices, categoryDraft, categoryLabel, categoryName, sortCategories } from '../categories';
 
 // Shapes as returned by v0.13.1 (SERVER.md); people from scripts/anonymise-sample.ts style, made up.
 const ev = (e: Record<string, unknown>) =>
@@ -13,6 +13,30 @@ describe('categoryName', () => {
     expect(categoryName('Café & Bar', [])).toBe('cafebar');
     expect(categoryName('Tempel', [{ name: 'tempel' }, { name: 'tempel2' }])).toBe('tempel3');
     expect(categoryName('🎌', [])).toBe('kategorie');
+  });
+
+  it('labels with the icon and the shown name', () => {
+    expect(categoryLabel({ name: 'food', display_name: 'Essen', icon: '🍜' })).toBe('🍜 Essen');
+    expect(categoryLabel({ name: 'food', display_name: null, icon: null })).toBe('food');
+  });
+
+  it('lists collection categories before the user\'s, and drafts a unique name from a leading emoji', () => {
+    const choices = categoryChoices(
+      [{ name: 'food', display_name: 'Essen', icon: '🍜' }],
+      [
+        { name: 'food', display_name: 'Food', icon: '🍴' },
+        { name: 'temple', display_name: 'Tempel', icon: '⛩️' },
+      ],
+      null,
+    );
+    expect(choices.map((c) => c.name)).toEqual(['food', 'temple']);
+    expect(choices[0].display_name).toBe('Essen');
+    expect(categoryDraft('🍜 Essen', [{ name: 'essen' }])).toEqual({
+      name: 'essen2',
+      display_name: 'Essen',
+      icon: '🍜',
+    });
+    expect(categoryDraft('   ', [])).toBeNull();
   });
 
   it('sorts by shown name with "general" last', () => {

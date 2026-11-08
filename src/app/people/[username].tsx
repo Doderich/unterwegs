@@ -1,6 +1,7 @@
 import { FieldGroup, ListItem } from '@expo/ui';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 
+import { categoryLabel } from '@/data/categories';
 import { useProfile, useProfileStats } from '@/data/queries';
 import { tr } from '@/i18n';
 import { formatDateRange, formatPlainDate, personName } from '@/ui/format';
@@ -79,9 +80,7 @@ export default function ProfileScreen() {
                   supportingText={
                     <Sub>
                       {[
-                        l.category
-                          ? `${l.category.icon ?? ''} ${l.category.display_name ?? l.category.name}`.trim()
-                          : null,
+                        l.category ? categoryLabel(l.category) : null,
                         l.is_visited ? tr('common.visited') : null,
                         l.location,
                       ]

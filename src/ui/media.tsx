@@ -16,6 +16,34 @@ import { RowIcon, type RowTheme } from './rows';
 /** Long edge of uploaded photos: a phone photo of several MB becomes a few hundred KB (roaming data). */
 const MAX_EDGE = 2048;
 
+/** File name without its extension, for the attachment title. */
+export function attachmentDisplayName(fileName: string) {
+  return fileName.replace(/\.[^.]+$/, '');
+}
+
+/**
+ * A shared or picked image, measured and then shrunk. The original file is the one that is resized; the render is
+ * only how we learn its size.
+ */
+export async function shrinkImageFile(uri: string): Promise<UploadFile> {
+  const image = await ImageManipulator.manipulate(uri).renderAsync();
+  return shrinkPhoto({ uri, width: image.width, height: image.height });
+}
+
+/**
+ * Turns one local file into a Pending-edit upload: photos are measured and shrunk, other files keep their name
+ * without the extension. The share screen sends every file through this.
+ */
+export async function enqueueLocalFile(
+  edits: Pick<CollectionEdits, 'uploadImage' | 'uploadAttachment'>,
+  kind: MediaOwnerKind,
+  objectId: string,
+  item: { media: string; file: UploadFile },
+) {
+  if (item.media === 'image') return edits.uploadImage(kind, objectId, await shrinkImageFile(item.file.uri));
+  return edits.uploadAttachment(kind, objectId, item.file, attachmentDisplayName(item.file.name));
+}
+
 /** Shrinks a picked photo to JPEG with at most `MAX_EDGE` px on the long side. */
 export async function shrinkPhoto(asset: { uri: string; width: number; height: number }): Promise<UploadFile> {
   const context = ImageManipulator.manipulate(asset.uri);
@@ -77,8 +105,7 @@ export function useMediaUploads(
     if (result.canceled) return;
     for (const asset of result.assets) {
       const file = { uri: asset.uri, name: asset.name, type: asset.mimeType ?? 'application/octet-stream' };
-      const name = asset.name.replace(/\.[^.]+$/, '');
-      void edits.uploadAttachment(kind, objectId, file, name);
+      void edits.uploadAttachment(kind, objectId, file, attachmentDisplayName(asset.name));
     }
   };
 

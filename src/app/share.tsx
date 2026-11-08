@@ -1,5 +1,4 @@
 import { Button, FieldGroup, ListItem } from '@expo/ui';
-import { ImageManipulator } from 'expo-image-manipulator';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { clearSharedPayloads, useIncomingShare, type UseIncomingShareResult } from 'expo-sharing';
 import { useEffect, useRef, useState } from 'react';
@@ -10,7 +9,7 @@ import { sharedFiles, uploadSharedFiles } from '@/data/incomingShare';
 import { useCollections, useCollectionView } from '@/data/queries';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { tr } from '@/i18n';
-import { shrinkPhoto } from '@/ui/media';
+import { enqueueLocalFile } from '@/ui/media';
 import { infoRow, RowIcon, useRowTheme } from '@/ui/rows';
 import { useSelect } from '@/ui/Select';
 import { Sub } from '@/ui/Sub';
@@ -86,17 +85,7 @@ function ShareForm({ incoming, retry }: { incoming: UseIncomingShareResult; retr
     setSaving(true);
     try {
       const ok = await uploadSharedFiles(files, completed.current, async (item) => {
-        if (item.media === 'image') {
-          const image = await ImageManipulator.manipulate(item.file.uri).renderAsync();
-          const file = await shrinkPhoto({ uri: item.file.uri, width: image.width, height: image.height });
-          return edits.uploadImage(kind as MediaOwnerKind, objectId, file);
-        }
-        return edits.uploadAttachment(
-          kind as MediaOwnerKind,
-          objectId,
-          item.file,
-          item.file.name.replace(/\.[^.]+$/, ''),
-        );
+        return enqueueLocalFile(edits, kind as MediaOwnerKind, objectId, item);
       });
       setDone(completed.current.size);
       if (ok) {

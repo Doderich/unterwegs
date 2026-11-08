@@ -7,8 +7,8 @@ import { unscheduled, viewToday, type UnscheduledItem } from '@/data/selectors';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { useCollectionContext } from '@/data/CollectionContext';
 import { tr } from '@/i18n';
-import { formatDayLabel } from '@/time/tz';
 import { useActionSheet } from '@/ui/ActionSheet';
+import { dayChoices, dayHeading } from '@/ui/dayPlan';
 import { entryRow, openLodging, openNote, stayRow } from '@/ui/entries';
 import { RowIcon, useRowTheme } from '@/ui/rows';
 import { useColors, useListColors } from '@/ui/theme';
@@ -46,11 +46,7 @@ export default function DaysScreen() {
               onPress: () => {
                 sheet.open(
                   tr('common.whichDayConfirm'),
-                  view.days.map((d) => ({
-                    label: `${tr('common.dayN', { n: d.number })} · ${formatDayLabel(d.date)}`,
-                    hint: d.name ?? undefined,
-                    onPress: () => edits.addToDay(d.date, u.kind, u.id),
-                  })),
+                  dayChoices(view.days, (d) => edits.addToDay(d.date, u.kind, u.id)),
                 );
                 return false as const;
               },
@@ -104,14 +100,7 @@ export default function DaysScreen() {
                     fontWeight: '600',
                     color: day.date === today ? colors.tint : colors.text,
                   }}>
-                  {[
-                    tr('common.dayN', { n: day.number }),
-                    formatDayLabel(day.date),
-                    day.date === today ? tr('common.today') : null,
-                    day.name,
-                  ]
-                    .filter(Boolean)
-                    .join(' · ')}
+                  {dayHeading(day, day.date === today)}
                 </Text>
               </FieldGroup.SectionHeader>
               {day.entries.map((entry) => entryRow(rt, entry, view, day.date))}

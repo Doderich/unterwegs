@@ -1,32 +1,27 @@
-import { suggestedZone } from '@/time/placeZone';
 import { FieldGroup, ListItem } from '@expo/ui';
-import { router, Stack, useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Alert } from 'react-native';
 
 import type { TransportationInput } from '@/api/client';
-import { realIdFor } from '@/data/outbox';
-import { useCollectionView } from '@/data/queries';
-import { changedFields, nearestZone } from '@/data/selectors';
+import { findItem, useCollectionView } from '@/data/queries';
+import { zoneOn } from '@/data/selectors';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
+import { confirmDeleteFromEditor, leaveAfterSave } from '@/ui/editorExit';
 import { tr } from '@/i18n';
 import { FormHost } from '@/ui/FormHost';
 import { useMarkdownEditor } from '@/ui/MarkdownEditor';
+import { suggestionZones } from '@/time/suggestionZones';
 import { deviceTimeZone, formatDateTime, formatDuration } from '@/time/tz';
-import { utcToZoned, zonedToUtc } from '@/time/zonedInput';
+import { arrivalZone, departureZone } from '@/time/ownZone';
+import { utcToZoned } from '@/time/zonedInput';
 import { useActionSheet } from '@/ui/ActionSheet';
-import { useDateTimeRow, useZoneSelect } from '@/ui/DateTimeRow';
-import {
-  attachmentEditRows,
-  currencyOptions,
-  defaultCurrency,
-  parsePrice,
-  publicRow,
-  ratingOptions,
-  ratingStars,
-} from '@/ui/forms';
+import { useZoneSelect } from '@/ui/DateTimeRow';
+import { defaultCurrency, parsePrice, ratingStars } from '@/ui/forms';
 import { androidToolbarIcon, transportLabel } from '@/ui/icons';
 import { useMediaUploads } from '@/ui/media';
+import { objectEditorTail, priceLinkFields, useCurrencySelect, useRatingSelect } from '@/ui/objectForm';
+import { fieldsFromPick } from '@/ui/pickedPlace';
 import { usePlaceSearch } from '@/ui/PlaceSearch';
 import { RowIcon, useRowTheme } from '@/ui/rows';
 import { useSelect } from '@/ui/Select';
@@ -34,6 +29,7 @@ import { useTextPrompt } from '@/ui/TextPrompt';
 import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { TextInput } from '@/ui/TextInput';
+import { useZonedMoment } from '@/ui/zonedMoment';
 
 const TYPES = ['plane', 'train', 'bus', 'boat', 'car', 'bike', 'walking', 'other'];
 
@@ -57,12 +53,12 @@ export default function TransportEditScreen() {
   const sheet = useActionSheet(rt);
   const prompt = useTextPrompt(rt);
   const places = usePlaceSearch(rt, { withCurrentPosition: false });
-  const t = itemId ? view?.collection.transportations.find((x) => x.id === realIdFor(itemId)) : undefined;
+  const t = view ? findItem(view.collection, 'transportation', itemId) : undefined;
 
   const init = (() => {
-    const fallbackZone = view?.days.find((d) => d.date === day)?.nightLodging?.timezone ?? view?.timeZone ?? 'UTC';
-    const startZone = t?.start_timezone ?? fallbackZone;
-    const endZone = t?.end_timezone ?? startZone;
+    const fallbackZone = view ? zoneOn(view, day) : 'UTC';
+    const startZone = departureZone(t ?? {}, fallbackZone);
+    const endZone = arrivalZone(t ?? {}, fallbackZone);
     const date = day ?? view?.days[0]?.date ?? '2000-01-01';
     return {
       startZone,
@@ -91,10 +87,18 @@ export default function TransportEditScreen() {
   });
   const [startZone, setStartZone] = useState(init.startZone);
   const [endZone, setEndZone] = useState(init.endZone);
-  const [depDate, setDepDate] = useState(init.dep.date);
-  const [depTime, setDepTime] = useState(init.dep.time);
-  const [arrDate, setArrDate] = useState(init.arr.date);
-  const [arrTime, setArrTime] = useState(init.arr.time);
+  const dep = useZonedMoment(rt, {
+    initial: init.dep,
+    zone: startZone,
+    dateLabel: tr('common.departure'),
+    timeLabel: tr('transportEdit.departureTime'),
+  });
+  const arr = useZonedMoment(rt, {
+    initial: init.arr,
+    zone: endZone,
+    dateLabel: tr('common.arrival'),
+    timeLabel: tr('transportEdit.arrivalTime'),
+  });
   const [price, setPrice] = useState(t?.price ? String(t.price) : '');
   const [currency, setCurrency] = useState(t?.price_currency ?? (view ? defaultCurrency(view.collection) : 'EUR'));
   const [link, setLink] = useState(t?.link ?? '');
@@ -104,16 +108,7 @@ export default function TransportEditScreen() {
   const [isPublic, setIsPublic] = useState(!!t?.is_public);
   const markdown = useMarkdownEditor(rt, description, setDescription);
 
-  const zones = view
-    ? [
-        view.timeZone,
-        ...view.collection.lodging.flatMap((l) => (l.timezone ? [l.timezone] : [])),
-        ...view.collection.transportations.flatMap((x) =>
-          [x.start_timezone, x.end_timezone].filter((z): z is string => !!z),
-        ),
-        deviceTimeZone(),
-      ]
-    : [];
+  const zones = view ? suggestionZones(view.timeZone, view.collection, deviceTimeZone()) : [];
   const typeSelect = useSelect(rt, {
     title: tr('common.type'),
     label: tr('common.type'),
@@ -125,60 +120,24 @@ export default function TransportEditScreen() {
     label: tr('transportEdit.departureTimeZone'),
     value: startZone,
     suggestions: zones,
-    at: `${depDate}T12:00:00Z`,
+    at: `${dep.date}T12:00:00Z`,
     onChange: setStartZone,
   });
   const endZoneSelect = useZoneSelect(rt, {
     label: tr('transportEdit.arrivalTimeZone'),
     value: endZone,
     suggestions: [startZone, ...zones],
-    at: `${arrDate}T12:00:00Z`,
+    at: `${arr.date}T12:00:00Z`,
     onChange: setEndZone,
   });
-  const currencySelect = useSelect(rt, {
-    title: tr('common.currency'),
-    label: tr('common.currency'),
-    value: currency,
-    onChange: setCurrency,
-    options: currencyOptions(currency),
-  });
-  const ratingSelect = useSelect(rt, {
-    title: tr('common.rating'),
-    label: tr('common.rating'),
-    value: String(rating),
-    onChange: (v) => setRating(Number(v)),
-    options: ratingOptions(),
-  });
-  const depDateRow = useDateTimeRow(rt, {
-    label: tr('common.departure'),
-    value: depDate,
-    mode: 'date',
-    onChange: setDepDate,
-  });
-  const depTimeRow = useDateTimeRow(rt, {
-    label: tr('transportEdit.departureTime'),
-    value: depTime,
-    mode: 'time',
-    onChange: setDepTime,
-  });
-  const arrDateRow = useDateTimeRow(rt, {
-    label: tr('common.arrival'),
-    value: arrDate,
-    mode: 'date',
-    onChange: setArrDate,
-  });
-  const arrTimeRow = useDateTimeRow(rt, {
-    label: tr('transportEdit.arrivalTime'),
-    value: arrTime,
-    mode: 'time',
-    onChange: setArrTime,
-  });
+  const currencySelect = useCurrencySelect(rt, currency, setCurrency);
+  const ratingSelect = useRatingSelect(rt, rating, setRating);
   const media = useMediaUploads(rt, edits, sheet, 'transportation', itemId ?? '');
 
   if (!view || (itemId && !t)) return null;
 
-  const departure = zonedToUtc({ date: depDate, time: depTime }, startZone).iso;
-  const arrival = zonedToUtc({ date: arrDate, time: arrTime }, endZone).iso;
+  const departure = dep.iso;
+  const arrival = arr.iso;
   const minutes = Math.round((Date.parse(arrival) - Date.parse(departure)) / 60_000);
   const title = name.trim() || [from.place, to.place].filter(Boolean).join(' → ');
 
@@ -217,47 +176,36 @@ export default function TransportEditScreen() {
       is_public: isPublic,
     };
     setSaving(true);
-    const saved = t
-      ? await edits.saveTransportation(t.id, { name: input.name, type: input.type, ...changedFields(t, input) })
-      : await edits.saveTransportation(null, input);
+    const saved = await edits.saveTransportation(t ? t.id : null, input);
     setSaving(false);
     if (!saved) return;
-    if (fromShare === '1')
-      router.dismissTo({ pathname: '/share', params: { collectionId, objectId: saved.id, kind: 'transportation' } });
-    else if (t) router.back();
-    else router.replace({ pathname: '/transport/[collectionId]/[itemId]', params: { collectionId, itemId: saved.id } });
+    leaveAfterSave('transportation', { collectionId, savedId: saved.id, created: !t, fromShare: fromShare === '1' });
   };
 
   const searchEnd = (which: 'from' | 'to') =>
     places.start(
       which === 'from' ? tr('transportEdit.searchDeparture') : tr('transportEdit.searchDestination'),
       (p) => {
+        const picked = fieldsFromPick(p, view.collection);
         setPlaceRevisions((revisions) => ({ ...revisions, [which]: revisions[which] + 1 }));
-        const end = { place: p.name, latitude: p.latitude, longitude: p.longitude };
-        const guess = suggestedZone(p.latitude, p.longitude) ?? nearestZone(view.collection, p.latitude, p.longitude);
+        const end = { place: picked.name, latitude: picked.latitude, longitude: picked.longitude };
         if (which === 'from') {
           setFrom((f) => ({ ...f, ...end }));
-          if (guess) setStartZone(guess);
+          if (picked.zone) setStartZone(picked.zone);
         } else {
           setTo((x) => ({ ...x, ...end }));
-          if (guess) setEndZone(guess);
+          if (picked.zone) setEndZone(picked.zone);
         }
       },
     );
 
   const confirmDelete = () =>
     t &&
-    Alert.alert(tr('common.deleteNameConfirm', { name: t.name }), tr('common.includingPhotosAttachmentsPlanEntries'), [
-      { text: tr('common.cancel'), style: 'cancel' },
-      {
-        text: tr('common.delete'),
-        style: 'destructive',
-        onPress: async () => {
-          router.dismiss(2);
-          await edits.deleteObject('transportation', t.id);
-        },
-      },
-    ]);
+    confirmDeleteFromEditor({
+      name: t.name,
+      consequence: tr('common.includingPhotosAttachmentsPlanEntries'),
+      onDelete: () => edits.deleteObject('transportation', t.id),
+    });
 
   const endSection = (which: 'from' | 'to') => {
     const end = which === 'from' ? from : to;
@@ -315,8 +263,7 @@ export default function TransportEditScreen() {
           <FieldGroup.Section title={tr('common.departure')}>
             {endSection('from')}
             {startZoneSelect.row}
-            {depDateRow.row}
-            {depTimeRow.row}
+            {dep.rows}
           </FieldGroup.Section>
 
           <FieldGroup.Section title={tr('common.arrival')}>
@@ -327,8 +274,7 @@ export default function TransportEditScreen() {
                 {tr('common.placeSearchSuggestsTimeZone')}
               </Text>
             </FieldGroup.SectionFooter>
-            {arrDateRow.row}
-            {arrTimeRow.row}
+            {arr.rows}
             <FieldGroup.SectionFooter>
               <Text textStyle={{ fontSize: 13, color: minutes > 0 ? colors.secondary : colors.danger }}>
                 {minutes > 0
@@ -350,48 +296,30 @@ export default function TransportEditScreen() {
           </FieldGroup.Section>
 
           <FieldGroup.Section title={tr('common.booking')}>
-            <TextInput
-              defaultValue={price}
-              onChangeText={setPrice}
-              placeholder={tr('common.price')}
-              keyboardType="decimal-pad"
-            />
-            {currencySelect.row}
-            <TextInput
-              defaultValue={link}
-              onChangeText={setLink}
-              placeholder={tr('common.linkHttps')}
-              keyboardType="url"
-              autoCapitalize="none"
-              autoCorrect={false}
-            />
+            {priceLinkFields({
+              price,
+              onPrice: setPrice,
+              pricePlaceholder: tr('common.price'),
+              currencyRow: currencySelect.row,
+              link,
+              onLink: setLink,
+            })}
           </FieldGroup.Section>
 
-          <FieldGroup.Section title={tr('common.visibility')}>
-            {publicRow(rt, isPublic, setIsPublic)}
-          </FieldGroup.Section>
-
-          <FieldGroup.Section title={tr('common.rating')}>{ratingSelect.row}</FieldGroup.Section>
-
-          <FieldGroup.Section title={tr('common.notes')}>{markdown.row}</FieldGroup.Section>
-
-          {t ? (
-            <FieldGroup.Section title={tr('common.ticketsAttachments')}>
-              {attachmentEditRows(rt, t.attachments, sheet, prompt, edits)}
-              {media.fileRows}
-            </FieldGroup.Section>
-          ) : null}
-
-          {t ? (
-            <FieldGroup.Section>
-              <ListItem
-                colors={{ ...rt.listColors, contentColor: colors.danger }}
-                leading={<RowIcon name="delete" color={colors.danger} />}
-                onPress={confirmDelete}>
-                <Text textStyle={{ color: colors.danger }}>{tr('transportEdit.deleteConnection')}</Text>
-              </ListItem>
-            </FieldGroup.Section>
-          ) : null}
+          {objectEditorTail(rt, colors, {
+            isPublic,
+            onPublic: setIsPublic,
+            ratingRow: ratingSelect.row,
+            notes: markdown.row,
+            attachments: t ? t.attachments : null,
+            attachmentTitle: tr('common.ticketsAttachments'),
+            sheet,
+            prompt,
+            edits,
+            fileRows: media.fileRows,
+            deleteLabel: tr('transportEdit.deleteConnection'),
+            onDelete: t ? confirmDelete : undefined,
+          })}
         </FieldGroup>
       </FormHost>
       {typeSelect.sheet}
@@ -399,10 +327,8 @@ export default function TransportEditScreen() {
       {endZoneSelect.sheet}
       {currencySelect.sheet}
       {ratingSelect.sheet}
-      {depDateRow.sheet}
-      {depTimeRow.sheet}
-      {arrDateRow.sheet}
-      {arrTimeRow.sheet}
+      {dep.sheets}
+      {arr.sheets}
       {sheet.sheet}
       {prompt.sheet}
       {places.sheet}

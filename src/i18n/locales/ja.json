@@ -1115,5 +1115,8 @@
     "waiting_other": "{count}件の変更が接続待ちです",
     "signOutPending_other": "未送信の変更が{count}件あります。サインアウトすると失われます。",
     "fieldsKept": "「{name}」の同じ項目が他の人によって変更されていたため、その内容を残しました。ほかの変更は保存されています。"
+  },
+  "zonedMoment": {
+    "clockChange": "この日の{typed}は存在しません（時刻の切り替え）。{time}として保存されます。"
   }
 }

@@ -1,5 +1,7 @@
 import type { Checklist, CollectionSummary, Location, Lodging, Note, Transportation, Collection } from '@/api/schemas';
+import { transportTitle } from '@/data/transportName';
 import { todayFor, collectionPhase, collectionTimeZone } from '@/time/today';
+import { departureZone, sleepsThere, stayDates } from '@/time/ownZone';
 import { zoneForPlace } from '@/time/placeZone';
 import { daysBetween, localDate } from '@/time/tz';
 
@@ -32,7 +34,7 @@ export function entryObjectId(e: DayEntry): string {
 export function entryTitle(e: DayEntry): string {
   switch (e.kind) {
     case 'transportation':
-      return e.transport.name;
+      return transportTitle(e.transport);
     case 'lodging':
       return e.lodging.name;
     case 'location':
@@ -64,6 +66,14 @@ export type CollectionView = {
 
 /** Today's date and zone for this collection (see `todayFor`). */
 export const viewToday = (view: CollectionView, now?: Date) => todayFor(view.collection.lodging, view.timeZone, now);
+
+/** The night lodging after `date`, if the collection has that day and a lodging for its night. */
+export const nightOf = (view: CollectionView, date: string | null | undefined): Lodging | null =>
+  (date && view.days.find((d) => d.date === date)?.nightLodging) || null;
+
+/** The zone a new time on `date` starts in: that night's lodging's zone, else the collection time zone. */
+export const zoneOn = (view: CollectionView, date: string | null | undefined): string =>
+  nightOf(view, date)?.timezone ?? view.timeZone;
 
 function sortKey(e: DayEntry): string {
   return e.startUtc ?? '';
@@ -170,7 +180,7 @@ export function buildCollectionView(collection: Collection): CollectionView {
   // Transports not on the itinerary still belong to their departure day.
   for (const t of collection.transportations) {
     if (scheduledTransports.has(t.id) || !t.date) continue;
-    const date = localDate(t.date, t.start_timezone ?? timeZone);
+    const date = localDate(t.date, departureZone(t, timeZone));
     push(date, Number.MAX_SAFE_INTEGER, {
       kind: 'transportation',
       key: `t-${t.id}`,
@@ -181,17 +191,13 @@ export function buildCollectionView(collection: Collection): CollectionView {
   }
 
   const sortedDates = [...dates].sort();
-  const lodgingDates = collection.lodging.map((l) => ({
-    lodging: l,
-    checkIn: l.check_in ? localDate(l.check_in, l.timezone ?? timeZone) : null,
-    checkOut: l.check_out ? localDate(l.check_out, l.timezone ?? timeZone) : null,
-  }));
+  const lodgingDates = collection.lodging.map((l) => ({ lodging: l, ...stayDates(l, timeZone) }));
 
   const days: Day[] = sortedDates.map((date, i) => {
     const entries = (entriesByDate.get(date) ?? [])
       .sort((a, b) => a.order - b.order || sortKey(a.entry).localeCompare(sortKey(b.entry)))
       .map((x) => x.entry);
-    const night = lodgingDates.find((l) => l.checkIn && l.checkOut && l.checkIn <= date && date < l.checkOut);
+    const night = lodgingDates.find((l) => sleepsThere(l, date));
     const meta = dayMeta.get(date);
     return {
       date,
@@ -204,12 +210,7 @@ export function buildCollectionView(collection: Collection): CollectionView {
   });
 
   const lodgings = lodgingDates
-    .map(({ lodging, checkIn, checkOut }) => ({
-      lodging,
-      checkInDate: checkIn,
-      checkOutDate: checkOut,
-      nights: checkIn && checkOut ? Math.max(0, daysBetween(checkIn, checkOut)) : 0,
-    }))
+    .map(({ lodging, checkIn, checkOut, nights }) => ({ lodging, checkInDate: checkIn, checkOutDate: checkOut, nights }))
     .sort((a, b) => (a.checkInDate ?? '').localeCompare(b.checkInDate ?? ''));
 
   return { collection, timeZone, days, lodgings };
@@ -258,32 +259,7 @@ function distanceKm(lat1: number, lon1: number, lat2: number, lon2: number): num
   return 2 * 6371 * Math.asin(Math.sqrt(a));
 }
 
-/** Fields of `next` that differ from `original` (for partial updates). */
-export function changedFields<T extends Record<string, unknown>>(
-  original: Record<string, unknown>,
-  next: T,
-): Partial<T> {
-  const out: Record<string, unknown> = {};
-  for (const [k, v] of Object.entries(next)) {
-    const before = original[k];
-    const same =
-      (before ?? null) === (v ?? null) ||
-      (Array.isArray(v) && sameList(Array.isArray(before) ? before : [], v)) ||
-      (typeof v === 'number' && before != null && Number(before) === v) ||
-      (typeof v === 'string' &&
-        before != null &&
-        v !== '' &&
-        !Number.isNaN(Number(v)) &&
-        Number(before) === Number(v) &&
-        typeof before !== 'boolean');
-    if (!same) out[k] = v;
-  }
-  return out as Partial<T>;
-}
-
-function sameList(a: unknown[], b: unknown[]): boolean {
-  return a.length === b.length && a.every((x, i) => x === b[i]);
-}
+export { changedFields } from './outbox/fields';
 
 /**
  * The signed-in user owns the collection or it is shared with them; false for someone else's public collection

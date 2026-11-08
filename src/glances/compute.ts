@@ -3,12 +3,15 @@ import {
   buildCollectionView,
   isMember,
   locationZone,
+  nightOf,
   sortCollections,
   viewToday,
   type CollectionView,
   type DayEntry,
 } from '@/data/selectors';
+import { transportRoute } from '@/data/transportName';
 import { tr } from '@/i18n';
+import { arrivalZone, departureZone, lodgingZone } from '@/time/ownZone';
 import { collectionPhase, todayIn } from '@/time/today';
 import {
   daysBetween,
@@ -104,12 +107,6 @@ function timeIn(iso: string, zone: string, referenceZone: string): string {
   return zone === referenceZone ? time : `${time} ${zoneLabel(zone)}`;
 }
 
-function route(t: Transportation): string {
-  const from = t.start_code || t.from_location;
-  const to = t.end_code || t.to_location;
-  return from && to ? `${from} → ${to}` : (to ?? from ?? '');
-}
-
 /** A date-only time: the website stores all-day check-ins as midnight. */
 const isMidnight = (iso: string, zone: string) => formatTime(iso, zone) === '00:00';
 
@@ -138,11 +135,11 @@ function entryRow(view: CollectionView, entry: DayEntry, zone: string, link: Lin
   switch (entry.kind) {
     case 'transportation': {
       const t = entry.transport;
-      const start = t.start_timezone ?? zone;
+      const start = departureZone(t, zone);
       return {
         symbol: transportSymbol(t.type),
         time: t.date ? timeIn(t.date, start, zone) : '',
-        title: route(t) || t.name,
+        title: transportRoute(t) || t.name,
         done: false,
         at: t.date ? Date.parse(t.date) : null,
         url: link(`/transport/${id}/${t.id}`),
@@ -150,7 +147,7 @@ function entryRow(view: CollectionView, entry: DayEntry, zone: string, link: Lin
     }
     case 'lodging': {
       const l = entry.lodging;
-      const lz = l.timezone ?? zone;
+      const lz = lodgingZone(l, zone);
       const timed = l.check_in && !isMidnight(l.check_in, lz);
       return {
         symbol: 'bed.double.fill',
@@ -184,7 +181,7 @@ const strip = ({ at: _at, ...row }: Row): GlanceRow => row;
 function nextRows(view: CollectionView, rowsToday: Row[], today: string, now: Date, link: LinkFn): GlanceRow[] {
   const rows = ahead(rowsToday, now).slice(0, 3).map(strip);
   if (rows.length) return rows;
-  const night = view.days.find((d) => d.date === today)?.nightLodging;
+  const night = nightOf(view, today);
   if (!night) return [];
   return [
     {
@@ -248,7 +245,7 @@ export function widgetGlances(focus: CachedCollection | null, now: Date, link: L
     url,
   };
 
-  const night = current ? view.days.find((d) => d.date === today)?.nightLodging : null;
+  const night = current ? nightOf(view, today) : null;
   const tomorrowDate = shiftDate(today, 1);
   const tomorrowDay = view.days.find((d) => d.date === tomorrowDate);
   const todayProps: TodayWidgetProps = current
@@ -340,11 +337,11 @@ function stayProps(
   footer: string,
   link: LinkFn,
 ): StayWidgetProps | null {
-  const tonight = view.days.find((d) => d.date === today)?.nightLodging;
+  const tonight = nightOf(view, today);
   const upcoming = view.lodgings.find((l) => l.checkInDate && l.checkInDate > today)?.lodging;
   const lodging = tonight ?? upcoming;
   if (!lodging) return null;
-  const lz = lodging.timezone ?? zone;
+  const lz = lodgingZone(lodging, zone);
   let detail = '';
   if (lodging.check_in && !isMidnight(lodging.check_in, lz) && Date.parse(lodging.check_in) > now.getTime())
     detail = tr('glances.checkInFrom', { time: timeIn(lodging.check_in, lz, zone) });
@@ -391,13 +388,13 @@ function departureProps(
   const items = upcomingTransportations(view.collection, now)
     .slice(0, DEPARTURE_ITEMS)
     .map((t): DepartureItem => {
-      const start = t.start_timezone ?? zone;
-      const end = t.end_timezone ?? start;
+      const start = departureZone(t, zone);
+      const end = arrivalZone(t, zone);
       const departDate = localDate(t.date!, start);
       return {
         symbol: transportSymbol(t.type),
         title: t.name,
-        route: route(t),
+        route: transportRoute(t),
         departs: timeIn(t.date!, start, zone),
         arrives: t.end_date ? timeIn(t.end_date, end, zone) : '',
         day: departDate === today ? '' : formatDayLabel(departDate),
@@ -574,12 +571,12 @@ export function computeReminders(inputs: ReminderInput[], enabled: ReadonlySet<R
     for (const t of c.transportations) {
       if (!t.date) continue;
       const lead = LOCAL_TRANSPORT.has(t.type) ? HOUR : 3 * HOUR;
-      const start = t.start_timezone ?? zone;
+      const start = departureZone(t, zone);
       add(
         'departure',
         t.id,
         Date.parse(t.date) - lead,
-        route(t) || t.name,
+        transportRoute(t) || t.name,
         tr('reminders.departsAt', { name: t.name, time: timeIn(t.date, start, zone) }),
         `/transport/${c.id}/${t.id}`,
         placeOf(t.from_location || t.name, t.origin_latitude, t.origin_longitude),
@@ -624,7 +621,7 @@ export function computeReminders(inputs: ReminderInput[], enabled: ReadonlySet<R
 }
 
 function addLodging(add: AddReminder, collectionId: string, l: Lodging, zone: string) {
-  const lz = l.timezone ?? zone;
+  const lz = lodgingZone(l, zone);
   const path = `/lodging/${collectionId}/${l.id}`;
   const place = placeOf(l.name, l.latitude, l.longitude);
   if (l.check_in) {
@@ -699,10 +696,10 @@ export function travelActivity(
   const chosen = candidates.find(({ x }) => x.id === pinnedId) ?? candidates[0];
   if (!chosen) return null;
   const { x, departAt, arriveAt, endsAt } = chosen;
-  const start = x.start_timezone ?? timeZone;
-  const end = x.end_timezone ?? start;
+  const start = departureZone(x, timeZone);
+  const end = arrivalZone(x, timeZone);
   const arrivalDate = localDate(x.end_date ?? x.date!, end);
-  const night = view.days.find((d) => d.date === arrivalDate)?.nightLodging;
+  const night = nightOf(view, arrivalDate);
   return {
     transportationId: x.id,
     collectionId: c.id,

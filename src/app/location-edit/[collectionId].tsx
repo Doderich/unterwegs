@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { Alert } from 'react-native';
 
 import type { CategoryInput, LocationInput } from '@/api/client';
-import { realIdFor } from '@/data/outbox';
-import { useCategories, useCollectionView } from '@/data/queries';
-import { changedFields } from '@/data/selectors';
+import { categoryChoices, categoryDraft, categoryLabel } from '@/data/categories';
+import { findItem, useCategories, useCollectionView } from '@/data/queries';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
+import { confirmDeleteFromEditor, leaveAfterSave } from '@/ui/editorExit';
 import { useDuplicateGuard } from '@/ui/duplicateGuard';
 import { useClient } from '@/auth/session';
 import { getLanguage, tr } from '@/i18n';
@@ -15,9 +15,11 @@ import { FormHost } from '@/ui/FormHost';
 import { useMarkdownEditor } from '@/ui/MarkdownEditor';
 import { formatDayLabel } from '@/time/tz';
 import { useActionSheet } from '@/ui/ActionSheet';
-import { attachmentEditRows, currencyOptions, defaultCurrency, parsePrice, parseTags, publicRow } from '@/ui/forms';
+import { defaultCurrency, parsePrice, parseTags, publicRow } from '@/ui/forms';
 import { androidToolbarIcon } from '@/ui/icons';
 import { useMediaUploads } from '@/ui/media';
+import { attachmentEditSection, deleteEditRow, useCurrencySelect } from '@/ui/objectForm';
+import { fieldsFromPick } from '@/ui/pickedPlace';
 import { usePlaceSearch, type PickedPlace } from '@/ui/PlaceSearch';
 import { infoRow, RowIcon, useRowTheme } from '@/ui/rows';
 import { useSelect } from '@/ui/Select';
@@ -43,7 +45,7 @@ export default function LocationEditScreen() {
   const sheet = useActionSheet(rt);
   const prompt = useTextPrompt(rt);
   const places = usePlaceSearch(rt);
-  const location = itemId ? view?.collection.locations.find((l) => l.id === realIdFor(itemId)) : undefined;
+  const location = view ? findItem(view.collection, 'location', itemId) : undefined;
 
   // Reset uncontrolled inputs only when a picked place supplies new text, never while typing.
   const [placeRevision, setPlaceRevision] = useState(0);
@@ -78,20 +80,18 @@ export default function LocationEditScreen() {
   const markdown = useMarkdownEditor(rt, description, setDescription);
 
   // Categories of this collection first, then the user's others; plus the current one and "Neue Kategorie".
-  const known = new Map<string, CategoryInput>();
-  for (const c of view?.collection.locations.flatMap((l) => (l.category ? [l.category] : [])) ?? [])
-    known.set(c.name, { name: c.name, display_name: c.display_name ?? c.name, icon: c.icon ?? undefined });
-  for (const c of categories.data ?? [])
-    if (!known.has(c.name))
-      known.set(c.name, { name: c.name, display_name: c.display_name ?? c.name, icon: c.icon ?? undefined });
-  if (category && !known.has(category.name)) known.set(category.name, category);
+  const choices = categoryChoices(
+    view?.collection.locations.flatMap((l) => (l.category ? [l.category] : [])) ?? [],
+    categories.data ?? [],
+    category,
+  );
   const categorySelect = useSelect(rt, {
     title: tr('common.category'),
     label: tr('common.category'),
     value: category?.name ?? '',
     options: [
       { value: '', label: tr('locationEdit.none') },
-      ...[...known.values()].map((c) => ({ value: c.name, label: `${c.icon ?? ''} ${c.display_name}`.trim() })),
+      ...choices.map((c) => ({ value: c.name, label: categoryLabel(c) })),
       { value: NEW_CATEGORY, label: tr('locationEdit.newCategory') },
     ],
     onChange: (v) => {
@@ -101,31 +101,24 @@ export default function LocationEditScreen() {
           value: '',
           placeholder: tr('locationEdit.eGFood'),
           onSave: (text) => {
-            // A leading emoji becomes the icon: "🍜 Essen" → icon 🍜, name "Essen".
-            const m = text.match(/^(\p{Extended_Pictographic}️?)\s*(.+)$/u);
-            const display = (m ? m[2] : text).trim();
-            setCategory({ name: display.toLowerCase(), display_name: display, icon: m?.[1] ?? '📍' });
+            const draft = categoryDraft(text, choices);
+            if (draft) setCategory(draft);
           },
         });
-      } else setCategory(v ? (known.get(v) ?? null) : null);
+      } else setCategory(v ? (choices.find((c) => c.name === v) ?? null) : null);
     },
   });
-  const currencySelect = useSelect(rt, {
-    title: tr('common.currency'),
-    label: tr('common.currency'),
-    value: currency,
-    onChange: setCurrency,
-    options: currencyOptions(currency),
-  });
+  const currencySelect = useCurrencySelect(rt, currency, setCurrency);
   const media = useMediaUploads(rt, edits, sheet, 'location', itemId ?? '');
 
   if (!view || (itemId && !location)) return null;
 
   const apply = (p: PickedPlace) => {
+    const picked = fieldsFromPick(p, view.collection);
     setPlaceRevision((revision) => revision + 1);
-    if (p.name) setName(p.name);
-    setAddress(p.address ?? '');
-    setCoords({ latitude: p.latitude, longitude: p.longitude });
+    if (picked.name) setName(picked.name);
+    setAddress(picked.address ?? '');
+    setCoords({ latitude: picked.latitude, longitude: picked.longitude });
   };
 
   const save = async () => {
@@ -154,15 +147,13 @@ export default function LocationEditScreen() {
     }
     const saved = location
       ? await edits.saveLocation(location.id, {
-          name: input.name,
-          ...changedFields(location, input),
+          ...input,
           ...(category && category.name !== location.category?.name ? { category } : {}),
         })
       : await edits.saveLocation(null, { ...input, ...(category ? { category } : {}) }, day);
     setSaving(false);
     if (!saved) return;
-    if (location) router.back();
-    else router.replace({ pathname: '/location/[collectionId]/[itemId]', params: { collectionId, itemId: saved.id } });
+    leaveAfterSave('location', { collectionId, savedId: saved.id, created: !location });
   };
 
   /** Fills the description from Wikipedia; asks before replacing text that is already there. */
@@ -203,21 +194,11 @@ export default function LocationEditScreen() {
 
   const confirmDelete = () =>
     location &&
-    Alert.alert(
-      tr('common.deleteNameConfirm', { name: location.name }),
-      tr('locationEdit.includingVisitsPhotosAttachmentsPlan'),
-      [
-        { text: tr('common.cancel'), style: 'cancel' },
-        {
-          text: tr('common.delete'),
-          style: 'destructive',
-          onPress: async () => {
-            router.dismiss(2);
-            await edits.deleteObject('location', location.id);
-          },
-        },
-      ],
-    );
+    confirmDeleteFromEditor({
+      name: location.name,
+      consequence: tr('locationEdit.includingVisitsPhotosAttachmentsPlan'),
+      onDelete: () => edits.deleteObject('location', location.id),
+    });
 
   const dayNumber = day ? view.days.find((d) => d.date === day)?.number : undefined;
 
@@ -312,12 +293,17 @@ export default function LocationEditScreen() {
             {currencySelect.row}
           </FieldGroup.Section>
 
-          {location ? (
-            <FieldGroup.Section title={tr('common.attachments')}>
-              {attachmentEditRows(rt, location.attachments, sheet, prompt, edits)}
-              {media.fileRows}
-            </FieldGroup.Section>
-          ) : null}
+          {location
+            ? attachmentEditSection(
+                rt,
+                tr('common.attachments'),
+                location.attachments,
+                sheet,
+                prompt,
+                edits,
+                media.fileRows,
+              )
+            : null}
 
           {location ? (
             <FieldGroup.Section>
@@ -328,12 +314,7 @@ export default function LocationEditScreen() {
                 supportingText={<Sub>{tr('locationEdit.withPhotosWithoutVisitsAttachments')}</Sub>}>
                 {duplicating ? tr('locationEdit.duplicating') : tr('locationEdit.duplicatePlace')}
               </ListItem>
-              <ListItem
-                colors={{ ...rt.listColors, contentColor: colors.danger }}
-                leading={<RowIcon name="delete" color={colors.danger} />}
-                onPress={confirmDelete}>
-                <Text textStyle={{ color: colors.danger }}>{tr('locationEdit.deletePlace')}</Text>
-              </ListItem>
+              {deleteEditRow(rt, colors, tr('locationEdit.deletePlace'), confirmDelete)}
             </FieldGroup.Section>
           ) : null}
         </FieldGroup>

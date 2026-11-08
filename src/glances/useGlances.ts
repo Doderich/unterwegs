@@ -14,16 +14,8 @@ import { openInMaps } from '@/ui/mapLinks';
 import { tr } from '@/i18n';
 import { getSettings, useSettings, type Settings } from '@/settings/store';
 
-import {
-  computeReminders,
-  focusCollection,
-  REMINDER_KINDS,
-  reminderCollections,
-  travelActivity,
-  widgetGlances,
-  widgetTimeline,
-  type CachedCollection,
-} from './compute';
+import { widgetGlances, type CachedCollection } from './compute';
+import { planGlances } from './plan';
 import { clearWidgetCovers, widgetCover } from './cover';
 import { clearReminders, configureForegroundHandling, reminderResponse, syncReminders } from './notifications';
 import { onGlancesRefresh, pinnedTravel, pinTravel } from './pinnedTravel';
@@ -55,46 +47,26 @@ const missingFiles = (collection: Collection) => {
 };
 
 async function refresh(cache: QueryClient, settings: Settings) {
-  const now = new Date();
-  const summaries = cache.getQueryData<CollectionSummary[]>(queryKeys.collections) ?? [];
-  const cached = cachedCollections(cache);
-  const focus = focusCollection(summaries, cached, now);
-
-  // The picker offers what reminders cover: every current or upcoming collection on the device.
-  const pickable = reminderCollections(summaries, cached, now);
-  const covers: Record<string, string> = {};
-  for (const entry of new Set([...(focus ? [focus] : []), ...pickable]))
-    covers[entry.collection.id] = await widgetCover(entry.collection);
-  updateWidgets(widgetTimeline(focus, now, link, pickable), {
-    focusId: focus?.collection.id ?? null,
-    covers,
-    choices: [
-      { name: tr('glances.automatic'), value: 'auto' },
-      ...pickable.map((e) => ({ name: e.collection.name, value: e.collection.id })),
-    ],
+  const plan = planGlances({
+    summaries: cache.getQueryData<CollectionSummary[]>(queryKeys.collections) ?? [],
+    cached: cachedCollections(cache),
+    now: new Date(),
+    settings,
+    pinned: pinnedTravel(),
+    missingFiles: (entry) => missingFiles(entry.collection),
+    link,
   });
 
-  if (settings.reminders) {
-    const enabled = new Set(REMINDER_KINDS.filter((k) => settings.reminderKinds[k]));
-    const inputs = reminderCollections(summaries, cached, now).map((entry) => ({
-      entry,
-      missingFiles: missingFiles(entry.collection),
-    }));
-    await syncReminders(computeReminders(inputs, enabled, now));
-  } else {
-    await clearReminders();
-  }
+  const covers: Record<string, string> = {};
+  for (const entry of plan.widgets.coverFor) covers[entry.collection.id] = await widgetCover(entry.collection);
+  updateWidgets(plan.widgets.timeline, { focusId: plan.widgets.focusId, covers, choices: plan.widgets.choices });
+
+  if (plan.reminders) await syncReminders(plan.reminders);
+  else await clearReminders();
 
   if (Platform.OS === 'ios') {
-    // A pinned transportation shows even with the automatic Live Activity turned off: the user asked for it.
-    const pinned = pinnedTravel();
-    const pinnedEntry = pinned
-      ? [...cached.values()].find((e) => e.collection.transportations.some((t) => t.id === pinned))
-      : undefined;
-    const pinnedTrip = pinnedEntry ? travelActivity(pinnedEntry, now, pinned) : null;
-    if (pinned && pinnedTrip?.transportationId !== pinned) pinTravel(null);
-    const automatic = settings.travelActivity ? travelActivity(focus, now) : null;
-    await syncTravelActivity(pinnedTrip?.transportationId === pinned ? pinnedTrip : automatic, link);
+    if (plan.travel.unpin) pinTravel(null);
+    await syncTravelActivity(plan.travel.activity, link);
   }
 }
 

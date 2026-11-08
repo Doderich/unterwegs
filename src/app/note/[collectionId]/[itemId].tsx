@@ -4,8 +4,7 @@ import { useRef, useState } from 'react';
 import { Alert } from 'react-native';
 
 import type { Checklist } from '@/api/schemas';
-import { realIdFor } from '@/data/outbox';
-import { useCollectionView } from '@/data/queries';
+import { findItem, useCollectionView } from '@/data/queries';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { tr } from '@/i18n';
 import { FormHost } from '@/ui/FormHost';
@@ -39,12 +38,11 @@ export default function NoteScreen() {
   const [name, setName] = useState<string | null>(null);
   if (!view) return null;
 
-  // Something created offline keeps working here after it is sent and gets its server id.
-  const id = realIdFor(itemId);
-  const note = view.collection.notes.find((n) => n.id === id);
-  const checklist = note ? undefined : view.collection.checklists.find((c) => c.id === id);
+  const note = findItem(view.collection, 'note', itemId);
+  const checklist = note ? undefined : findItem(view.collection, 'checklist', itemId);
   const item = note ?? checklist;
   if (!item) return null;
+  const id = item.id;
 
   const plannedDays = view.days.filter((d) =>
     d.entries.some((e) => (e.kind === 'note' && e.note.id === id) || (e.kind === 'checklist' && e.checklist.id === id)),

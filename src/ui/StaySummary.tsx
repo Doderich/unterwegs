@@ -2,7 +2,8 @@ import type { ReactElement } from 'react';
 
 import type { Lodging } from '@/api/schemas';
 import { tr } from '@/i18n';
-import { daysBetween, formatDateTime, localDate, utcOffset } from '@/time/tz';
+import { lodgingZone, stayDates } from '@/time/ownZone';
+import { formatDateTime, utcOffset } from '@/time/tz';
 
 import { copyRow, infoRow, linkRows, mapsRow, type RowTheme, type useCopy } from './rows';
 
@@ -22,11 +23,9 @@ export function stayRows(
   lodging: Lodging,
   collectionZone: string,
 ): ReactElement[] {
-  const tz = lodging.timezone ?? collectionZone;
-  const nights =
-    lodging.check_in && lodging.check_out
-      ? daysBetween(localDate(lodging.check_in, tz), localDate(lodging.check_out, tz))
-      : null;
+  const tz = lodgingZone(lodging, collectionZone);
+  const stay = stayDates(lodging, collectionZone);
+  const nights = stay.checkIn && stay.checkOut ? stay.nights : null;
   // Only when the lodging's zone isn't the collection's: otherwise every time would carry a redundant offset.
   const zoneNote = tz !== collectionZone && lodging.check_in ? ` (UTC${utcOffset(lodging.check_in, tz)})` : '';
 

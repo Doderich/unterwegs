@@ -1,10 +1,9 @@
-import { useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
 import type { City, Country, Region, VisitedCity, VisitedRegion } from '@/api/schemas';
 import { useClient } from '@/auth/session';
 
-import { patch, useOnline, writeOnline } from './onlineWrite';
+import { patch, useOnlineWrite } from './onlineWrite';
 import { queryKeys } from './queries';
 import { withCityVisit, withCountryVisits, withoutCityVisit, withoutRegionVisit, withRegionVisit } from './world';
 import { readsAffectedBy } from './affected';
@@ -15,12 +14,11 @@ import { readsAffectedBy } from './affected';
  */
 export function useRegionEdits(countryCode: string) {
   const client = useClient();
-  const queryClient = useQueryClient();
-  const online = useOnline();
+  const { online, write } = useOnlineWrite();
 
   return useMemo(() => {
     const mark = (update: (v: VisitedRegion[]) => VisitedRegion[], delta: number, request: () => Promise<unknown>) =>
-      writeOnline(queryClient, online, {
+      write({
         request,
         optimistic: [
           patch(queryKeys.world.regionVisits(countryCode), update),
@@ -45,7 +43,7 @@ export function useRegionEdits(countryCode: string) {
           () => client.edit.unmarkRegionVisited(region.id),
         ),
     };
-  }, [client, queryClient, online, countryCode]);
+  }, [client, write, online, countryCode]);
 }
 
 /**
@@ -54,12 +52,11 @@ export function useRegionEdits(countryCode: string) {
  */
 export function useCityEdits(regionId: string) {
   const client = useClient();
-  const queryClient = useQueryClient();
-  const online = useOnline();
+  const { online, write } = useOnlineWrite();
 
   return useMemo(() => {
     const mark = (update: (v: VisitedCity[]) => VisitedCity[], request: () => Promise<unknown>) =>
-      writeOnline(queryClient, online, {
+      write({
         request,
         optimistic: [patch(queryKeys.world.cityVisits(regionId), update)],
         refetch: readsAffectedBy('world'),
@@ -79,18 +76,17 @@ export function useCityEdits(regionId: string) {
           () => client.edit.unmarkCityVisited(city.id),
         ),
     };
-  }, [client, queryClient, online, regionId]);
+  }, [client, write, online, regionId]);
 }
 
 /** Online-only: "Regionen aus meinen Orten markieren". Resolves to what was newly marked, or null after an alert. */
 export function useMarkFromLocations() {
   const client = useClient();
-  const queryClient = useQueryClient();
-  const online = useOnline();
+  const { online, write } = useOnlineWrite();
   return {
     online,
     run: () =>
-      writeOnline(queryClient, online, {
+      write({
         request: () => client.edit.markRegionsFromLocations(),
         refetch: readsAffectedBy('world'),
         successHaptic: true,

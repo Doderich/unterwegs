@@ -9,6 +9,7 @@ import { useLocationAction } from '@/data/useLocation';
 import { tr } from '@/i18n';
 import { FormHost } from '@/ui/FormHost';
 import { useMarkdownEditor } from '@/ui/MarkdownEditor';
+import { fieldsFromPick } from '@/ui/pickedPlace';
 import { usePlaceSearch } from '@/ui/PlaceSearch';
 import { RowIcon, useRowTheme } from '@/ui/rows';
 import { androidToolbarIcon } from '@/ui/icons';
@@ -97,10 +98,11 @@ export function PlaceEditor({ location }: { location?: Location }) {
               leading={<RowIcon name="search" />}
               onPress={() =>
                 places.start(tr('common.searchPlace'), (picked) => {
-                  setName(picked.name);
-                  setAddress(picked.address ?? '');
-                  setLatitude(String(picked.latitude));
-                  setLongitude(String(picked.longitude));
+                  const fields = fieldsFromPick(picked, null);
+                  setName(fields.name);
+                  setAddress(fields.address ?? '');
+                  setLatitude(String(fields.latitude));
+                  setLongitude(String(fields.longitude));
                   setRevision((n) => n + 1);
                 })
               }>
