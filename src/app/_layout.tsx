@@ -19,8 +19,11 @@ import { useColors, useReduceMotion } from '@/ui/theme';
 import { useScreenBackground } from '@/ui/useScreenBackground';
 import { ErrorScreen } from '@/ui/ErrorScreen';
 
-/** A screen that crashes while rendering shows `ErrorScreen` and keeps the header; the rest of the app stays usable. */
-export const unstable_settings = { screenErrorBoundary: ErrorScreen };
+/**
+ * A screen that crashes while rendering shows `ErrorScreen` and keeps the header; the rest of the app stays usable.
+ * Home stays under a screen opened from a link (a widget, the Live Activity, a shared file), so Back can leave it.
+ */
+export const unstable_settings = { anchor: '(main)', screenErrorBoundary: ErrorScreen };
 
 /** Last resort when the root itself fails. */
 export { ErrorScreen as ErrorBoundary };

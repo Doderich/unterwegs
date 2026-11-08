@@ -87,7 +87,7 @@
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "Unterwegs nutzt deinen Standort nur, wenn du einen Ort an deiner aktuellen Position anlegst."
+          "locationWhenInUsePermission": "Unterwegs zeigt deinen Standort auf der Karte und verwendet ihn, wenn du einen Ort an deiner Position anlegst."
         }
       ],
       [

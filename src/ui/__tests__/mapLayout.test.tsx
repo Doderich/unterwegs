@@ -5,6 +5,7 @@ import MapScreen from '../../app/collection/[id]/map';
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
   useMemo: (fn: () => unknown) => fn(),
+  useRef: (value: unknown) => ({ current: value }),
   useState: (value: unknown) => [
     value === null ? { id: 'place', kind: 'location', title: 'Sample place', latitude: 35, longitude: 135 } : value,
     jest.fn(),
@@ -40,7 +41,13 @@ jest.mock('@/data/useOnlineAction', () => ({ useOnline: () => true }));
 jest.mock('@/maps/regions', () => ({ MAP_STYLE: { light: 'light', dark: 'dark' } }));
 jest.mock('@/maps/useOfflineMaps', () => ({ useOfflineMaps: () => ({ regions: [] }) }));
 jest.mock('@/ui/Select', () => ({ useSelect: () => ({ row: null, sheet: null }) }));
+jest.mock('@/ui/CollectionLoading', () => ({ CollectionLoading: 'CollectionLoading' }));
 jest.mock('@/ui/Host', () => ({ Host: 'Host' }));
+jest.mock('@/ui/UserOnMap', () => ({
+  UserLocationMarker: 'UserLocationMarker',
+  LocateButton: 'LocateButton',
+  MapFab: 'MapFab',
+}));
 jest.mock('@/ui/Text', () => ({ Text: 'Text' }));
 jest.mock('@/ui/Sub', () => ({ Sub: 'Sub' }));
 jest.mock('@/ui/entries', () => ({ leadingFor: jest.fn() }));

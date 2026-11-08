@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Platform } from 'react-native';
 
 import { findItem, useCollectionView } from '@/data/queries';
+import { missingCollection } from '@/ui/CollectionLoading';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { TRAVEL_TAIL } from '@/glances/compute';
 import { pinnedTravel, pinTravel } from '@/glances/pinnedTravel';
@@ -29,7 +30,8 @@ import { resourceHeaderRows } from '@/ui/ResourceHeader';
 /** Organised around the journey: departure and arrival in their own zones first, booking and the rest below. */
 export default function TransportScreen() {
   const { collectionId, itemId } = useLocalSearchParams<{ collectionId: string; itemId: string }>();
-  const { view } = useCollectionView(collectionId);
+  const collection = useCollectionView(collectionId);
+  const { view } = collection;
   const rt = useRowTheme();
   const edits = useCollectionEdits(view);
   const sheet = useActionSheet(rt);
@@ -41,7 +43,7 @@ export default function TransportScreen() {
   const [pinned, setPinned] = useState(() => pinnedTravel());
   // When the screen opened: enough to decide whether the journey is still ahead.
   const [openedAt] = useState(() => Date.now());
-  if (!view || !t) return null;
+  if (!view || !t) return missingCollection(collection, !!t);
 
   // iOS Live Activity: until half an hour after arrival (docs/GLANCES.md).
   const endsAt = t.end_date || t.date ? Date.parse((t.end_date ?? t.date)!) + TRAVEL_TAIL : 0;

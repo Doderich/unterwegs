@@ -10,6 +10,7 @@ import { GeoJSONSource, Layer } from '@maplibre/maplibre-react-native';
 import { router } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { Platform, useColorScheme, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useCollectionContext } from '@/data/CollectionContext';
 import { mapData, type MapPoint } from '@/data/selectors';
@@ -23,7 +24,9 @@ import { leadingFor } from '@/ui/entries';
 import { openInMaps, RowIcon, useRowTheme } from '@/ui/rows';
 import { useColors, useListColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
+import { CollectionLoading } from '@/ui/CollectionLoading';
 import { Host } from '@/ui/Host';
+import { MapFab } from '@/ui/UserOnMap';
 import { useTabVisited } from '@/ui/useTabVisited';
 
 const KIND_COLORS = {
@@ -52,7 +55,7 @@ function MapScreenContent() {
   const online = useOnline();
   const offline = useOfflineMaps(collectionId);
   const colors = useColors();
-  const backgroundColor = useScreenBackground();
+  const insets = useSafeAreaInsets();
   const scheme = useColorScheme();
   const [day, setDay] = useState<string>('all');
   const [selected, setSelected] = useState<MapPoint | null>(null);
@@ -109,7 +112,7 @@ function MapScreenContent() {
     ],
   });
 
-  if (!view) return <View style={{ flex: 1, backgroundColor }} />;
+  if (!view) return <CollectionLoading />;
 
   const openDetail = (p: MapPoint) => {
     setSelected(null);
@@ -134,12 +137,11 @@ function MapScreenContent() {
   return (
     <MapFrame
       bounds={bounds}
-      topReserve={120}
+      topReserve={64}
       mapStyle={mapStyle}
       topStyle={{ paddingVertical: Platform.OS === 'android' ? 0 : 4, backgroundColor: colors.card }}
       presented={!!selected}
       onDismiss={() => setSelected(null)}
-      extra={daySelect.sheet}
       top={
         <Host matchContents={{ vertical: true }} style={{ width: '100%' }}>
           <Column spacing={0} style={{ paddingHorizontal: Platform.OS === 'ios' ? 8 : 0 }}>
@@ -155,14 +157,21 @@ function MapScreenContent() {
                 {daySelect.row}
               </Row>
             )}
-            <SheetRow
-              colors={listColors}
-              leading={<RowIcon name="offline" />}
-              onPress={() => router.push({ pathname: '/offline-maps/[collectionId]', params: { collectionId } })}>
-              {tr('common.offlineMaps')}
-            </SheetRow>
           </Column>
         </Host>
+      }
+      extra={
+        <>
+          {daySelect.sheet}
+          {selected ? null : (
+            <MapFab
+              label={tr('common.offlineMaps')}
+              name={{ ios: 'icloud.slash', android: 'cloud_off' }}
+              bottom={insets.bottom + 128}
+              onPress={() => router.push({ pathname: '/offline-maps/[collectionId]', params: { collectionId } })}
+            />
+          )}
+        </>
       }
       sheet={
         selected ? (

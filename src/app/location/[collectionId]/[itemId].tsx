@@ -4,6 +4,7 @@ import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { Alert } from 'react-native';
 
 import { findItem, useCollectionView, useIntegrations } from '@/data/queries';
+import { missingCollection } from '@/ui/CollectionLoading';
 import { useOnline } from '@/data/useOnlineAction';
 import { categoryLabel } from '@/data/categories';
 import { locationSchedule } from '@/data/locationSchedule';
@@ -42,7 +43,8 @@ import { resourceHeaderRows } from '@/ui/ResourceHeader';
 
 export default function LocationScreen() {
   const { collectionId, itemId } = useLocalSearchParams<{ collectionId: string; itemId: string }>();
-  const { view } = useCollectionView(collectionId);
+  const collection = useCollectionView(collectionId);
+  const { view } = collection;
   const colors = useColors();
   const rt = useRowTheme();
   const opener = useOpenAttachment();
@@ -63,7 +65,7 @@ export default function LocationScreen() {
     options: ratingOptions(),
     onChange: (v) => location && void edits.rate(location, v === '0' ? null : Number(v)),
   });
-  if (!view || !location) return null;
+  if (!view || !location) return missingCollection(collection, !!location);
 
   const plannedDays = view.days.filter((d) =>
     d.entries.some((e) => e.kind === 'location' && e.location.id === location.id),

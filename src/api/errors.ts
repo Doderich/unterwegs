@@ -8,6 +8,11 @@ export function isMissingEndpoint(e: unknown): boolean {
   return e instanceof ApiError && (e.status === 404 || e.status === 405 || e.status === 501);
 }
 
+/** This collection or item is gone. Retrying will not bring it back. */
+export function isNotFound(e: unknown): boolean {
+  return e instanceof ApiError && e.status === 404;
+}
+
 export function isUnreadable(e: unknown): boolean {
   return e instanceof SchemaError;
 }

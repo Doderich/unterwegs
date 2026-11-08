@@ -6,18 +6,26 @@ import DaysScreen from '@/screens/DaysScreen';
 
 import { useCollectionContext } from '@/data/CollectionContext';
 import { tr } from '@/i18n';
+import { CollectionLoading } from '@/ui/CollectionLoading';
 import { PlanModeTabs } from '@/ui/PlanModeTabs';
 import { Host } from '@/ui/Host';
-import { LoadingRows } from '@/ui/LoadingRows';
 import { Text } from '@/ui/Text';
 import { Today } from '@/ui/Today';
 import { useColors } from '@/ui/theme';
 
 export default function PlanScreen() {
   const headerHeight = useHeaderHeight();
-  const { planMode, setPlanMode } = useCollectionContext();
+  const { view, planMode, setPlanMode } = useCollectionContext();
+  const inset = { flex: 1, paddingTop: Platform.OS === 'ios' ? headerHeight : 0 } as const;
+  if (!view) {
+    return (
+      <View style={inset}>
+        <CollectionLoading />
+      </View>
+    );
+  }
   return (
-    <View style={{ flex: 1, paddingTop: Platform.OS === 'ios' ? headerHeight : 0 }}>
+    <View style={inset}>
       <PlanModeTabs value={planMode} onChange={setPlanMode} />
       {planMode === 'overview' ? <DaysScreen /> : <TodayScreen />}
     </View>
@@ -25,22 +33,16 @@ export default function PlanScreen() {
 }
 
 function TodayScreen() {
-  const { view, query, selectedDay, setSelectedDay } = useCollectionContext();
+  const { view, selectedDay, setSelectedDay } = useCollectionContext();
   const colors = useColors();
 
-  const message = !view ? tr('common.couldntLoadTrip') : view.days.length === 0 ? tr('today.tripHasNoDayPlan') : null;
-  if (!view || message) {
+  if (!view) return <CollectionLoading />;
+  if (view.days.length === 0) {
     return (
       <Host style={{ flex: 1 }}>
         <FieldGroup>
           <FieldGroup.Section>
-            {!view && query.isPending && query.isFetching ? (
-              <LoadingRows />
-            ) : (
-              <Text textStyle={{ color: colors.secondary }}>
-                {query.fetchStatus === 'paused' && !view ? tr('common.offlineNoData') : (message ?? undefined)}
-              </Text>
-            )}
+            <Text textStyle={{ color: colors.secondary }}>{tr('today.tripHasNoDayPlan')}</Text>
           </FieldGroup.Section>
         </FieldGroup>
       </Host>

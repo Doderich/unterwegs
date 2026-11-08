@@ -2,6 +2,7 @@ import { QueryCache, QueryClient, queryOptions, useQuery } from '@tanstack/react
 import { useCallback, useMemo, useSyncExternalStore } from 'react';
 
 import { AuthError, type ApiClient } from '@/api/client';
+import { isNotFound } from '@/api/errors';
 import type { Collection } from '@/api/schemas';
 import { useClient } from '@/auth/session';
 
@@ -49,7 +50,12 @@ export function useCollections() {
 }
 
 export function collectionQueryOptions(client: ApiClient, id: string) {
-  return queryOptions({ queryKey: queryKeys.collection(id), queryFn: () => client.getCollection(id) });
+  return queryOptions({
+    queryKey: queryKeys.collection(id),
+    queryFn: () => client.getCollection(id),
+    // A missing collection stays missing. Other reads still retry twice.
+    retry: (count, error) => !(error instanceof AuthError) && !isNotFound(error) && count < 2,
+  });
 }
 
 /**

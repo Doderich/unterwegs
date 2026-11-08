@@ -359,6 +359,11 @@
     "body": "表示中にエラーが発生しました。保存済みのデータには影響ありません。",
     "back": "戻る"
   },
+  "goneScreen": {
+    "title": "もうありません",
+    "collection": "このコレクションは削除されたか、リンクが一致しません。",
+    "item": "これはこのコレクションにもうありません。"
+  },
   "errors": {
     "unsupportedServer": "このサーバーには対応していません。旅行を読み込むために必要なものが見つかりません（{reason}）。AdventureLog {version} でテスト済みです。",
     "serverAnswerUnreadable": "サーバーの応答を読み取れませんでした。Unterwegs がまだ対応していない AdventureLog のバージョンかもしれません（{version} でテスト済み）。保存済みの内容は引き続き利用できます。",
@@ -632,6 +637,8 @@
   "map": {
     "loadFailed": "地図を読み込めませんでした。",
     "loadingMap": "地図を読み込み中",
+    "locationUnavailable": "現在地を取得できません。",
+    "showMyLocation": "現在地を表示",
     "points_other": "{count}か所",
     "wholeTrip": "コレクション全体"
   },

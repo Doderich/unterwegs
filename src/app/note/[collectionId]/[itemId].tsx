@@ -5,6 +5,7 @@ import { Alert } from 'react-native';
 
 import type { Checklist } from '@/api/schemas';
 import { findItem, useCollectionView } from '@/data/queries';
+import { missingCollection } from '@/ui/CollectionLoading';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { tr } from '@/i18n';
 import { FormHost } from '@/ui/FormHost';
@@ -26,7 +27,8 @@ export default function NoteScreen() {
     itemId: string;
     edit?: string;
   }>();
-  const { view } = useCollectionView(collectionId);
+  const collection = useCollectionView(collectionId);
+  const { view } = collection;
   const colors = useColors();
   const rt = useRowTheme();
   const edits = useCollectionEdits(view);
@@ -36,12 +38,12 @@ export default function NoteScreen() {
   const newItem = useRef<TextInputRef>(null);
   const [newItemText, setNewItemText] = useState('');
   const [name, setName] = useState<string | null>(null);
-  if (!view) return null;
+  if (!view) return missingCollection(collection, false);
 
   const note = findItem(view.collection, 'note', itemId);
   const checklist = note ? undefined : findItem(view.collection, 'checklist', itemId);
   const item = note ?? checklist;
-  if (!item) return null;
+  if (!item) return missingCollection(collection, false);
   const id = item.id;
 
   const plannedDays = view.days.filter((d) =>
