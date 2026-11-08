@@ -9,6 +9,7 @@ import {
   lineLimit,
   monospacedDigit,
   resizable,
+  widgetAccentedRenderingMode,
   widgetURL,
 } from '@expo/ui/swift-ui/modifiers';
 import { createWidget, type WidgetEnvironment } from 'expo-widgets';
@@ -106,6 +107,8 @@ const NextWidget = (raw: Pickable<NextWidgetProps>, environment: WidgetEnvironme
             aspectRatio({ contentMode: 'fill' }),
             frame({ minWidth: 120, maxWidth: 120, maxHeight: 10000 }),
             clipShape('roundedRectangle', 12),
+            // A clear or tinted Home Screen otherwise paints this opaque photo as a solid white block.
+            widgetAccentedRenderingMode('fullColor'),
           ]}
         />
       </HStack>
