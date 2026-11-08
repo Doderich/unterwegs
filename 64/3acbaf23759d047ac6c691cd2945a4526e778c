@@ -1,0 +1,125 @@
+src/app/world/map.tsx
+  s_2d6487b31b8291::t_c8471a4717cd11 54
+  s_2d6487b31b8291::t_325e05d73467bd 7
+src/data/__tests__/locationSchedule.test.ts
+  s_2d6487b31b8291::t_fca29643379698 1-7,9-10,12-44
+  s_2d6487b31b8291::t_ba54b6e4b107b6 8
+  s_2d6487b31b8291::t_fa519d30f6fe79 11
+src/ui/dayPlan.ts
+  s_2d6487b31b8291::t_ebbe9c455b5dbd 1-166
+src/app/transport/[collectionId]/[itemId].tsx
+  s_2d6487b31b8291::t_536da3fa706285 14
+src/app/lodging-edit/[collectionId].tsx
+  s_2d6487b31b8291::t_7c883961193586 120
+  s_2d6487b31b8291::t_c4ead111549e00 15
+src/ui/__tests__/dayPlan.test.ts
+  s_2d6487b31b8291::t_3205e514ef8fcf 1-2,5-6,9-68
+  s_2d6487b31b8291::t_36aa70f00269d4 3-4,7-8
+src/ui/MapFrame.tsx
+  s_2d6487b31b8291::t_716966b41ec60e 1-78
+src/app/transport-edit/[collectionId].tsx
+  s_2d6487b31b8291::t_0bec81d35854ad 14
+  s_2d6487b31b8291::t_22dd740b9b8273 111
+src/app/location-edit/[collectionId].tsx
+  s_2d6487b31b8291::t_ec342f6c5520b7 83-87,94,104-105,108
+  s_2d6487b31b8291::t_d458651b3581e9 7
+src/app/collection/[id]/_layout.tsx
+  s_2d6487b31b8291::t_25a7360355ec0d 13
+  s_2d6487b31b8291::t_3ba30b3d10cdb3 190
+src/app/note-edit/[collectionId].tsx
+  s_2d6487b31b8291::t_42f4b508d729c6 14
+  s_2d6487b31b8291::t_20605776f37752 51
+src/screens/DaysScreen.tsx
+  s_2d6487b31b8291::t_4594bf5cd2ea14 11
+  s_2d6487b31b8291::t_fb43d0e0fd4b98 49
+  s_2d6487b31b8291::t_0bfab5e74984f1 103
+src/ui/entries.tsx
+  s_2d6487b31b8291::t_5027e374ae422d 9
+  s_2d6487b31b8291::t_45313d91b2be1b 168
+  s_2d6487b31b8291::t_02184e9701fca4 10
+src/time/__tests__/suggestionZones.test.ts
+  s_2d6487b31b8291::t_0af05d77f8528d 1-19
+src/data/__tests__/features.test.ts
+  s_2d6487b31b8291::t_327a5a4237229c 4
+  s_2d6487b31b8291::t_85b6a637f9a8fb 18-33,35-36,38-41
+  s_2d6487b31b8291::t_369b638711a1b9 34
+  s_2d6487b31b8291::t_7f1ba187df36a8 37
+src/time/suggestionZones.ts
+  s_2d6487b31b8291::t_94956f8122534b 1-20
+src/data/trails.ts
+  s_2d6487b31b8291::t_57eac52807a3cb 1-11
+src/data/categories.ts
+  s_2d6487b31b8291::t_643e2974b4fcbc 1,5
+  s_2d6487b31b8291::t_ca66d4a576cbfb 32
+  s_2d6487b31b8291::t_e58bead6040bb0 36-63
+  s_2d6487b31b8291::t_c32b598bafbbec 6
+src/app/collection/[id]/map.tsx
+  s_2d6487b31b8291::t_085f27e4989caf 1
+  s_2d6487b31b8291::t_10c7b831d82880 18
+  s_2d6487b31b8291::t_ab479e6900df0b 107
+  s_2d6487b31b8291::t_0b029e883eca2a 131-132,135-143,166-168,189-221
+  s_2d6487b31b8291::t_c427b8255ee1df 24
+  s_2d6487b31b8291::t_4fdb8bcbedaae8 9,12
+  s_2d6487b31b8291::t_cd290a142d21b5 7
+src/app/location/[collectionId]/[itemId].tsx
+  s_2d6487b31b8291::t_a6ffd190c63948 72
+  s_2d6487b31b8291::t_d56abb1831a44d 98
+  s_2d6487b31b8291::t_2fda904dcfd80e 8-9,11
+  s_2d6487b31b8291::t_d692f01ce03359 131
+  s_2d6487b31b8291::t_4ad317e73e4b39 108
+  s_2d6487b31b8291::t_b4ab3e42c37ef8 10
+src/ui/PointsMap.tsx
+  s_2d6487b31b8291::t_f4ee86d692e7c2 1,3,7-8,10-13,60-67,78-94
+src/ui/NextUp.tsx
+  s_2d6487b31b8291::t_7318db6101a82d 74
+  s_2d6487b31b8291::t_9bb8c52a05c49d 11
+src/data/locationSchedule.ts
+  s_2d6487b31b8291::t_b0702728a38740 1-56
+src/ui/__tests__/mapLayout.test.tsx
+  s_2d6487b31b8291::t_a4077fe5da6486 53,55-61
+  s_2d6487b31b8291::t_ed392d954c423a 1
+  s_2d6487b31b8291::t_3057a4c300a85c 79
+  s_2d6487b31b8291::t_70ca4654685a80 52,54,62-64,67
+src/data/__tests__/transportName.test.ts
+  s_2d6487b31b8291::t_571b2adfa73fb3 1-24
+src/data/__tests__/trails.test.ts
+  s_2d6487b31b8291::t_344c3dccc8f09a 1-17
+src/app/day-edit/[collectionId]/[date].tsx
+  s_2d6487b31b8291::t_798c978de40214 6-7,11-12,14-16
+src/glances/compute.ts
+  s_2d6487b31b8291::t_e34cb7e68cf915 12
+  s_2d6487b31b8291::t_10101da0331d2c 142,397,579
+src/screens/VisitEditor.tsx
+  s_2d6487b31b8291::t_1beb3fb5d62b19 17
+  s_2d6487b31b8291::t_746ced2b9505b8 61
+  s_2d6487b31b8291::t_f79c244682b835 13
+  s_2d6487b31b8291::t_859256e549e9c3 92
+src/app/people/[username].tsx
+  s_2d6487b31b8291::t_040593e082729f 4
+  s_2d6487b31b8291::t_7f09eafb86e55a 83
+src/data/transportName.ts
+  s_2d6487b31b8291::t_cb731e64a51011 1-20
+src/ui/Today.tsx
+  s_2d6487b31b8291::t_327190b93f293f 14
+  s_2d6487b31b8291::t_5eeb2752006c53 134
+  s_2d6487b31b8291::t_2b2a2ff73317c6 15
+src/data/selectors.ts
+  s_2d6487b31b8291::t_3648aa2847f104 2
+  s_2d6487b31b8291::t_bb5eb07d218e7b 37
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "643acbaf23759d047ac6c691cd2945a4526e778c",
+  "prompts": {},
+  "sessions": {
+    "s_2d6487b31b8291": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "agent-387a0e8d-9284-4202-8176-f2055210b22a",
+        "model": "unknown"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
