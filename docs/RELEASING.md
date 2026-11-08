@@ -31,6 +31,8 @@ The app JavaScript is `ddabbdd` (merge of PR #14). The iOS archive was uploaded 
 
 Over-the-air update on **08.11.2026**, 11:21 UTC: `ddabbdd` published for both platforms to branch `production` with `--public` (ios `17941369065421`, android `17941369065422`, group `9166bc2a-58ef-4aea-9137-22d1d31c99cc`). It reaches 1.5.1 builds on the next start after download. The published bundles contain no server preset.
 
+Over-the-air update on **08.11.2026**, 13:14 UTC: `c165d17` (merge of PR #16) published for both platforms to branch `production` with `--public` (ios `17941437105331`, android `17941437105222`, group `774e077b-8ddf-487c-9b5d-a122290e2856`). The Next widget's cover stays full color on a clear or tinted Home Screen. It reaches 1.5.1 builds on the next start after download; opening the app writes the new widget layout. The published bundles contain no server preset.
+
 ### 1.5.0 release
 
 Release record, **08.11.2026** (runtime **1.5.0**):
