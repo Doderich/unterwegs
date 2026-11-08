@@ -7,10 +7,9 @@ import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { tr } from '@/i18n';
 import { useActionSheet } from '@/ui/ActionSheet';
 import { useMediaUploads } from '@/ui/media';
-import { formatPrice } from '@/ui/format';
-import { starsLabel } from '@/ui/forms';
+import { detailExtras } from '@/ui/resourceDetail';
 import { lodgingLabel, androidToolbarIcon } from '@/ui/icons';
-import { attachmentRows, infoRow, useCopy, useOpenAttachment, useRowTheme } from '@/ui/rows';
+import { useCopy, useOpenAttachment, useRowTheme } from '@/ui/rows';
 import { Host } from '@/ui/Host';
 import { resourceHeaderRows } from '@/ui/ResourceHeader';
 import { stayRows } from '@/ui/StaySummary';
@@ -28,9 +27,6 @@ export default function LodgingScreen() {
   const lodging = view ? findItem(view.collection, 'lodging', itemId) : undefined;
   const descriptionRows = useDescriptionRows(rt, lodging?.description);
   if (!view || !lodging) return null;
-
-  const price = formatPrice(lodging.price, lodging.price_currency);
-  const stars = starsLabel(lodging.rating);
 
   return (
     <>
@@ -64,23 +60,14 @@ export default function LodgingScreen() {
             {stayRows(rt, copier, lodging, view.timeZone)}
           </FieldGroup.Section>
 
-          {price || stars ? (
-            <FieldGroup.Section title={tr('common.details')}>
-              {stars ? infoRow(rt, { icon: 'star', label: tr('common.rating'), value: stars }) : null}
-              {price ? infoRow(rt, { icon: 'price', label: tr('common.price'), value: price }) : null}
-            </FieldGroup.Section>
-          ) : null}
-
-          {lodging.description ? (
-            <FieldGroup.Section title={tr('common.notes')}>{descriptionRows}</FieldGroup.Section>
-          ) : null}
-
-          {lodging.attachments.length > 0 || media.fileRows.length > 0 ? (
-            <FieldGroup.Section title={tr('common.attachments')}>
-              {attachmentRows(rt, lodging.attachments, opener)}
-              {media.fileRows}
-            </FieldGroup.Section>
-          ) : null}
+          {detailExtras(rt, opener, {
+            price: { amount: lodging.price, currency: lodging.price_currency },
+            rating: lodging.rating,
+            notes: lodging.description ? descriptionRows : null,
+            attachments: lodging.attachments,
+            attachmentTitle: tr('common.attachments'),
+            fileRows: media.fileRows,
+          })}
         </FieldGroup>
       </Host>
       {sheet.sheet}

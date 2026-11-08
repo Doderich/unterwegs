@@ -258,32 +258,7 @@ function distanceKm(lat1: number, lon1: number, lat2: number, lon2: number): num
   return 2 * 6371 * Math.asin(Math.sqrt(a));
 }
 
-/** Fields of `next` that differ from `original` (for partial updates). */
-export function changedFields<T extends Record<string, unknown>>(
-  original: Record<string, unknown>,
-  next: T,
-): Partial<T> {
-  const out: Record<string, unknown> = {};
-  for (const [k, v] of Object.entries(next)) {
-    const before = original[k];
-    const same =
-      (before ?? null) === (v ?? null) ||
-      (Array.isArray(v) && sameList(Array.isArray(before) ? before : [], v)) ||
-      (typeof v === 'number' && before != null && Number(before) === v) ||
-      (typeof v === 'string' &&
-        before != null &&
-        v !== '' &&
-        !Number.isNaN(Number(v)) &&
-        Number(before) === Number(v) &&
-        typeof before !== 'boolean');
-    if (!same) out[k] = v;
-  }
-  return out as Partial<T>;
-}
-
-function sameList(a: unknown[], b: unknown[]): boolean {
-  return a.length === b.length && a.every((x, i) => x === b[i]);
-}
+export { changedFields } from './outbox/fields';
 
 /**
  * The signed-in user owns the collection or it is shared with them; false for someone else's public collection

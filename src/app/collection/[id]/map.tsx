@@ -1,4 +1,5 @@
 import { MapCanvas } from '@/ui/MapCanvas';
+import { PointLayer } from '@/ui/mapPoints';
 import { useScreenBackground } from '@/ui/useScreenBackground';
 import { MAP_STYLE } from '@/maps/regions';
 import { useOfflineMaps } from '@/maps/useOfflineMaps';
@@ -14,6 +15,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useCollectionContext } from '@/data/CollectionContext';
 import { mapData, type MapPoint } from '@/data/selectors';
+import { pinBounds } from '@/data/world';
 import { tr } from '@/i18n';
 import { formatDayLabel } from '@/time/tz';
 import { useSelect } from '@/ui/Select';
@@ -96,17 +98,7 @@ function MapScreenContent() {
   const bounds = useMemo(() => {
     // Fit where we actually are (lodgings + locations); far-away departure airports only when nothing else is shown.
     const local = points.filter((p) => p.kind === 'location' || p.kind === 'lodging');
-    const coords = (local.length > 0 ? local : points).map((p) => [p.longitude, p.latitude] as const);
-    if (coords.length === 0) return null;
-    const lngs = coords.map((c) => c[0]);
-    const lats = coords.map((c) => c[1]);
-    const pad = coords.length === 1 ? 0.02 : 0;
-    return [Math.min(...lngs) - pad, Math.min(...lats) - pad, Math.max(...lngs) + pad, Math.max(...lats) + pad] as [
-      number,
-      number,
-      number,
-      number,
-    ];
+    return pinBounds(local.length > 0 ? local : points);
   }, [points]);
 
   const daySelect = useSelect(useRowTheme(), {
@@ -164,34 +156,29 @@ function MapScreenContent() {
             paint={{ 'line-color': KIND_COLORS['transport-start'], 'line-width': 2.5, 'line-dasharray': [2, 1.5] }}
           />
         </GeoJSONSource>
-        <GeoJSONSource
+        <PointLayer
           id="points"
           data={pointsGeo}
-          hitbox={{ top: 22, right: 22, bottom: 22, left: 22 }}
-          onPress={(e) => {
-            const key = e.nativeEvent.features[0]?.properties?.key as string | undefined;
-            const point = key ? points.find((p) => p.key === key) : undefined;
+          paint={{
+            'circle-radius': ['match', ['get', 'kind'], 'lodging', 9, 7],
+            'circle-color': [
+              'match',
+              ['get', 'kind'],
+              'lodging',
+              KIND_COLORS.lodging,
+              'location',
+              KIND_COLORS.location,
+              KIND_COLORS['transport-start'],
+            ],
+            'circle-stroke-width': 2,
+            'circle-stroke-color': '#FFFFFF',
+          }}
+          onPress={(properties) => {
+            const key = properties.key;
+            const point = typeof key === 'string' ? points.find((p) => p.key === key) : undefined;
             if (point) setSelected(point);
-          }}>
-          <Layer
-            type="circle"
-            id="point-circles"
-            paint={{
-              'circle-radius': ['match', ['get', 'kind'], 'lodging', 9, 7],
-              'circle-color': [
-                'match',
-                ['get', 'kind'],
-                'lodging',
-                KIND_COLORS.lodging,
-                'location',
-                KIND_COLORS.location,
-                KIND_COLORS['transport-start'],
-              ],
-              'circle-stroke-width': 2,
-              'circle-stroke-color': '#FFFFFF',
-            }}
-          />
-        </GeoJSONSource>
+          }}
+        />
       </MapCanvas>
 
       <View style={[styles.filter, { top: headerOffset, backgroundColor: colors.card }]}>

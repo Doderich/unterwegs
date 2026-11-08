@@ -2,13 +2,14 @@ import { MapCanvas } from '@/ui/MapCanvas';
 import { useScreenBackground } from '@/ui/useScreenBackground';
 import { MAP_STYLE } from '@/maps/regions';
 import { BottomSheet, Column, Row, Spacer } from '@expo/ui';
-import { Camera, GeoJSONSource, Layer } from '@maplibre/maplibre-react-native';
+import { Camera } from '@maplibre/maplibre-react-native';
 import { useMemo, useState, type ReactNode } from 'react';
 import { Platform, StyleSheet, useColorScheme, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useHeaderHeight } from 'expo-router/react-navigation';
 
 import { pinBounds } from '@/data/world';
+import { PointLayer } from '@/ui/mapPoints';
 import { tr } from '@/i18n';
 import { floatingShadow, useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
@@ -75,25 +76,20 @@ export function PointsMap({
           {...(bounds ? { bounds, padding, duration: 600, easing: 'ease' as const } : {})}
           initialViewState={bounds ? { bounds, padding } : undefined}
         />
-        <GeoJSONSource
+        <PointLayer
           id="points"
           data={geo}
-          hitbox={{ top: 22, right: 22, bottom: 22, left: 22 }}
-          onPress={(e) => {
-            const id = e.nativeEvent.features[0]?.properties?.id as string | undefined;
-            if (id) setSelected(id);
-          }}>
-          <Layer
-            type="circle"
-            id="point-circles"
-            paint={{
-              'circle-radius': 7,
-              'circle-color': ['case', ['get', 'visited'], VISITED, OPEN],
-              'circle-stroke-width': 2,
-              'circle-stroke-color': '#FFFFFF',
-            }}
-          />
-        </GeoJSONSource>
+          paint={{
+            'circle-radius': 7,
+            'circle-color': ['case', ['get', 'visited'], VISITED, OPEN],
+            'circle-stroke-width': 2,
+            'circle-stroke-color': '#FFFFFF',
+          }}
+          onPress={(properties) => {
+            const id = properties.id;
+            if (typeof id === 'string') setSelected(id);
+          }}
+        />
       </MapCanvas>
 
       <View style={[styles.legend, { top: headerOffset, backgroundColor: colors.card }]}>

@@ -16,8 +16,8 @@ import { formatDistance, formatPrice } from '@/ui/format';
 import { ratingOptions, ratingStars } from '@/ui/forms';
 import { androidToolbarIcon } from '@/ui/icons';
 import { useMediaUploads } from '@/ui/media';
+import { filesSection } from '@/ui/resourceDetail';
 import {
-  attachmentRows,
   infoRow,
   linkRows,
   mapsRow,
@@ -401,12 +401,7 @@ export default function LocationScreen() {
             </FieldGroup.Section>
           ) : null}
 
-          {location.attachments.length > 0 || media.fileRows.length > 0 ? (
-            <FieldGroup.Section title={tr('common.attachments')}>
-              {attachmentRows(rt, location.attachments, opener)}
-              {media.fileRows}
-            </FieldGroup.Section>
-          ) : null}
+          {filesSection(rt, opener, tr('common.attachments'), location.attachments, media.fileRows)}
           {more([
             { title: 'Immich', node: immichSection },
             { title: tr('location.trails'), node: trailsSection },

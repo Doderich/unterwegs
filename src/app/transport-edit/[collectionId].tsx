@@ -1,4 +1,3 @@
-import { suggestedZone } from '@/time/placeZone';
 import { FieldGroup, ListItem } from '@expo/ui';
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
@@ -6,7 +5,7 @@ import { Alert } from 'react-native';
 
 import type { TransportationInput } from '@/api/client';
 import { findItem, useCollectionView } from '@/data/queries';
-import { changedFields, nearestZone, zoneOn } from '@/data/selectors';
+import { zoneOn } from '@/data/selectors';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { confirmDeleteFromEditor, leaveAfterSave } from '@/ui/editorExit';
 import { tr } from '@/i18n';
@@ -17,17 +16,11 @@ import { arrivalZone, departureZone } from '@/time/ownZone';
 import { utcToZoned } from '@/time/zonedInput';
 import { useActionSheet } from '@/ui/ActionSheet';
 import { useZoneSelect } from '@/ui/DateTimeRow';
-import {
-  attachmentEditRows,
-  currencyOptions,
-  defaultCurrency,
-  parsePrice,
-  publicRow,
-  ratingOptions,
-  ratingStars,
-} from '@/ui/forms';
+import { defaultCurrency, parsePrice, ratingStars } from '@/ui/forms';
 import { androidToolbarIcon, transportLabel } from '@/ui/icons';
 import { useMediaUploads } from '@/ui/media';
+import { objectEditorTail, priceLinkFields, useCurrencySelect, useRatingSelect } from '@/ui/objectForm';
+import { fieldsFromPick } from '@/ui/pickedPlace';
 import { usePlaceSearch } from '@/ui/PlaceSearch';
 import { RowIcon, useRowTheme } from '@/ui/rows';
 import { useSelect } from '@/ui/Select';
@@ -145,20 +138,8 @@ export default function TransportEditScreen() {
     at: `${arr.date}T12:00:00Z`,
     onChange: setEndZone,
   });
-  const currencySelect = useSelect(rt, {
-    title: tr('common.currency'),
-    label: tr('common.currency'),
-    value: currency,
-    onChange: setCurrency,
-    options: currencyOptions(currency),
-  });
-  const ratingSelect = useSelect(rt, {
-    title: tr('common.rating'),
-    label: tr('common.rating'),
-    value: String(rating),
-    onChange: (v) => setRating(Number(v)),
-    options: ratingOptions(),
-  });
+  const currencySelect = useCurrencySelect(rt, currency, setCurrency);
+  const ratingSelect = useRatingSelect(rt, rating, setRating);
   const media = useMediaUploads(rt, edits, sheet, 'transportation', itemId ?? '');
 
   if (!view || (itemId && !t)) return null;
@@ -203,9 +184,7 @@ export default function TransportEditScreen() {
       is_public: isPublic,
     };
     setSaving(true);
-    const saved = t
-      ? await edits.saveTransportation(t.id, { name: input.name, type: input.type, ...changedFields(t, input) })
-      : await edits.saveTransportation(null, input);
+    const saved = await edits.saveTransportation(t ? t.id : null, input);
     setSaving(false);
     if (!saved) return;
     leaveAfterSave('transportation', { collectionId, savedId: saved.id, created: !t, fromShare: fromShare === '1' });
@@ -215,15 +194,15 @@ export default function TransportEditScreen() {
     places.start(
       which === 'from' ? tr('transportEdit.searchDeparture') : tr('transportEdit.searchDestination'),
       (p) => {
+        const picked = fieldsFromPick(p, view.collection);
         setPlaceRevisions((revisions) => ({ ...revisions, [which]: revisions[which] + 1 }));
-        const end = { place: p.name, latitude: p.latitude, longitude: p.longitude };
-        const guess = suggestedZone(p.latitude, p.longitude) ?? nearestZone(view.collection, p.latitude, p.longitude);
+        const end = { place: picked.name, latitude: picked.latitude, longitude: picked.longitude };
         if (which === 'from') {
           setFrom((f) => ({ ...f, ...end }));
-          if (guess) setStartZone(guess);
+          if (picked.zone) setStartZone(picked.zone);
         } else {
           setTo((x) => ({ ...x, ...end }));
-          if (guess) setEndZone(guess);
+          if (picked.zone) setEndZone(picked.zone);
         }
       },
     );
@@ -325,48 +304,30 @@ export default function TransportEditScreen() {
           </FieldGroup.Section>
 
           <FieldGroup.Section title={tr('common.booking')}>
-            <TextInput
-              defaultValue={price}
-              onChangeText={setPrice}
-              placeholder={tr('common.price')}
-              keyboardType="decimal-pad"
-            />
-            {currencySelect.row}
-            <TextInput
-              defaultValue={link}
-              onChangeText={setLink}
-              placeholder={tr('common.linkHttps')}
-              keyboardType="url"
-              autoCapitalize="none"
-              autoCorrect={false}
-            />
+            {priceLinkFields({
+              price,
+              onPrice: setPrice,
+              pricePlaceholder: tr('common.price'),
+              currencyRow: currencySelect.row,
+              link,
+              onLink: setLink,
+            })}
           </FieldGroup.Section>
 
-          <FieldGroup.Section title={tr('common.visibility')}>
-            {publicRow(rt, isPublic, setIsPublic)}
-          </FieldGroup.Section>
-
-          <FieldGroup.Section title={tr('common.rating')}>{ratingSelect.row}</FieldGroup.Section>
-
-          <FieldGroup.Section title={tr('common.notes')}>{markdown.row}</FieldGroup.Section>
-
-          {t ? (
-            <FieldGroup.Section title={tr('common.ticketsAttachments')}>
-              {attachmentEditRows(rt, t.attachments, sheet, prompt, edits)}
-              {media.fileRows}
-            </FieldGroup.Section>
-          ) : null}
-
-          {t ? (
-            <FieldGroup.Section>
-              <ListItem
-                colors={{ ...rt.listColors, contentColor: colors.danger }}
-                leading={<RowIcon name="delete" color={colors.danger} />}
-                onPress={confirmDelete}>
-                <Text textStyle={{ color: colors.danger }}>{tr('transportEdit.deleteConnection')}</Text>
-              </ListItem>
-            </FieldGroup.Section>
-          ) : null}
+          {objectEditorTail(rt, colors, {
+            isPublic,
+            onPublic: setIsPublic,
+            ratingRow: ratingSelect.row,
+            notes: markdown.row,
+            attachments: t ? t.attachments : null,
+            attachmentTitle: tr('common.ticketsAttachments'),
+            sheet,
+            prompt,
+            edits,
+            fileRows: media.fileRows,
+            deleteLabel: tr('transportEdit.deleteConnection'),
+            onDelete: t ? confirmDelete : undefined,
+          })}
         </FieldGroup>
       </FormHost>
       {typeSelect.sheet}

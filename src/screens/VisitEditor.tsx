@@ -10,10 +10,11 @@ import { todayIn } from '@/time/today';
 import { suggestedZone } from '@/time/placeZone';
 import { useCollectionView } from '@/data/queries';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
+import { visitInstants, visitPort } from '@/data/visitWrite';
 import { tr } from '@/i18n';
 import { FormHost } from '@/ui/FormHost';
 import { deviceTimeZone, formatDayLabel, visitTime } from '@/time/tz';
-import { endsAfterStart, utcToZoned } from '@/time/zonedInput';
+import { utcToZoned } from '@/time/zonedInput';
 import { useZoneSelect } from '@/ui/DateTimeRow';
 import { androidToolbarIcon } from '@/ui/icons';
 import { RowIcon, switchRow, useRowTheme } from '@/ui/rows';
@@ -103,34 +104,35 @@ export function VisitEditor({
   if (!location || (visitId && !visit)) return null;
 
   const dayNumber = view?.days.find((d) => d.date === date)?.number;
+  const port = visitPort(
+    !!collectionId,
+    {
+      save: (fields) => edits.saveVisit(location, visit?.id ?? null, fields),
+      remove: () => (visit ? edits.deleteVisit(visit.id) : Promise.resolve(undefined)),
+    },
+    {
+      save: (fields) =>
+        direct.run(() =>
+          visit
+            ? client.edit.updateVisit(visit.id, fields)
+            : client.edit.addVisit({ ...fields, location: locationId }),
+        ),
+      remove: () =>
+        visit
+          ? direct.run(() => client.edit.deleteVisit(visit.id).then(() => true))
+          : Promise.resolve(undefined),
+    },
+  );
 
   const save = async () => {
     if (saving) return;
-    let startIso: string;
-    let endIso: string;
-    if (allDay) {
-      // Like the website and the server: all-day visits are midnight UTC of the date.
-      startIso = endIso = `${date}T00:00:00Z`;
-    } else {
-      startIso = startMoment.iso;
-      endIso = endMoment.iso;
-      if (!endsAfterStart(startIso, endIso)) {
-        Alert.alert(tr('common.checkTime'), tr('visitEdit.endMustAfterStart'));
-        return;
-      }
+    const instants = visitInstants(allDay, date, startMoment.iso, endMoment.iso);
+    if (!instants) {
+      Alert.alert(tr('common.checkTime'), tr('visitEdit.endMustAfterStart'));
+      return;
     }
     setSaving(true);
-    const input = {
-      start_date: startIso,
-      end_date: endIso,
-      timezone: zone,
-      notes: notes.trim(),
-    };
-    const saved = collectionId
-      ? await edits.saveVisit(location, visit?.id ?? null, input)
-      : await direct.run(() =>
-          visit ? client.edit.updateVisit(visit.id, input) : client.edit.addVisit({ ...input, location: locationId }),
-        );
+    const saved = await port.save({ ...instants, timezone: zone, notes: notes.trim() });
     setSaving(false);
     if (saved) router.back();
   };
@@ -143,10 +145,7 @@ export function VisitEditor({
         style: 'destructive',
         onPress: async () => {
           router.back();
-          if (visit) {
-            if (collectionId) await edits.deleteVisit(visit.id);
-            else await direct.run(() => client.edit.deleteVisit(visit.id).then(() => true));
-          }
+          if (visit) await port.remove();
         },
       },
     ]);

@@ -5,7 +5,6 @@ import { Alert } from 'react-native';
 
 import type { CategoryInput, LocationInput } from '@/api/client';
 import { findItem, useCategories, useCollectionView } from '@/data/queries';
-import { changedFields } from '@/data/selectors';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { confirmDeleteFromEditor, leaveAfterSave } from '@/ui/editorExit';
 import { useDuplicateGuard } from '@/ui/duplicateGuard';
@@ -15,9 +14,11 @@ import { FormHost } from '@/ui/FormHost';
 import { useMarkdownEditor } from '@/ui/MarkdownEditor';
 import { formatDayLabel } from '@/time/tz';
 import { useActionSheet } from '@/ui/ActionSheet';
-import { attachmentEditRows, currencyOptions, defaultCurrency, parsePrice, parseTags, publicRow } from '@/ui/forms';
+import { defaultCurrency, parsePrice, parseTags, publicRow } from '@/ui/forms';
 import { androidToolbarIcon } from '@/ui/icons';
 import { useMediaUploads } from '@/ui/media';
+import { attachmentEditSection, deleteEditRow, useCurrencySelect } from '@/ui/objectForm';
+import { fieldsFromPick } from '@/ui/pickedPlace';
 import { usePlaceSearch, type PickedPlace } from '@/ui/PlaceSearch';
 import { infoRow, RowIcon, useRowTheme } from '@/ui/rows';
 import { useSelect } from '@/ui/Select';
@@ -110,22 +111,17 @@ export default function LocationEditScreen() {
       } else setCategory(v ? (known.get(v) ?? null) : null);
     },
   });
-  const currencySelect = useSelect(rt, {
-    title: tr('common.currency'),
-    label: tr('common.currency'),
-    value: currency,
-    onChange: setCurrency,
-    options: currencyOptions(currency),
-  });
+  const currencySelect = useCurrencySelect(rt, currency, setCurrency);
   const media = useMediaUploads(rt, edits, sheet, 'location', itemId ?? '');
 
   if (!view || (itemId && !location)) return null;
 
   const apply = (p: PickedPlace) => {
+    const picked = fieldsFromPick(p, view.collection);
     setPlaceRevision((revision) => revision + 1);
-    if (p.name) setName(p.name);
-    setAddress(p.address ?? '');
-    setCoords({ latitude: p.latitude, longitude: p.longitude });
+    if (picked.name) setName(picked.name);
+    setAddress(picked.address ?? '');
+    setCoords({ latitude: picked.latitude, longitude: picked.longitude });
   };
 
   const save = async () => {
@@ -154,8 +150,7 @@ export default function LocationEditScreen() {
     }
     const saved = location
       ? await edits.saveLocation(location.id, {
-          name: input.name,
-          ...changedFields(location, input),
+          ...input,
           ...(category && category.name !== location.category?.name ? { category } : {}),
         })
       : await edits.saveLocation(null, { ...input, ...(category ? { category } : {}) }, day);
@@ -301,12 +296,17 @@ export default function LocationEditScreen() {
             {currencySelect.row}
           </FieldGroup.Section>
 
-          {location ? (
-            <FieldGroup.Section title={tr('common.attachments')}>
-              {attachmentEditRows(rt, location.attachments, sheet, prompt, edits)}
-              {media.fileRows}
-            </FieldGroup.Section>
-          ) : null}
+          {location
+            ? attachmentEditSection(
+                rt,
+                tr('common.attachments'),
+                location.attachments,
+                sheet,
+                prompt,
+                edits,
+                media.fileRows,
+              )
+            : null}
 
           {location ? (
             <FieldGroup.Section>
@@ -317,12 +317,7 @@ export default function LocationEditScreen() {
                 supportingText={<Sub>{tr('locationEdit.withPhotosWithoutVisitsAttachments')}</Sub>}>
                 {duplicating ? tr('locationEdit.duplicating') : tr('locationEdit.duplicatePlace')}
               </ListItem>
-              <ListItem
-                colors={{ ...rt.listColors, contentColor: colors.danger }}
-                leading={<RowIcon name="delete" color={colors.danger} />}
-                onPress={confirmDelete}>
-                <Text textStyle={{ color: colors.danger }}>{tr('locationEdit.deletePlace')}</Text>
-              </ListItem>
+              {deleteEditRow(rt, colors, tr('locationEdit.deletePlace'), confirmDelete)}
             </FieldGroup.Section>
           ) : null}
         </FieldGroup>

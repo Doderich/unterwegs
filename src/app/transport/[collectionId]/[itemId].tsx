@@ -12,13 +12,10 @@ import { tr } from '@/i18n';
 import { useActionSheet } from '@/ui/ActionSheet';
 import { useMediaUploads } from '@/ui/media';
 import { transportTitle } from '@/ui/entries';
-import { formatPrice } from '@/ui/format';
-import { starsLabel } from '@/ui/forms';
+import { detailExtras } from '@/ui/resourceDetail';
 import { transportIcon, transportLabel, androidToolbarIcon } from '@/ui/icons';
 import {
-  attachmentRows,
   copyRow,
-  infoRow,
   linkRows,
   mapsRow,
   useCopy,
@@ -55,8 +52,6 @@ export default function TransportScreen() {
     setPinned(next);
   };
 
-  const price = formatPrice(t.price, t.price_currency);
-  const stars = starsLabel(t.rating);
   const typeLabel = transportLabel(t.type);
 
   return (
@@ -129,21 +124,14 @@ export default function TransportScreen() {
             {t.link ? linkRows(rt, { label: tr('transport.bookingWebsite'), url: t.link }) : null}
           </FieldGroup.Section>
 
-          {price || stars ? (
-            <FieldGroup.Section title={tr('common.details')}>
-              {stars ? infoRow(rt, { icon: 'star', label: tr('common.rating'), value: stars }) : null}
-              {price ? infoRow(rt, { icon: 'price', label: tr('common.price'), value: price }) : null}
-            </FieldGroup.Section>
-          ) : null}
-
-          {t.description ? <FieldGroup.Section title={tr('common.notes')}>{descriptionRows}</FieldGroup.Section> : null}
-
-          {t.attachments.length > 0 || media.fileRows.length > 0 ? (
-            <FieldGroup.Section title={tr('common.ticketsAttachments')}>
-              {attachmentRows(rt, t.attachments, opener)}
-              {media.fileRows}
-            </FieldGroup.Section>
-          ) : null}
+          {detailExtras(rt, opener, {
+            price: { amount: t.price, currency: t.price_currency },
+            rating: t.rating,
+            notes: t.description ? descriptionRows : null,
+            attachments: t.attachments,
+            attachmentTitle: tr('common.ticketsAttachments'),
+            fileRows: media.fileRows,
+          })}
         </FieldGroup>
       </Host>
       {sheet.sheet}
