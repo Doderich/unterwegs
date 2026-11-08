@@ -5,8 +5,10 @@ const withShareSigning = require('../../plugins/with-share-signing');
 
 it('configures App Groups and the build team for both app and share extension', () => {
   const attributes = { TargetAttributes: {} };
-  const appSettings = { PRODUCT_BUNDLE_IDENTIFIER: 'com.example.unterwegs' };
-  const shareSettings = { PRODUCT_BUNDLE_IDENTIFIER: '"com.example.unterwegs.expo-sharing-extension"' };
+  const appSettings: Record<string, string> = { PRODUCT_BUNDLE_IDENTIFIER: 'com.example.unterwegs' };
+  const shareSettings: Record<string, string> = {
+    PRODUCT_BUNDLE_IDENTIFIER: '"com.example.unterwegs.expo-sharing-extension"',
+  };
   const project = {
     getFirstProject: () => ({ firstProject: { attributes } }),
     pbxNativeTargetSection: () => ({
