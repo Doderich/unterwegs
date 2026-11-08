@@ -1,0 +1,109 @@
+src/i18n/locales/en.json
+  s_fbd1feee9300c6::t_5fce78ff277856 657-658
+  s_fbd1feee9300c6::t_902f2517bf5454 370-374
+src/i18n/locales/ja.json
+  s_fbd1feee9300c6::t_d4caf1e8afcdff 640-641
+  s_fbd1feee9300c6::t_34da26de4eceae 362-366
+src/i18n/locales/de.json
+  s_fbd1feee9300c6::t_c9861d47893b42 657-658
+  s_fbd1feee9300c6::t_41dc4e1ef81da6 370-374
+src/app/collection/[id]/map.tsx
+  s_fbd1feee9300c6::t_ad8106e714b341 173
+  s_fbd1feee9300c6::t_d7e14c8bf9fd9d 29
+  s_fbd1feee9300c6::t_fd58d1855212ea 140
+  s_fbd1feee9300c6::t_494a83e8464dde 115
+  s_fbd1feee9300c6::t_648debedb4a1e3 166
+  s_fbd1feee9300c6::t_670276d0dc247a 163-165,174
+  s_fbd1feee9300c6::t_f879f172ef7db4 27
+  s_fbd1feee9300c6::t_66551b239147ef 13
+  s_fbd1feee9300c6::t_c2c14467622f3b 58
+  s_fbd1feee9300c6::t_02c7f2dd328b85 167-172
+  s_fbd1feee9300c6::t_586164b281b52c 175
+src/ui/GoneScreen.tsx
+  s_fbd1feee9300c6::t_c2b4f2dc4c7d39 2,4-6,8,10-12,14-22,53-57,72
+  s_fbd1feee9300c6::t_9242698108b88f 1,3,7,9,13,23,38-39,41-47,49-52,63,66-71
+  s_fbd1feee9300c6::t_03d3fda0e9a5df 32
+  s_fbd1feee9300c6::t_b26789ad7548f9 58,60-62,65
+  s_fbd1feee9300c6::t_35901c35b63331 24-31,33-36
+  s_fbd1feee9300c6::t_e8e7c884f3a603 64
+  s_fbd1feee9300c6::t_0edde7cc069aeb 48
+  s_fbd1feee9300c6::t_55f395abf393f5 37,40
+  s_fbd1feee9300c6::t_d7115b3d935838 59
+src/app/note/[collectionId]/[itemId].tsx
+  s_fbd1feee9300c6::t_83052b69e1bb1e 30-31
+  s_fbd1feee9300c6::t_4aed375c8cd595 46
+  s_fbd1feee9300c6::t_847898a44539b3 41
+  s_fbd1feee9300c6::t_915cdd3702afce 8
+src/ui/UserOnMap.tsx
+  s_fbd1feee9300c6::t_127c112c317e51 12-13,16,67-76,78-88,90,115-116,119-121,123,125
+  s_fbd1feee9300c6::t_efd05fc734a8d2 64
+  s_fbd1feee9300c6::t_e0774b90944005 2
+  s_fbd1feee9300c6::t_212ba26418d568 1,3,5,7-11,33,36,38-41,43-44,47-48,53,66,89,91,126-139
+  s_fbd1feee9300c6::t_253dcfc4895870 4,14-15,17-32,34-35,37,42,45-46,49-52,54-63,65,77
+  s_fbd1feee9300c6::t_766b13020a0f3d 92-108,110-114,117-118,122,124
+  s_fbd1feee9300c6::t_22925fb08e803a 6
+  s_fbd1feee9300c6::t_c7b169e8547fb0 109
+app.json
+  s_fbd1feee9300c6::t_744e204c5234bd 90
+src/app/_layout.tsx
+  s_fbd1feee9300c6::t_003964f312dd93 22-26
+src/app/collection/[id]/index.tsx
+  s_fbd1feee9300c6::t_a085aa4c2516b2 39-40,45
+  s_fbd1feee9300c6::t_d2071f01e152cb 36
+  s_fbd1feee9300c6::t_65ea61140ace76 9
+  s_fbd1feee9300c6::t_366dacd3c2ac72 18-26,28
+src/ui/CollectionLoading.tsx
+  s_fbd1feee9300c6::t_d14c0251df32c8 38-39
+  s_fbd1feee9300c6::t_46e7b05c1d0e33 2,4,7,9,17-28,32-35
+src/app/location/[collectionId]/[itemId].tsx
+  s_fbd1feee9300c6::t_40d50dd848a3dd 7
+  s_fbd1feee9300c6::t_d5d78676628bc6 68
+  s_fbd1feee9300c6::t_b7a247afad271e 46-47
+src/ui/__tests__/mapLayout.test.tsx
+  s_fbd1feee9300c6::t_d6e25ee7044aae 8
+  s_fbd1feee9300c6::t_8bbb0cfaecbf62 44
+  s_fbd1feee9300c6::t_06b8a9ffbf04db 46-50
+src/app/transport/[collectionId]/[itemId].tsx
+  s_fbd1feee9300c6::t_71f0dd6b9794a9 33-34
+  s_fbd1feee9300c6::t_e2cbe661017c06 46
+  s_fbd1feee9300c6::t_d8f5820688e71a 8
+src/api/errors.ts
+  s_fbd1feee9300c6::t_87a2ddf5fc0de0 11-15
+src/auth/keyStore.ts
+  s_fbd1feee9300c6::t_93737c750cb85c 1,11-17,21
+  s_fbd1feee9300c6::t_5ee67cbc5e8494 26-32,43-56,58-62,66,70-76
+  s_fbd1feee9300c6::t_ee1fa88f7ca9c8 63-65
+  s_fbd1feee9300c6::t_26c0612027a5ef 18-20
+  s_fbd1feee9300c6::t_f7824659952d71 22
+src/app/lodging/[collectionId]/[itemId].tsx
+  s_fbd1feee9300c6::t_33f1414cb0eece 6
+  s_fbd1feee9300c6::t_9ae8756226d4d9 21-22
+  s_fbd1feee9300c6::t_43c4c12e1cd98a 31
+src/data/queries.ts
+  s_fbd1feee9300c6::t_269b87b811faec 53-58
+  s_fbd1feee9300c6::t_f300bd4df3331f 5
+src/ui/MapFrame.tsx
+  s_fbd1feee9300c6::t_4ef82221bd5ceb 2
+  s_fbd1feee9300c6::t_0e627e8100c8df 53
+  s_fbd1feee9300c6::t_336195af8fae2d 58
+  s_fbd1feee9300c6::t_0fdfa4de644492 61
+  s_fbd1feee9300c6::t_c2bb5bf958eafb 4
+  s_fbd1feee9300c6::t_da2a2a15785d51 47
+  s_fbd1feee9300c6::t_4287c93526ce01 10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9f97cef1cdd4472620ae01b68c861ac758c7eb7e",
+  "prompts": {},
+  "sessions": {
+    "s_fbd1feee9300c6": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "agent-7197f3ee-6f60-495c-881e-afe90cf8c1d2",
+        "model": "unknown"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
