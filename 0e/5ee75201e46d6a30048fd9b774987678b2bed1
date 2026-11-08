@@ -1,0 +1,111 @@
+src/app/transport/[collectionId]/[itemId].tsx
+  s_2d6487b31b8291::t_5bad7fbb456b52 127-134
+  s_2d6487b31b8291::t_ce868364e16200 15
+src/data/outbox/fields.ts
+  s_2d6487b31b8291::t_c73259b1a81c38 3-31
+src/app/lodging-edit/[collectionId].tsx
+  s_2d6487b31b8291::t_ca46015e27e857 19
+  s_2d6487b31b8291::t_d987006f86d108 252-267,270-283
+  s_2d6487b31b8291::t_29e9ea411944ed 125-126
+  s_2d6487b31b8291::t_564fb38ed9e0cc 8
+  s_2d6487b31b8291::t_1a7e13944ba9b3 172,174-177
+  s_2d6487b31b8291::t_ed5a6434d9f694 251
+  s_2d6487b31b8291::t_1917e9f8d5a528 22-23
+  s_2d6487b31b8291::t_6863a1b3892223 164
+src/data/visitWrite.ts
+  s_2d6487b31b8291::t_61c5aac4b9e08a 1-37
+src/ui/objectForm.tsx
+  s_2d6487b31b8291::t_bc2b4afaf03de4 1-39,49-82,113-136,139-143,145-154,158-160,162-166
+  s_2d6487b31b8291::t_f7c448aaf0e825 91
+  s_2d6487b31b8291::t_5a8e4513c93dc1 83-90,92-112
+  s_2d6487b31b8291::t_ac20ea8cdba04f 155-157,161
+  s_2d6487b31b8291::t_49a99a0078154c 40-48
+  s_2d6487b31b8291::t_a194b4fdad9033 137-138
+  s_2d6487b31b8291::t_ccdaeea6ace10f 144
+src/app/share.tsx
+  s_2d6487b31b8291::t_dede4e70c0471f 88
+  s_2d6487b31b8291::t_eeb7f4a90e4d0f 12
+src/data/outbox/__tests__/fields.test.ts
+  s_2d6487b31b8291::t_2321e73c4f0fce 1
+  s_2d6487b31b8291::t_895ec16dc3e69e 29-39
+src/ui/__tests__/pickedPlace.test.ts
+  s_2d6487b31b8291::t_e025e013863aec 1-25
+src/ui/resourceDetail.tsx
+  s_2d6487b31b8291::t_083059e9812171 16-17
+  s_2d6487b31b8291::t_a440387d253ba2 50
+  s_2d6487b31b8291::t_318dbc9c80de58 1-15,18-49,51-61,64-77
+  s_2d6487b31b8291::t_f3b0676f3a584d 62-63
+src/ui/media.tsx
+  s_2d6487b31b8291::t_fb0a33e5c8dbb4 34-35
+  s_2d6487b31b8291::t_23a1d301b43261 19-33,36-46
+  s_2d6487b31b8291::t_3d55e8927bfffc 108
+src/ui/PointsMap.tsx
+  s_2d6487b31b8291::t_551c0c4dfe1b73 5
+  s_2d6487b31b8291::t_c8506a4ac21166 79,82-92
+  s_2d6487b31b8291::t_e135f2835a9845 12
+src/data/__tests__/visitWrite.test.ts
+  s_2d6487b31b8291::t_e5b3a13dbe7639 1-47
+src/screens/VisitEditor.tsx
+  s_2d6487b31b8291::t_0b142d2649924a 107-125,129,135,148
+  s_2d6487b31b8291::t_3811f53ef7bd60 130-132
+  s_2d6487b31b8291::t_12fe1fb6f5f165 17
+  s_2d6487b31b8291::t_cf63baf656e872 13
+src/app/lodging/[collectionId]/[itemId].tsx
+  s_2d6487b31b8291::t_87178b5ac3457f 63-70
+  s_2d6487b31b8291::t_89a255c80718f2 10
+  s_2d6487b31b8291::t_a870b37a9d8ef2 12
+src/ui/mapPoints.tsx
+  s_2d6487b31b8291::t_385e072258ee51 3-15,17-31
+  s_2d6487b31b8291::t_a1f534e9170853 16
+  s_2d6487b31b8291::t_d89d9db45edc48 1-2
+src/data/selectors.ts
+  s_2d6487b31b8291::t_0fce79b668a958 261
+src/ui/pickedPlace.ts
+  s_2d6487b31b8291::t_c958b2c4b450d9 1-22
+src/app/transport-edit/[collectionId].tsx
+  s_2d6487b31b8291::t_c14a38a27d0c32 141-142
+  s_2d6487b31b8291::t_44422bad8a0b62 308-314,317-330
+  s_2d6487b31b8291::t_9090b700aab38b 8
+  s_2d6487b31b8291::t_8317772ab25465 307
+  s_2d6487b31b8291::t_84a6a44ca7e7f4 19
+  s_2d6487b31b8291::t_ec228df7ab52ee 197,199,202,205
+  s_2d6487b31b8291::t_82cf5f6b14bbfb 187
+  s_2d6487b31b8291::t_f4a2d2c7b7df91 22-23
+src/app/location/[collectionId]/[itemId].tsx
+  s_2d6487b31b8291::t_86876bbce699e1 19
+  s_2d6487b31b8291::t_8e288ca0dfc7d2 404
+src/app/place/[id].tsx
+  s_2d6487b31b8291::t_dbbbaf7365d3a0 15-16
+  s_2d6487b31b8291::t_4d1f396495e9aa 154
+src/app/collection/[id]/map.tsx
+  s_2d6487b31b8291::t_97167359148207 159,162-178,180-181
+  s_2d6487b31b8291::t_064334dfd8e44f 18
+  s_2d6487b31b8291::t_c7f5dc2ac96097 2
+  s_2d6487b31b8291::t_ce6cdb5ed9e3a0 101
+src/screens/PlaceEditor.tsx
+  s_2d6487b31b8291::t_c3010ca252b47d 12
+  s_2d6487b31b8291::t_cca27f800ef914 101-105
+src/app/location-edit/[collectionId].tsx
+  s_2d6487b31b8291::t_663d2f0e42a41b 153
+  s_2d6487b31b8291::t_1a3fd66887fa93 299-309,320
+  s_2d6487b31b8291::t_d116965263b92d 20-21
+  s_2d6487b31b8291::t_ddec12b748d59c 114
+  s_2d6487b31b8291::t_35a16dfdc1b6a3 120,122-124
+  s_2d6487b31b8291::t_7a439507152879 17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0e5ee75201e46d6a30048fd9b774987678b2bed1",
+  "prompts": {},
+  "sessions": {
+    "s_2d6487b31b8291": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "agent-387a0e8d-9284-4202-8176-f2055210b22a",
+        "model": "unknown"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
