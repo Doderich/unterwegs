@@ -1,4 +1,4 @@
-import { Children, isValidElement } from 'react';
+import { Children, isValidElement, type ReactElement, type ReactNode } from 'react';
 import { Platform, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import MapScreen from '../../app/collection/[id]/map';
 
@@ -49,10 +49,22 @@ jest.mock('@/ui/SheetRow', () => ({ SheetRow: 'SheetRow' }));
 jest.mock('@/ui/theme', () => ({ useColors: () => ({ card: '#fff' }), useListColors: () => ({}) }));
 jest.mock('@/ui/useTabVisited', () => ({ useTabVisited: () => true }));
 
+/** Call function elements until the screen's own View is what the assertions see. */
+function expand(node: ReactNode): ReactElement<{ children: ReactNode }> {
+  let current = node;
+  while (isValidElement(current) && typeof current.type === 'function' && current.type !== View) {
+    const render = current.type as (props: unknown) => ReactNode;
+    const next = render(current.props);
+    if (!isValidElement(next)) throw new Error('Map screen did not render');
+    current = next;
+  }
+  if (!isValidElement<{ children: ReactNode }>(current)) throw new Error('Map screen did not render');
+  return current;
+}
+
 it('keeps the map controls below the entire iOS navigation bar', () => {
   Platform.OS = 'ios';
-  const screen = MapScreen();
-  const tree = screen?.type();
+  const tree = expand(MapScreen());
   const filter = Children.toArray(tree.props.children).find(
     (child) =>
       isValidElement<{ style?: StyleProp<ViewStyle> }>(child) &&
@@ -64,8 +76,7 @@ it('keeps the map controls below the entire iOS navigation bar', () => {
 });
 
 it('gives the place preview padded touch rows and space below the actions', () => {
-  const screen = MapScreen();
-  const tree = screen?.type();
+  const tree = expand(MapScreen());
   const sheet = Children.toArray(tree.props.children).find(
     (child) => isValidElement(child) && child.type === 'BottomSheet',
   );

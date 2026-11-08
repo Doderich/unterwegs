@@ -1,4 +1,5 @@
 import type { Checklist, CollectionSummary, Location, Lodging, Note, Transportation, Collection } from '@/api/schemas';
+import { transportTitle } from '@/data/transportName';
 import { todayFor, collectionPhase, collectionTimeZone } from '@/time/today';
 import { departureZone, sleepsThere, stayDates } from '@/time/ownZone';
 import { zoneForPlace } from '@/time/placeZone';
@@ -33,7 +34,7 @@ export function entryObjectId(e: DayEntry): string {
 export function entryTitle(e: DayEntry): string {
   switch (e.kind) {
     case 'transportation':
-      return e.transport.name;
+      return transportTitle(e.transport);
     case 'lodging':
       return e.lodging.name;
     case 'location':

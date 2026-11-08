@@ -3,10 +3,12 @@ import { FieldGroup, ListItem } from '@expo/ui';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { Alert } from 'react-native';
 
-import type { Visit } from '@/api/schemas';
 import { findItem, useCollectionView, useIntegrations } from '@/data/queries';
 import { useOnline } from '@/data/useOnlineAction';
-import { locationZone, viewToday, type Day, type CollectionView } from '@/data/selectors';
+import { categoryLabel } from '@/data/categories';
+import { locationSchedule } from '@/data/locationSchedule';
+import { locationZone, viewToday, type CollectionView } from '@/data/selectors';
+import { isTrailLink, trailHref } from '@/data/trails';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { tr } from '@/i18n';
 import { sunTimes } from '@/time/sun';
@@ -67,9 +69,7 @@ export default function LocationScreen() {
     d.entries.some((e) => e.kind === 'location' && e.location.id === location.id),
   );
   const schedule = locationSchedule(view, plannedDays, location.visits);
-  const category = location.category
-    ? `${location.category.icon ?? ''} ${location.category.display_name ?? location.category.name}`.trim()
-    : null;
+  const category = location.category ? categoryLabel(location.category) : null;
   const meta = [category, location.is_visited ? tr('common.visited') : null].filter(Boolean).join(' · ');
   const price = formatPrice(location.price, location.price_currency);
   const today = viewToday(view).date;
@@ -95,7 +95,7 @@ export default function LocationScreen() {
               value: '',
               placeholder: tr('location.httpsKomootAlltrails'),
               onSave: (link) =>
-                /^https?:\/\/\S+$/i.test(link.trim())
+                isTrailLink(link)
                   ? edits.saveTrail(location.id, null, { name: name.trim(), link: link.trim() })
                   : Alert.alert(tr('location.linkMissing'), tr('location.trailNeedsLinkEG')),
             }),
@@ -105,7 +105,7 @@ export default function LocationScreen() {
     });
 
   const trailActions = (t: (typeof location.trails)[number]) => {
-    const link = t.link ?? t.wanderer_link;
+    const link = trailHref(t);
     if (!edits.canEdit) return link ? openUrl(link) : undefined;
     sheet.open(t.name, [
       ...(link ? [{ label: tr('common.open'), icon: 'external' as const, onPress: () => openUrl(link) }] : []),
@@ -128,7 +128,7 @@ export default function LocationScreen() {
             value: t.link ?? '',
             placeholder: 'https://…',
             onSave: (l) =>
-              /^https?:\/\/\S+$/i.test(l.trim())
+              isTrailLink(l)
                 ? edits.saveTrail(location.id, t.id, { name: t.name, link: l.trim() })
                 : Alert.alert(tr('location.linkMissing'), tr('location.trailNeedsLinkEG')),
           }),
@@ -417,43 +417,6 @@ export default function LocationScreen() {
       {prompt.sheet}
     </>
   );
-}
-
-/** The website's own placeholder for visits it creates from the itinerary. */
-const GENERATED_VISIT_NOTE = 'Created from itinerary planning';
-
-/** One row per date: itinerary days the location is on, plus visits (with time / note) on any other date. */
-function locationSchedule(view: CollectionView, plannedDays: Day[], visits: Visit[]) {
-  const rows = new Map<
-    string,
-    { date: string; label: string; value: string; offItinerary: boolean; visitId: string | null }
-  >();
-  for (const d of plannedDays) {
-    rows.set(d.date, {
-      date: d.date,
-      label: tr('common.dayN', { n: d.number }),
-      value: [formatDayLabel(d.date), d.name].filter(Boolean).join(' · '),
-      offItinerary: false,
-      visitId: null,
-    });
-  }
-  for (const v of visits) {
-    if (!v.start_date) continue;
-    const t = visitTime(v.start_date, v.end_date, v.timezone ?? view.timeZone);
-    const day = view.days.find((d) => d.date === t.date);
-    const note = v.notes && v.notes !== GENERATED_VISIT_NOTE ? v.notes : null;
-    const when = [formatDayLabel(t.date), t.endDate ? `– ${formatDayLabel(t.endDate)}` : null, t.time]
-      .filter(Boolean)
-      .join(' ');
-    rows.set(t.date, {
-      date: t.date,
-      label: [day ? tr('common.dayN', { n: day.number }) : tr('common.visit'), note].filter(Boolean).join(' · '),
-      value: [when, day?.name].filter(Boolean).join(' · '),
-      offItinerary: !day,
-      visitId: v.id,
-    });
-  }
-  return [...rows.values()].sort((a, b) => a.date.localeCompare(b.date));
 }
 
 /**

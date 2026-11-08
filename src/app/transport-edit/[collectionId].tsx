@@ -11,6 +11,7 @@ import { confirmDeleteFromEditor, leaveAfterSave } from '@/ui/editorExit';
 import { tr } from '@/i18n';
 import { FormHost } from '@/ui/FormHost';
 import { useMarkdownEditor } from '@/ui/MarkdownEditor';
+import { suggestionZones } from '@/time/suggestionZones';
 import { deviceTimeZone, formatDateTime, formatDuration } from '@/time/tz';
 import { arrivalZone, departureZone } from '@/time/ownZone';
 import { utcToZoned } from '@/time/zonedInput';
@@ -107,16 +108,7 @@ export default function TransportEditScreen() {
   const [isPublic, setIsPublic] = useState(!!t?.is_public);
   const markdown = useMarkdownEditor(rt, description, setDescription);
 
-  const zones = view
-    ? [
-        view.timeZone,
-        ...view.collection.lodging.flatMap((l) => (l.timezone ? [l.timezone] : [])),
-        ...view.collection.transportations.flatMap((x) =>
-          [x.start_timezone, x.end_timezone].filter((z): z is string => !!z),
-        ),
-        deviceTimeZone(),
-      ]
-    : [];
+  const zones = view ? suggestionZones(view.timeZone, view.collection, deviceTimeZone()) : [];
   const typeSelect = useSelect(rt, {
     title: tr('common.type'),
     label: tr('common.type'),

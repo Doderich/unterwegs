@@ -11,7 +11,7 @@ import { pinnedTravel, pinTravel } from '@/glances/pinnedTravel';
 import { tr } from '@/i18n';
 import { useActionSheet } from '@/ui/ActionSheet';
 import { useMediaUploads } from '@/ui/media';
-import { transportTitle } from '@/ui/entries';
+import { transportTitle } from '@/data/transportName';
 import { detailExtras } from '@/ui/resourceDetail';
 import { transportIcon, transportLabel, androidToolbarIcon } from '@/ui/icons';
 import {

@@ -12,6 +12,7 @@ import { tr } from '@/i18n';
 import { FormHost } from '@/ui/FormHost';
 import { useMarkdownEditor } from '@/ui/MarkdownEditor';
 import { useInitialInputFocus } from '@/ui/useInitialInputFocus';
+import { suggestionZones } from '@/time/suggestionZones';
 import { deviceTimeZone, formatDateTime } from '@/time/tz';
 import { endsAfterStart, utcToZoned } from '@/time/zonedInput';
 import { useActionSheet } from '@/ui/ActionSheet';
@@ -116,9 +117,7 @@ export default function LodgingEditScreen() {
   const zoneSelect = useZoneSelect(rt, {
     label: tr('common.timeZone'),
     value: zone,
-    suggestions: view
-      ? [view.timeZone, ...view.collection.lodging.flatMap((l) => (l.timezone ? [l.timezone] : [])), deviceTimeZone()]
-      : [],
+    suggestions: view ? suggestionZones(view.timeZone, view.collection, deviceTimeZone()) : [],
     at: `${inMoment.date}T12:00:00Z`,
     onChange: setZone,
   });

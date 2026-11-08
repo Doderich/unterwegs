@@ -8,7 +8,7 @@ import { departureZone, lodgingZone } from '@/time/ownZone';
 import { formatDuration, formatTime } from '@/time/tz';
 
 import { AuthImage } from './AuthImage';
-import { openEntryDetail, transportTitle } from './entries';
+import { openEntryDetail } from './entries';
 import { ScaledText } from './ScaledText';
 import { useColors } from './theme';
 import { typeScale } from './typeScale';
@@ -71,7 +71,7 @@ export function NextUpCard({
   const time = formatTime(entry.startUtc, zone);
   const minutes = Math.max(1, Math.round((Date.parse(entry.startUtc) - now) / 60_000));
   const until = tr('nextUp.inDuration', { duration: formatDuration(minutes) });
-  const title = entry.kind === 'transportation' ? transportTitle(entry.transport) : entryTitle(entry);
+  const title = entryTitle(entry);
   const image = firstImage(entryImages(entry));
 
   return (

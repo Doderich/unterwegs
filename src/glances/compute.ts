@@ -9,6 +9,7 @@ import {
   type CollectionView,
   type DayEntry,
 } from '@/data/selectors';
+import { transportRoute } from '@/data/transportName';
 import { tr } from '@/i18n';
 import { arrivalZone, departureZone, lodgingZone } from '@/time/ownZone';
 import { collectionPhase, todayIn } from '@/time/today';
@@ -106,12 +107,6 @@ function timeIn(iso: string, zone: string, referenceZone: string): string {
   return zone === referenceZone ? time : `${time} ${zoneLabel(zone)}`;
 }
 
-function route(t: Transportation): string {
-  const from = t.start_code || t.from_location;
-  const to = t.end_code || t.to_location;
-  return from && to ? `${from} → ${to}` : (to ?? from ?? '');
-}
-
 /** A date-only time: the website stores all-day check-ins as midnight. */
 const isMidnight = (iso: string, zone: string) => formatTime(iso, zone) === '00:00';
 
@@ -144,7 +139,7 @@ function entryRow(view: CollectionView, entry: DayEntry, zone: string, link: Lin
       return {
         symbol: transportSymbol(t.type),
         time: t.date ? timeIn(t.date, start, zone) : '',
-        title: route(t) || t.name,
+        title: transportRoute(t) || t.name,
         done: false,
         at: t.date ? Date.parse(t.date) : null,
         url: link(`/transport/${id}/${t.id}`),
@@ -399,7 +394,7 @@ function departureProps(
       return {
         symbol: transportSymbol(t.type),
         title: t.name,
-        route: route(t),
+        route: transportRoute(t),
         departs: timeIn(t.date!, start, zone),
         arrives: t.end_date ? timeIn(t.end_date, end, zone) : '',
         day: departDate === today ? '' : formatDayLabel(departDate),
@@ -581,7 +576,7 @@ export function computeReminders(inputs: ReminderInput[], enabled: ReadonlySet<R
         'departure',
         t.id,
         Date.parse(t.date) - lead,
-        route(t) || t.name,
+        transportRoute(t) || t.name,
         tr('reminders.departsAt', { name: t.name, time: timeIn(t.date, start, zone) }),
         `/transport/${c.id}/${t.id}`,
         placeOf(t.from_location || t.name, t.origin_latitude, t.origin_longitude),

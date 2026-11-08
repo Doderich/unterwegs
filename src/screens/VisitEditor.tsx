@@ -10,9 +10,11 @@ import { todayIn } from '@/time/today';
 import { suggestedZone } from '@/time/placeZone';
 import { useCollectionView } from '@/data/queries';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
+import { shownVisitNote } from '@/data/locationSchedule';
 import { visitInstants, visitPort } from '@/data/visitWrite';
 import { tr } from '@/i18n';
 import { FormHost } from '@/ui/FormHost';
+import { suggestionZones } from '@/time/suggestionZones';
 import { deviceTimeZone, formatDayLabel, visitTime } from '@/time/tz';
 import { utcToZoned } from '@/time/zonedInput';
 import { useZoneSelect } from '@/ui/DateTimeRow';
@@ -22,9 +24,6 @@ import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { TextInput } from '@/ui/TextInput';
 import { useZonedMoment } from '@/ui/zonedMoment';
-
-/** The website's placeholder note for visits it creates from the itinerary; never shown or written back. */
-const GENERATED_VISIT_NOTE = 'Created from itinerary planning';
 
 /** Create (`visitId` missing) or edit a visit of a location: day, all-day or a time span, zone, note. */
 export function VisitEditor({
@@ -59,7 +58,7 @@ export function VisitEditor({
         start: t.time ?? '10:00',
         end: visit.end_date && t.time ? utcToZoned(visit.end_date, zone).time : '11:00',
         zone,
-        notes: visit.notes && visit.notes !== GENERATED_VISIT_NOTE ? visit.notes : '',
+        notes: shownVisitNote(visit.notes) ?? '',
       };
     }
     const placeZone =
@@ -90,9 +89,7 @@ export function VisitEditor({
   const [notes, setNotes] = useState(initial?.notes ?? '');
   const [saving, setSaving] = useState(false);
 
-  const zones = view
-    ? [view.timeZone, ...view.collection.lodging.flatMap((l) => (l.timezone ? [l.timezone] : [])), deviceTimeZone()]
-    : [];
+  const zones = view ? suggestionZones(view.timeZone, view.collection, deviceTimeZone()) : [];
   const zoneSelect = useZoneSelect(rt, {
     label: tr('common.timeZone'),
     value: zone,

@@ -11,7 +11,7 @@ import { publicRow } from '@/ui/forms';
 import { FormHost } from '@/ui/FormHost';
 import { useMarkdownEditor } from '@/ui/MarkdownEditor';
 import { useInitialInputFocus } from '@/ui/useInitialInputFocus';
-import { formatDayLabel } from '@/time/tz';
+import { dayLabel } from '@/ui/dayPlan';
 import { useSelect } from '@/ui/Select';
 import { androidToolbarIcon } from '@/ui/icons';
 import { RowIcon, useRowTheme } from '@/ui/rows';
@@ -48,7 +48,7 @@ export default function NoteEditScreen() {
       { value: NO_DATE, label: tr('noteEdit.noDate') },
       ...(view?.days ?? []).map((d) => ({
         value: d.date,
-        label: `${tr('common.dayN', { n: d.number })} · ${formatDayLabel(d.date)}`,
+        label: dayLabel(d),
       })),
     ],
   });

@@ -11,7 +11,8 @@ import { isConnected } from '@/data/onlineWrite';
 import { entryTitle, isMember, viewToday, type CollectionView, type Day } from '@/data/selectors';
 import { tr } from '@/i18n';
 import { initialDayIndex } from '@/time/today';
-import { formatDayLabel, formatLongDay } from '@/time/tz';
+import { formatLongDay } from '@/time/tz';
+import { dayLabel } from './dayPlan';
 
 import { CardRow, cardRowWidth } from './CardRow';
 import { DayStrip } from './DayNav';
@@ -130,7 +131,7 @@ function DayPage({
     onChange: (v) => onSelectDay(Number(v)),
     options: view.days.map((d, i) => ({
       value: String(i),
-      label: `${tr('common.dayN', { n: d.number })} · ${formatDayLabel(d.date)}${d.date === today ? ` · ${tr('common.today')}` : ''}`,
+      label: dayLabel(d, { today: d.date === today }),
     })),
   });
 
