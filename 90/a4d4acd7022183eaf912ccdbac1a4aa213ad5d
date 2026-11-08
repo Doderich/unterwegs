@@ -1,0 +1,20 @@
+docs/RELEASING.md
+  s_2d6487b31b8291::t_9d866d74aa4d17 40
+  s_2d6487b31b8291::t_d8cf1e6f4c3102 21,23,25-34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "90a4d4acd7022183eaf912ccdbac1a4aa213ad5d",
+  "prompts": {},
+  "sessions": {
+    "s_2d6487b31b8291": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "agent-387a0e8d-9284-4202-8176-f2055210b22a",
+        "model": "unknown"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
