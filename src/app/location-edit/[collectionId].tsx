@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { Alert } from 'react-native';
 
 import type { CategoryInput, LocationInput } from '@/api/client';
-import { realIdFor } from '@/data/outbox';
-import { useCategories, useCollectionView } from '@/data/queries';
+import { findItem, useCategories, useCollectionView } from '@/data/queries';
 import { changedFields } from '@/data/selectors';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
+import { confirmDeleteFromEditor, leaveAfterSave } from '@/ui/editorExit';
 import { useDuplicateGuard } from '@/ui/duplicateGuard';
 import { useClient } from '@/auth/session';
 import { getLanguage, tr } from '@/i18n';
@@ -43,7 +43,7 @@ export default function LocationEditScreen() {
   const sheet = useActionSheet(rt);
   const prompt = useTextPrompt(rt);
   const places = usePlaceSearch(rt);
-  const location = itemId ? view?.collection.locations.find((l) => l.id === realIdFor(itemId)) : undefined;
+  const location = view ? findItem(view.collection, 'location', itemId) : undefined;
 
   // Reset uncontrolled inputs only when a picked place supplies new text, never while typing.
   const [placeRevision, setPlaceRevision] = useState(0);
@@ -161,8 +161,7 @@ export default function LocationEditScreen() {
       : await edits.saveLocation(null, { ...input, ...(category ? { category } : {}) }, day);
     setSaving(false);
     if (!saved) return;
-    if (location) router.back();
-    else router.replace({ pathname: '/location/[collectionId]/[itemId]', params: { collectionId, itemId: saved.id } });
+    leaveAfterSave('location', { collectionId, savedId: saved.id, created: !location });
   };
 
   /** Fills the description from Wikipedia; asks before replacing text that is already there. */
@@ -203,21 +202,11 @@ export default function LocationEditScreen() {
 
   const confirmDelete = () =>
     location &&
-    Alert.alert(
-      tr('common.deleteNameConfirm', { name: location.name }),
-      tr('locationEdit.includingVisitsPhotosAttachmentsPlan'),
-      [
-        { text: tr('common.cancel'), style: 'cancel' },
-        {
-          text: tr('common.delete'),
-          style: 'destructive',
-          onPress: async () => {
-            router.dismiss(2);
-            await edits.deleteObject('location', location.id);
-          },
-        },
-      ],
-    );
+    confirmDeleteFromEditor({
+      name: location.name,
+      consequence: tr('locationEdit.includingVisitsPhotosAttachmentsPlan'),
+      onDelete: () => edits.deleteObject('location', location.id),
+    });
 
   const dayNumber = day ? view.days.find((d) => d.date === day)?.number : undefined;
 

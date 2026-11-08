@@ -1,11 +1,10 @@
-import { useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
 import type { CollectionInput, UploadFile } from '@/api/client';
 import { useClient } from '@/auth/session';
 import { tr } from '@/i18n';
 
-import { useOnline, writeOnline } from './onlineWrite';
+import { useOnlineWrite } from './onlineWrite';
 import { readsAffectedBy } from './affected';
 
 /**
@@ -14,13 +13,12 @@ import { readsAffectedBy } from './affected';
  */
 export function useCollectionsActions() {
   const client = useClient();
-  const queryClient = useQueryClient();
-  const online = useOnline();
+  const { online, write } = useOnlineWrite();
 
   return useMemo(() => {
     /** Refreshes the collection lists (and the collection) afterwards, success or not. */
     const run = <R>(request: () => Promise<R>, collectionId?: string) =>
-      writeOnline(queryClient, online, {
+      write({
         request,
         refetch: readsAffectedBy('collections', ...(collectionId ? [{ collection: collectionId }] : [])),
       });
@@ -54,5 +52,5 @@ export function useCollectionsActions() {
           return client.edit.updateCollection(copy.id, { name: renamed }).catch(() => copy);
         }),
     };
-  }, [client, queryClient, online]);
+  }, [client, write, online]);
 }

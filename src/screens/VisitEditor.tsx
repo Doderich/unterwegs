@@ -3,7 +3,7 @@ import { router, Stack } from 'expo-router';
 import { useState } from 'react';
 import { Alert } from 'react-native';
 
-import { locationZone, viewToday } from '@/data/selectors';
+import { locationZone, nightOf, viewToday } from '@/data/selectors';
 import { useClient } from '@/auth/session';
 import { useLocation, useLocationAction } from '@/data/useLocation';
 import { todayIn } from '@/time/today';
@@ -13,13 +13,14 @@ import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { tr } from '@/i18n';
 import { FormHost } from '@/ui/FormHost';
 import { deviceTimeZone, formatDayLabel, visitTime } from '@/time/tz';
-import { utcToZoned, zonedToUtc } from '@/time/zonedInput';
-import { useDateTimeRow, useZoneSelect } from '@/ui/DateTimeRow';
+import { endsAfterStart, utcToZoned } from '@/time/zonedInput';
+import { useZoneSelect } from '@/ui/DateTimeRow';
 import { androidToolbarIcon } from '@/ui/icons';
 import { RowIcon, switchRow, useRowTheme } from '@/ui/rows';
 import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { TextInput } from '@/ui/TextInput';
+import { useZonedMoment } from '@/ui/zonedMoment';
 
 /** The website's placeholder note for visits it creates from the itinerary; never shown or written back. */
 const GENERATED_VISIT_NOTE = 'Created from itinerary planning';
@@ -66,23 +67,28 @@ export function VisitEditor({
         : null;
     const fallbackZone = placeZone ?? deviceTimeZone();
     const date = day ?? (view ? viewToday(view).date : todayIn(fallbackZone));
-    const zone =
-      view?.days.find((d) => d.date === date)?.nightLodging?.timezone ??
-      (view ? locationZone(view, location) : fallbackZone);
+    const zone = view ? (nightOf(view, date)?.timezone ?? locationZone(view, location)) : fallbackZone;
     return { date, allDay: true, start: '10:00', end: '11:00', zone, notes: '' };
   })();
 
-  const [date, setDate] = useState(initial?.date ?? '2000-01-01');
   const [allDay, setAllDay] = useState(initial?.allDay ?? true);
-  const [start, setStart] = useState(initial?.start ?? '10:00');
-  const [end, setEnd] = useState(initial?.end ?? '11:00');
   const [zone, setZone] = useState(initial?.zone ?? 'UTC');
+  const startMoment = useZonedMoment(rt, {
+    initial: { date: initial?.date ?? '2000-01-01', time: initial?.start ?? '10:00' },
+    zone,
+    dateLabel: tr('common.date'),
+    timeLabel: tr('visitEdit.from'),
+  });
+  const date = startMoment.date;
+  const endMoment = useZonedMoment(rt, {
+    initial: { date, time: initial?.end ?? '11:00' },
+    zone,
+    date,
+    timeLabel: tr('visitEdit.to'),
+  });
   const [notes, setNotes] = useState(initial?.notes ?? '');
   const [saving, setSaving] = useState(false);
 
-  const dateRow = useDateTimeRow(rt, { label: tr('common.date'), value: date, mode: 'date', onChange: setDate });
-  const startRow = useDateTimeRow(rt, { label: tr('visitEdit.from'), value: start, mode: 'time', onChange: setStart });
-  const endRow = useDateTimeRow(rt, { label: tr('visitEdit.to'), value: end, mode: 'time', onChange: setEnd });
   const zones = view
     ? [view.timeZone, ...view.collection.lodging.flatMap((l) => (l.timezone ? [l.timezone] : [])), deviceTimeZone()]
     : [];
@@ -106,9 +112,9 @@ export function VisitEditor({
       // Like the website and the server: all-day visits are midnight UTC of the date.
       startIso = endIso = `${date}T00:00:00Z`;
     } else {
-      startIso = zonedToUtc({ date, time: start }, zone).iso;
-      endIso = zonedToUtc({ date, time: end }, zone).iso;
-      if (Date.parse(endIso) <= Date.parse(startIso)) {
+      startIso = startMoment.iso;
+      endIso = endMoment.iso;
+      if (!endsAfterStart(startIso, endIso)) {
         Alert.alert(tr('common.checkTime'), tr('visitEdit.endMustAfterStart'));
         return;
       }
@@ -160,18 +166,23 @@ export function VisitEditor({
       <FormHost>
         <FieldGroup>
           <FieldGroup.Section title={location.name}>
-            {dateRow.row}
+            {startMoment.parts.dateRow}
             {switchRow(rt, { label: tr('visitEdit.allDay'), value: allDay, onChange: setAllDay })}
-            {allDay ? null : startRow.row}
-            {allDay ? null : endRow.row}
+            {allDay ? null : startMoment.parts.timeRow}
+            {allDay ? null : endMoment.parts.timeRow}
             {allDay ? null : zoneSelect.row}
             <FieldGroup.SectionFooter>
               <Text textStyle={{ fontSize: 13, color: colors.secondary }}>
-                {collectionId
-                  ? dayNumber
-                    ? tr('visitEdit.dayNOfTrip', { n: dayNumber })
-                    : tr('visitEdit.outsideTripsDays')
-                  : tr('places.visitHint')}
+                {[
+                  collectionId
+                    ? dayNumber
+                      ? tr('visitEdit.dayNOfTrip', { n: dayNumber })
+                      : tr('visitEdit.outsideTripsDays')
+                    : tr('places.visitHint'),
+                  allDay ? null : (startMoment.parts.clockChange ?? endMoment.parts.clockChange),
+                ]
+                  .filter(Boolean)
+                  .join('\n')}
               </Text>
             </FieldGroup.SectionFooter>
           </FieldGroup.Section>
@@ -195,9 +206,8 @@ export function VisitEditor({
           ) : null}
         </FieldGroup>
       </FormHost>
-      {dateRow.sheet}
-      {startRow.sheet}
-      {endRow.sheet}
+      {startMoment.sheets}
+      {endMoment.sheets}
       {zoneSelect.sheet}
     </>
   );

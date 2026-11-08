@@ -1,21 +1,22 @@
 import { suggestedZone } from '@/time/placeZone';
 import { FieldGroup, ListItem } from '@expo/ui';
-import { router, Stack, useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Alert } from 'react-native';
 
 import type { TransportationInput } from '@/api/client';
-import { realIdFor } from '@/data/outbox';
-import { useCollectionView } from '@/data/queries';
-import { changedFields, nearestZone } from '@/data/selectors';
+import { findItem, useCollectionView } from '@/data/queries';
+import { changedFields, nearestZone, zoneOn } from '@/data/selectors';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
+import { confirmDeleteFromEditor, leaveAfterSave } from '@/ui/editorExit';
 import { tr } from '@/i18n';
 import { FormHost } from '@/ui/FormHost';
 import { useMarkdownEditor } from '@/ui/MarkdownEditor';
 import { deviceTimeZone, formatDateTime, formatDuration } from '@/time/tz';
-import { utcToZoned, zonedToUtc } from '@/time/zonedInput';
+import { arrivalZone, departureZone } from '@/time/ownZone';
+import { utcToZoned } from '@/time/zonedInput';
 import { useActionSheet } from '@/ui/ActionSheet';
-import { useDateTimeRow, useZoneSelect } from '@/ui/DateTimeRow';
+import { useZoneSelect } from '@/ui/DateTimeRow';
 import {
   attachmentEditRows,
   currencyOptions,
@@ -34,6 +35,7 @@ import { useTextPrompt } from '@/ui/TextPrompt';
 import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { TextInput } from '@/ui/TextInput';
+import { useZonedMoment } from '@/ui/zonedMoment';
 
 const TYPES = ['plane', 'train', 'bus', 'boat', 'car', 'bike', 'walking', 'other'];
 
@@ -57,12 +59,12 @@ export default function TransportEditScreen() {
   const sheet = useActionSheet(rt);
   const prompt = useTextPrompt(rt);
   const places = usePlaceSearch(rt, { withCurrentPosition: false });
-  const t = itemId ? view?.collection.transportations.find((x) => x.id === realIdFor(itemId)) : undefined;
+  const t = view ? findItem(view.collection, 'transportation', itemId) : undefined;
 
   const init = (() => {
-    const fallbackZone = view?.days.find((d) => d.date === day)?.nightLodging?.timezone ?? view?.timeZone ?? 'UTC';
-    const startZone = t?.start_timezone ?? fallbackZone;
-    const endZone = t?.end_timezone ?? startZone;
+    const fallbackZone = view ? zoneOn(view, day) : 'UTC';
+    const startZone = departureZone(t ?? {}, fallbackZone);
+    const endZone = arrivalZone(t ?? {}, fallbackZone);
     const date = day ?? view?.days[0]?.date ?? '2000-01-01';
     return {
       startZone,
@@ -91,10 +93,18 @@ export default function TransportEditScreen() {
   });
   const [startZone, setStartZone] = useState(init.startZone);
   const [endZone, setEndZone] = useState(init.endZone);
-  const [depDate, setDepDate] = useState(init.dep.date);
-  const [depTime, setDepTime] = useState(init.dep.time);
-  const [arrDate, setArrDate] = useState(init.arr.date);
-  const [arrTime, setArrTime] = useState(init.arr.time);
+  const dep = useZonedMoment(rt, {
+    initial: init.dep,
+    zone: startZone,
+    dateLabel: tr('common.departure'),
+    timeLabel: tr('transportEdit.departureTime'),
+  });
+  const arr = useZonedMoment(rt, {
+    initial: init.arr,
+    zone: endZone,
+    dateLabel: tr('common.arrival'),
+    timeLabel: tr('transportEdit.arrivalTime'),
+  });
   const [price, setPrice] = useState(t?.price ? String(t.price) : '');
   const [currency, setCurrency] = useState(t?.price_currency ?? (view ? defaultCurrency(view.collection) : 'EUR'));
   const [link, setLink] = useState(t?.link ?? '');
@@ -125,14 +135,14 @@ export default function TransportEditScreen() {
     label: tr('transportEdit.departureTimeZone'),
     value: startZone,
     suggestions: zones,
-    at: `${depDate}T12:00:00Z`,
+    at: `${dep.date}T12:00:00Z`,
     onChange: setStartZone,
   });
   const endZoneSelect = useZoneSelect(rt, {
     label: tr('transportEdit.arrivalTimeZone'),
     value: endZone,
     suggestions: [startZone, ...zones],
-    at: `${arrDate}T12:00:00Z`,
+    at: `${arr.date}T12:00:00Z`,
     onChange: setEndZone,
   });
   const currencySelect = useSelect(rt, {
@@ -149,36 +159,12 @@ export default function TransportEditScreen() {
     onChange: (v) => setRating(Number(v)),
     options: ratingOptions(),
   });
-  const depDateRow = useDateTimeRow(rt, {
-    label: tr('common.departure'),
-    value: depDate,
-    mode: 'date',
-    onChange: setDepDate,
-  });
-  const depTimeRow = useDateTimeRow(rt, {
-    label: tr('transportEdit.departureTime'),
-    value: depTime,
-    mode: 'time',
-    onChange: setDepTime,
-  });
-  const arrDateRow = useDateTimeRow(rt, {
-    label: tr('common.arrival'),
-    value: arrDate,
-    mode: 'date',
-    onChange: setArrDate,
-  });
-  const arrTimeRow = useDateTimeRow(rt, {
-    label: tr('transportEdit.arrivalTime'),
-    value: arrTime,
-    mode: 'time',
-    onChange: setArrTime,
-  });
   const media = useMediaUploads(rt, edits, sheet, 'transportation', itemId ?? '');
 
   if (!view || (itemId && !t)) return null;
 
-  const departure = zonedToUtc({ date: depDate, time: depTime }, startZone).iso;
-  const arrival = zonedToUtc({ date: arrDate, time: arrTime }, endZone).iso;
+  const departure = dep.iso;
+  const arrival = arr.iso;
   const minutes = Math.round((Date.parse(arrival) - Date.parse(departure)) / 60_000);
   const title = name.trim() || [from.place, to.place].filter(Boolean).join(' → ');
 
@@ -222,10 +208,7 @@ export default function TransportEditScreen() {
       : await edits.saveTransportation(null, input);
     setSaving(false);
     if (!saved) return;
-    if (fromShare === '1')
-      router.dismissTo({ pathname: '/share', params: { collectionId, objectId: saved.id, kind: 'transportation' } });
-    else if (t) router.back();
-    else router.replace({ pathname: '/transport/[collectionId]/[itemId]', params: { collectionId, itemId: saved.id } });
+    leaveAfterSave('transportation', { collectionId, savedId: saved.id, created: !t, fromShare: fromShare === '1' });
   };
 
   const searchEnd = (which: 'from' | 'to') =>
@@ -247,17 +230,11 @@ export default function TransportEditScreen() {
 
   const confirmDelete = () =>
     t &&
-    Alert.alert(tr('common.deleteNameConfirm', { name: t.name }), tr('common.includingPhotosAttachmentsPlanEntries'), [
-      { text: tr('common.cancel'), style: 'cancel' },
-      {
-        text: tr('common.delete'),
-        style: 'destructive',
-        onPress: async () => {
-          router.dismiss(2);
-          await edits.deleteObject('transportation', t.id);
-        },
-      },
-    ]);
+    confirmDeleteFromEditor({
+      name: t.name,
+      consequence: tr('common.includingPhotosAttachmentsPlanEntries'),
+      onDelete: () => edits.deleteObject('transportation', t.id),
+    });
 
   const endSection = (which: 'from' | 'to') => {
     const end = which === 'from' ? from : to;
@@ -315,8 +292,7 @@ export default function TransportEditScreen() {
           <FieldGroup.Section title={tr('common.departure')}>
             {endSection('from')}
             {startZoneSelect.row}
-            {depDateRow.row}
-            {depTimeRow.row}
+            {dep.rows}
           </FieldGroup.Section>
 
           <FieldGroup.Section title={tr('common.arrival')}>
@@ -327,8 +303,7 @@ export default function TransportEditScreen() {
                 {tr('common.placeSearchSuggestsTimeZone')}
               </Text>
             </FieldGroup.SectionFooter>
-            {arrDateRow.row}
-            {arrTimeRow.row}
+            {arr.rows}
             <FieldGroup.SectionFooter>
               <Text textStyle={{ fontSize: 13, color: minutes > 0 ? colors.secondary : colors.danger }}>
                 {minutes > 0
@@ -399,10 +374,8 @@ export default function TransportEditScreen() {
       {endZoneSelect.sheet}
       {currencySelect.sheet}
       {ratingSelect.sheet}
-      {depDateRow.sheet}
-      {depTimeRow.sheet}
-      {arrDateRow.sheet}
-      {arrTimeRow.sheet}
+      {dep.sheets}
+      {arr.sheets}
       {sheet.sheet}
       {prompt.sheet}
       {places.sheet}

@@ -4,8 +4,7 @@ import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Platform } from 'react-native';
 
-import { realIdFor } from '@/data/outbox';
-import { useCollectionView } from '@/data/queries';
+import { findItem, useCollectionView } from '@/data/queries';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { TRAVEL_TAIL } from '@/glances/compute';
 import { pinnedTravel, pinTravel } from '@/glances/pinnedTravel';
@@ -40,7 +39,7 @@ export default function TransportScreen() {
   const media = useMediaUploads(rt, edits, sheet, 'transportation', itemId);
   const copier = useCopy();
   const opener = useOpenAttachment();
-  const t = view?.collection.transportations.find((x) => x.id === realIdFor(itemId));
+  const t = view ? findItem(view.collection, 'transportation', itemId) : undefined;
   const descriptionRows = useDescriptionRows(rt, t?.description);
   const [pinned, setPinned] = useState(() => pinnedTravel());
   // When the screen opened: enough to decide whether the journey is still ahead.

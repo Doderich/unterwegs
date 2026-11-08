@@ -1152,5 +1152,8 @@
     "signOutPending_one": "{count} Änderung ist noch nicht gesendet und geht beim Abmelden verloren.",
     "signOutPending_other": "{count} Änderungen sind noch nicht gesendet und gehen beim Abmelden verloren.",
     "fieldsKept": "Bei „{name}“ hatte jemand anderes dieselben Angaben geändert. Diese wurden behalten, deine übrigen Änderungen sind gespeichert."
+  },
+  "zonedMoment": {
+    "clockChange": "{typed} gibt es an diesem Tag nicht (Zeitumstellung). Gespeichert wird {time}."
   }
 }

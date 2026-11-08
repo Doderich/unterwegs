@@ -1,5 +1,6 @@
 import type { Checklist, CollectionSummary, Location, Lodging, Note, Transportation, Collection } from '@/api/schemas';
 import { todayFor, collectionPhase, collectionTimeZone } from '@/time/today';
+import { departureZone, sleepsThere, stayDates } from '@/time/ownZone';
 import { zoneForPlace } from '@/time/placeZone';
 import { daysBetween, localDate } from '@/time/tz';
 
@@ -64,6 +65,14 @@ export type CollectionView = {
 
 /** Today's date and zone for this collection (see `todayFor`). */
 export const viewToday = (view: CollectionView, now?: Date) => todayFor(view.collection.lodging, view.timeZone, now);
+
+/** The night lodging after `date`, if the collection has that day and a lodging for its night. */
+export const nightOf = (view: CollectionView, date: string | null | undefined): Lodging | null =>
+  (date && view.days.find((d) => d.date === date)?.nightLodging) || null;
+
+/** The zone a new time on `date` starts in: that night's lodging's zone, else the collection time zone. */
+export const zoneOn = (view: CollectionView, date: string | null | undefined): string =>
+  nightOf(view, date)?.timezone ?? view.timeZone;
 
 function sortKey(e: DayEntry): string {
   return e.startUtc ?? '';
@@ -170,7 +179,7 @@ export function buildCollectionView(collection: Collection): CollectionView {
   // Transports not on the itinerary still belong to their departure day.
   for (const t of collection.transportations) {
     if (scheduledTransports.has(t.id) || !t.date) continue;
-    const date = localDate(t.date, t.start_timezone ?? timeZone);
+    const date = localDate(t.date, departureZone(t, timeZone));
     push(date, Number.MAX_SAFE_INTEGER, {
       kind: 'transportation',
       key: `t-${t.id}`,
@@ -181,17 +190,13 @@ export function buildCollectionView(collection: Collection): CollectionView {
   }
 
   const sortedDates = [...dates].sort();
-  const lodgingDates = collection.lodging.map((l) => ({
-    lodging: l,
-    checkIn: l.check_in ? localDate(l.check_in, l.timezone ?? timeZone) : null,
-    checkOut: l.check_out ? localDate(l.check_out, l.timezone ?? timeZone) : null,
-  }));
+  const lodgingDates = collection.lodging.map((l) => ({ lodging: l, ...stayDates(l, timeZone) }));
 
   const days: Day[] = sortedDates.map((date, i) => {
     const entries = (entriesByDate.get(date) ?? [])
       .sort((a, b) => a.order - b.order || sortKey(a.entry).localeCompare(sortKey(b.entry)))
       .map((x) => x.entry);
-    const night = lodgingDates.find((l) => l.checkIn && l.checkOut && l.checkIn <= date && date < l.checkOut);
+    const night = lodgingDates.find((l) => sleepsThere(l, date));
     const meta = dayMeta.get(date);
     return {
       date,
@@ -204,12 +209,7 @@ export function buildCollectionView(collection: Collection): CollectionView {
   });
 
   const lodgings = lodgingDates
-    .map(({ lodging, checkIn, checkOut }) => ({
-      lodging,
-      checkInDate: checkIn,
-      checkOutDate: checkOut,
-      nights: checkIn && checkOut ? Math.max(0, daysBetween(checkIn, checkOut)) : 0,
-    }))
+    .map(({ lodging, checkIn, checkOut, nights }) => ({ lodging, checkInDate: checkIn, checkOutDate: checkOut, nights }))
     .sort((a, b) => (a.checkInDate ?? '').localeCompare(b.checkInDate ?? ''));
 
   return { collection, timeZone, days, lodgings };

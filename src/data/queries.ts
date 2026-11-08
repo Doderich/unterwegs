@@ -5,7 +5,8 @@ import { AuthError, type ApiClient } from '@/api/client';
 import type { Collection } from '@/api/schemas';
 import { useClient } from '@/auth/session';
 
-import { applyPending, getOutbox, subscribeOutbox } from './outbox';
+import { applyPending, getOutbox, realIdFor, subscribeOutbox } from './outbox';
+import { queryKeys } from './queryKeys';
 import { buildCollectionView } from './selectors';
 
 export function createQueryClient(onAuthError: () => void): QueryClient {
@@ -27,32 +28,7 @@ export function createQueryClient(onAuthError: () => void): QueryClient {
   });
 }
 
-export const queryKeys = {
-  locations: ['locations'] as const,
-  location: (id: string) => ['location', id] as const,
-  collections: ['collections'] as const,
-  collection: (id: string) => ['collection', id] as const,
-  user: ['user'] as const,
-  invites: ['invites'] as const,
-  categories: ['categories'] as const,
-  users: ['users'] as const,
-  profile: (username: string) => ['profile', username] as const,
-  profileStats: (username: string) => ['profile', username, 'stats'] as const,
-  categoriesWithCount: ['categories', 'with-count'] as const,
-  archived: ['collections-archived'] as const,
-  calendar: ['calendar'] as const,
-  integrations: ['integrations'] as const,
-  apiKeys: ['account-keys'] as const,
-  world: {
-    stats: ['world', 'stats'] as const,
-    pins: ['world', 'pins'] as const,
-    countries: ['world', 'countries'] as const,
-    regions: (code: string) => ['world', 'regions', code] as const,
-    regionVisits: (code: string) => ['world', 'region-visits', code] as const,
-    cities: (regionId: string) => ['world', 'cities', regionId] as const,
-    cityVisits: (regionId: string) => ['world', 'city-visits', regionId] as const,
-  },
-};
+export { queryKeys };
 
 /** Shared definitions keep tab reads and background warming on identical cache entries. */
 export function mainQueryOptions(client: ApiClient) {
@@ -95,6 +71,30 @@ export function useCollection(id: string) {
   const mine = useMemo(() => pending.filter((op) => op.collectionId === id), [pending, id]);
   const select = useCallback((c: Collection) => (mine.length ? applyPending(c, mine) : c), [mine]);
   return useQuery({ ...collectionQueryOptions(client, id), enabled: !!id, select });
+}
+
+const ITEM_LISTS = {
+  location: 'locations',
+  lodging: 'lodging',
+  transportation: 'transportations',
+  note: 'notes',
+  checklist: 'checklists',
+} as const;
+type ItemKind = keyof typeof ITEM_LISTS;
+type ItemOf<K extends ItemKind> = Collection[(typeof ITEM_LISTS)[K]][number];
+
+/**
+ * One item of the collection by the id a screen was opened with. Something created offline is opened with a
+ * temporary id; once it is sent it has the server's, and this still finds it (the screen keeps working).
+ */
+export function findItem<K extends ItemKind>(
+  collection: Collection,
+  kind: K,
+  id: string | null | undefined,
+): ItemOf<K> | undefined {
+  if (!id) return undefined;
+  const real = realIdFor(id);
+  return (collection[ITEM_LISTS[kind]] as ItemOf<K>[]).find((x) => x.id === real);
 }
 
 /** The collection resolved into days, lodgings and map data. */

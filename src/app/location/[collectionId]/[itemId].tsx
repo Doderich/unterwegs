@@ -4,8 +4,7 @@ import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { Alert } from 'react-native';
 
 import type { Visit } from '@/api/schemas';
-import { realIdFor } from '@/data/outbox';
-import { useCollectionView, useIntegrations } from '@/data/queries';
+import { findItem, useCollectionView, useIntegrations } from '@/data/queries';
 import { useOnline } from '@/data/useOnlineAction';
 import { locationZone, viewToday, type Day, type CollectionView } from '@/data/selectors';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
@@ -47,7 +46,7 @@ export default function LocationScreen() {
   const opener = useOpenAttachment();
   const edits = useCollectionEdits(view);
   const sheet = useActionSheet(rt);
-  const location = view?.collection.locations.find((l) => l.id === realIdFor(itemId));
+  const location = view ? findItem(view.collection, 'location', itemId) : undefined;
   const descriptionRows = useDescriptionRows(rt, location?.description);
   const media = useMediaUploads(rt, edits, sheet, 'location', itemId, location?.name);
   const integrations = useIntegrations();

@@ -1,7 +1,7 @@
 import sample from '../../../docs/samples/collection-detail.json';
 import { collectionSchema } from '@/api/schemas';
 
-import { buildCollectionView, mapData, sortCollections, collectionMediaUrls } from '../selectors';
+import { buildCollectionView, mapData, nightOf, sortCollections, collectionMediaUrls, zoneOn } from '../selectors';
 
 const collection = collectionSchema.parse(sample);
 const view = buildCollectionView(collection);
@@ -48,6 +48,16 @@ describe('buildCollectionView (Japan sample)', () => {
     expect(view.days[0].nightLodging).toBeNull();
     const japanNights = view.days.slice(1, -2);
     expect(japanNights.every((d) => d.nightLodging)).toBe(true);
+  });
+
+  it("starts new times in that night's lodging zone, else the collection's", () => {
+    const night = view.days[1];
+    expect(nightOf(view, night.date)).toBe(night.nightLodging);
+    expect(zoneOn(view, night.date)).toBe(night.nightLodging!.timezone ?? view.timeZone);
+    expect(nightOf(view, view.days[0].date)).toBeNull();
+    expect(zoneOn(view, view.days[0].date)).toBe(view.timeZone);
+    expect(zoneOn(view, undefined)).toBe(view.timeZone);
+    expect(zoneOn(view, '1999-01-01')).toBe(view.timeZone);
   });
 
   it('lists 7 lodgings in check-in order with nights', () => {

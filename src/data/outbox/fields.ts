@@ -16,6 +16,19 @@ export function diffFields(current: Fields, input: Fields): { patch: Fields; bas
 }
 
 /**
+ * What an edit changes: the fields of `input` that differ from what the user saw (`shown`: the server's version with
+ * the waiting edits laid over it), each with the server's last-read value as its `base` for the field rule at send
+ * time. Comparing with what was shown, not with the server, keeps an edit that undoes a waiting one (A → B offline,
+ * then back to A): it must still be queued, or the waiting B would be sent.
+ */
+export function editOf(shown: Fields, server: Fields, input: Fields): { patch: Fields; base: Fields } {
+  const { patch } = diffFields(shown, input);
+  const base: Fields = {};
+  for (const key of Object.keys(patch)) base[key] = server[key] ?? null;
+  return { patch, base };
+}
+
+/**
  * Three-way merge per field: a field goes to the server only when nobody else changed it since the edit began
  * (server value still equals `base`). A field both sides changed keeps the other person's value and is reported.
  */

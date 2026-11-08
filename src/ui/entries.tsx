@@ -7,6 +7,7 @@ import type { Checklist, Image, Lodging, Note, Transportation } from '@/api/sche
 import { firstImage } from '@/data/images';
 import type { Day, DayEntry, CollectionView } from '@/data/selectors';
 import { tr } from '@/i18n';
+import { arrivalZone, departureZone, lodgingZone } from '@/time/ownZone';
 import { formatDateTime, formatSpan, formatTime, localDate, zoned } from '@/time/tz';
 
 import { lodgingLabel, transportIcon, transportLabel } from './icons';
@@ -26,16 +27,14 @@ export function transportTitle(t: Transportation): string {
 
 /** `14:00 Deutschland → 10:45 (+1) · Flug LH716` */
 export function transportSubtitle(t: Transportation, collectionZone: string): string {
-  const start = t.date ? zoned(t.date, t.start_timezone ?? collectionZone, collectionZone) : null;
-  const end = t.end_date
-    ? zoned(t.end_date, t.end_timezone ?? t.start_timezone ?? collectionZone, collectionZone)
-    : null;
+  const start = t.date ? zoned(t.date, departureZone(t, collectionZone), collectionZone) : null;
+  const end = t.end_date ? zoned(t.end_date, arrivalZone(t, collectionZone), collectionZone) : null;
   const label = [transportLabel(t.type), t.flight_number].filter(Boolean).join(' ');
   return [start ? formatSpan(start, end) : null, label].filter(Boolean).join(' · ');
 }
 
 export function lodgingSubtitle(l: Lodging, day: string | null, collectionZone: string): string {
-  const tz = l.timezone ?? collectionZone;
+  const tz = lodgingZone(l, collectionZone);
   const parts: string[] = [];
   if (day && l.check_in && localDate(l.check_in, tz) === day)
     parts.push(tr('entries.checkinTime', { time: formatTime(l.check_in, tz) }));

@@ -1,5 +1,6 @@
 import type { Transportation } from '@/api/schemas';
 import { tr } from '@/i18n';
+import { arrivalZone, departureZone } from '@/time/ownZone';
 import { daysBetween, formatDayLabel, formatDuration, formatTime, localDate, utcOffset, zoneLabel } from '@/time/tz';
 
 /** One end of a journey, in that end's own zone. */
@@ -27,8 +28,8 @@ export type Journey = {
  * same wherever the phone is.
  */
 export function journey(j: Transportation, collectionZone: string): Journey {
-  const startTz = j.start_timezone ?? collectionZone;
-  const endTz = j.end_timezone ?? startTz;
+  const startTz = departureZone(j, collectionZone);
+  const endTz = arrivalZone(j, collectionZone);
   const end = (iso: string | null | undefined, tz: string, place?: string | null, code?: string | null) => ({
     time: iso ? formatTime(iso, tz) : '–',
     context: iso ? `${formatDayLabel(localDate(iso, tz))} · ${zoneLabel(tz)}, UTC${utcOffset(iso, tz)}` : null,

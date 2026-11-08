@@ -1,22 +1,22 @@
 import { suggestedZone } from '@/time/placeZone';
 import { FieldGroup, ListItem } from '@expo/ui';
-import { router, Stack, useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Alert } from 'react-native';
 
 import type { LodgingInput } from '@/api/client';
-import { realIdFor } from '@/data/outbox';
-import { useCollectionView } from '@/data/queries';
-import { changedFields, nearestZone } from '@/data/selectors';
+import { findItem, useCollectionView } from '@/data/queries';
+import { changedFields, nearestZone, zoneOn } from '@/data/selectors';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
+import { confirmDeleteFromEditor, leaveAfterSave } from '@/ui/editorExit';
 import { tr } from '@/i18n';
 import { FormHost } from '@/ui/FormHost';
 import { useMarkdownEditor } from '@/ui/MarkdownEditor';
 import { useInitialInputFocus } from '@/ui/useInitialInputFocus';
 import { deviceTimeZone, formatDateTime } from '@/time/tz';
-import { utcToZoned, zonedToUtc } from '@/time/zonedInput';
+import { endsAfterStart, utcToZoned } from '@/time/zonedInput';
 import { useActionSheet } from '@/ui/ActionSheet';
-import { useDateTimeRow, useZoneSelect } from '@/ui/DateTimeRow';
+import { useZoneSelect } from '@/ui/DateTimeRow';
 import {
   attachmentEditRows,
   currencyOptions,
@@ -36,6 +36,7 @@ import { useTextPrompt } from '@/ui/TextPrompt';
 import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { TextInput } from '@/ui/TextInput';
+import { useZonedMoment } from '@/ui/zonedMoment';
 
 const TYPES = [
   'hotel',
@@ -66,11 +67,10 @@ export default function LodgingEditScreen() {
   const sheet = useActionSheet(rt);
   const prompt = useTextPrompt(rt);
   const places = usePlaceSearch(rt, { withCurrentPosition: false });
-  const lodging = itemId ? view?.collection.lodging.find((l) => l.id === realIdFor(itemId)) : undefined;
+  const lodging = view ? findItem(view.collection, 'lodging', itemId) : undefined;
 
   const init = (() => {
-    const zone =
-      lodging?.timezone ?? view?.days.find((d) => d.date === day)?.nightLodging?.timezone ?? view?.timeZone ?? 'UTC';
+    const zone = lodging?.timezone ?? (view ? zoneOn(view, day) : 'UTC');
     const inDate = day ?? view?.days[0]?.date ?? '2000-01-01';
     const checkIn = lodging?.check_in ? utcToZoned(lodging.check_in, zone) : { date: inDate, time: '15:00' };
     const checkOut = lodging?.check_out
@@ -83,10 +83,18 @@ export default function LodgingEditScreen() {
   const [name, setName] = useState(lodging?.name ?? '');
   const [type, setType] = useState(lodging?.type ?? 'hotel');
   const [zone, setZone] = useState(init.zone);
-  const [inDate, setInDate] = useState(init.checkIn.date);
-  const [inTime, setInTime] = useState(init.checkIn.time);
-  const [outDate, setOutDate] = useState(init.checkOut.date);
-  const [outTime, setOutTime] = useState(init.checkOut.time);
+  const inMoment = useZonedMoment(rt, {
+    initial: init.checkIn,
+    zone,
+    dateLabel: tr('common.checkin'),
+    timeLabel: tr('lodgingEdit.checkinFrom'),
+  });
+  const outMoment = useZonedMoment(rt, {
+    initial: init.checkOut,
+    zone,
+    dateLabel: tr('common.checkout'),
+    timeLabel: tr('lodgingEdit.checkoutBy'),
+  });
   const [reservation, setReservation] = useState(lodging?.reservation_number ?? '');
   const [price, setPrice] = useState(lodging?.price ? String(lodging.price) : '');
   const [currency, setCurrency] = useState(
@@ -119,7 +127,7 @@ export default function LodgingEditScreen() {
     suggestions: view
       ? [view.timeZone, ...view.collection.lodging.flatMap((l) => (l.timezone ? [l.timezone] : [])), deviceTimeZone()]
       : [],
-    at: `${inDate}T12:00:00Z`,
+    at: `${inMoment.date}T12:00:00Z`,
     onChange: setZone,
   });
   const currencySelect = useSelect(rt, {
@@ -136,41 +144,17 @@ export default function LodgingEditScreen() {
     onChange: (v) => setRating(Number(v)),
     options: ratingOptions(),
   });
-  const inDateRow = useDateTimeRow(rt, {
-    label: tr('common.checkin'),
-    value: inDate,
-    mode: 'date',
-    onChange: setInDate,
-  });
-  const inTimeRow = useDateTimeRow(rt, {
-    label: tr('lodgingEdit.checkinFrom'),
-    value: inTime,
-    mode: 'time',
-    onChange: setInTime,
-  });
-  const outDateRow = useDateTimeRow(rt, {
-    label: tr('common.checkout'),
-    value: outDate,
-    mode: 'date',
-    onChange: setOutDate,
-  });
-  const outTimeRow = useDateTimeRow(rt, {
-    label: tr('lodgingEdit.checkoutBy'),
-    value: outTime,
-    mode: 'time',
-    onChange: setOutTime,
-  });
   const media = useMediaUploads(rt, edits, sheet, 'lodging', itemId ?? '');
 
   if (!view || (itemId && !lodging)) return null;
 
-  const checkIn = zonedToUtc({ date: inDate, time: inTime }, zone).iso;
-  const checkOut = zonedToUtc({ date: outDate, time: outTime }, zone).iso;
+  const checkIn = inMoment.iso;
+  const checkOut = outMoment.iso;
   const reference = zone === view.timeZone ? null : view.timeZone;
 
   const save = async () => {
     if (!name.trim() || saving) return;
-    if (Date.parse(checkOut) <= Date.parse(checkIn)) {
+    if (!endsAfterStart(checkIn, checkOut)) {
       Alert.alert(tr('common.checkTime'), tr('lodgingEdit.checkoutMustAfterCheckin'));
       return;
     }
@@ -202,11 +186,7 @@ export default function LodgingEditScreen() {
       : await edits.saveLodging(null, input);
     setSaving(false);
     if (!saved) return;
-    if (fromShare === '1')
-      router.dismissTo({ pathname: '/share', params: { collectionId, objectId: saved.id, kind: 'lodging' } });
-    else if (lodging) router.back();
-    // A new lodging opens its detail screen, where photos and files can be added.
-    else router.replace({ pathname: '/lodging/[collectionId]/[itemId]', params: { collectionId, itemId: saved.id } });
+    leaveAfterSave('lodging', { collectionId, savedId: saved.id, created: !lodging, fromShare: fromShare === '1' });
   };
 
   const searchAddress = () =>
@@ -221,21 +201,11 @@ export default function LodgingEditScreen() {
 
   const confirmDelete = () =>
     lodging &&
-    Alert.alert(
-      tr('common.deleteNameConfirm', { name: lodging.name }),
-      tr('common.includingPhotosAttachmentsPlanEntries'),
-      [
-        { text: tr('common.cancel'), style: 'cancel' },
-        {
-          text: tr('common.delete'),
-          style: 'destructive',
-          onPress: async () => {
-            router.dismiss(2);
-            await edits.deleteObject('lodging', lodging.id);
-          },
-        },
-      ],
-    );
+    confirmDeleteFromEditor({
+      name: lodging.name,
+      consequence: tr('common.includingPhotosAttachmentsPlanEntries'),
+      onDelete: () => edits.deleteObject('lodging', lodging.id),
+    });
 
   return (
     <>
@@ -284,10 +254,8 @@ export default function LodgingEditScreen() {
                 {tr('common.placeSearchSuggestsTimeZone')}
               </Text>
             </FieldGroup.SectionFooter>
-            {inDateRow.row}
-            {inTimeRow.row}
-            {outDateRow.row}
-            {outTimeRow.row}
+            {inMoment.rows}
+            {outMoment.rows}
             {reference ? (
               <FieldGroup.SectionFooter>
                 <Text textStyle={{ fontSize: 13, color: colors.secondary }}>
@@ -357,10 +325,8 @@ export default function LodgingEditScreen() {
       {zoneSelect.sheet}
       {currencySelect.sheet}
       {ratingSelect.sheet}
-      {inDateRow.sheet}
-      {inTimeRow.sheet}
-      {outDateRow.sheet}
-      {outTimeRow.sheet}
+      {inMoment.sheets}
+      {outMoment.sheets}
       {sheet.sheet}
       {prompt.sheet}
       {places.sheet}

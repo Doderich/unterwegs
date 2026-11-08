@@ -2,8 +2,7 @@ import { useDescriptionRows } from '@/ui/useDescriptionRows';
 import { FieldGroup } from '@expo/ui';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 
-import { realIdFor } from '@/data/outbox';
-import { useCollectionView } from '@/data/queries';
+import { findItem, useCollectionView } from '@/data/queries';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { tr } from '@/i18n';
 import { useActionSheet } from '@/ui/ActionSheet';
@@ -26,7 +25,7 @@ export default function LodgingScreen() {
   const media = useMediaUploads(rt, edits, sheet, 'lodging', itemId);
   const copier = useCopy();
   const opener = useOpenAttachment();
-  const lodging = view?.collection.lodging.find((l) => l.id === realIdFor(itemId));
+  const lodging = view ? findItem(view.collection, 'lodging', itemId) : undefined;
   const descriptionRows = useDescriptionRows(rt, lodging?.description);
   if (!view || !lodging) return null;
 

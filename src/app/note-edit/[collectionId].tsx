@@ -1,12 +1,11 @@
 import { FieldGroup, ListItem } from '@expo/ui';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { Alert } from 'react-native';
 
 import type { Note } from '@/api/schemas';
-import { realIdFor } from '@/data/outbox';
-import { useCollectionView } from '@/data/queries';
+import { findItem, useCollectionView } from '@/data/queries';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
+import { confirmDeleteFromEditor } from '@/ui/editorExit';
 import { tr } from '@/i18n';
 import { publicRow } from '@/ui/forms';
 import { FormHost } from '@/ui/FormHost';
@@ -30,7 +29,7 @@ export default function NoteEditScreen() {
   const rt = useRowTheme();
   const colors = useColors();
   // A note created offline keeps working here after it is sent and gets its server id.
-  const note = noteId ? view?.collection.notes.find((n) => n.id === realIdFor(noteId)) : undefined;
+  const note = view ? findItem(view.collection, 'note', noteId) : undefined;
 
   const initialFocus = useInitialInputFocus(!note);
   const [name, setName] = useState(note?.name ?? '');
@@ -78,17 +77,11 @@ export default function NoteEditScreen() {
   };
 
   const confirmDelete = (target: Note) =>
-    Alert.alert(tr('common.deleteNameConfirm', { name: target.name }), tr('common.cantUndone'), [
-      { text: tr('common.cancel'), style: 'cancel' },
-      {
-        text: tr('common.delete'),
-        style: 'destructive',
-        onPress: async () => {
-          router.dismiss(2);
-          await edits.deleteObject('note', target.id);
-        },
-      },
-    ]);
+    confirmDeleteFromEditor({
+      name: target.name,
+      consequence: tr('common.cantUndone'),
+      onDelete: () => edits.deleteObject('note', target.id),
+    });
 
   return (
     <>

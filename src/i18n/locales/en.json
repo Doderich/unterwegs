@@ -1152,5 +1152,8 @@
     "signOutPending_one": "{count} change hasn’t been sent yet and will be lost when you sign out.",
     "signOutPending_other": "{count} changes haven’t been sent yet and will be lost when you sign out.",
     "fieldsKept": "Someone else changed the same details of “{name}”. Theirs were kept; your other changes are saved."
+  },
+  "zonedMoment": {
+    "clockChange": "{typed} doesn't exist on this day (clocks change). It will be saved as {time}."
   }
 }

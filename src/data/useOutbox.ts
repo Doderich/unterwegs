@@ -5,18 +5,7 @@ import { Alert, AppState } from 'react-native';
 import { useClient } from '@/auth/session';
 import { tr } from '@/i18n';
 
-import type { Collection } from '@/api/schemas';
-
-import {
-  applyPending,
-  flushOutbox,
-  getOutbox,
-  onFlushRequested,
-  replaceId,
-  subscribeOutbox,
-  type OutboxOp,
-} from './outbox';
-import { queryKeys } from './queries';
+import { getOutbox, onFlushRequested, subscribeOutbox, syncOutbox, type OutboxOp } from './outbox';
 import { reportWriteFailure, useOnline } from './onlineWrite';
 
 /** The edits waiting for the server (all collections). */
@@ -47,22 +36,13 @@ export function useOutboxSync() {
   const flushRef = useRef<() => Promise<void>>(async () => undefined);
   useEffect(() => {
     flushRef.current = async () => {
-      if (!onlineRef.current || getOutbox().length === 0) return;
-      const report = await flushOutbox(
-        client,
-        {
-          copyName: (name) => tr('outbox.conflictCopyName', { name }),
-          noteCopied: (name) => tr('outbox.conflictBody', { name }),
-          fieldsKept: (name) => tr('outbox.fieldsKept', { name }),
-        },
-        (op, created) =>
-          queryClient.setQueryData<Collection>(queryKeys.collection(op.collectionId), (saved) => {
-            if (!saved) return saved;
-            const next = applyPending(saved, [op]);
-            return created ? replaceId(next, created.tempId, created.id) : next;
-          }),
-      );
-      for (const id of report.collections) void queryClient.invalidateQueries({ queryKey: queryKeys.collection(id) });
+      if (!onlineRef.current) return;
+      const report = await syncOutbox(client, queryClient, {
+        copyName: (name) => tr('outbox.conflictCopyName', { name }),
+        noteCopied: (name) => tr('outbox.conflictBody', { name }),
+        fieldsKept: (name) => tr('outbox.fieldsKept', { name }),
+      });
+      if (!report) return;
       if (report.dropped.length > 0) {
         reportWriteFailure(
           report.dropped[0].error,

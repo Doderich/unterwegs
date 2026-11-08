@@ -4,6 +4,7 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import { firstImage } from '@/data/images';
 import { entryTitle, locationZone, type CollectionView, type Day, type DayEntry } from '@/data/selectors';
 import { tr } from '@/i18n';
+import { departureZone, lodgingZone } from '@/time/ownZone';
 import { formatDuration, formatTime } from '@/time/tz';
 
 import { AuthImage } from './AuthImage';
@@ -24,8 +25,8 @@ export function useNow(): number {
 
 /** The zone an entry's time belongs to (DESIGN.md: every time in its own zone). */
 function entryZone(view: CollectionView, entry: DayEntry): string {
-  if (entry.kind === 'transportation') return entry.transport.start_timezone ?? view.timeZone;
-  if (entry.kind === 'lodging') return entry.lodging.timezone ?? view.timeZone;
+  if (entry.kind === 'transportation') return departureZone(entry.transport, view.timeZone);
+  if (entry.kind === 'lodging') return lodgingZone(entry.lodging, view.timeZone);
   if (entry.kind === 'location') return locationZone(view, entry.location);
   return view.timeZone;
 }

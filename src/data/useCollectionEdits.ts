@@ -24,7 +24,7 @@ import { todayIn } from '@/time/today';
 
 import { moveWithinDay, tempId, withImage, withLocationObject, withLodging, type OrderUpdate } from './edits';
 import {
-  diffFields,
+  editOf,
   enqueue,
   findChild,
   findObject,
@@ -113,6 +113,11 @@ export function useCollectionEdits(view: CollectionView | null) {
       return (saved && findObject(saved, kind, id)) ?? {};
     };
 
+    /** An object as the screen shows it: the server's version with the waiting edits laid over it. */
+    const shownObject = (kind: ObjectKind, id: string): Fields => (view && findObject(view.collection, kind, id)) ?? {};
+    const shownChild = (kind: ChildKind, id: string): Fields =>
+      (view && findChild(view.collection, kind, id)?.child) ?? {};
+
     /** The server's version of a visit, trail, activity or attachment, as last read. */
     const serverChild = (kind: ChildKind, id: string): Fields => {
       const saved = queryClient.getQueryData<Collection>(key);
@@ -129,7 +134,7 @@ export function useCollectionEdits(view: CollectionView | null) {
       extra: { ownerKind?: ObjectKind; file?: UploadFile } = {},
     ) => {
       if (id) {
-        const { patch, base } = diffFields(serverChild(kind, id), input);
+        const { patch, base } = editOf(shownChild(kind, id), serverChild(kind, id), input);
         if (Object.keys(patch).length === 0) return Promise.resolve(result(id));
         return queue({ type: 'updateChild', collectionId, childKind: kind, childId: id, patch, base }, result(id));
       }
@@ -143,7 +148,7 @@ export function useCollectionEdits(view: CollectionView | null) {
     /** Create (id null; put on `onDay` when given) or update a stay, connection or place, through the outbox. */
     const saveObject = (kind: ObjectKind, id: string | null, input: Fields, onDay?: string) => {
       if (id) {
-        const { patch, base } = diffFields(serverObject(kind, id), input);
+        const { patch, base } = editOf(shownObject(kind, id), serverObject(kind, id), input);
         if (Object.keys(patch).length === 0) return Promise.resolve({ id, ...input });
         return queue(
           { type: 'updateObject', collectionId, objectKind: kind, objectId: id, patch, base },
@@ -378,7 +383,11 @@ export function useCollectionEdits(view: CollectionView | null) {
        */
       saveCollection: (fields: Partial<CollectionInput>) => {
         const saved = queryClient.getQueryData<Collection>(key);
-        const { patch, base } = diffFields((saved ?? {}) as unknown as Fields, fields as Fields);
+        const { patch, base } = editOf(
+          (view?.collection ?? {}) as unknown as Fields,
+          (saved ?? {}) as unknown as Fields,
+          fields as Fields,
+        );
         if (Object.keys(patch).length === 0) return Promise.resolve(true);
         return queue({ type: 'saveCollection', collectionId, patch, base }, true);
       },
@@ -395,10 +404,11 @@ export function useCollectionEdits(view: CollectionView | null) {
 
       saveDay: (date: string, name: string, description: string) => {
         const existing = queryClient.getQueryData<Collection>(key)?.itinerary_days.find((d) => d.date === date);
-        const { patch, base } = diffFields((existing ?? {}) as Fields, { name, description });
-        if (existing && Object.keys(patch).length === 0) return Promise.resolve(true);
+        const shown = view?.collection.itinerary_days.find((d) => d.date === date);
+        const { patch, base } = editOf((shown ?? {}) as Fields, (existing ?? {}) as Fields, { name, description });
+        if (shown && Object.keys(patch).length === 0) return Promise.resolve(true);
         return queue(
-          { type: 'saveDay', collectionId, date, patch: existing ? patch : { name, description }, base },
+          { type: 'saveDay', collectionId, date, patch: shown ? patch : { name, description }, base },
           true,
         );
       },
