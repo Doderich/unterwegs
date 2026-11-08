@@ -367,6 +367,11 @@
     "body": "Beim Anzeigen ist ein Fehler aufgetreten. Deine gespeicherten Daten sind nicht betroffen.",
     "back": "Zurück"
   },
+  "goneScreen": {
+    "title": "Das gibt es nicht mehr",
+    "collection": "Diese Sammlung wurde entfernt, oder der Link stimmt nicht mehr.",
+    "item": "Das ist in dieser Sammlung nicht mehr vorhanden."
+  },
   "errors": {
     "unsupportedServer": "Dieser Server wird nicht unterstützt: Unterwegs findet dort nicht, was es zum Lesen der Reisen braucht ({reason}). Getestet mit AdventureLog {version}.",
     "serverAnswerUnreadable": "Die Antwort des Servers ließ sich nicht lesen. Vielleicht läuft dort eine AdventureLog-Version, die Unterwegs noch nicht kennt (getestet mit {version}). Gespeicherte Inhalte bleiben verfügbar.",
@@ -649,6 +654,8 @@
   "map": {
     "loadFailed": "Die Karte konnte nicht geladen werden.",
     "loadingMap": "Karte wird geladen",
+    "locationUnavailable": "Dein Standort ist gerade nicht verfügbar.",
+    "showMyLocation": "Meinen Standort zeigen",
     "points_one": "{count} Punkt",
     "points_other": "{count} Punkte",
     "wholeTrip": "Ganze Sammlung"

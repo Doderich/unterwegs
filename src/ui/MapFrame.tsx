@@ -1,12 +1,13 @@
 import { BottomSheet } from '@expo/ui';
-import { Camera } from '@maplibre/maplibre-react-native';
+import { Camera, type CameraRef } from '@maplibre/maplibre-react-native';
 import { useHeaderHeight } from 'expo-router/react-navigation';
-import type { ReactNode } from 'react';
+import { useRef, type ReactNode } from 'react';
 import { Platform, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { MapCanvas } from '@/ui/MapCanvas';
 import { floatingShadow } from '@/ui/theme';
+import { LocateButton, UserLocationMarker } from '@/ui/UserOnMap';
 import { useScreenBackground } from '@/ui/useScreenBackground';
 
 /**
@@ -43,17 +44,21 @@ export function MapFrame({
   // iOS draws the map under the translucent navigation bar; Android lays the content out below it.
   const headerOffset = Platform.OS === 'ios' ? headerHeight + 12 : 12;
   const padding = { top: headerOffset + topReserve, bottom: 100 + insets.bottom, left: 40, right: 40 };
+  const camera = useRef<CameraRef | null>(null);
 
   return (
     <View style={[styles.container, { backgroundColor }]}>
       <MapCanvas style={StyleSheet.absoluteFill} mapStyle={mapStyle} logo={false} compass>
         <Camera
+          ref={camera}
           {...(bounds ? { bounds, padding, duration: 600, easing: 'ease' as const } : {})}
           initialViewState={bounds ? { bounds, padding } : undefined}
         />
         {children}
+        <UserLocationMarker />
       </MapCanvas>
       <View style={[styles.card, { top: headerOffset }, topStyle]}>{top}</View>
+      <LocateButton camera={camera} hidden={presented} />
       <BottomSheet
         isPresented={presented}
         onDismiss={onDismiss}

@@ -3,6 +3,7 @@ import { FieldGroup } from '@expo/ui';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 
 import { findItem, useCollectionView } from '@/data/queries';
+import { missingCollection } from '@/ui/CollectionLoading';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { tr } from '@/i18n';
 import { useActionSheet } from '@/ui/ActionSheet';
@@ -17,7 +18,8 @@ import { stayRows } from '@/ui/StaySummary';
 /** Organised around arrival: the property, then check-in/out, address, booking number and site; the rest below. */
 export default function LodgingScreen() {
   const { collectionId, itemId } = useLocalSearchParams<{ collectionId: string; itemId: string }>();
-  const { view } = useCollectionView(collectionId);
+  const collection = useCollectionView(collectionId);
+  const { view } = collection;
   const rt = useRowTheme();
   const edits = useCollectionEdits(view);
   const sheet = useActionSheet(rt);
@@ -26,7 +28,7 @@ export default function LodgingScreen() {
   const opener = useOpenAttachment();
   const lodging = view ? findItem(view.collection, 'lodging', itemId) : undefined;
   const descriptionRows = useDescriptionRows(rt, lodging?.description);
-  if (!view || !lodging) return null;
+  if (!view || !lodging) return missingCollection(collection, !!lodging);
 
   return (
     <>

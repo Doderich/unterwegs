@@ -367,6 +367,11 @@
     "body": "Something went wrong while showing this. Your saved data isn’t affected.",
     "back": "Back"
   },
+  "goneScreen": {
+    "title": "This is no longer here",
+    "collection": "This collection was removed, or the link no longer matches.",
+    "item": "This is no longer in the collection."
+  },
   "errors": {
     "unsupportedServer": "This server isn’t supported: Unterwegs can’t find what it needs to read your trips there ({reason}). Tested with AdventureLog {version}.",
     "serverAnswerUnreadable": "The server’s answer couldn’t be read. It may run an AdventureLog version Unterwegs doesn’t know yet (tested with {version}). Saved content stays available.",
@@ -649,6 +654,8 @@
   "map": {
     "loadFailed": "The map could not be loaded.",
     "loadingMap": "Loading map",
+    "locationUnavailable": "Your location isn’t available right now.",
+    "showMyLocation": "Show my location",
     "points_one": "{count} point",
     "points_other": "{count} points",
     "wholeTrip": "Whole collection"
