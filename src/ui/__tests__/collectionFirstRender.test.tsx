@@ -26,6 +26,7 @@ jest.mock('@/data/useCollectionEdits', () => ({ useCollectionEdits: () => ({ can
 jest.mock('@/ui/useTabVisited', () => ({ useTabVisited: () => false }));
 jest.mock('@/ui/Host', () => ({ Host: 'Host' }));
 jest.mock('@/ui/Text', () => ({ Text: 'Text' }));
+jest.mock('@/ui/GoneScreen', () => ({ GoneScreen: () => null }));
 jest.mock('@/ui/Sub', () => ({ Sub: 'Sub' }));
 jest.mock('@/ui/ActionSheet', () => ({ useActionSheet: () => ({ sheet: null }) }));
 jest.mock('@/ui/rows', () => ({ RowIcon: 'Icon', useRowTheme: () => ({ colors: {} }) }));
