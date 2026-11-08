@@ -1,0 +1,19 @@
+src/ui/__tests__/collectionFirstRender.test.tsx
+  s_fbd1feee9300c6::t_0ae9117013d380 29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "fa9e6101e38a99f65a56241d3dd843f85d773319",
+  "prompts": {},
+  "sessions": {
+    "s_fbd1feee9300c6": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "agent-7197f3ee-6f60-495c-881e-afe90cf8c1d2",
+        "model": "unknown"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
