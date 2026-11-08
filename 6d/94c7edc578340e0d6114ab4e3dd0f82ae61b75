@@ -1,0 +1,24 @@
+src/glances/__tests__/nextCover.test.ts
+  s_2d6487b31b8291::t_3c1bb70cfd90aa 1-12
+src/glances/widgets/NextWidget.ios.tsx
+  s_2d6487b31b8291::t_4a7f84770043bb 110-111
+  s_2d6487b31b8291::t_e530b3a14ca39a 12
+docs/GLANCES.md
+  s_2d6487b31b8291::t_e527f841e895af 131
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6d94c7edc578340e0d6114ab4e3dd0f82ae61b75",
+  "prompts": {},
+  "sessions": {
+    "s_2d6487b31b8291": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "agent-387a0e8d-9284-4202-8176-f2055210b22a",
+        "model": "unknown"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
