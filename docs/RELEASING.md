@@ -20,7 +20,7 @@ The signed APK, checksum and matching R8/JavaScript maps are retained under `bui
 
 ## Next native version
 
-None pending: 1.5.0 is built and published on both platforms, see below. The next native change needs a `version` bump.
+**1.5.1** is not built yet. The share extension also accepts a link (`text/plain` and a web URL), so Unterwegs can appear in the system share sheet. That is a native change: the 1.5.0 builds do not receive it over the air.
 
 ## Current release
 
@@ -137,7 +137,7 @@ Before a native release, run `npm run licenses` and commit `src/legal/licenses.j
 
   `xcrun devicectl list devices` shows the udid.
 
-- Keep `./plugins/with-share-signing` before `expo-sharing` in the plugin list so generated extension targets receive the team and App Groups signing settings.
+- Keep `./plugins/with-share-signing` before `expo-sharing` in the plugin list. Listed first, its Xcode edit runs after the extension target exists: it sets the team and App Groups signing, and names the extension Unterwegs in the share sheet.
 - After native changes that `expo prebuild` can't merge (removed plugins, SDK upgrade), run `npm run native:clean` first. It deletes `android/local.properties`; Gradle then finds the SDK through `ANDROID_HOME`.
 
 ## TestFlight (iOS)

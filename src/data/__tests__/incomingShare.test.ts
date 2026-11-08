@@ -1,6 +1,6 @@
 import type { ResolvedSharePayload } from 'expo-sharing';
 
-import { sharedFiles, uploadSharedFiles } from '../incomingShare';
+import { sharedFiles, sharedUrl, uploadSharedFiles } from '../incomingShare';
 
 const pdf: ResolvedSharePayload = {
   value: 'content://provider/booking',
@@ -12,6 +12,66 @@ const pdf: ResolvedSharePayload = {
   originalName: 'booking.pdf',
   contentSize: 123,
 };
+
+it('reads a shared link and drops an Instagram tracking query', () => {
+  const reel = 'https://www.instagram.com/reel/AbCd/?cplk=abc';
+  expect(
+    sharedUrl([
+      {
+        value: `Look ${reel}`,
+        shareType: 'text',
+        mimeType: 'text/plain',
+        contentUri: null,
+        contentType: 'text',
+        contentMimeType: 'text/plain',
+        originalName: null,
+        contentSize: null,
+      },
+    ]),
+  ).toBe('https://www.instagram.com/reel/AbCd/');
+  expect(
+    sharedUrl([
+      {
+        value: 'https://example.org/cafe?ref=1',
+        shareType: 'url',
+        mimeType: 'text/plain',
+        contentUri: 'https://example.org/cafe?ref=1',
+        contentType: 'website',
+        contentMimeType: 'text/html',
+        originalName: null,
+        contentSize: null,
+      },
+    ]),
+  ).toBe('https://example.org/cafe?ref=1');
+  expect(
+    sharedUrl([
+      {
+        value: 'https://www.youtube.com/watch?v=AbCdEf&si=xyz',
+        shareType: 'url',
+        mimeType: 'text/plain',
+        contentUri: 'https://www.youtube.com/watch?v=AbCdEf&si=xyz',
+        contentType: 'website',
+        contentMimeType: 'text/html',
+        originalName: null,
+        contentSize: null,
+      },
+    ]),
+  ).toBe('https://www.youtube.com/watch?v=AbCdEf');
+  expect(
+    sharedUrl([
+      {
+        value: 'https://youtu.be/AbCdEf?si=xyz',
+        shareType: 'url',
+        mimeType: 'text/plain',
+        contentUri: null,
+        contentType: 'text',
+        contentMimeType: 'text/plain',
+        originalName: null,
+        contentSize: null,
+      },
+    ]),
+  ).toBe('https://youtu.be/AbCdEf');
+});
 
 it('accepts a local PDF, preserves its name and rejects text and remote links', () => {
   expect(sharedFiles([pdf])[0].file).toEqual({ uri: pdf.contentUri, name: 'booking.pdf', type: 'application/pdf' });

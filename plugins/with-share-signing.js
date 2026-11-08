@@ -22,6 +22,11 @@ module.exports = function withShareSigning(config) {
       if (!entry || typeof entry !== 'object' || !entry.buildSettings?.PRODUCT_BUNDLE_IDENTIFIER) continue;
       if (config.ios?.appleTeamId) entry.buildSettings.DEVELOPMENT_TEAM = config.ios.appleTeamId;
       entry.buildSettings.CODE_SIGN_STYLE = 'Automatic';
+      // Xcode quotes the identifier. The target is named expo-sharing-extension; the share sheet should show the app.
+      const bundleId = String(entry.buildSettings.PRODUCT_BUNDLE_IDENTIFIER).replaceAll('"', '');
+      if (bundleId.endsWith('.expo-sharing-extension')) {
+        entry.buildSettings.INFOPLIST_KEY_CFBundleDisplayName = config.name ?? 'Unterwegs';
+      }
     }
     return mod;
   });

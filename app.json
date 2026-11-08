@@ -2,7 +2,7 @@
   "expo": {
     "name": "Unterwegs",
     "slug": "unterwegs",
-    "version": "1.5.0",
+    "version": "1.5.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "unterwegs",
@@ -54,13 +54,15 @@
           "ios": {
             "enabled": true,
             "activationRule": {
+              "supportsText": true,
+              "supportsWebUrlWithMaxCount": 1,
               "supportsFileWithMaxCount": 1,
               "supportsImageWithMaxCount": 5
             }
           },
           "android": {
             "enabled": true,
-            "singleShareMimeTypes": ["application/pdf", "image/*"],
+            "singleShareMimeTypes": ["application/pdf", "image/*", "text/plain"],
             "multipleShareMimeTypes": ["image/*"]
           }
         }
