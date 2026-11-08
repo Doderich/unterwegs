@@ -1,0 +1,148 @@
+src/app/location-edit/[collectionId].tsx
+  s_43997de17cf78e::t_171cd62d1cb1af 46
+  s_43997de17cf78e::t_9fe0a75b6e61c0 10,164,205-209
+  s_43997de17cf78e::t_98a50e43361b10 7
+src/data/queryKeys.ts
+  s_43997de17cf78e::t_32899d67d54bbe 1-27
+src/app/location/[collectionId]/[itemId].tsx
+  s_43997de17cf78e::t_171cd62d1cb1af 49
+  s_43997de17cf78e::t_98a50e43361b10 7
+src/app/lodging-edit/[collectionId].tsx
+  s_43997de17cf78e::t_171cd62d1cb1af 70
+  s_43997de17cf78e::t_9fe0a75b6e61c0 11,189,204-208
+  s_43997de17cf78e::t_98a50e43361b10 8
+  s_43997de17cf78e::t_3f477629d61a3f 9,73
+  s_43997de17cf78e::t_e2910596a04067 3
+  s_43997de17cf78e::t_7dd447dc450bd2 17,19,39,86-97,130,151-152,157,257-258,328-329
+src/data/outbox/__tests__/sync.test.ts
+  s_43997de17cf78e::t_6802bd2eb682ab 1-21,24-62
+  s_43997de17cf78e::t_38f094b05349f4 22-23
+src/time/zonedMoment.ts
+  s_43997de17cf78e::t_593af743187367 1-17
+src/data/useRegionEdits.ts
+  s_43997de17cf78e::t_86d1bd09ba6417 6,17,21,46,55,59,79,85,89
+src/app/note/[collectionId]/[itemId].tsx
+  s_43997de17cf78e::t_98a50e43361b10 7
+  s_43997de17cf78e::t_171cd62d1cb1af 41-42,45
+src/app/transport-edit/[collectionId].tsx
+  s_43997de17cf78e::t_171cd62d1cb1af 62
+  s_43997de17cf78e::t_3f477629d61a3f 9,16,65-67
+  s_43997de17cf78e::t_98a50e43361b10 8
+  s_43997de17cf78e::t_e2910596a04067 3
+  s_43997de17cf78e::t_9fe0a75b6e61c0 11,211,233-237
+  s_43997de17cf78e::t_7dd447dc450bd2 17,19,38,96-107,138,145,166-167,295,306,377-378
+src/data/selectors.ts
+  s_43997de17cf78e::t_3f477629d61a3f 3,69-76,182,193,199,212
+src/app/transport/[collectionId]/[itemId].tsx
+  s_43997de17cf78e::t_171cd62d1cb1af 42
+  s_43997de17cf78e::t_98a50e43361b10 7
+src/data/outbox/__fixtures__/fakes.ts
+  s_43997de17cf78e::t_a5b36fde1b2f61 1-77
+src/app/lodging/[collectionId]/[itemId].tsx
+  s_43997de17cf78e::t_98a50e43361b10 5
+  s_43997de17cf78e::t_171cd62d1cb1af 28
+src/glances/plan.ts
+  s_43997de17cf78e::t_12d3c0768e2885 1-92
+src/ui/editorExit.ts
+  s_43997de17cf78e::t_a77be4d4ae3dd6 1-56
+src/data/queries.ts
+  s_43997de17cf78e::t_6802bd2eb682ab 9,31
+  s_43997de17cf78e::t_171cd62d1cb1af 8,76-97
+  s_43997de17cf78e::t_4132c3edb140d3 98-99
+src/glances/useGlances.ts
+  s_43997de17cf78e::t_12d3c0768e2885 17-18,50-58,61-62,64-65,68-69
+src/data/useCollectionEdits.ts
+  s_43997de17cf78e::t_e80b6245464746 27,116-120,137,151,386-390,407-409,411
+src/data/outbox/__tests__/fields.test.ts
+  s_43997de17cf78e::t_6793d064c8aa6a 1-29
+src/ui/__tests__/editorExit.test.ts
+  s_43997de17cf78e::t_f4c3ddf12c994c 1-34
+src/data/outbox/index.ts
+  s_43997de17cf78e::t_27a14685a4ad1e 1-3,7-8,61-63
+  s_43997de17cf78e::t_e80b6245464746 12
+src/data/useOutbox.ts
+  s_43997de17cf78e::t_27a14685a4ad1e 8,39-45
+src/ui/zonedMoment.tsx
+  s_43997de17cf78e::t_6fab3097a13c41 1-3,6-54,58
+  s_43997de17cf78e::t_593af743187367 4-5
+  s_43997de17cf78e::t_a345fcdac8b7dc 55-57
+src/ui/journey.ts
+  s_43997de17cf78e::t_3f477629d61a3f 3,31-32
+src/i18n/locales/ja.json
+  s_43997de17cf78e::t_f4009cb50cb332 1119-1120
+  s_43997de17cf78e::t_8a6a612f0c30fa 1118
+src/time/today.ts
+  s_43997de17cf78e::t_3f477629d61a3f 3,45,47
+src/data/outbox/__tests__/queue.test.ts
+  s_43997de17cf78e::t_a5b36fde1b2f61 1,3-4
+src/data/useCollectionsActions.ts
+  s_43997de17cf78e::t_86d1bd09ba6417 7,16,21,55
+src/data/__tests__/selectors.test.ts
+  s_43997de17cf78e::t_d74cba1262e31e 4,53-60
+  s_43997de17cf78e::t_7546ada0adab9c 61-62
+src/ui/entries.tsx
+  s_43997de17cf78e::t_3f477629d61a3f 10,30-31,37
+src/ui/stay.ts
+  s_43997de17cf78e::t_3f477629d61a3f 3-4,13,15
+src/time/__tests__/ownZone.test.ts
+  s_43997de17cf78e::t_932cab40647dbb 16
+  s_43997de17cf78e::t_d74cba1262e31e 1-15,17-38
+src/data/outbox/fields.ts
+  s_43997de17cf78e::t_e80b6245464746 19-30
+  s_43997de17cf78e::t_77a4c3bd11f568 18
+src/i18n/locales/en.json
+  s_43997de17cf78e::t_f4009cb50cb332 1156-1157
+  s_43997de17cf78e::t_156caeccbc0429 1155
+src/glances/__tests__/plan.test.ts
+  s_43997de17cf78e::t_06b14f1715f2ce 1-68
+src/glances/compute.ts
+  s_43997de17cf78e::t_3f477629d61a3f 6,13,143,155,189,253,345,349,396-397,579,629,704-705,707
+src/time/ownZone.ts
+  s_43997de17cf78e::t_fee7dbf8719280 1-34
+src/data/outbox/sync.ts
+  s_43997de17cf78e::t_95dd596c787674 1-5,7-34
+  s_43997de17cf78e::t_32899d67d54bbe 6
+src/screens/VisitEditor.tsx
+  s_43997de17cf78e::t_3f477629d61a3f 6,70
+  s_43997de17cf78e::t_7dd447dc450bd2 16-17,23
+  s_43997de17cf78e::t_8dbe675a81a0c4 76-88,115-117,169,171-172,176-185,209-210
+src/ui/NextUp.tsx
+  s_43997de17cf78e::t_3f477629d61a3f 7,28-29
+src/i18n/locales/de.json
+  s_43997de17cf78e::t_f4009cb50cb332 1156-1157
+  s_43997de17cf78e::t_cdd13c1a4c4f66 1155
+src/ui/StaySummary.tsx
+  s_43997de17cf78e::t_3f477629d61a3f 5-6,26-28
+src/app/note-edit/[collectionId].tsx
+  s_43997de17cf78e::t_9fe0a75b6e61c0 8,80-84
+  s_43997de17cf78e::t_171cd62d1cb1af 32
+  s_43997de17cf78e::t_98a50e43361b10 6
+.impeccable/critique/2026-11-07T21-13-15Z__src-app.md
+  s_c011c8ec3f274a::t_4b494fa5e45ca0 1-18
+src/time/__tests__/zonedMoment.test.ts
+  s_43997de17cf78e::t_d9d0e8f7ba9952 1-22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9c20e17a9b8b4aa0290fb6ae350684d6c03dcec8",
+  "prompts": {},
+  "sessions": {
+    "s_43997de17cf78e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2baaa1c0-bff6-4480-b7b3-e14f7e27fabe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    },
+    "s_c011c8ec3f274a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a4c7eb95-0520-466e-b968-2031783e5a5d",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
