@@ -18,17 +18,26 @@ Built locally on **04.11.2026** at `b087a1c` (application fix `7a11939`) with `n
 
 The signed APK, checksum and matching R8/JavaScript maps are retained under `build/android/`. The existing signed APK was published as the latest GitHub release on **04.11.2026**, after pushing its commits and rechecking its checksum and certificate; Obtainium can offer it as an update. Corrected-APK launch verification remains pending. This is an Android replacement only; no new iOS archive was built.
 
-## Next native version
-
-**1.5.1** is not built yet. The share extension also accepts a link (`text/plain` and a web URL), so Unterwegs can appear in the system share sheet. That is a native change: the 1.5.0 builds do not receive it over the air.
-
 ## Current release
+
+Release record, **08.11.2026** (runtime **1.5.1**):
+
+| Platform | Version / build          | Result                                                                                                                                                                                                                                                                                     |
+| -------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Android  | **1.5.1-29902273**       | Latest GitHub release, available through Obtainium. ARM64 APK **33,231,686 bytes**, universal APK **78,471,260 bytes**. Published SHA-256 digests match the local APKs (`e0976698…` and `6b7dfc9b…`); both certificates match the upload key. No server preset (`--public`).               |
+| iOS      | **1.5.1 (202611081059)** | Archive and App Store Connect upload succeeded. Processing and TestFlight tester availability are not independently confirmed. No preset. Apple again reported non-blocking missing vendor-framework dSYM warnings. Archive: `build/testflight/production-1.5.1-202611081059/`.          |
+
+The app JavaScript is `ddabbdd` (merge of PR #14). The iOS archive was uploaded from `a138377`; the only later commit types a unit test and is not in the binary. This is a native release: the share extension accepts a link (`text/plain` and a web URL), so 1.5.0 builds do not receive that, or this JavaScript, over the air. A new place can be filled from a shared post or from an account, page or channel when the page publishes Open Graph. Preflight: typecheck, **65 suites / 492 tests** (2 skipped), lint (one existing warning). Link fill was checked on the iOS simulator; the share sheet lists Unterwegs, and opening the app from that sheet was not confirmed. The release binaries have not had a separate installed-device pass. Checksums and matching R8/JavaScript maps are retained under `build/android/`.
+
+Over-the-air update on **08.11.2026**, 11:21 UTC: `ddabbdd` published for both platforms to branch `production` with `--public` (ios `17941369065421`, android `17941369065422`, group `9166bc2a-58ef-4aea-9137-22d1d31c99cc`). It reaches 1.5.1 builds on the next start after download. The published bundles contain no server preset.
+
+### 1.5.0 release
 
 Release record, **08.11.2026** (runtime **1.5.0**):
 
 | Platform | Version / build          | Result                                                                                                                                                                                                                                                                                     |
 | -------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Android  | **1.5.0-29902077**       | Latest GitHub release, available through Obtainium. ARM64 APK **33,207,842 bytes**, universal APK **78,447,416 bytes**. Published SHA-256 digests match the local APKs (`4eb51eea…` and `fba27f20…`); both certificates match the upload key. No server preset (`--public`).               |
+| Android  | **1.5.0-29902077**       | GitHub release, available through Obtainium. ARM64 APK **33,207,842 bytes**, universal APK **78,447,416 bytes**. Published SHA-256 digests match the local APKs (`4eb51eea…` and `fba27f20…`); both certificates match the upload key. No server preset (`--public`).                      |
 | iOS      | **1.5.0 (202611080757)** | Archive and App Store Connect upload succeeded. Processing and TestFlight tester availability are not independently confirmed. No preset. Apple again reported non-blocking missing vendor-framework dSYM warnings. Archive: `build/testflight/production-1.5.0-202611080757/`.          |
 
 Both builds are `035f3f4` (merge of PR #12). This is a native release, so 1.4.1 builds do not receive it over the air. It adds widgets, reminders and the travel-day Live Activity, offline edits through the outbox, the design pass, and the shared object forms, day plan, map chrome and transportation titles. Preflight: typecheck, **64 suites / 484 tests**, lint (one existing warning). The JavaScript was checked on the iOS simulator inside the test collection; the release binaries have not had a separate installed-device pass. Checksums and matching R8/JavaScript maps are retained under `build/android/`.
