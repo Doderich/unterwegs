@@ -14,7 +14,7 @@ import { Host } from '@/ui/Host';
 import { LoadingRows } from '@/ui/LoadingRows';
 import { resourceHeaderRows } from '@/ui/ResourceHeader';
 import { filesSection } from '@/ui/resourceDetail';
-import { infoRow, linkRow, mapsRow, RowIcon, useOpenAttachment, useRowTheme } from '@/ui/rows';
+import { linkRow, mapsRow, RowIcon, useOpenAttachment, useRowTheme } from '@/ui/rows';
 import { Sub } from '@/ui/Sub';
 import { Text } from '@/ui/Text';
 import { toolbarIcon } from '@/ui/icons';
@@ -98,6 +98,11 @@ export default function PlaceScreen() {
             accessibilityLabel={tr('common.edit')}
             onPress={() => router.push({ pathname: '/place-edit', params: { id } })}
           />
+          <Stack.Toolbar.Button
+            icon={toolbarIcon('addPhoto') as never}
+            accessibilityLabel={tr('media.addPhoto')}
+            onPress={addPhoto}
+          />
         </Stack.Toolbar>
       ) : null}
       <Host style={{ flex: 1 }}>
@@ -109,11 +114,6 @@ export default function PlaceScreen() {
               subtitle: place.category?.display_name,
               icon: 'location',
             })}
-            {action.online ? (
-              <ListItem colors={rt.listColors} leading={<RowIcon name="addPhoto" />} onPress={addPhoto}>
-                {tr('media.addPhoto')}
-              </ListItem>
-            ) : null}
           </FieldGroup.Section>
           <FieldGroup.Section>
             {mapsRow(rt, {
@@ -184,14 +184,17 @@ export default function PlaceScreen() {
             ) : null}
           </FieldGroup.Section>
           {filesSection(rt, opener, tr('common.attachments'), place.attachments)}
-          <FieldGroup.Section>
-            {infoRow(rt, { label: tr('places.offlineMedia'), value: `${files.cached} / ${files.total}` })}
-            {action.online ? (
-              <ListItem colors={rt.listColors} leading={<RowIcon name="offline" />} onPress={() => void files.sync()}>
-                {tr('places.saveOffline')}
+          {files.total ? (
+            <FieldGroup.Section>
+              <ListItem
+                colors={rt.listColors}
+                leading={<RowIcon name="offline" />}
+                supportingText={<Sub>{tr('utilities.savedCount', { cached: files.cached, total: files.total })}</Sub>}
+                onPress={action.online && !files.running ? () => void files.sync() : undefined}>
+                {files.running ? tr('common.loading') : tr('places.saveOffline')}
               </ListItem>
-            ) : null}
-          </FieldGroup.Section>
+            </FieldGroup.Section>
+          ) : null}
           {action.online ? (
             <FieldGroup.Section>
               <ListItem

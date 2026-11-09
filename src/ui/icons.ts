@@ -37,6 +37,7 @@ const defs = {
   time: ['clock', require('@expo/material-symbols/schedule.xml')],
   key: ['key', require('@expo/material-symbols/key.xml')],
   price: ['eurosign', require('@expo/material-symbols/payments.xml')],
+  swap: ['arrow.up.arrow.down', require('@expo/material-symbols/swap_vert.xml')],
   link: ['link', require('@expo/material-symbols/link.xml')],
   offline: ['icloud.slash', require('@expo/material-symbols/cloud_off.xml')],
   refresh: ['arrow.clockwise', require('@expo/material-symbols/refresh.xml')],

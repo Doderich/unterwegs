@@ -8,23 +8,24 @@ Android **1.4.0** is published with smaller ARM64/universal downloads and self-h
 
 Each fact lives in one file; update the file that owns it.
 
-| File                                               | What it holds                                     | Update when                                   |
-| -------------------------------------------------- | ------------------------------------------------- | --------------------------------------------- |
-| [PRODUCT.md](PRODUCT.md)                           | Who the app is for, purpose, principles           | The audience or direction changes             |
-| [DESIGN.md](DESIGN.md)                             | Design system: colours, type, components, rules   | A visual pattern is added or changed          |
-| [docs/DESIGN-PLAN.md](docs/DESIGN-PLAN.md)         | Proposed UI direction, screen changes and rollout | The UI design plan is refined or implemented  |
-| [docs/IPAD.md](docs/IPAD.md)                       | iPad and Mac: moments, the day map, big pictures  | The iPad layout is refined or implemented     |
-| [docs/GLANCES.md](docs/GLANCES.md)                 | Proposed widgets, reminders and Live Activities   | Glances are refined or implemented            |
-| [docs/HOME-NAVIGATION.md](docs/HOME-NAVIGATION.md) | Home feed, app tabs and collection workspace      | Navigation or feed behavior changes           |
-| [GLOSSARY.md](GLOSSARY.md)                         | Domain terms (AdventureLog's language)            | A new concept appears                         |
-| [docs/FEATURES.md](docs/FEATURES.md)               | What the app does, compared with the website      | A feature ships                               |
-| [docs/ROADMAP.md](docs/ROADMAP.md)                 | Done, next (in order), risks                      | Work is finished or reprioritised             |
-| [docs/adr/](docs/adr/)                             | Decisions and why                                 | A hard-to-reverse choice is made              |
-| [docs/SERVER.md](docs/SERVER.md)                   | Verified API behaviour of the server              | A request is checked against the server       |
-| [docs/RELEASING.md](docs/RELEASING.md)             | Builds, release builds, over-the-air updates      | The release process changes                   |
-| [docs/STORE-RELEASE.md](docs/STORE-RELEASE.md)     | Checklist and decisions for the store release     | A store requirement is done or decided        |
-| [docs/TELEMETRY.md](docs/TELEMETRY.md)             | xprem telemetry research and proposed scope       | Telemetry requirements or capabilities change |
-| [AGENTS.md](AGENTS.md)                             | Rules for coding agents                           | A rule changes                                |
+| File                                                 | What it holds                                                          | Update when                                   |
+| ---------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------- |
+| [PRODUCT.md](PRODUCT.md)                             | Who the app is for, purpose, principles                                | The audience or direction changes             |
+| [DESIGN.md](DESIGN.md)                               | Design system: colours, type, components, rules                        | A visual pattern is added or changed          |
+| [docs/DESIGN-PLAN.md](docs/DESIGN-PLAN.md)           | Proposed UI direction, screen changes and rollout                      | The UI design plan is refined or implemented  |
+| [docs/IPAD.md](docs/IPAD.md)                         | iPad and Mac: moments, the day map, big pictures                       | The iPad layout is refined or implemented     |
+| [docs/GLANCES.md](docs/GLANCES.md)                   | Proposed widgets, reminders and Live Activities                        | Glances are refined or implemented            |
+| [docs/TRAVEL-UTILITIES.md](docs/TRAVEL-UTILITIES.md) | Travel utilities, implementation phases and stock-server compatibility | Utility scope or implementation changes       |
+| [docs/HOME-NAVIGATION.md](docs/HOME-NAVIGATION.md)   | Home feed, app tabs and collection workspace                           | Navigation or feed behavior changes           |
+| [GLOSSARY.md](GLOSSARY.md)                           | Domain terms (AdventureLog's language)                                 | A new concept appears                         |
+| [docs/FEATURES.md](docs/FEATURES.md)                 | What the app does, compared with the website                           | A feature ships                               |
+| [docs/ROADMAP.md](docs/ROADMAP.md)                   | Done, next (in order), risks                                           | Work is finished or reprioritised             |
+| [docs/adr/](docs/adr/)                               | Decisions and why                                                      | A hard-to-reverse choice is made              |
+| [docs/SERVER.md](docs/SERVER.md)                     | Verified API behaviour of the server                                   | A request is checked against the server       |
+| [docs/RELEASING.md](docs/RELEASING.md)               | Builds, release builds, over-the-air updates                           | The release process changes                   |
+| [docs/STORE-RELEASE.md](docs/STORE-RELEASE.md)       | Checklist and decisions for the store release                          | A store requirement is done or decided        |
+| [docs/TELEMETRY.md](docs/TELEMETRY.md)               | xprem telemetry research and proposed scope                            | Telemetry requirements or capabilities change |
+| [AGENTS.md](AGENTS.md)                               | Rules for coding agents                                                | A rule changes                                |
 
 Next to their files: [docs/api/README.md](docs/api/README.md) (schema export), [server/README.md](server/README.md) (sign-in page on the server), `docs/agents/` (settings for the agent skills), [site/README.md](site/README.md) (static privacy, support and account-deletion pages for the stores).
 

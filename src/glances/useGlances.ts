@@ -8,8 +8,7 @@ import { AppState, Platform } from 'react-native';
 import type { Collection, CollectionSummary } from '@/api/schemas';
 import { applyPending, getOutbox, subscribeOutbox } from '@/data/outbox';
 import { queryKeys } from '@/data/queries';
-import { collectionMediaUrls } from '@/data/selectors';
-import { cachedCount } from '@/offline/fileCache';
+import { collectionReadiness } from '@/offline/readiness';
 import { openInMaps } from '@/ui/mapLinks';
 import { tr } from '@/i18n';
 import { getSettings, useSettings, type Settings } from '@/settings/store';
@@ -41,9 +40,7 @@ function cachedCollections(cache: QueryClient): Map<string, CachedCollection> {
 }
 
 const missingFiles = (collection: Collection) => {
-  const { images, attachments } = collectionMediaUrls(collection);
-  const urls = [...images, ...attachments];
-  return urls.length - cachedCount(urls);
+  return collectionReadiness(collection).missing;
 };
 
 async function refresh(cache: QueryClient, settings: Settings) {

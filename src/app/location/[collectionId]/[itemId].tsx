@@ -17,18 +17,10 @@ import { formatDayLabel, formatDuration, formatTime, localDate, visitTime } from
 import { useActionSheet } from '@/ui/ActionSheet';
 import { formatDistance, formatPrice } from '@/ui/format';
 import { ratingOptions, ratingStars } from '@/ui/forms';
-import { androidToolbarIcon } from '@/ui/icons';
+import { androidToolbarIcon, toolbarIcon } from '@/ui/icons';
 import { useMediaUploads } from '@/ui/media';
 import { filesSection } from '@/ui/resourceDetail';
-import {
-  infoRow,
-  linkRows,
-  mapsRow,
-  openUrl,
-  RowIcon,
-  useOpenAttachment,
-  useRowTheme,
-} from '@/ui/rows';
+import { infoRow, linkRows, mapsRow, openUrl, RowIcon, useOpenAttachment, useRowTheme } from '@/ui/rows';
 import { useMoreSections } from '@/ui/MoreSection';
 import { useSelect } from '@/ui/Select';
 import { parseServerDuration } from '@/ui/formValues';
@@ -330,6 +322,11 @@ export default function LocationScreen() {
             }>
             {tr('common.edit')}
           </Stack.Toolbar.Button>
+          <Stack.Toolbar.Button
+            icon={toolbarIcon('more') as never}
+            accessibilityLabel={tr('media.photosAndFiles')}
+            onPress={media.openActions}
+          />
         </Stack.Toolbar>
       ) : null}
       <Host style={{ flex: 1 }}>
@@ -342,7 +339,6 @@ export default function LocationScreen() {
               icon: 'location',
               collectionId,
             })}
-            {media.photoRows}
           </FieldGroup.Section>
 
           {plannedSection}
@@ -403,7 +399,7 @@ export default function LocationScreen() {
             </FieldGroup.Section>
           ) : null}
 
-          {filesSection(rt, opener, tr('common.attachments'), location.attachments, media.fileRows)}
+          {filesSection(rt, opener, tr('common.attachments'), location.attachments)}
           {more([
             { title: 'Immich', node: immichSection },
             { title: tr('location.trails'), node: trailsSection },

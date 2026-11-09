@@ -1,16 +1,14 @@
-import { router, type Href } from 'expo-router';
-import { Button, FieldGroup, Icon, ListItem } from '@expo/ui';
-import { useQueryClient } from '@tanstack/react-query';
+import { router, useFocusEffect, type Href } from 'expo-router';
+import { FieldGroup, Icon, ListItem } from '@expo/ui';
 import Constants from 'expo-constants';
 import * as Updates from 'expo-updates';
-import { useState, type ReactElement } from 'react';
-import { Alert } from 'react-native';
+import { useCallback, useState, type ReactElement } from 'react';
 
-import { useCredentials, useSession } from '@/auth/session';
+import { useSession } from '@/auth/session';
 import { useUser } from '@/data/queries';
 import { usePendingCount } from '@/data/useOutbox';
 import { tr } from '@/i18n';
-import { cacheSizeBytes, clearFileCache, formatBytes } from '@/offline/fileCache';
+import { cacheSizeBytes, formatBytes } from '@/offline/fileCache';
 import { privacyPolicyUrl } from '@/legal/links';
 import { settingsSchema, updateSettings, useSettings } from '@/settings/store';
 import { healthReportsAvailable } from '@/telemetry/health';
@@ -19,7 +17,7 @@ import { useActionSheet } from '@/ui/ActionSheet';
 import { useSelect } from '@/ui/Select';
 import { languageOptions, mapAppOptions, optionLabel, textSizeOptions, themeOptions } from '@/screens/settings/options';
 import { icons, type IconKey } from '@/ui/icons';
-import { infoRow, linkRow, RowIcon, switchRow, useRowTheme, type RowTheme } from '@/ui/rows';
+import { linkRow, RowIcon, switchRow, useRowTheme, type RowTheme } from '@/ui/rows';
 import { Sub } from '@/ui/Sub';
 import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
@@ -27,13 +25,12 @@ import { Host } from '@/ui/Host';
 
 export default function SettingsScreen() {
   const { signOut } = useSession();
-  const credentials = useCredentials();
   const user = useUser();
-  const queryClient = useQueryClient();
   const colors = useColors();
   const rt = useRowTheme();
   const settings = useSettings();
   const [cacheBytes, setCacheBytes] = useState(() => cacheSizeBytes());
+  useFocusEffect(useCallback(() => setCacheBytes(cacheSizeBytes()), []));
   const sheet = useActionSheet(rt);
   const pendingEdits = usePendingCount();
   const activeReminders = Object.values(settings.reminderKinds).filter(Boolean).length;
@@ -50,21 +47,6 @@ export default function SettingsScreen() {
     onChange: (value) => updateSettings({ mapApp: settingsSchema.shape.mapApp.parse(value) }),
     options: mapAppOptions(),
   });
-
-  function confirmClearCache() {
-    Alert.alert(tr('settings.deleteOfflineDataConfirm'), tr('settings.imagesPdfsDownloadedAgainNext'), [
-      { text: tr('common.cancel'), style: 'cancel' },
-      {
-        text: tr('common.delete'),
-        style: 'destructive',
-        onPress: () => {
-          clearFileCache();
-          void queryClient.invalidateQueries();
-          setCacheBytes(cacheSizeBytes());
-        },
-      },
-    ]);
-  }
 
   /**
    * One choice in plain words. Both revoke this device's key on the server (a new sign-in makes a new one); the only
@@ -114,38 +96,14 @@ export default function SettingsScreen() {
             {navRow(rt, 'reminders', tr('settings.reminders'), remindersSummary, '/settings/reminders')}
           </FieldGroup.Section>
 
-          <FieldGroup.Section title={tr('settings.maps')}>
+          <FieldGroup.Section>
             {mapAppSelect.row}
-            <FieldGroup.SectionFooter>
-              <Text textStyle={{ fontSize: 13, color: colors.secondary }}>{tr('settings.mapAppHint')}</Text>
-            </FieldGroup.SectionFooter>
+            {navRow(rt, 'offline', tr('settings.offline'), formatBytes(cacheBytes), '/settings/downloads')}
+            {navRow(rt, 'price', tr('utilities.title'), null, '/utilities')}
           </FieldGroup.Section>
 
-          <FieldGroup.Section title={tr('settings.offline')}>
-            {infoRow(rt, {
-              icon: 'offline',
-              label: tr('settings.savedImagesPdfs'),
-              value: formatBytes(cacheBytes),
-            })}
-            <Button label={tr('settings.deleteOfflineData')} variant="text" onPress={confirmClearCache} />
-            <FieldGroup.SectionFooter>
-              <Text textStyle={{ fontSize: 13, color: colors.secondary }}>{tr('settings.tripYouOpenSavedFor')}</Text>
-            </FieldGroup.SectionFooter>
-          </FieldGroup.Section>
-
-          <FieldGroup.Section title={tr('settings.account')}>
-            {navRow(rt, 'settings', tr('common.manageAccount'), null, '/account')}
-            {infoRow(rt, {
-              icon: 'settings',
-              label: tr('settings.signedInAs'),
-              value: name ?? (user.isPending ? '…' : tr('settings.unknown')),
-            })}
-            {infoRow(rt, {
-              icon: 'link',
-              label: tr('common.server'),
-              value: credentials?.serverUrl.replace(/^https?:\/\//, '') ?? '–',
-            })}
-            {navRow(rt, 'link', tr('common.manageIntegrations'), null, '/integrations')}
+          <FieldGroup.Section>
+            {navRow(rt, 'settings', tr('common.manageAccount'), name ?? null, '/account')}
           </FieldGroup.Section>
 
           <FieldGroup.Section title={tr('settings.privacy')}>
@@ -165,9 +123,6 @@ export default function SettingsScreen() {
             <ListItem colors={rt.listColors} leading={<RowIcon name="logout" />} onPress={confirmSignOut}>
               {tr('settings.signOut')}
             </ListItem>
-            <FieldGroup.SectionFooter>
-              <Text textStyle={{ fontSize: 13, color: colors.secondary }}>{tr('settings.youllNeedNewQrCode')}</Text>
-            </FieldGroup.SectionFooter>
           </FieldGroup.Section>
 
           <FieldGroup.Section>

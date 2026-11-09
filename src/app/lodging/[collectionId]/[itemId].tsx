@@ -1,5 +1,5 @@
 import { useDescriptionRows } from '@/ui/useDescriptionRows';
-import { FieldGroup } from '@expo/ui';
+import { FieldGroup, ListItem } from '@expo/ui';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 
 import { findItem, useCollectionView } from '@/data/queries';
@@ -9,8 +9,8 @@ import { tr } from '@/i18n';
 import { useActionSheet } from '@/ui/ActionSheet';
 import { useMediaUploads } from '@/ui/media';
 import { detailExtras } from '@/ui/resourceDetail';
-import { lodgingLabel, androidToolbarIcon } from '@/ui/icons';
-import { useCopy, useOpenAttachment, useRowTheme } from '@/ui/rows';
+import { lodgingLabel, androidToolbarIcon, toolbarIcon } from '@/ui/icons';
+import { RowIcon, useCopy, useOpenAttachment, useRowTheme } from '@/ui/rows';
 import { Host } from '@/ui/Host';
 import { resourceHeaderRows } from '@/ui/ResourceHeader';
 import { stayRows } from '@/ui/StaySummary';
@@ -43,6 +43,11 @@ export default function LodgingScreen() {
             }>
             {tr('common.edit')}
           </Stack.Toolbar.Button>
+          <Stack.Toolbar.Button
+            icon={toolbarIcon('more') as never}
+            accessibilityLabel={tr('media.photosAndFiles')}
+            onPress={media.openActions}
+          />
         </Stack.Toolbar>
       ) : null}
       <Host style={{ flex: 1 }}>
@@ -55,11 +60,23 @@ export default function LodgingScreen() {
               icon: 'lodging',
               collectionId,
             })}
-            {media.photoRows}
           </FieldGroup.Section>
 
           <FieldGroup.Section title={tr('common.arrival')}>
             {stayRows(rt, copier, lodging, view.timeZone)}
+            {lodging.location?.trim() ? (
+              <ListItem
+                colors={rt.listColors}
+                leading={<RowIcon name="pin" />}
+                onPress={() =>
+                  router.push({
+                    pathname: '/address-card/[collectionId]',
+                    params: { collectionId, itemId: lodging.id },
+                  })
+                }>
+                {tr('utilities.addressCard')}
+              </ListItem>
+            ) : null}
           </FieldGroup.Section>
 
           {detailExtras(rt, opener, {
@@ -68,7 +85,7 @@ export default function LodgingScreen() {
             notes: lodging.description ? descriptionRows : null,
             attachments: lodging.attachments,
             attachmentTitle: tr('common.attachments'),
-            fileRows: media.fileRows,
+            fileRows: [],
           })}
         </FieldGroup>
       </Host>

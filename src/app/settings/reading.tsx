@@ -41,7 +41,6 @@ export default function ReadingSettingsScreen() {
             })}
             {switchRow(rt, {
               label: tr('settings.reduceMotion'),
-              hint: tr('settings.noTransitionsOrFades'),
               value: settings.reduceMotion,
               onChange: (reduceMotion) => updateSettings({ reduceMotion }),
             })}

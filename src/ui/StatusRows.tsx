@@ -1,4 +1,5 @@
 import { FieldGroup, ListItem } from '@expo/ui';
+import { router } from 'expo-router';
 
 import { requestErrorText } from '@/api/errors';
 
@@ -39,7 +40,7 @@ export function useStatusRows({ offline }: { offline: boolean }) {
           leading={<RowIcon name={offline ? 'offline' : 'refresh'} />}
           supportingText={
             <Sub>
-              {[offline ? tr('statusRows.offlineStand', { stand }) : stand, pendingLine, refreshError, mediaLine]
+              {[offline ? tr('statusRows.offlineStand', { stand }) : stand, pendingLine, refreshError]
                 .filter(Boolean)
                 .join('\n')}
             </Sub>
@@ -53,6 +54,15 @@ export function useStatusRows({ offline }: { offline: boolean }) {
               : undefined
           }>
           {offline ? tr('statusRows.offline') : busy ? tr('statusRows.updating') : tr('statusRows.updateNow')}
+        </ListItem>
+        <ListItem
+          colors={rt.listColors}
+          leading={<RowIcon name="offline" />}
+          supportingText={mediaLine ? <Sub>{mediaLine}</Sub> : undefined}
+          onPress={() =>
+            router.push({ pathname: '/offline-readiness/[collectionId]', params: { collectionId: query.data!.id } })
+          }>
+          {tr('utilities.readiness')}
         </ListItem>
       </FieldGroup.Section>
     </>

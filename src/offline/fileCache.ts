@@ -65,7 +65,21 @@ export function localUri(url: string): string | null {
   return file.exists && (file.size ?? 0) > 0 ? file.uri : null;
 }
 
-export async function download(url: string, credentials: Credentials): Promise<File> {
+const downloads = new Map<string, Promise<File>>();
+
+/** Detail/readiness screens may request the same file while the collection is already downloading it. */
+export function download(url: string, credentials: Credentials): Promise<File> {
+  const key = JSON.stringify([credentials.serverUrl, credentials.apiKey, url]);
+  const current = downloads.get(key);
+  if (current) return current;
+  const pending = downloadFile(url, credentials).finally(() => {
+    if (downloads.get(key) === pending) downloads.delete(key);
+  });
+  downloads.set(key, pending);
+  return pending;
+}
+
+async function downloadFile(url: string, credentials: Credentials): Promise<File> {
   if (isLocalFile(url)) return new File(url);
   const target = cachedFile(url);
   if (target.exists && (target.size ?? 0) > 0) return target;

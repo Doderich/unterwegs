@@ -1,5 +1,6 @@
 import { FieldGroup, ListItem } from '@expo/ui';
 import { router } from 'expo-router';
+import { useMemo } from 'react';
 import { useQueries } from '@tanstack/react-query';
 import { useWindowDimensions } from 'react-native';
 
@@ -9,7 +10,11 @@ import { queryKeys, useCollections, useInvites } from '@/data/queries';
 import { useClient } from '@/auth/session';
 import { useOnline } from '@/data/useOnlineAction';
 import { useLocations } from '@/data/useLocation';
+import { useSettings } from '@/settings/store';
 import { tr } from '@/i18n';
+import { travelToolRows } from '@/ui/TravelToolRows';
+import { buildCollectionView, viewToday } from '@/data/selectors';
+import { addressLodgings } from '@/utilities/address';
 import { deviceTimeZone, formatDayLabel, visitTime } from '@/time/tz';
 import { collectionTimeZone, todayIn } from '@/time/today';
 import { CardRow, cardRowWidth } from '@/ui/CardRow';
@@ -33,6 +38,7 @@ export default function HomeScreen() {
   const locations = useLocations();
   const invites = useInvites();
   const rt = useRowTheme();
+  const { showTravelUtilities } = useSettings();
   const { width } = useWindowDimensions();
   const client = useClient();
   const cached = useQueries({
@@ -45,6 +51,15 @@ export default function HomeScreen() {
   const zones = new Map(cached.flatMap((q) => (q.data ? [[q.data.id, collectionTimeZone(q.data)] as const] : [])));
   const feed = homeFeed(collections.data ?? [], locations.data ?? [], new Date(), zones);
   const featured = feed.current[0] ?? feed.upcoming[0];
+  const utilityCollection = [...feed.current, ...feed.upcoming].find((item) => item.kind === 'collection');
+  const utilityData = cached.find((q) => q.data?.id === utilityCollection?.collection.id)?.data;
+  const utilityView = useMemo(() => (utilityData ? buildCollectionView(utilityData) : null), [utilityData]);
+  const addressDay = utilityView
+    ? utilityCollection?.current
+      ? viewToday(utilityView).date
+      : utilityView.collection.start_date
+    : null;
+  const addressOptions = utilityView && addressDay ? addressLodgings(utilityView, addressDay) : [];
   const current = feed.current.filter((i) => i.kind !== 'collection' || i.key !== featured?.key);
   const upcoming = feed.upcoming.filter((i) => i.kind !== 'collection' || i.key !== featured?.key);
   const row = (item: FeedItem) =>
@@ -113,6 +128,44 @@ export default function HomeScreen() {
               />
             </CardRow>
           ) : null}
+          {showTravelUtilities ? (
+            <FieldGroup.Section title={tr('utilities.title')}>
+              {travelToolRows(rt)}
+              {utilityCollection?.kind === 'collection' && addressOptions.length ? (
+                <ListItem
+                  colors={rt.listColors}
+                  leading={<RowIcon name="pin" />}
+                  supportingText={<Sub>{utilityCollection.collection.name}</Sub>}
+                  onPress={() =>
+                    router.push({
+                      pathname: '/address-card/[collectionId]',
+                      params: {
+                        collectionId: utilityCollection.collection.id,
+                        day: addressDay!,
+                      },
+                    })
+                  }>
+                  {addressOptions.length === 1
+                    ? tr('utilities.addressFor', { name: addressOptions[0].name })
+                    : tr('utilities.chooseLodgingAddress')}
+                </ListItem>
+              ) : null}
+              {utilityCollection?.kind === 'collection' ? (
+                <ListItem
+                  colors={rt.listColors}
+                  leading={<RowIcon name="offline" />}
+                  supportingText={<Sub>{utilityCollection.collection.name}</Sub>}
+                  onPress={() =>
+                    router.push({
+                      pathname: '/offline-readiness/[collectionId]',
+                      params: { collectionId: utilityCollection.collection.id },
+                    })
+                  }>
+                  {tr('utilities.readiness')}
+                </ListItem>
+              ) : null}
+            </FieldGroup.Section>
+          ) : null}
           {invites.data?.length ? (
             <FieldGroup.Section title={tr('home.invitations')}>
               {invites.data.map((invite) => (
@@ -153,14 +206,6 @@ export default function HomeScreen() {
                   leading={<RowIcon name="luggage" />}
                   onPress={() => router.push('/collection-edit')}>
                   {tr('common.newTrip')}
-                </ListItem>
-              ) : null}
-              {online && !offlineNoData ? (
-                <ListItem
-                  colors={rt.listColors}
-                  leading={<RowIcon name="location" />}
-                  onPress={() => router.push('/place-edit')}>
-                  {tr('common.newPlace')}
                 </ListItem>
               ) : null}
             </FieldGroup.Section>

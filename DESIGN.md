@@ -263,7 +263,7 @@ Android pattern reference: [Material search component](https://github.com/materi
 
 ### Resource Header and Detail Gallery
 
-The top of every location, lodging and transportation (`resourceHeaderRows`): a swipeable gallery of the resource's photos with an "n / total" pill (capped at 1.4× text size), then the name in Title and a short context line in Label on the card's solid surface. Tap opens the full-screen gallery; "Foto hinzufügen" and the gallery's cover/delete actions stay right below. Each photo is announced as "Name, Bild n von total". Without photos the header is a 28px Teal icon beside the title, never an empty frame or a collection photo. The frame is reserved in Hairline grey before photos load and stays when one can't.
+The top of every location, lodging and transportation (`resourceHeaderRows`): a swipeable gallery of the resource's photos with an "n / total" pill (capped at 1.4× text size), then the name in Title and a short context line in Label on the card's solid surface. Tap opens the full-screen gallery; the gallery keeps cover/delete actions. Collection detail toolbars put photo/file upload in one “Fotos und Dateien” menu, leaving the facts below the gallery in view. Standalone place details use a photo-upload toolbar action. Editors retain inline attachment controls. Each photo is announced as "Name, Bild n von total". Without photos the header is a 28px Teal icon beside the title, never an empty frame or a collection photo. The frame is reserved in Hairline grey before photos load and stays when one can't.
 
 ### Photo Row
 
@@ -321,7 +321,7 @@ Map overlays sit 12pt below the complete navigation header on iOS, rather than u
 
 Home, Collections, Places, World statistics/countries, search results, the collection day view and standalone place details use shared row-shaped skeletons while their first request is fetching. The placeholder pulse runs on the native driver, stops when removed, and becomes static with reduced motion. Screen readers get a single busy region; decorative shapes are hidden. Cached content stays visible during refresh. The app shell restores the persisted query cache before warming main-tab data, using the same query definitions as the screens. The main tab lists and summaries warm together after restoration, and screen reads reuse those requests. Fresh cached requests are reused, concurrent requests deduplicate, and failures stay independent. The two next likely collections also prefetch their complete detail through the same single-request cache; the rest of the library and media are not eagerly downloaded. Stays, Notes and All days prepare from the shared collection data without a first-focus null-render gate. A genuinely uncached collection shows placeholders or an offline/error state. Navigator scenes, native stack content and the Android host use the Material surface before content mounts, preventing a differently colored first frame. Paused requests without saved data explain that a connection is needed instead of showing an endless loader or claiming that the list is empty.
 
-The collection day footer uses one native refresh row with timestamp and media availability as supporting text. It is a direct section in the form, and Android does not mount the iOS tab-bar spacer; neither may create an extra empty card.
+The collection day footer separates the native refresh row (timestamp, pending edits and failures) from a compact offline-data row (media availability, opening readiness). Readiness summarizes images, attachments and map availability; detailed map packs remain on map management. A zero-pending-edits section is omitted. It is a direct section in the form, and Android does not mount the iOS tab-bar spacer; neither may create an extra empty card.
 
 An empty Collections library is a tappable “New collection” row with one line on what a collection holds, so the first one is a tap away inside the list rather than behind the header. Home uses a short “Nothing planned” empty state; creation stays in the header Add menu, with no duplicate New place row or instructional paragraph in the feed.
 
@@ -347,7 +347,7 @@ A detail screen shows what is needed at a glance first: when (planned/visited), 
 
 ### Settings Order
 
-A category with more than one setting gets its own screen; a single setting stays on the overview. The overview opens with three navigation rows, each with its current state as the second line and a chevron: "Lesbarkeit und Bedienung" (text size with a live preview line, bold, contrast, motion, haptics), "Darstellung" (language, theme, iOS tab labels) and "Erinnerungen" (master switch, the seven kinds, the iOS Live Activity). Below them, inline: map app, offline data, account (with integrations), privacy, sign-out, version. Sign-out is one sheet with two plain choices, "Abmelden, Downloads behalten" and "Abmelden und alles löschen"; both revoke the device's key.
+A category with more than one setting gets its own screen; a single preference stays on the overview. The overview starts with “Lesbarkeit und Bedienung”, “Darstellung” and “Erinnerungen”, each with a short current-state summary. The next group holds the map-app choice, “Downloads” with file-cache size, and the travel-utilities list. Home keeps direct shortcuts to currency, units, time zones and essentials. Downloads opens cache management and its destructive confirmation. The account row includes the signed-in name; the account screen holds server details and integrations. Privacy, sign-out and version follow. Explanations are reserved for consequential choices and exceptions, rather than repeating clear labels. Sign-out retains its two explicit download choices and pending-edit warning.
 
 ### Als Nächstes
 
@@ -392,3 +392,8 @@ Photo cards (hero, memories, Als Nächstes, stamps) give slightly under the thum
 - **Don't** set fixed font sizes that bypass Dynamic Type or the app's text-size setting.
 - **Don't** rely on icons alone: every action has a text label (Android toolbar icons excepted, with an accessibility label).
 - **Don't** show the Japan trip's real data in published screenshots or marketing.
+
+
+### Travel utilities
+
+Utilities stay out of collection headers. Home's optional travel-utilities section opens currency, units, time zones and the local essentials card; Settings opens the same directory. Currency and units share the two-value native converter layout and centered swap icon, with selection in native sheets. Units disclose category and distinguish US/imperial volume. Clocks show home and destination at the same instant with their local dates; a native date/time preview stays below. Essentials opens as a readable card with only filled sections, copying, and a pencil action for the separate editor. Empty essentials offers one add action. No provider explanation, empty metadata section or invented emergency/phrase content is added.
