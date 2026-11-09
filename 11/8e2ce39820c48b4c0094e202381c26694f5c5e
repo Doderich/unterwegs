@@ -1,0 +1,23 @@
+docs/ROADMAP.md
+  s_1bc6f9487a4dd2::t_5d1abdf7f1c640 30
+docs/TRAVEL-UTILITIES.md
+  s_1bc6f9487a4dd2::t_5d1abdf7f1c640 3,131-133
+docs/RELEASING.md
+  s_1bc6f9487a4dd2::t_5d1abdf7f1c640 21,23-38,46,48
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "118e2ce39820c48b4c0094e202381c26694f5c5e",
+  "prompts": {},
+  "sessions": {
+    "s_1bc6f9487a4dd2": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1bf69-f0bb-7f31-aa65-6c0e9b3db2f7",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
