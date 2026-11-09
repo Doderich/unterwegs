@@ -33,10 +33,14 @@ export default function AppearanceSettingsScreen() {
           <FieldGroup.Section>
             {languageSelect.row}
             {themeSelect.row}
+            {switchRow(rt, {
+              label: tr('settings.showTravelUtilities'),
+              value: settings.showTravelUtilities,
+              onChange: (showTravelUtilities) => updateSettings({ showTravelUtilities }),
+            })}
             {Platform.OS === 'ios'
               ? switchRow(rt, {
                   label: tr('settings.showTabLabels'),
-                  hint: tr('settings.showTabLabelsHint'),
                   value: settings.showTabLabels,
                   onChange: (showTabLabels) => updateSettings({ showTabLabels }),
                 })

@@ -14,15 +14,8 @@ import { useActionSheet } from '@/ui/ActionSheet';
 import { useMediaUploads } from '@/ui/media';
 import { transportTitle } from '@/data/transportName';
 import { detailExtras } from '@/ui/resourceDetail';
-import { transportIcon, transportLabel, androidToolbarIcon } from '@/ui/icons';
-import {
-  copyRow,
-  linkRows,
-  mapsRow,
-  useCopy,
-  useOpenAttachment,
-  useRowTheme,
-} from '@/ui/rows';
+import { transportIcon, transportLabel, androidToolbarIcon, toolbarIcon } from '@/ui/icons';
+import { copyRow, linkRows, mapsRow, useCopy, useOpenAttachment, useRowTheme } from '@/ui/rows';
 import { Host } from '@/ui/Host';
 import { journeyRows } from '@/ui/JourneySummary';
 import { resourceHeaderRows } from '@/ui/ResourceHeader';
@@ -69,6 +62,11 @@ export default function TransportScreen() {
             }>
             {tr('common.edit')}
           </Stack.Toolbar.Button>
+          <Stack.Toolbar.Button
+            icon={toolbarIcon('more') as never}
+            accessibilityLabel={tr('media.photosAndFiles')}
+            onPress={media.openActions}
+          />
         </Stack.Toolbar>
       ) : null}
       <Host style={{ flex: 1 }}>
@@ -84,7 +82,6 @@ export default function TransportScreen() {
               // Photos stay compact here: the journey is the focus.
               ratio: 2,
             })}
-            {media.photoRows}
           </FieldGroup.Section>
 
           <FieldGroup.Section>
@@ -132,7 +129,7 @@ export default function TransportScreen() {
             notes: t.description ? descriptionRows : null,
             attachments: t.attachments,
             attachmentTitle: tr('common.ticketsAttachments'),
-            fileRows: media.fileRows,
+            fileRows: [],
           })}
         </FieldGroup>
       </Host>

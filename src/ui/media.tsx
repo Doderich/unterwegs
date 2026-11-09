@@ -85,7 +85,8 @@ export async function shrinkPhoto(asset: { uri: string; width: number; height: n
 type ActionSheet = ReturnType<typeof useActionSheet>;
 
 /**
- * "Foto hinzufügen" and "Datei anhängen" for a location, lodging or transportation. A picked photo or file shows at
+ * Upload actions for a location, lodging or transportation. Detail toolbars open one photos/files menu;
+ * editors keep the inline attachment row. A picked photo or file shows at
  * once and waits in the outbox until it is uploaded (ADR 0016); only images from the web need a connection.
  */
 export function useMediaUploads(
@@ -136,14 +137,6 @@ export function useMediaUploads(
   });
 
   // Photos and files work offline too (ADR 0016); only images from the web need a connection.
-  const photoRows: ReactElement[] = edits.canEdit
-    ? [
-        <ListItem key="add-photo" colors={t.listColors} leading={<RowIcon name="addPhoto" />} onPress={addPhoto}>
-          {tr('media.addPhoto')}
-        </ListItem>,
-      ]
-    : [];
-
   const fileRows: ReactElement[] = edits.canEdit
     ? [
         <ListItem
@@ -156,5 +149,18 @@ export function useMediaUploads(
       ]
     : [];
 
-  return { photoRows, fileRows, uploadPhotos };
+  const openActions = () =>
+    sheet.open(tr('media.photosAndFiles'), [
+      {
+        label: tr('media.addPhoto'),
+        icon: 'addPhoto',
+        onPress: () => {
+          addPhoto();
+          return false;
+        },
+      },
+      { label: tr('media.attachFile'), icon: 'uploadFile', onPress: () => void attachFile() },
+    ]);
+
+  return { fileRows, uploadPhotos, openActions };
 }

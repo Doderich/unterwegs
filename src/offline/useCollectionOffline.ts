@@ -18,7 +18,7 @@ export type CollectionOfflineState = {
   cached: number;
   running: boolean;
   progress: PrefetchProgress | null;
-  sync: () => Promise<void>;
+  sync: (urls?: string[]) => Promise<void>;
 };
 
 function shouldAutoSync(collection: Collection | undefined): boolean {
@@ -54,18 +54,22 @@ export function useMediaOffline(urls: string[], auto: boolean): CollectionOfflin
   const cached = useMemo(() => (diskVersion >= 0 ? cachedCount(urls) : 0), [urls, diskVersion]);
   const runningRef = useRef(false);
 
-  const sync = useCallback(async () => {
-    if (!credentials || runningRef.current || urls.length === 0) return;
-    runningRef.current = true;
-    setRunning(true);
-    try {
-      setProgress(await prefetchAll(urls, credentials, setProgress));
-    } finally {
-      runningRef.current = false;
-      setRunning(false);
-      setDiskVersion((v) => v + 1);
-    }
-  }, [credentials, urls]);
+  const sync = useCallback(
+    async (overrideUrls?: string[]) => {
+      const selectedUrls = overrideUrls ?? urls;
+      if (!credentials || runningRef.current || selectedUrls.length === 0) return;
+      runningRef.current = true;
+      setRunning(true);
+      try {
+        setProgress(await prefetchAll(selectedUrls, credentials, setProgress));
+      } finally {
+        runningRef.current = false;
+        setRunning(false);
+        setDiskVersion((v) => v + 1);
+      }
+    },
+    [credentials, urls],
+  );
 
   const online = isConnected(network);
 

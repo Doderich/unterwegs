@@ -122,6 +122,32 @@ function RootStack() {
       <Stack.Protected guard={signedIn}>
         <Stack.Screen name="(main)" options={{ title: tr('shell.home'), headerShown: Platform.OS !== 'android' }} />
         <Stack.Screen name="settings/index" options={{ title: tr('common.settings') }} />
+        <Stack.Screen name="utilities/index" options={{ title: tr('utilities.title') }} />
+        <Stack.Screen
+          name="utilities/unit-picker"
+          options={{
+            title: tr('units.chooseUnit'),
+            presentation: Platform.OS === 'ios' ? 'formSheet' : 'modal',
+            sheetGrabberVisible: true,
+          }}
+        />
+        <Stack.Screen name="utilities/units" options={{ title: tr('units.title') }} />
+        <Stack.Screen name="utilities/time-zones" options={{ title: tr('timeZones.title') }} />
+        <Stack.Screen name="utilities/essentials" options={{ title: tr('essentials.title') }} />
+        <Stack.Screen name="utilities/essentials-edit" options={{ title: tr('essentials.title') }} />
+        <Stack.Screen name="utilities/currency" options={{ title: tr('utilities.currency') }} />
+        <Stack.Screen
+          name="utilities/currency-picker"
+          options={{
+            title: tr('utilities.chooseCurrency'),
+            presentation: Platform.OS === 'ios' ? 'formSheet' : 'modal',
+            sheetAllowedDetents: [0.75, 1],
+            sheetGrabberVisible: true,
+          }}
+        />
+        <Stack.Screen name="address-card/[collectionId]" options={{ title: tr('utilities.addressCard') }} />
+        <Stack.Screen name="offline-readiness/[collectionId]" options={{ title: tr('utilities.readiness') }} />
+        <Stack.Screen name="settings/downloads" options={{ title: tr('settings.offline') }} />
         <Stack.Screen name="settings/reading" options={{ title: tr('settings.accessibility') }} />
         <Stack.Screen name="settings/appearance" options={{ title: tr('settings.appearance') }} />
         <Stack.Screen name="settings/reminders" options={{ title: tr('settings.reminders') }} />

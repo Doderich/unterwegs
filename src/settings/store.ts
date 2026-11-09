@@ -12,6 +12,8 @@ export const settingsSchema = z.object({
   textSize: z.enum(['system', 'small', 'default', 'large', 'xlarge', 'xxlarge']).catch('system'),
   boldText: z.boolean().catch(false),
   showTabLabels: z.boolean().catch(true),
+  /** Home shortcuts; utilities remain accessible through Settings and collections when hidden. */
+  showTravelUtilities: z.boolean().catch(true),
   highContrast: z.boolean().catch(false),
   reduceMotion: z.boolean().catch(false),
   haptics: z.boolean().catch(true),

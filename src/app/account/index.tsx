@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Alert } from 'react-native';
 
 import type { User } from '@/api/schemas';
-import { useClient } from '@/auth/session';
+import { useClient, useCredentials } from '@/auth/session';
 import { useUser } from '@/data/queries';
 import { changedFields } from '@/data/selectors';
 import { useOnlineAction } from '@/data/useOnlineAction';
@@ -13,7 +13,7 @@ import { tr } from '@/i18n';
 import { currencyOptions } from '@/ui/forms';
 import { FormHost } from '@/ui/FormHost';
 import { androidToolbarIcon } from '@/ui/icons';
-import { RowIcon, switchRow, useRowTheme } from '@/ui/rows';
+import { infoRow, RowIcon, switchRow, useRowTheme } from '@/ui/rows';
 import { useSelect } from '@/ui/Select';
 import { useServerFile } from '@/ui/serverFile';
 import { Text } from '@/ui/Text';
@@ -46,6 +46,7 @@ export default function AccountScreen() {
 
 function AccountForm({ user }: { user: User }) {
   const client = useClient();
+  const credentials = useCredentials();
   const rt = useRowTheme();
   const action = useOnlineAction();
   const [username, setUsername] = useState(user.username);
@@ -150,11 +151,6 @@ function AccountForm({ user }: { user: User }) {
             {units.row}
             {currencies.row}
             {dates.row}
-            <FieldGroup.SectionFooter>
-              <Text textStyle={{ color: rt.colors.secondary, fontSize: 13 }}>
-                {tr('account.thesePreferencesApplyServerAccount')}
-              </Text>
-            </FieldGroup.SectionFooter>
           </FieldGroup.Section>
           <FieldGroup.Section title={tr('common.integrations')}>
             <ListItem
@@ -165,6 +161,11 @@ function AccountForm({ user }: { user: User }) {
             </ListItem>
           </FieldGroup.Section>
           <FieldGroup.Section title={tr('account.accessSecurity')}>
+            {infoRow(rt, {
+              icon: 'link',
+              label: tr('common.server'),
+              value: credentials?.serverUrl.replace(/^https?:\/\//, '') ?? '–',
+            })}
             <ListItem
               colors={rt.listColors}
               leading={<RowIcon name="key" />}

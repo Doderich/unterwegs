@@ -2,6 +2,8 @@ import { Image } from 'expo-image';
 
 import { deleteAllRegions } from '@/maps/offline';
 import { clearExports } from '@/ui/serverFile';
+import { clearEssentials } from '@/utilities/travelStore';
+import { clearCurrencyHistory } from '@/utilities/currencyStore';
 
 import { clearFileCache } from './fileCache';
 import { clearKeyedImages } from './imageCache';
@@ -12,6 +14,16 @@ import { clearKeyedImages } from './imageCache';
  * or server starts clean. Each part is best effort; a failure never blocks signing in again.
  */
 export async function wipeLocalData(): Promise<void> {
+  try {
+    clearEssentials();
+  } catch {
+    // Retried on the next start while signed out.
+  }
+  try {
+    clearCurrencyHistory();
+  } catch {
+    // Retried on the next start while signed out.
+  }
   try {
     clearFileCache();
     clearKeyedImages();
