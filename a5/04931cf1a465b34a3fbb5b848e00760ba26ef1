@@ -1,0 +1,253 @@
+docs/FEATURES.md
+  s_fe2c046099258a::t_368475aab58455 34
+  s_fe2c046099258a::t_776647f43e34ef 40-52
+docs/GLANCES.md
+  s_fe2c046099258a::t_e1ac9fa084cf87 3
+src/app/collection/[id]/notes/_layout.tsx
+  s_fe2c046099258a::t_ae92297f0d0c3a 1-3
+src/app/gallery.tsx
+  s_fe2c046099258a::t_8e998849d8f7fd 13,79-86
+src/screens/DaysScreen.tsx
+  s_fe2c046099258a::t_47da234f114b86 96-111,118-124
+  s_fe2c046099258a::t_74aa56ef538ab6 19,117
+  s_fe2c046099258a::t_eb5fca0f54e917 20,80,141
+  s_fe2c046099258a::t_6aa26a5c2f8e8d 23
+  s_fe2c046099258a::t_2dab3312f7c395 112-116
+src/ui/PhotoRow.ios.tsx
+  s_fe2c046099258a::t_7674f1af0edc23 10,19
+  s_fe2c046099258a::t_cda0fe64e5d883 3,5,11,13,17,22-23
+  s_fe2c046099258a::t_3af501b83ca217 1-2,6,9,12,14-16,18,20-21
+  s_fe2c046099258a::t_3cdddfec2474c3 4,7-8
+src/app/login/index.tsx
+  s_fe2c046099258a::t_cb98776efb5583 23,228,371,416
+src/ui/mapPoints.tsx
+  s_fe2c046099258a::t_c418a54bbc6050 7-13,18,24,37-51
+README.md
+  s_fe2c046099258a::t_83edcf9ea7a0a5 16
+src/i18n/locales/ja.json
+  s_fe2c046099258a::t_2ceb1faadf8b12 154-162
+  s_fe2c046099258a::t_957b04fbb9c28e 653-656
+  s_fe2c046099258a::t_f806b3163a4b99 822-823
+  s_fe2c046099258a::t_2d0181373db158 163
+src/ui/PhotoBanner.tsx
+  s_fe2c046099258a::t_b2e184d7296ace 1,7,15-16,18,22-23
+  s_fe2c046099258a::t_cda0fe64e5d883 2,8-10,17,26,28,32,37
+  s_fe2c046099258a::t_3bc006f94e72e3 11-12,20,24-25,29
+src/ui/regularWidth.ts
+  s_fe2c046099258a::t_b2e184d7296ace 1-10
+src/ui/CollectionHeader.tsx
+  s_fe2c046099258a::t_7e24ae77d53fdc 129-130
+  s_fe2c046099258a::t_259d41bb69255e 16-18,60
+  s_fe2c046099258a::t_bb28c46f1596a3 3
+  s_fe2c046099258a::t_5562036efd2171 30-31,38,72,109-111,114-115
+  s_fe2c046099258a::t_4fea42e09bbae7 2,79-83,112-113,116-126,141,264
+  s_fe2c046099258a::t_276ef0d69ba950 25-29,32-37,39-41,51-52
+  s_fe2c046099258a::t_9a4879fe56b072 48,102-104
+  s_fe2c046099258a::t_ce9ea964eb61b1 90-91
+  s_fe2c046099258a::t_0585db33028f1b 1,4-15,19-24,42-47,49-50,53-54,59,61,69-71,73-78,84-89,92-101,105-108,127-128,131-140,142-263,265-419
+  s_fe2c046099258a::t_bd4b427ae23d50 55-58,62-68
+src/ui/Today.tsx
+  s_fe2c046099258a::t_74aa56ef538ab6 33,163,167
+  s_fe2c046099258a::t_71c106cffbabbb 98
+  s_fe2c046099258a::t_eb5fca0f54e917 164-166,168-187
+src/ui/PhotoCard.tsx
+  s_fe2c046099258a::t_df07dfda43306b 2,8,36,56
+  s_fe2c046099258a::t_41f948e759c889 1,63,68,73,76-77,80-81,87
+  s_fe2c046099258a::t_3bc006f94e72e3 4,31-33,41-42,44-52,60-62,64-67,70-71,74,78-79
+  s_fe2c046099258a::t_3af501b83ca217 3,5-7,9-24,34-35,37-40,43,53-55,57-59,86,88-91
+  s_fe2c046099258a::t_f84030bda8203d 25-30
+  s_fe2c046099258a::t_3cdddfec2474c3 69,72,75,82-85
+src/data/__tests__/collectionSearch.test.ts
+  s_fe2c046099258a::t_a15d953a47e240 61-62,67-68,76
+  s_fe2c046099258a::t_1817b7e1049340 4,10-13,63-66,69-73,75
+  s_fe2c046099258a::t_fcd42609628bab 1-3,5-9,14-60
+  s_fe2c046099258a::t_97b4c8bef7367c 74
+src/screens/SearchScreen.tsx
+  s_fe2c046099258a::t_74aa56ef538ab6 21
+  s_fe2c046099258a::t_f806b3163a4b99 124-125,166-171
+  s_fe2c046099258a::t_47da234f114b86 136-165
+  s_fe2c046099258a::t_71c106cffbabbb 45
+  s_fe2c046099258a::t_eb5fca0f54e917 22,135,186
+src/ui/PhotoPager.tsx
+  s_fe2c046099258a::t_df07dfda43306b 4,14,79,87
+src/ui/entries.tsx
+  s_fe2c046099258a::t_f17a4670e03020 6
+  s_fe2c046099258a::t_ccb6136128c78c 17,43-51,110-118,121-129,159-167
+src/ui/PassportStamps.tsx
+  s_fe2c046099258a::t_df07dfda43306b 2,11,39,64
+src/app/collection/[id]/notes/index.tsx
+  s_fe2c046099258a::t_ae92297f0d0c3a 16,23,109-117
+src/ui/RefreshableFieldGroup.ios.tsx
+  s_fe2c046099258a::t_10509a3814e449 8
+app.json
+  s_fe2c046099258a::t_550201d01fcab3 12-20
+  s_fe2c046099258a::t_d5e5da37259127 5
+src/ui/MapFrame.tsx
+  s_fe2c046099258a::t_f941c26d61db0b 12,44
+src/ui/PhotoListItem.tsx
+  s_fe2c046099258a::t_8640e3abc7ec08 1,3,95-97,107-122,124-159
+  s_fe2c046099258a::t_eb5fca0f54e917 2,98-106,123
+  s_fe2c046099258a::t_ccb6136128c78c 13-16,31-33,35-47,50-55,61-63,66-68,70-71,83-88
+  s_fe2c046099258a::t_7674f1af0edc23 78
+  s_fe2c046099258a::t_3cdddfec2474c3 8,10,25-30,34,58-60,64-65,69,72-77,79-82,89-94,160
+  s_fe2c046099258a::t_cda0fe64e5d883 4-7,9,11-12,17-24,48-49,56-57,161
+DESIGN.md
+  s_fe2c046099258a::t_236d9644f63193 123,224
+  s_fe2c046099258a::t_2f9832ab18b520 270
+  s_fe2c046099258a::t_304faf0eda472c 93,95-96,268
+src/app/(main)/collections/index.tsx
+  s_fe2c046099258a::t_74aa56ef538ab6 23
+  s_fe2c046099258a::t_47da234f114b86 117-123,130-143
+  s_fe2c046099258a::t_6155f2e709a757 162-164,166-177
+  s_fe2c046099258a::t_6aa26a5c2f8e8d 29
+  s_fe2c046099258a::t_f83b2022fe9998 165
+docs/IPAD.md
+  s_fe2c046099258a::t_776647f43e34ef 3,32,34,36,55
+  s_fe2c046099258a::t_95c93f4ea6f3dc 11-16
+  s_fe2c046099258a::t_82e6ecb06b0902 1,5,7,9,18,20,22-26,28,30,35,37-38,40,42,44-46,48,50,52,54,56,60-64
+src/data/__tests__/dayMap.test.ts
+  s_fe2c046099258a::t_52e89186e28335 1-69
+docs/ROADMAP.md
+  s_fe2c046099258a::t_e1ac9fa084cf87 30,32,34,38-44,52
+  s_fe2c046099258a::t_28edab2cbe4819 53
+src/ui/__tests__/photoGrid.test.tsx
+  s_fe2c046099258a::t_2dab3312f7c395 3,6,11-21,30,33-36,39,43
+  s_fe2c046099258a::t_cf8873029ca20f 1-2,4-5,7-10,22-29,31-32,37-38,40-42,44
+src/ui/MainToolbar.tsx
+  s_fe2c046099258a::t_821ee0820f9792 2,8-9,53
+src/ui/WideButton.ios.tsx
+  s_fe2c046099258a::t_cb98776efb5583 1-17
+src/ui/CollectionSearch.tsx
+  s_fe2c046099258a::t_5bb728b03f27c6 20,122-126,136-144,146-148
+  s_fe2c046099258a::t_c26ebce37958f9 69-83,105-111,113,115-116
+  s_fe2c046099258a::t_de41a75a00b0b5 1-19,21-68,84-104,112,114,117-121,145,149-150
+  s_fe2c046099258a::t_396820a5b1aeb4 127-135
+src/app/collection/[id]/lodgings/index.tsx
+  s_fe2c046099258a::t_6aa26a5c2f8e8d 21
+  s_fe2c046099258a::t_74aa56ef538ab6 16,33,55
+  s_fe2c046099258a::t_ccb6136128c78c 37-43,52-54
+  s_fe2c046099258a::t_ae92297f0d0c3a 8,17,20,44-51,87-95
+  s_fe2c046099258a::t_eb5fca0f54e917 18,32,34-36,56-66,83
+src/app/collection/[id]/_layout.tsx
+  s_fe2c046099258a::t_8e898ed0c52473 1,4-5,8,11,18,22-23,43,59,93-95,110
+  s_fe2c046099258a::t_276ef0d69ba950 17
+  s_fe2c046099258a::t_9e7ac03f28c594 3,6,15-16,24-25,27-29,32,41-42,46-55,64-77,79-82,84-88,150-152
+  s_fe2c046099258a::t_25791553a01281 26,44-45,58,78,89,96-97
+  s_fe2c046099258a::t_5562036efd2171 33-40,99,149,153
+  s_fe2c046099258a::t_41c045c50e9443 60,62
+src/ui/__tests__/mapLayout.test.tsx
+  s_fe2c046099258a::t_2dab3312f7c395 72-73,75
+  s_fe2c046099258a::t_aec28e7e70c14e 74
+  s_fe2c046099258a::t_82ae52235a2e01 5
+  s_fe2c046099258a::t_f941c26d61db0b 29
+  s_fe2c046099258a::t_cf8873029ca20f 71,76
+  s_fe2c046099258a::t_78d1f8ce53f9d3 77-78
+  s_fe2c046099258a::t_b33f3f0c21de08 3
+  s_fe2c046099258a::t_10bc4e0e5fd9bb 10-11,39-55,116-118
+src/ui/DayNav.tsx
+  s_fe2c046099258a::t_f941c26d61db0b 21,43
+src/ui/HeaderSearch.tsx
+  s_fe2c046099258a::t_8545d3c7231b2a 21,25-26,36,49-56,58,60,72-75
+  s_fe2c046099258a::t_a30449847369ee 3,10-12,31,38-48,57,59,61-65
+  s_fe2c046099258a::t_821ee0820f9792 1-2,4-9,13-20,22-24,27-30,32-35,37,66-71,76-98
+src/app/collection/[id]/(plan)/index.tsx
+  s_fe2c046099258a::t_ae92297f0d0c3a 15-16,18-19,57-65
+src/data/dayMap.ts
+  s_fe2c046099258a::t_a593fd28645a98 1-69
+src/ui/TapPressable.tsx
+  s_fe2c046099258a::t_df07dfda43306b 1-30
+src/app/collection/[id]/map/_layout.tsx
+  s_fe2c046099258a::t_ae92297f0d0c3a 1-3
+src/app/collection/[id]/lodgings/_layout.tsx
+  s_fe2c046099258a::t_ae92297f0d0c3a 1-3
+src/ui/topTabBar.tsx
+  s_fe2c046099258a::t_b2e184d7296ace 3-4,10
+  s_fe2c046099258a::t_f941c26d61db0b 1-2,5-9,11-19
+src/app/(main)/places/index.tsx
+  s_fe2c046099258a::t_752c20e91d61e9 11,28,59-61
+  s_fe2c046099258a::t_c4b3085eed52f4 57-58
+  s_fe2c046099258a::t_6155f2e709a757 99-105,107-109
+  s_fe2c046099258a::t_74aa56ef538ab6 20,95,110
+  s_fe2c046099258a::t_6aa26a5c2f8e8d 23
+  s_fe2c046099258a::t_eb5fca0f54e917 96-98,111-123
+  s_fe2c046099258a::t_08fa7cdd15c73c 106
+src/ui/PhotoRow.tsx
+  s_fe2c046099258a::t_8640e3abc7ec08 6,10-13
+  s_fe2c046099258a::t_3af501b83ca217 8,21
+  s_fe2c046099258a::t_63d9d43e15d61b 4
+  s_fe2c046099258a::t_dc6b54a7bd2bc9 2,5,15-16,19
+  s_fe2c046099258a::t_cda0fe64e5d883 1,3,7,9,17-18,22-24
+  s_fe2c046099258a::t_7674f1af0edc23 14,20
+src/ui/icons.ts
+  s_fe2c046099258a::t_bb28c46f1596a3 36
+docs/STORE-RELEASE.md
+  s_fe2c046099258a::t_e1ac9fa084cf87 18,87,89,91-93
+src/i18n/locales/de.json
+  s_fe2c046099258a::t_2ceb1faadf8b12 156-164
+  s_fe2c046099258a::t_957b04fbb9c28e 671-674
+  s_fe2c046099258a::t_f806b3163a4b99 844-845
+  s_fe2c046099258a::t_acc9d9981c2fe0 165
+src/app/(main)/_layout.tsx
+  s_fe2c046099258a::t_8eccaf5d8fb8b0 73-74
+src/ui/CollectionHero.tsx
+  s_fe2c046099258a::t_df07dfda43306b 3,16,73,111
+  s_fe2c046099258a::t_529838bffbc786 2,42-46,86,115-132,144-145
+  s_fe2c046099258a::t_0425da05fa61b4 112-114
+src/ui/NextUp.tsx
+  s_fe2c046099258a::t_df07dfda43306b 2,15,79,100
+src/app/collection/[id]/(plan)/_layout.tsx
+  s_fe2c046099258a::t_ae92297f0d0c3a 1-3
+src/ui/__tests__/collectionFirstRender.test.tsx
+  s_fe2c046099258a::t_aec28e7e70c14e 35
+  s_fe2c046099258a::t_2dab3312f7c395 33-34,36
+  s_fe2c046099258a::t_cf8873029ca20f 32,37
+  s_fe2c046099258a::t_82ae52235a2e01 5
+src/ui/CollectionTabStack.tsx
+  s_fe2c046099258a::t_ae92297f0d0c3a 1-35
+src/ui/WideButton.tsx
+  s_fe2c046099258a::t_cb98776efb5583 1-8
+src/i18n/locales/en.json
+  s_fe2c046099258a::t_f806b3163a4b99 844-845
+  s_fe2c046099258a::t_2ceb1faadf8b12 156-164
+  s_fe2c046099258a::t_957b04fbb9c28e 671-674
+  s_fe2c046099258a::t_356f4068f6a431 165
+src/app/(main)/(home)/index.tsx
+  s_fe2c046099258a::t_47da234f114b86 130-139,192-210
+  s_fe2c046099258a::t_74aa56ef538ab6 28
+  s_fe2c046099258a::t_ccb6136128c78c 51-79
+  s_fe2c046099258a::t_6aa26a5c2f8e8d 31
+src/ui/Memories.tsx
+  s_fe2c046099258a::t_df07dfda43306b 2,13,48,71,142,149
+src/ui/RefreshableFieldGroup.android.tsx
+  s_fe2c046099258a::t_feff5c65264762 18,23-31,38
+src/data/search.ts
+  s_fe2c046099258a::t_d85ce785362cc8 31
+src/ui/RefreshableFieldGroup.tsx
+  s_fe2c046099258a::t_10509a3814e449 4-5
+src/data/collectionSearch.ts
+  s_fe2c046099258a::t_1817b7e1049340 52-55,66-69,132-137
+  s_fe2c046099258a::t_23af2577c8844c 57-65,70-76,95
+  s_fe2c046099258a::t_0030bf4d417cae 1-50,81,84-85,87,96-131,138-221
+  s_fe2c046099258a::t_fbfae96829c9c5 51,56,77-80,82-83,86,88-94
+src/app/collection/[id]/map/index.tsx
+  s_fe2c046099258a::t_b33f3f0c21de08 71
+  s_fe2c046099258a::t_ae92297f0d0c3a 7,16,19-22,26-27,35,37-62,86-90,93-96,98-103,113,116,132-136,164-217,225-226,259,273-280,283,286-294,298-306,320,326,328-330,333,344-352
+src/ui/MainSearchScreen.tsx
+  s_fe2c046099258a::t_ac4cf05b34920d 9,15,17-25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a504931cf1a465b34a3fbb5b848e00760ba26ef1",
+  "prompts": {},
+  "sessions": {
+    "s_fe2c046099258a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "083fd30c-9485-4473-85bf-1b3c1fab0b8f",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
