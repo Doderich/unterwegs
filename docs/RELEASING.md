@@ -168,6 +168,7 @@ Before a native release, run `npm run licenses` and commit `src/legal/licenses.j
 
 - Build number: a numeric UTC timestamp (`UNTERWEGS_BUILD_NUMBER`), so every upload is higher than the last; the share extension gets the same version and build number. Channel names stay out of Apple version/build numbers. Archives are channel-labelled: `build/testflight/<channel>-<version>-<build>/Unterwegs-<channel>.xcarchive` (gitignored).
 - `ios.config.usesNonExemptEncryption: false` (`app.json`) answers the export-compliance question: the app only uses HTTPS.
+- iPad and Mac (from 1.6.0): the same build installs on an iPad. On an Apple silicon Mac the TestFlight app offers it as "Designed for iPad" only after App Store Connect → the app → Pricing and Availability → **iPhone and iPad Apps on Apple Silicon Macs** is ticked; that setting also applies to the App Store listing.
 - A TestFlight build expires after 90 days: upload again before then, even without changes. Over-the-air updates reach it like any release build of the same `version`.
 - Signing and upload go through the Account Holder's Apple ID in Xcode (see One-time setup). Users added in App Store Connect (Admin, App Manager) can create the app record and manage testers.
 
