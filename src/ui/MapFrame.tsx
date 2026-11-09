@@ -9,6 +9,7 @@ import { MapCanvas } from '@/ui/MapCanvas';
 import { floatingShadow } from '@/ui/theme';
 import { LocateButton, UserLocationMarker } from '@/ui/UserOnMap';
 import { useScreenBackground } from '@/ui/useScreenBackground';
+import { useTopTabBarInset } from './topTabBar';
 
 /**
  * The floating shell both maps share: the map sits under the iOS navigation bar, the card clears that bar, and a
@@ -40,7 +41,7 @@ export function MapFrame({
 }) {
   const backgroundColor = useScreenBackground();
   const insets = useSafeAreaInsets();
-  const headerHeight = useHeaderHeight();
+  const headerHeight = useHeaderHeight() + useTopTabBarInset();
   // iOS draws the map under the translucent navigation bar; Android lays the content out below it.
   const headerOffset = Platform.OS === 'ios' ? headerHeight + 12 : 12;
   const padding = { top: headerOffset + topReserve, bottom: 100 + insets.bottom, left: 40, right: 40 };

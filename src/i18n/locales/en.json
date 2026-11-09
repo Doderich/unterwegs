@@ -153,6 +153,16 @@
     "onRoad": "On the road",
     "todayName": "Today: {name}"
   },
+  "collectionSearch": {
+    "add": "Add",
+    "connections": "Connections",
+    "library": "Not in this collection yet",
+    "notes": "Notes and lists",
+    "nothingFound": "Nothing found.",
+    "places": "Places",
+    "stays": "Stays",
+    "suggestions": "Quick access"
+  },
   "collectionShare": {
     "anyoneWithLinkCanSee": "Anyone with the link can see the collection on the website, even without an account.",
     "invitationSent": "Invitation sent",
@@ -658,7 +668,10 @@
     "showMyLocation": "Show my location",
     "points_one": "{count} point",
     "points_other": "{count} points",
-    "wholeTrip": "Whole collection"
+    "wholeTrip": "Whole collection",
+    "putOnDay": "Put on {day}",
+    "onNoDay": "Not on a day yet",
+    "lastNight": "Last night"
   },
   "mapLinks": {
     "chooseAnotherApp": "Choose another app in Settings → Maps, or install the selected app.",
@@ -828,7 +841,8 @@
     "results_other": "{count} results",
     "thisCollection": "Search this collection",
     "back": "Back",
-    "clear": "Clear search"
+    "clear": "Clear search",
+    "collectionHint": "Find places, stays, connections and notes in this collection."
   },
   "serverLogin": {
     "isntAdventurelogServer": "This isn’t an AdventureLog server.",

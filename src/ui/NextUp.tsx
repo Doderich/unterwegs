@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { firstImage } from '@/data/images';
 import { entryTitle, locationZone, type CollectionView, type Day, type DayEntry } from '@/data/selectors';
@@ -12,6 +12,7 @@ import { openEntryDetail } from './entries';
 import { ScaledText } from './ScaledText';
 import { useColors } from './theme';
 import { typeScale } from './typeScale';
+import { TapPressable } from './TapPressable';
 
 /** The current minute; ticks once a minute so "in 25 Min." stays true while the screen is open. */
 export function useNow(): number {
@@ -75,7 +76,7 @@ export function NextUpCard({
   const image = firstImage(entryImages(entry));
 
   return (
-    <Pressable
+    <TapPressable
       accessibilityRole="button"
       accessibilityLabel={`${tr('nextUp.title')}: ${title}, ${time}, ${until}`}
       onPress={() => openEntryDetail(view.collection.id, entry)}
@@ -96,7 +97,7 @@ export function NextUpCard({
           <AuthImage url={image.image} style={StyleSheet.absoluteFill} />
         </View>
       ) : null}
-    </Pressable>
+    </TapPressable>
   );
 }
 

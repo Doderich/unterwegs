@@ -1,7 +1,7 @@
 import PagerView from '@expo/ui/community/pager-view';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text as RNText, useWindowDimensions, View } from 'react-native';
+import { StyleSheet, Text as RNText, useWindowDimensions, View } from 'react-native';
 
 import type { Image } from '@/api/schemas';
 import { tr } from '@/i18n';
@@ -11,6 +11,7 @@ import { useSettings } from '@/settings/store';
 import { AuthImage } from './AuthImage';
 import { useColors } from './theme';
 import { legibleWeight } from './textWeight';
+import { TapPressable } from './TapPressable';
 
 /** Primary image first, then the rest in server order. */
 export function sortedImages(images: Image[]): Image[] {
@@ -75,7 +76,7 @@ export function PhotoPager({
       onLayout={(e) => setWidth(Math.round(e.nativeEvent.layout.width))}>
       <PagerView style={StyleSheet.absoluteFill} onPageSelected={(e) => setPage(e.nativeEvent.position)}>
         {sorted.map((img, index) => (
-          <Pressable
+          <TapPressable
             key={img.id}
             style={StyleSheet.absoluteFill}
             accessibilityRole="imagebutton"
@@ -83,7 +84,7 @@ export function PhotoPager({
             accessibilityHint={tr('photoPager.opensPhotosFullScreen')}
             onPress={() => open(index)}>
             <AuthImage url={img.image} style={StyleSheet.absoluteFill} />
-          </Pressable>
+          </TapPressable>
         ))}
       </PagerView>
       {sorted.length > 1 ? (

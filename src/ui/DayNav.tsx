@@ -18,6 +18,7 @@ import { useSettings } from '@/settings/store';
 import { dayChipParts, formatLongDay } from '@/time/tz';
 
 import { useColors, useReduceMotion } from './theme';
+import { useTopTabBarInset } from './topTabBar';
 
 type DayNavProps = {
   dates: string[];
@@ -39,7 +40,7 @@ function useScaledText() {
 
 /** iOS headers are translucent and React Native views start under them; native lists inset themselves. */
 function useTopInset(): number {
-  const header = useHeaderHeight();
+  const header = useHeaderHeight() + useTopTabBarInset();
   return Platform.OS === 'ios' ? header : 0;
 }
 

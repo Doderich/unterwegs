@@ -28,7 +28,7 @@ const KIND_ORDER: SearchKind[] = [
 ];
 
 /** Lowercase without accents, so "rugen" finds "Rügen". */
-const fold = (s: string | null | undefined) => (s ?? '').normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
+export const fold = (s: string | null | undefined) => (s ?? '').normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
 
 /**
  * Searches what the phone has: the collection list, the full collections in the offline copy and the countries.

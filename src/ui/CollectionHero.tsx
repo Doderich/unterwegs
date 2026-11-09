@@ -1,5 +1,6 @@
 import { router } from 'expo-router';
-import { Pressable, StyleSheet, View, useWindowDimensions, type TextProps, type TextStyle } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, View, useWindowDimensions, type TextProps, type TextStyle } from 'react-native';
 
 import type { CollectionSummary } from '@/api/schemas';
 import { useCollectionView } from '@/data/queries';
@@ -12,6 +13,7 @@ import { AuthImage } from './AuthImage';
 import { formatDateRange, collectionCountdown } from './format';
 import { ScaledText } from './ScaledText';
 import { useColors } from './theme';
+import { TapPressable } from './TapPressable';
 
 /**
  * The current or next collection as a big photo card (React Native view: embed via RNHostView).
@@ -37,7 +39,11 @@ export function CollectionHero({
   const textScale = Math.min(rnTextScale(settings.textSize) ?? fontScale, 1.4);
   const colors = useColors();
   const { view } = useCollectionView(collection.id);
-  const cover = collection.primary_image ?? collection.location_images?.[0];
+  // The cover first, then the places' photos, each once: a wide card shows several instead of stretching one.
+  const photos = [collection.primary_image, ...(collection.location_images ?? [])]
+    .filter((image): image is NonNullable<typeof image> => !!image)
+    .map((image) => image.image)
+    .filter((url, i, all) => all.indexOf(url) === i);
   const cardHeight = Math.round(
     compact
       ? Math.max(Math.min(Math.max(height * 0.3, 240), 340), 240 * textScale)
@@ -64,7 +70,7 @@ export function CollectionHero({
     : [];
 
   return (
-    <Pressable
+    <TapPressable
       accessibilityRole="button"
       accessibilityLabel={[collection.name, countdown, formatDateRange(collection.start_date, collection.end_date)]
         .filter(Boolean)
@@ -77,7 +83,7 @@ export function CollectionHero({
         { width, height: cardHeight, backgroundColor: colors.tint },
         pressed && styles.pressed,
       ]}>
-      {cover ? <AuthImage url={cover.image} style={StyleSheet.absoluteFill} /> : null}
+      {photos.length ? <HeroPhotos urls={photos} /> : null}
       <View style={[StyleSheet.absoluteFill, styles.scrim]} />
 
       <View style={styles.badge}>
@@ -102,7 +108,28 @@ export function CollectionHero({
           </View>
         ) : null}
       </View>
-    </Pressable>
+    </TapPressable>
+  );
+}
+
+/** A photo is at least this wide on the card, so each keeps a natural crop. */
+const MIN_PHOTO_WIDTH = 380;
+/** At most this many photos side by side. */
+const MAX_PHOTOS = 4;
+
+/**
+ * The card's background: one photo on a phone; on a wide card (iPad, landscape) as many of the collection's photos
+ * side by side as fit at a natural crop, rather than one photo stretched across the window.
+ */
+function HeroPhotos({ urls }: { urls: string[] }) {
+  const [width, setWidth] = useState(0);
+  const count = Math.max(1, Math.min(urls.length, MAX_PHOTOS, Math.floor(width / MIN_PHOTO_WIDTH)));
+  return (
+    <View style={[StyleSheet.absoluteFill, styles.photos]} onLayout={(e) => setWidth(e.nativeEvent.layout.width)}>
+      {urls.slice(0, count).map((url) => (
+        <AuthImage key={url} url={url} style={styles.photo} />
+      ))}
+    </View>
   );
 }
 
@@ -114,6 +141,8 @@ function Label(props: TextProps & { style: TextStyle }) {
 }
 
 const styles = StyleSheet.create({
+  photos: { flexDirection: 'row', gap: 2 },
+  photo: { flex: 1, height: '100%' },
   card: { borderRadius: 28, overflow: 'hidden', justifyContent: 'space-between' },
   // The card gives a little under the thumb, like a ticket pressed on a counter.
   pressed: { transform: [{ scale: 0.98 }], opacity: 0.95 },

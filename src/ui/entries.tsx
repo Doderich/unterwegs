@@ -3,8 +3,7 @@ import { router } from 'expo-router';
 
 import type { ReactElement } from 'react';
 
-import type { Checklist, Image, Lodging, Note, Transportation } from '@/api/schemas';
-import { firstImage } from '@/data/images';
+import type { Checklist, Lodging, Note, Transportation } from '@/api/schemas';
 import type { Day, DayEntry, CollectionView } from '@/data/selectors';
 import { categoryLabel } from '@/data/categories';
 import { transportTitle } from '@/data/transportName';
@@ -15,7 +14,7 @@ import { formatDateTime, formatSpan, formatTime, localDate, zoned } from '@/time
 import { lodgingLabel, transportIcon, transportLabel } from './icons';
 import { RowIcon, type RowTheme } from './rows';
 import { staySubtitle } from './stay';
-import { Thumb } from './Thumb';
+import { photoListItem } from './PhotoListItem';
 import { Sub } from './Sub';
 
 /** `14:00 Deutschland → 10:45 (+1) · Flug LH716` */
@@ -41,22 +40,15 @@ export function lodgingSubtitle(l: Lodging, day: string | null, collectionZone: 
 
 /** The night's lodging as a list row with the stay summary. */
 export function stayRow(t: RowTheme, view: CollectionView, day: Day, lodging: Lodging): ReactElement {
-  return (
-    <ListItem
-      key={`night-${lodging.id}`}
-      colors={t.listColors}
-      leading={leadingFor(lodging.images, <RowIcon name="lodging" />)}
-      supportingText={<Sub>{staySubtitle(lodging, day.date, view.timeZone)}</Sub>}
-      onPress={() => openLodging(view.collection.id, lodging.id)}>
-      {lodging.name}
-    </ListItem>
-  );
-}
-
-/** Square photo thumbnail when the item has images, otherwise the type icon. */
-export function leadingFor(images: Image[] | null | undefined, fallback: ReactElement): ReactElement {
-  const img = firstImage(images);
-  return img ? <Thumb url={img.image} /> : fallback;
+  return photoListItem({
+    key: `night-${lodging.id}`,
+    colors: t.listColors,
+    images: lodging.images,
+    icon: <RowIcon name="lodging" />,
+    title: lodging.name,
+    subtitle: staySubtitle(lodging, day.date, view.timeZone),
+    onPress: () => openLodging(view.collection.id, lodging.id),
+  });
 }
 
 export function openEntryDetail(collectionId: string, entry: DayEntry) {
@@ -115,28 +107,26 @@ export function entryRow(
   const collectionId = view.collection.id;
   const press = () => (onPress ? onPress(entry) : openEntryDetail(collectionId, entry));
   if (entry.kind === 'transportation') {
-    return (
-      <ListItem
-        key={entry.key}
-        colors={t.listColors}
-        leading={leadingFor(entry.transport.images, <RowIcon name={transportIcon(entry.transport.type)} />)}
-        supportingText={<Sub>{transportSubtitle(entry.transport, view.timeZone)}</Sub>}
-        onPress={press}>
-        {transportTitle(entry.transport)}
-      </ListItem>
-    );
+    return photoListItem({
+      key: entry.key,
+      colors: t.listColors,
+      images: entry.transport.images,
+      icon: <RowIcon name={transportIcon(entry.transport.type)} />,
+      title: transportTitle(entry.transport),
+      subtitle: transportSubtitle(entry.transport, view.timeZone),
+      onPress: press,
+    });
   }
   if (entry.kind === 'lodging') {
-    return (
-      <ListItem
-        key={entry.key}
-        colors={t.listColors}
-        leading={leadingFor(entry.lodging.images, <RowIcon name="lodging" />)}
-        supportingText={<Sub>{lodgingSubtitle(entry.lodging, day, view.timeZone)}</Sub>}
-        onPress={press}>
-        {entry.lodging.name}
-      </ListItem>
-    );
+    return photoListItem({
+      key: entry.key,
+      colors: t.listColors,
+      images: entry.lodging.images,
+      icon: <RowIcon name="lodging" />,
+      title: entry.lodging.name,
+      subtitle: lodgingSubtitle(entry.lodging, day, view.timeZone),
+      onPress: press,
+    });
   }
   if (entry.kind === 'note') {
     const sub = noteSubtitle(entry.note);
@@ -166,14 +156,13 @@ export function entryRow(
   const loc = entry.location;
   const time = entry.startUtc ? formatTime(entry.startUtc, view.timeZone) : null;
   const category = loc.category ? categoryLabel(loc.category) : null;
-  return (
-    <ListItem
-      key={entry.key}
-      colors={t.listColors}
-      leading={leadingFor(loc.images, <RowIcon name="location" />)}
-      supportingText={<Sub>{[time, category, loc.location].filter(Boolean).join(' · ') || undefined}</Sub>}
-      onPress={press}>
-      {loc.name}
-    </ListItem>
-  );
+  return photoListItem({
+    key: entry.key,
+    colors: t.listColors,
+    images: loc.images,
+    icon: <RowIcon name="location" />,
+    title: loc.name,
+    subtitle: [time, category, loc.location].filter(Boolean).join(' · ') || null,
+    onPress: press,
+  });
 }

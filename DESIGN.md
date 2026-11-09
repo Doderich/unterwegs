@@ -90,11 +90,10 @@ components:
     backgroundColor: '{colors.night-card}'
     textColor: '{colors.card-white}'
     typography: '{typography.body}'
-  image-thumb:
+  photo-row:
     backgroundColor: '{colors.hairline}'
-    rounded: '1/6 of the side (≈9px)'
-    width: '56px'
-    height: '56px'
+    width: 'the row'
+    height: 'half the row width, 150–280px'
   detail-gallery:
     backgroundColor: '{colors.hairline}'
     height: 'a third of the window, between 4:3 and 16:10 of its width (transportation: 2:1)'
@@ -121,7 +120,7 @@ components:
 
 Everything for the trip in your pocket, calm and always to hand. Unterwegs is opened on a platform, at a hotel desk or in a temple without signal, by people who know their phone but not this app. So the design is calm, native and quietly warm: the platform's own controls (SwiftUI on iOS, Material 3 on Android) do most of the work, and personality comes from one accent, the teal of the app icon's hills, and the trip's own photos. It is flat and layered, not decorative, and nothing competes with the information you need right now.
 
-Density is that of a system settings screen: grouped lists of rows, each row one fact with a tinted icon (or an emoji the user chose), a value and a secondary line. The one exception is the collection hero (`CollectionHero`) on the home screen, a full-bleed photo card that is the app's only "loud" moment.
+Density is that of a system settings screen: grouped lists of rows, each row one fact with a tinted icon (or an emoji the user chose), a value and a secondary line. The one exception is the collection hero (`CollectionHero`) on the home screen, a full-bleed photo card that is the app's only "loud" moment. On a wide card (iPad, landscape) it shows as many of the collection's photos side by side as fit at least 380px each, up to four (the cover first, then the places' photos), instead of stretching one across the window.
 
 **Direction: playful, from the trip itself.** The owner asked for more character and for looking back to feel like a pleasure rather than a record. The character comes from the trip, never from decoration on top of the native controls: your own photos (memory cards, the day's photo strip), time (apricot countdowns, "Noch 5 Mal schlafen!", "Als Nächstes in 25 Min."), places (passport stamps) and a few real milestones (a check that pops when a list is done). Copy is warm and short ("Nichts geplant – Zeit zum Treibenlassen."). Everything stays within the accessibility rules below; every flourish has a reduce-motion and screen-reader path.
 
@@ -222,7 +221,7 @@ Flat, tonal layering: white rows on a grey background (or dark-grey rows on blac
 
 ## Shapes
 
-Native rows and sheets keep the platform's own shapes (iOS inset grouped corners, Material 3 list-item containers). Custom shapes are soft and rounded: a sixth of the side on list thumbnails, 12px on the detail gallery inside an Android card (edge to edge in the iOS card), 16px on floating controls and day chips, 24px on the QR scan frame, 28px on the hero card, and full pills for the badge and stat chips. No sharp corners on custom elements, no outlined boxes.
+Native rows and sheets keep the platform's own shapes (iOS inset grouped corners, Material 3 list-item containers). Custom shapes are soft and rounded: 20px on photo cards, 12px on the detail gallery inside an Android card (edge to edge in the iOS card), 16px on floating controls and day chips, 24px on the QR scan frame, 28px on the hero card, and full pills for the badge and stat chips. No sharp corners on custom elements, no outlined boxes.
 
 ## Components
 
@@ -266,9 +265,9 @@ Android pattern reference: [Material search component](https://github.com/materi
 
 The top of every location, lodging and transportation (`resourceHeaderRows`): a swipeable gallery of the resource's photos with an "n / total" pill (capped at 1.4× text size), then the name in Title and a short context line in Label on the card's solid surface. Tap opens the full-screen gallery; "Foto hinzufügen" and the gallery's cover/delete actions stay right below. Each photo is announced as "Name, Bild n von total". Without photos the header is a 28px Teal icon beside the title, never an empty frame or a collection photo. The frame is reserved in Hairline grey before photos load and stays when one can't.
 
-### List Thumbnail
+### Photo Row
 
-One square crop for every list that shows a resource: itinerary entries, "Heute Nacht", Tage, Unterkünfte, the home screen's other trips, map previews and search. 56px, corners a sixth of the side, Hairline fill while loading or when the photo is unavailable, hidden from screen readers (the row's text names it). The image is the primary one, else the first (`firstImage`); without one the row keeps its tinted type icon. Images fade in over 150ms (0 with reduced motion).
+Every list row for something with a photo leads with that photo across the whole row, with the name and context line below it on the card (`PhotoListItem`, `src/ui/PhotoListItem.tsx`): itinerary entries, "Heute Nacht", Tage, Unterkünfte, Home, Collections, Places, search and the map preview. The photos are what makes a place somewhere to go, so they are the row, not a thumbnail beside it. Each photo row is a card of its own, 20px corners and 12px apart, in place of the list row's background and separator, so places stand apart instead of running into one block. In a regular-width iPad window consecutive cards pair up in two equal columns (`PhotoGrid`); a row without a photo ends the run, so the order still reads top to bottom, and an odd card keeps half the width. All cards in the grid are the same size: equal width, one photo height for the row, and one line each for the name and the context line (shortened with “…”, read in full by screen readers). The photo is half as tall as its card is wide, kept between 150px and 280px. Hairline fill while loading or when the photo is unavailable, hidden from screen readers (the row's text names it). The image is the primary one, else the first (`firstImage`); without one the row is the usual native row with its tinted type icon. Images fade in over 150ms (0 with reduced motion).
 
 ### Day Strip
 

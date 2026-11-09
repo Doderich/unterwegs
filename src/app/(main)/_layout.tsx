@@ -70,7 +70,8 @@ function MainTabs() {
           accessibilityLabel={tr('common.search')}
           contentStyle={{ backgroundColor }}
           role="search"
-          hidden={Platform.OS !== 'ios'}
+          // The iPhone's detached search button; iPad screens have the magnifier in their own header instead.
+          hidden={Platform.OS !== 'ios' || Platform.isPad}
           disabled
           listeners={{ tabPress: () => search?.focus() }}>
           <NativeTabs.Trigger.Label hidden={Platform.OS === 'ios' && !showTabLabels}>

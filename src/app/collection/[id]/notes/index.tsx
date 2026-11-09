@@ -13,13 +13,14 @@ import { useColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { Host } from '@/ui/Host';
 import { CollectionLoading } from '@/ui/CollectionLoading';
+import { CollectionTabHeader } from '@/ui/CollectionTabStack';
 
 const byDateThenName = (a: { date?: string | null; name: string }, b: { date?: string | null; name: string }) =>
   (a.date ?? '\uffff').localeCompare(b.date ?? '\uffff') || a.name.localeCompare(b.name, locale());
 
 const dateLabel = (date: string | null | undefined) => (date ? formatDayLabel(date.slice(0, 10)) : null);
 
-export default function NotesScreen() {
+function NotesScreen() {
   const { view } = useCollectionContext();
   const colors = useColors();
   const rt = useRowTheme();
@@ -103,5 +104,14 @@ export default function NotesScreen() {
         ) : null}
       </FieldGroup>
     </Host>
+  );
+}
+
+export default function NotesScreenTab() {
+  return (
+    <>
+      <CollectionTabHeader />
+      <NotesScreen />
+    </>
   );
 }

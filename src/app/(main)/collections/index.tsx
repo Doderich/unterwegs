@@ -11,7 +11,6 @@ import { todayIn } from '@/time/today';
 import { deviceTimeZone } from '@/time/tz';
 import { RefreshableFieldGroup } from '@/ui/RefreshableFieldGroup';
 import { Sub } from '@/ui/Sub';
-import { leadingFor } from '@/ui/entries';
 import { collectionCountdown, formatDateRange } from '@/ui/format';
 import { RowIcon } from '@/ui/rows';
 import { useColors, useListColors, type Colors } from '@/ui/theme';
@@ -21,11 +20,13 @@ import { GlobalSearchRow } from '@/ui/GlobalSearchRow';
 import { MainSearchScreen } from '@/ui/MainSearchScreen';
 import { MemoryStrip } from '@/ui/Memories';
 import { CardRow, cardRowWidth } from '@/ui/CardRow';
+import { photoListItem, usePhotoColumns, photoSection } from '@/ui/PhotoListItem';
 
 type SortedCollection = ReturnType<typeof sortCollections>[number];
 type ListColors = ReturnType<typeof useListColors>;
 
 export default function CollectionsScreen() {
+  const photoColumns = usePhotoColumns();
   const collections = useCollections();
   const actions = useCollectionsActions();
   const invites = useInvites();
@@ -113,27 +114,33 @@ export default function CollectionsScreen() {
               </FieldGroup.Section>
             ) : null}
 
-            {upcoming.length > 0 ? (
-              <FieldGroup.Section>
-                {upcoming.map((t) => collectionRow(t, colors, listColors, today))}
-              </FieldGroup.Section>
-            ) : null}
+            {upcoming.length > 0
+              ? photoSection(
+                  { key: 'photos-4' },
+                  <>{upcoming.map((t) => collectionRow(t, colors, listColors, today))}</>,
+                  photoColumns,
+                )
+              : null}
             {/* Finished collections are memories: their cover photos, not another list of dates. */}
             {past.length > 0 ? (
               <CardRow title={tr('home.pastTrips')}>
                 <MemoryStrip collections={past} today={today} width={cardRowWidth(windowWidth)} />
               </CardRow>
             ) : null}
-            {undated.length > 0 ? (
-              <FieldGroup.Section title={tr('home.noDate')}>
-                {undated.map((t) => collectionRow(t, colors, listColors, today))}
-              </FieldGroup.Section>
-            ) : null}
-            {archivedSorted.length > 0 ? (
-              <FieldGroup.Section title={tr('home.archive')}>
-                {archivedSorted.map((t) => collectionRow(t, colors, listColors, today))}
-              </FieldGroup.Section>
-            ) : null}
+            {undated.length > 0
+              ? photoSection(
+                  { key: 'photos-5', title: tr('home.noDate') },
+                  <>{undated.map((t) => collectionRow(t, colors, listColors, today))}</>,
+                  photoColumns,
+                )
+              : null}
+            {archivedSorted.length > 0
+              ? photoSection(
+                  { key: 'photos-6', title: tr('home.archive') },
+                  <>{archivedSorted.map((t) => collectionRow(t, colors, listColors, today))}</>,
+                  photoColumns,
+                )
+              : null}
           </RefreshableFieldGroup>
         </Host>
       </>
@@ -152,25 +159,20 @@ function collectionRow(
     (collection.phase === 'upcoming' || collection.phase === 'current') && collection.start_date && collection.end_date
       ? collectionCountdown(collection.start_date, collection.end_date, today)
       : null;
-  return (
-    <ListItem
-      key={collection.id}
-      colors={listColors}
-      leading={leadingFor(
-        collection.primary_image ? [collection.primary_image] : collection.location_images,
-        <RowIcon
-          name={collection.phase === 'current' ? 'luggage' : 'days'}
-          color={collection.phase === 'past' ? colors.secondary : colors.tint}
-        />,
-      )}
-      supportingText={
-        // Upcoming and running collections lead with time, in apricot: "Noch 5 Mal schlafen! · 17.12. – 08.01.".
-        countdown ? <Sub color={colors.next}>{`${countdown} · ${dates}`}</Sub> : <Sub>{dates}</Sub>
-      }
-      onPress={() =>
-        router.push({ pathname: '/collection/[id]', params: { id: collection.id, name: collection.name } })
-      }>
-      {collection.name}
-    </ListItem>
-  );
+  return photoListItem({
+    key: collection.id,
+    colors: listColors,
+    images: collection.primary_image ? [collection.primary_image] : collection.location_images,
+    icon: (
+      <RowIcon
+        name={collection.phase === 'current' ? 'luggage' : 'days'}
+        color={collection.phase === 'past' ? colors.secondary : colors.tint}
+      />
+    ),
+    title: collection.name,
+    // Upcoming and running collections lead with time, in apricot: "Noch 5 Mal schlafen! · 17.12. – 08.01.".
+    subtitle: countdown ? `${countdown} · ${dates}` : dates,
+    subtitleColor: countdown ? colors.next : undefined,
+    onPress: () => router.push({ pathname: '/collection/[id]', params: { id: collection.id, name: collection.name } }),
+  });
 }

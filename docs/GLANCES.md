@@ -1,6 +1,6 @@
 # Widgets, reminders and Live Activities
 
-Implemented in 1.5.0 (`src/glances/`), not yet checked on a device; what is still missing is under [Not built yet](#not-built-yet). The decision and its reasons are in [0015](adr/0015-glances-from-the-offline-copy.md). A **glance** is anything that shows collection data outside the open app: a home-screen or lock-screen widget, a local notification (a reminder), or an iOS Live Activity. Every glance is computed on the phone from the offline copy and works offline. There is no remote push.
+Shipped in 1.5.0 (`src/glances/`) and checked by the owner on real phones (08.11.2026); what is still missing is under [Not built yet](#not-built-yet). The decision and its reasons are in [0015](adr/0015-glances-from-the-offline-copy.md). A **glance** is anything that shows collection data outside the open app: a home-screen or lock-screen widget, a local notification (a reminder), or an iOS Live Activity. Every glance is computed on the phone from the offline copy and works offline. There is no remote push.
 
 ## Which collection a glance follows
 

@@ -2,13 +2,22 @@
   "expo": {
     "name": "Unterwegs",
     "slug": "unterwegs",
-    "version": "1.5.1",
+    "version": "1.6.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "unterwegs",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/unterwegs.icon",
+      "supportsTablet": true,
+      "infoPlist": {
+        "UISupportedInterfaceOrientations~ipad": [
+          "UIInterfaceOrientationPortrait",
+          "UIInterfaceOrientationPortraitUpsideDown",
+          "UIInterfaceOrientationLandscapeLeft",
+          "UIInterfaceOrientationLandscapeRight"
+        ]
+      },
       "config": {
         "usesNonExemptEncryption": false
       }

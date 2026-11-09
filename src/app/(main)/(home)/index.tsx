@@ -15,7 +15,6 @@ import { collectionTimeZone, todayIn } from '@/time/today';
 import { CardRow, cardRowWidth } from '@/ui/CardRow';
 import { CompatNotice } from '@/ui/CompatNotice';
 import { CollectionHero } from '@/ui/CollectionHero';
-import { leadingFor } from '@/ui/entries';
 import { formatDateRange } from '@/ui/format';
 import { RefreshableFieldGroup } from '@/ui/RefreshableFieldGroup';
 import { offlineNoticeRow, RowIcon, useRowTheme } from '@/ui/rows';
@@ -26,8 +25,10 @@ import { LoadingRows } from '@/ui/LoadingRows';
 import { GlobalSearchRow } from '@/ui/GlobalSearchRow';
 import { MainSearchScreen } from '@/ui/MainSearchScreen';
 import { MemoryCard, onThisDay, onThisDayCaption } from '@/ui/Memories';
+import { photoListItem, usePhotoColumns, photoSection } from '@/ui/PhotoListItem';
 
 export default function HomeScreen() {
+  const photoColumns = usePhotoColumns();
   const collections = useCollections();
   const locations = useLocations();
   const invites = useInvites();
@@ -47,40 +48,35 @@ export default function HomeScreen() {
   const current = feed.current.filter((i) => i.kind !== 'collection' || i.key !== featured?.key);
   const upcoming = feed.upcoming.filter((i) => i.kind !== 'collection' || i.key !== featured?.key);
   const row = (item: FeedItem) =>
-    item.kind === 'collection' ? (
-      <ListItem
-        key={item.key}
-        colors={rt.listColors}
-        leading={leadingFor(
-          item.collection.primary_image ? [item.collection.primary_image] : item.collection.location_images,
-          <RowIcon name="luggage" />,
-        )}
-        supportingText={<Sub>{formatDateRange(item.collection.start_date, item.collection.end_date)}</Sub>}
-        onPress={() =>
-          router.push({ pathname: '/collection/[id]', params: { id: item.collection.id, name: item.collection.name } })
-        }>
-        {item.collection.name}
-      </ListItem>
-    ) : (
-      <ListItem
-        key={item.key}
-        colors={rt.listColors}
-        leading={leadingFor(item.location.images, <RowIcon name="location" />)}
-        supportingText={
-          <Sub>
-            {[
-              formatDayLabel(item.date),
-              visitTime(item.visit.start_date!, item.visit.end_date, item.visit.timezone || deviceTimeZone()).time,
-              item.location.location,
-            ]
-              .filter(Boolean)
-              .join(' · ')}
-          </Sub>
-        }
-        onPress={() => router.push({ pathname: '/place/[id]', params: { id: item.location.id } })}>
-        {item.location.name}
-      </ListItem>
-    );
+    item.kind === 'collection'
+      ? photoListItem({
+          key: item.key,
+          colors: rt.listColors,
+          images: item.collection.primary_image ? [item.collection.primary_image] : item.collection.location_images,
+          icon: <RowIcon name="luggage" />,
+          title: item.collection.name,
+          subtitle: formatDateRange(item.collection.start_date, item.collection.end_date),
+          onPress: () =>
+            router.push({
+              pathname: '/collection/[id]',
+              params: { id: item.collection.id, name: item.collection.name },
+            }),
+        })
+      : photoListItem({
+          key: item.key,
+          colors: rt.listColors,
+          images: item.location.images,
+          icon: <RowIcon name="location" />,
+          title: item.location.name,
+          subtitle: [
+            formatDayLabel(item.date),
+            visitTime(item.visit.start_date!, item.visit.end_date, item.visit.timezone || deviceTimeZone()).time,
+            item.location.location,
+          ]
+            .filter(Boolean)
+            .join(' · '),
+          onPress: () => router.push({ pathname: '/place/[id]', params: { id: item.location.id } }),
+        });
   const empty = !feed.current.length && !feed.upcoming.length;
   const today = todayIn(deviceTimeZone());
   const memory = onThisDay(collections.data ?? [], today);
@@ -131,10 +127,16 @@ export default function HomeScreen() {
               ))}
             </FieldGroup.Section>
           ) : null}
-          {current.length ? <FieldGroup.Section title={tr('feed.today')}>{current.map(row)}</FieldGroup.Section> : null}
-          {upcoming.length ? (
-            <FieldGroup.Section title={tr('feed.upcoming')}>{upcoming.slice(0, 12).map(row)}</FieldGroup.Section>
-          ) : null}
+          {current.length
+            ? photoSection({ key: 'photos-1', title: tr('feed.today') }, <>{current.map(row)}</>, photoColumns)
+            : null}
+          {upcoming.length
+            ? photoSection(
+                { key: 'photos-2', title: tr('feed.upcoming') },
+                <>{upcoming.slice(0, 12).map(row)}</>,
+                photoColumns,
+              )
+            : null}
           {loading ? (
             <FieldGroup.Section>
               <LoadingRows />
@@ -187,20 +189,25 @@ export default function HomeScreen() {
               />
             </CardRow>
           ) : null}
-          {feed.recent.length ? (
-            <FieldGroup.Section title={tr('feed.recent')}>
-              {feed.recent.map((place) => (
-                <ListItem
-                  key={place.id}
-                  colors={rt.listColors}
-                  leading={leadingFor(place.images, <RowIcon name="location" />)}
-                  supportingText={<Sub>{place.location}</Sub>}
-                  onPress={() => router.push({ pathname: '/place/[id]', params: { id: place.id } })}>
-                  {place.name}
-                </ListItem>
-              ))}
-            </FieldGroup.Section>
-          ) : null}
+          {feed.recent.length
+            ? photoSection(
+                { key: 'photos-3', title: tr('feed.recent') },
+                <>
+                  {feed.recent.map((place) =>
+                    photoListItem({
+                      key: place.id,
+                      colors: rt.listColors,
+                      images: place.images,
+                      icon: <RowIcon name="location" />,
+                      title: place.name,
+                      subtitle: place.location,
+                      onPress: () => router.push({ pathname: '/place/[id]', params: { id: place.id } }),
+                    }),
+                  )}
+                </>,
+                photoColumns,
+              )
+            : null}
         </RefreshableFieldGroup>
       </Host>
     </MainSearchScreen>

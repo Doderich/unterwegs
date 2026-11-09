@@ -14,11 +14,12 @@ import { tr } from '@/i18n';
 import type { IconKey } from '@/ui/icons';
 import { RowIcon, useRowTheme } from '@/ui/rows';
 import { Sub } from '@/ui/Sub';
-import { Thumb } from '@/ui/Thumb';
 import { SearchHeader } from '@/ui/MaterialSearch';
 import { matchesLocationFilter } from '@/data/locationLibrary';
 import { Host } from '@/ui/Host';
 import { LoadingRows } from '@/ui/LoadingRows';
+import { photoListItem, usePhotoColumns, photoSection } from '@/ui/PhotoListItem';
+import { RefreshableFieldGroup } from '@/ui/RefreshableFieldGroup';
 
 const ICONS: Record<SearchKind, IconKey> = {
   collection: 'luggage',
@@ -41,6 +42,7 @@ export default function SearchScreen({
   initialCollectionId?: string;
   embeddedQuery?: string;
 } = {}) {
+  const photoColumns = usePhotoColumns();
   const params = useLocalSearchParams<{ collectionId?: string; scope?: string; filter?: string }>();
   const collectionId = initialCollectionId ?? params.collectionId;
   const scoped = collectionId ?? null;
@@ -119,7 +121,8 @@ export default function SearchScreen({
       ) : null}
       {!embedded && Platform.OS === 'ios' ? (
         <Stack.SearchBar
-          placement="automatic"
+          // The iPhone shows the field at the bottom; iPad would fold it into a header button over a blank page.
+          placement={Platform.isPad ? 'stacked' : 'automatic'}
           autoFocus
           hideWhenScrolling={false}
           hideNavigationBar={false}
@@ -129,28 +132,43 @@ export default function SearchScreen({
         />
       ) : null}
       <Host style={{ flex: 1 }}>
-        <FieldGroup>
-          {query.trim() || placesOnly ? (
-            <FieldGroup.Section title={hits.length ? tr('search.results', { count: hits.length }) : undefined}>
-              {hits.length === 0 ? (
-                loading ? (
-                  <LoadingRows rows={4} />
-                ) : (
-                  <ListItem colors={rt.listColors}>
-                    {placesOnly && !locations.data && !online ? tr('common.offlineNoData') : tr('common.nothingFound')}
-                  </ListItem>
-                )
-              ) : null}
-              {hits.map((h) => (
-                <ListItem
-                  key={`${h.kind}:${h.id}`}
-                  colors={rt.listColors}
-                  leading={h.image ? <Thumb url={h.image} /> : <RowIcon name={ICONS[h.kind]} />}
-                  supportingText={h.subtitle ? <Sub>{h.subtitle}</Sub> : undefined}
-                  onPress={() => open(h)}>
-                  {h.title}
-                </ListItem>
-              ))}
+        <RefreshableFieldGroup>
+          {query.trim() || placesOnly
+            ? photoSection(
+                { key: 'photos-10', title: hits.length ? tr('search.results', { count: hits.length }) : undefined },
+                <>
+                  {hits.length === 0 ? (
+                    loading ? (
+                      <LoadingRows rows={4} />
+                    ) : (
+                      <ListItem colors={rt.listColors}>
+                        {placesOnly && !locations.data && !online
+                          ? tr('common.offlineNoData')
+                          : tr('common.nothingFound')}
+                      </ListItem>
+                    )
+                  ) : null}
+                  {hits.map((h) =>
+                    photoListItem({
+                      key: `${h.kind}:${h.id}`,
+                      colors: rt.listColors,
+                      imageUrl: h.image,
+                      icon: <RowIcon name={ICONS[h.kind]} />,
+                      title: h.title,
+                      subtitle: h.subtitle,
+                      onPress: () => open(h),
+                    }),
+                  )}
+                </>,
+                photoColumns,
+              )
+            : null}
+          {/* Before anything is typed, say what this search covers instead of showing an empty page. */}
+          {collectionId && !query.trim() && !placesOnly ? (
+            <FieldGroup.Section>
+              <ListItem colors={rt.listColors} leading={<RowIcon name="search" />}>
+                <Sub>{tr('search.collectionHint')}</Sub>
+              </ListItem>
             </FieldGroup.Section>
           ) : null}
           {loading && hits.length > 0 && (query.trim() || placesOnly) ? (
@@ -165,7 +183,7 @@ export default function SearchScreen({
               </ListItem>
             </FieldGroup.Section>
           ) : null}
-        </FieldGroup>
+        </RefreshableFieldGroup>
       </Host>
     </View>
   );

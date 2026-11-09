@@ -10,7 +10,7 @@ import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { tr } from '@/i18n';
 import { useActionSheet, type SheetAction } from '@/ui/ActionSheet';
 import { AuthImage } from '@/ui/AuthImage';
-import { androidToolbarIcon } from '@/ui/icons';
+import { androidToolbarIcon, toolbarIcon } from '@/ui/icons';
 import { useRowTheme } from '@/ui/rows';
 
 /** Full-screen photo pager. With `collectionId` (and online): make a photo the cover, or delete it. */
@@ -76,6 +76,14 @@ export default function GalleryScreen() {
           title: urls.length > 1 ? tr('gallery.nOfTotal', { n: index + 1, total: urls.length }) : (params.title ?? ''),
         }}
       />
+      {/* A full-screen view can't be swiped away: close it here. */}
+      <Stack.Toolbar placement="left">
+        <Stack.Toolbar.Button
+          icon={toolbarIcon('close') as never}
+          accessibilityLabel={tr('common.done')}
+          onPress={() => router.back()}
+        />
+      </Stack.Toolbar>
       {image && edits.canEdit ? (
         <Stack.Toolbar placement="right">
           <Stack.Toolbar.Button

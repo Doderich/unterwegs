@@ -2,6 +2,7 @@ import LodgingsScreen from '../../app/collection/[id]/lodgings';
 import NotesScreen from '../../app/collection/[id]/notes';
 import DaysScreen from '../../screens/DaysScreen';
 
+jest.mock('@/ui/CollectionTabStack', () => ({ CollectionTabHeader: () => null }));
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
   useState: (value: unknown) => [value, jest.fn()],
@@ -28,6 +29,12 @@ jest.mock('@/ui/Host', () => ({ Host: 'Host' }));
 jest.mock('@/ui/Text', () => ({ Text: 'Text' }));
 jest.mock('@/ui/GoneScreen', () => ({ GoneScreen: () => null }));
 jest.mock('@/ui/Sub', () => ({ Sub: 'Sub' }));
+jest.mock('@/ui/PhotoListItem', () => ({
+  photoListItem: () => null,
+  photoGrid: (rows: unknown) => rows,
+  photoSection: (_section: unknown, rows: unknown) => rows,
+  usePhotoColumns: () => 1,
+}));
 jest.mock('@/ui/ActionSheet', () => ({ useActionSheet: () => ({ sheet: null }) }));
 jest.mock('@/ui/rows', () => ({ RowIcon: 'Icon', useRowTheme: () => ({ colors: {} }) }));
 jest.mock('@/ui/theme', () => ({ useColors: () => ({}), useListColors: () => ({}) }));
