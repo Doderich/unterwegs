@@ -1,0 +1,21 @@
+app.json
+  s_1bc6f9487a4dd2::t_2b2e441b8aeb86 5
+docs/RELEASING.md
+  s_1bc6f9487a4dd2::t_2b2e441b8aeb86 21-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "684ddf72c6e56d744835702e41de4906d457c154",
+  "prompts": {},
+  "sessions": {
+    "s_1bc6f9487a4dd2": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1bf69-f0bb-7f31-aa65-6c0e9b3db2f7",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
