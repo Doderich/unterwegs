@@ -1,0 +1,29 @@
+DESIGN.md
+  s_fe2c046099258a::t_21ada21c9daed3 208
+docs/FEATURES.md
+  s_fe2c046099258a::t_0ab8c9bccf728f 3,34
+docs/IPAD.md
+  s_fe2c046099258a::t_8547191d31675f 3-10
+docs/RELEASING.md
+  s_fe2c046099258a::t_3895376ca16681 171
+docs/ROADMAP.md
+  s_fe2c046099258a::t_cc69db9612b27a 30,44-45
+docs/STORE-RELEASE.md
+  s_fe2c046099258a::t_29eacfcbec7740 116-118
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0e448f7011706f8ef8c8202c08e528e4297b07ec",
+  "prompts": {},
+  "sessions": {
+    "s_fe2c046099258a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "083fd30c-9485-4473-85bf-1b3c1fab0b8f",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
