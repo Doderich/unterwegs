@@ -16,8 +16,11 @@ import { Text } from '@/ui/Text';
 import { Host } from '@/ui/Host';
 import { typeScale } from '@/ui/typeScale';
 import { CollectionLoading } from '@/ui/CollectionLoading';
+import { usePhotoColumns, photoSection } from '@/ui/PhotoListItem';
+import { RefreshableFieldGroup } from '@/ui/RefreshableFieldGroup';
 
 export default function DaysScreen() {
+  const photoColumns = usePhotoColumns();
   const listColors = useListColors();
   const { view } = useCollectionContext();
   const colors = useColors();
@@ -74,7 +77,7 @@ export default function DaysScreen() {
   return (
     <>
       <Host style={{ flex: 1 }}>
-        <FieldGroup>
+        <RefreshableFieldGroup>
           {canGenerate ? (
             <FieldGroup.Section>
               <ListItem
@@ -90,29 +93,35 @@ export default function DaysScreen() {
               </FieldGroup.SectionFooter>
             </FieldGroup.Section>
           ) : null}
-          {view.days.map((day) => (
-            <FieldGroup.Section key={day.date}>
-              <FieldGroup.SectionHeader>
-                {/* Sentence case and a size up from the default section label, so a day reads as a heading. */}
-                <Text
-                  textStyle={{
-                    ...typeScale.supporting,
-                    fontWeight: '600',
-                    color: day.date === today ? colors.tint : colors.text,
-                  }}>
-                  {dayHeading(day, day.date === today)}
-                </Text>
-              </FieldGroup.SectionHeader>
-              {day.entries.map((entry) => entryRow(rt, entry, view, day.date))}
-              {day.nightLodging &&
-              !day.entries.some((e) => e.kind === 'lodging' && e.lodging.id === day.nightLodging!.id)
-                ? stayRow(rt, view, day, day.nightLodging)
-                : null}
-              {day.entries.length === 0 && !day.nightLodging ? (
-                <Text textStyle={{ color: colors.secondary }}>{tr('common.nothingPlanned')}</Text>
-              ) : null}
-            </FieldGroup.Section>
-          ))}
+          {view.days.map((day) =>
+            photoSection(
+              { key: day.date },
+              <>
+                <FieldGroup.SectionHeader>
+                  {/* Sentence case and a size up from the default section label, so a day reads as a heading. */}
+                  <Text
+                    textStyle={{
+                      ...typeScale.supporting,
+                      fontWeight: '600',
+                      color: day.date === today ? colors.tint : colors.text,
+                    }}>
+                    {dayHeading(day, day.date === today)}
+                  </Text>
+                </FieldGroup.SectionHeader>
+                {[
+                  day.entries.map((entry) => entryRow(rt, entry, view, day.date)),
+                  day.nightLodging &&
+                  !day.entries.some((e) => e.kind === 'lodging' && e.lodging.id === day.nightLodging!.id)
+                    ? stayRow(rt, view, day, day.nightLodging)
+                    : null,
+                ]}
+                {day.entries.length === 0 && !day.nightLodging ? (
+                  <Text textStyle={{ color: colors.secondary }}>{tr('common.nothingPlanned')}</Text>
+                ) : null}
+              </>,
+              photoColumns,
+            ),
+          )}
           {open.length > 0 ? (
             <FieldGroup.Section title={tr('common.notPlannedYet')}>
               {open.map((u) => (
@@ -129,7 +138,7 @@ export default function DaysScreen() {
               </FieldGroup.SectionFooter>
             </FieldGroup.Section>
           ) : null}
-        </FieldGroup>
+        </RefreshableFieldGroup>
       </Host>
       {sheet.sheet}
     </>

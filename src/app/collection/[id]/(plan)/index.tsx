@@ -12,9 +12,11 @@ import { Host } from '@/ui/Host';
 import { Text } from '@/ui/Text';
 import { Today } from '@/ui/Today';
 import { useColors } from '@/ui/theme';
+import { useTopTabBarInset } from '@/ui/topTabBar';
+import { CollectionTabHeader } from '@/ui/CollectionTabStack';
 
-export default function PlanScreen() {
-  const headerHeight = useHeaderHeight();
+function PlanScreen() {
+  const headerHeight = useHeaderHeight() + useTopTabBarInset();
   const { view, planMode, setPlanMode } = useCollectionContext();
   const inset = { flex: 1, paddingTop: Platform.OS === 'ios' ? headerHeight : 0 } as const;
   if (!view) {
@@ -50,5 +52,14 @@ function TodayScreen() {
   }
   return (
     <Today insetHeader={Platform.OS !== 'ios'} view={view} initialDate={selectedDay} onDayChange={setSelectedDay} />
+  );
+}
+
+export default function PlanScreenTab() {
+  return (
+    <>
+      <CollectionTabHeader />
+      <PlanScreen />
+    </>
   );
 }

@@ -15,23 +15,27 @@ export function RefreshableFieldGroup({ children, onRefresh }: RefreshableFieldG
   const refresh = useCallback(async () => {
     setIsRefreshing(true);
     try {
-      await onRefresh();
+      await onRefresh?.();
     } finally {
       setIsRefreshing(false);
     }
   }, [onRefresh]);
+  const list = (
+    <LazyColumn
+      verticalArrangement={{ spacedBy: 24 }}
+      contentPadding={{ start: 16, end: 16, top: 16, bottom: 16 }}
+      modifiers={[fillMaxSize(), background(colors.surface)]}>
+      {children}
+    </LazyColumn>
+  );
+  if (!onRefresh) return list;
   return (
     <PullToRefreshBox
       modifiers={[fillMaxSize()]}
       isRefreshing={isRefreshing}
       onRefresh={() => void refresh()}
       contentAlignment="topCenter">
-      <LazyColumn
-        verticalArrangement={{ spacedBy: 24 }}
-        contentPadding={{ start: 16, end: 16, top: 16, bottom: 16 }}
-        modifiers={[fillMaxSize(), background(colors.surface)]}>
-        {children}
-      </LazyColumn>
+      {list}
     </PullToRefreshBox>
   );
 }

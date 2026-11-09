@@ -5,5 +5,5 @@ import type { RefreshableFieldGroupProps } from './RefreshableFieldGroup';
 
 /** `FieldGroup` with pull-to-refresh; the promise drives the indicator. */
 export function RefreshableFieldGroup({ children, onRefresh }: RefreshableFieldGroupProps) {
-  return <FieldGroup modifiers={[refreshable(onRefresh)]}>{children}</FieldGroup>;
+  return <FieldGroup modifiers={onRefresh ? [refreshable(onRefresh)] : undefined}>{children}</FieldGroup>;
 }

@@ -1,15 +1,14 @@
 import { Children, isValidElement, type ReactElement, type ReactNode } from 'react';
 import { Platform, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
-import MapScreen from '../../app/collection/[id]/map';
+import { MapScreen } from '../../app/collection/[id]/map';
 
+jest.mock('@/ui/CollectionTabStack', () => ({ CollectionTabHeader: () => null }));
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
   useMemo: (fn: () => unknown) => fn(),
   useRef: (value: unknown) => ({ current: value }),
-  useState: (value: unknown) => [
-    value === null ? { id: 'place', kind: 'location', title: 'Sample place', latitude: 35, longitude: 135 } : value,
-    jest.fn(),
-  ],
+  // The preview's point is selected by key.
+  useState: (value: unknown) => [value === null ? 'loc-place' : value, jest.fn()],
 }));
 jest.mock('@expo/ui', () => ({
   BottomSheet: 'BottomSheet',
@@ -27,6 +26,7 @@ jest.mock('@maplibre/maplibre-react-native', () => ({
 }));
 jest.mock('expo-router', () => ({ router: { push: jest.fn() } }));
 jest.mock('expo-router/react-navigation', () => ({ useHeaderHeight: () => 106 }));
+jest.mock('@/ui/topTabBar', () => ({ useTopTabBarInset: () => 0 }));
 jest.mock('react-native-safe-area-context', () => ({
   useSafeAreaInsets: () => ({ top: 62, bottom: 34, left: 0, right: 0 }),
 }));
@@ -36,7 +36,23 @@ jest.mock('@/data/CollectionContext', () => ({
     collectionId: 'sample',
   }),
 }));
-jest.mock('@/data/selectors', () => ({ mapData: () => ({ points: [], lines: [] }) }));
+jest.mock('@/data/selectors', () => ({
+  mapData: () => ({
+    points: [
+      {
+        key: 'loc-place',
+        id: 'place',
+        kind: 'location',
+        title: 'Sample place',
+        subtitle: null,
+        latitude: 35,
+        longitude: 135,
+        dates: [],
+      },
+    ],
+    lines: [],
+  }),
+}));
 jest.mock('@/data/useOnlineAction', () => ({ useOnline: () => true }));
 jest.mock('@/maps/regions', () => ({ MAP_STYLE: { light: 'light', dark: 'dark' } }));
 jest.mock('@/maps/useOfflineMaps', () => ({ useOfflineMaps: () => ({ regions: [] }) }));
@@ -50,9 +66,16 @@ jest.mock('@/ui/UserOnMap', () => ({
 }));
 jest.mock('@/ui/Text', () => ({ Text: 'Text' }));
 jest.mock('@/ui/Sub', () => ({ Sub: 'Sub' }));
-jest.mock('@/ui/entries', () => ({ leadingFor: jest.fn() }));
 jest.mock('@/ui/rows', () => ({ openInMaps: jest.fn(), RowIcon: 'Icon', useRowTheme: () => ({}) }));
 jest.mock('@/ui/SheetRow', () => ({ SheetRow: 'SheetRow' }));
+jest.mock('@/ui/PhotoListItem', () => ({
+  photoListItem: () => null,
+  photoGrid: (rows: unknown) => rows,
+  photoSection: (_section: unknown, rows: unknown) => rows,
+  usePhotoColumns: () => 1,
+}));
+jest.mock('@/ui/ActionSheet', () => ({ useActionSheet: () => ({ open: jest.fn(), sheet: null }) }));
+jest.mock('@/data/useCollectionEdits', () => ({ useCollectionEdits: () => ({ canEdit: true }) }));
 jest.mock('@/ui/theme', () => ({ useColors: () => ({ card: '#fff' }), useListColors: () => ({}) }));
 jest.mock('@/ui/useTabVisited', () => ({ useTabVisited: () => true }));
 
@@ -90,7 +113,8 @@ it('gives the place preview padded touch rows and space below the actions', () =
   if (!isValidElement<{ contentPadding: { bottom: number }; children: { props: { children: unknown[] } } }>(sheet))
     throw new Error('Missing preview');
   expect(sheet.props.contentPadding.bottom).toBeGreaterThanOrEqual(16);
-  const rows = sheet.props.children.props.children;
-  expect(rows).toHaveLength(2);
+  // The place, "Add to a day" (it is on no day yet) and "Open in Maps".
+  const rows = Children.toArray(sheet.props.children.props.children as ReactNode);
+  expect(rows).toHaveLength(3);
   expect(rows.every((row) => isValidElement(row) && row.type === 'SheetRow')).toBe(true);
 });

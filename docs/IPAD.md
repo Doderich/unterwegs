@@ -1,94 +1,64 @@
-# Unterwegs on iPad
+# Unterwegs on iPad and Mac
 
-Status: proposal. Nothing here is shipped. [DESIGN.md](../DESIGN.md) still describes the single column the phone uses. This document is the layout for a regular-width window. It does not move work ahead of the phone checks in [ROADMAP.md](ROADMAP.md).
+Status: in progress. The iPad target is on (`ios.supportsTablet`, the iPad rotates, version 1.6.0) and the day map is built (step 1); the rest is still to build. [DESIGN.md](../DESIGN.md) keeps describing the phone until this ships.
 
-The iPad is the same trip, with more of it visible at once. At the hotel desk the day stays on screen while the booking number is open. On the train the map stays up while a location is open. The website remains the place for planning at a desk. Reading, light edits, and offline use stay the app's job, with the same rules as on the phone: one collection request, times in their own zone, edits only online.
+## Who uses it, and when
 
-## Target
+The owner and the family, for planning and for reading. The same app also runs on the owner's MacBook as an iPad app (an Apple Silicon Mac runs the iPad build in a resizable window), so mouse, keyboard and a wide window count as much as touch. Usually there is internet (at home, at the hotel), but not always: the offline rules of the phone stay ([0007](adr/0007-offline-copy-on-the-device.md), [0016](adr/0016-offline-edits-through-an-outbox.md)).
 
-Add iPad to the existing iOS app (`ios.supportsTablet`). One TestFlight build covers iPhone and iPad. The iPhone stays portrait. The iPad rotates, and it joins Slide Over, Split View, and Stage Manager. A regular-width window of this same iPad app on an Apple Silicon Mac follows these rules too. That window is a way to look at the layout. It is not a Mac app, and SDK 58 cannot build one.
+Travelling is supposed to be exciting. Unterwegs on a big screen is a place to look forward to a trip and to look back on it, not only a planning tool. The four moments:
 
-The layout follows the window, not the device name. iOS 27 can already resize an iPhone app on an iPad, and a portrait lock is only a preference there. Targeting iPad is how that window gets this layout on purpose.
+| Moment              | Where                                     | What people want                                                                                    |
+| ------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| **Looking forward** | Couch, weeks before                       | See the trip come alive: the cover, the countdown, photos of the places on the list, where they are |
+| **Planning**        | Couch or Mac, before and during           | Put places on days so each day stays in one area; see where tonight's stay is                       |
+| **Tomorrow**        | Hotel, the evening before, often together | Go through the next day: where, in what order, how to get there, where to sleep                     |
+| **Looking back**    | After the trip, or the last evening       | Big photos, the map of where we were, the stamps, past collections                                  |
 
-| Window | What you see |
-| --- | --- |
-| Compact (iPhone, Slide Over, a narrow Split View) | The phone, unchanged: bottom tabs, a collection's own tabs, details pushed, the map preview as a sheet |
-| Regular, under 1000pt (iPad portrait, a smaller Stage Manager window) | Two columns |
-| Regular, 1000pt and wider (iPad landscape, a large window) | Three columns |
-| Largest text sizes (Riesig and the accessibility sizes) | Two columns at most, even in a wide window. Text growth wins over a third column |
+On the street the phone is the device. Quick lookups, QR sign-in, widgets and the Live Activity need no iPad version.
 
-Android tablets and the unfolded Flip 5 keep the centred 720pt column from `READABLE_WIDTH`. They are out of scope here.
+## Rules
 
-## Columns
+- **The phone's screens, wider.** Home, Collections, Places, World and a collection are the same screens as on the phone. iPadOS puts the tab bars at the top; screens that inset their content by the header add that bar (`src/ui/topTabBar.tsx`).
+- **No extra columns of detail.** A shell sidebar and a detail inspector beside the collection were tried on 08.11.2026 and dropped: they made the app feel like a tool and the trip disappear. A place opens as on the phone.
+- **Room goes to the map and the photos**, not to more rows.
+- **Everything new works on the phone too**, just smaller. The iPad gets more of it on screen, not a different app.
+- Android tablets and the unfolded Flip keep the centred readable column (`READABLE_WIDTH`).
 
-**Leading.** The shell destination you are in: Home, Trips, Places, or World, as in [HOME-NAVIGATION.md](HOME-NAVIGATION.md). About 320–380pt. The bottom tab bar hides, and those four destinations sit in this column's toolbar as the system sidebar or a segmented control, using the labels the phone already has.
+## Features
 
-**Middle.** The open collection: Heute, Tage, Karte, Unterkünfte, Notizen. Those sections are a control at the top of this column, in the same order as the phone's tabs. They never share a pane with the shell destinations, which is the same rule as the phone: the two bars are never on screen together. The "Stand" line stays at the top of this column. “+” and “…” stay on this column and follow the section, as they do today. Back from a resource returns to the collection section. Choosing another shell destination in the leading column leaves the collection, as Back does on the phone.
+### The day map
 
-**Inspector.** The selected location, lodging, transportation, note, or checklist. When nothing is selected, the pane names the collection and waits. It does not open a resource by itself.
+Built: `src/data/dayMap.ts` (tested), the collection map and its preview card. The map used to show one day only by hiding everything else; now it is the place where days are shaped.
 
-In a two-column window the leading column is the shell, and the other column is a stack: the collection, then the resource pushed inside that column, with its own back button. The middle and the inspector share one pane.
+- **Colour by day.** With "Whole collection", every place shows its day number in its day's colour; places on no day are grey. On a map any two days can sit side by side, and only about three hues stay apart for colour-blind readers there, so the number carries the day and the eight colours (the data-viz reference order, repeating from day nine) only help neighbouring days apart. Stays are neutral dark markers, so they never read as one of the days. A day that jumps across town, or a place far from the rest of its day, shows at a glance.
+- **One day and what is still open.** With a day selected, its places stand out, tonight's stay marks where the day starts and ends, and the open places stay visible but faded, so what is close and still free is easy to see.
+- **Moving from the map.** Tapping a place offers "Put on {day}" (an open place, with a day selected), "Move to another day" and "Remove from this day" (a place on that day), or "Add to a day"; the colour changes at once. Right-click on the Mac comes with step 3. It is an ordinary day-plan edit through the outbox, so it works offline ([0016](adr/0016-offline-edits-through-an-outbox.md)).
+- **Later: the order within a day.** Numbered stops and a line between them, reordering from the map, and a sensible order by distance. Which day a place is on comes first.
+- **Later: suggestions.** "These open places are close to Tuesday's plan."
 
-In a three-column window all three are visible. Selecting a row fills the inspector and leaves the day where it is.
+On the iPad and the Mac the map is big enough to plan on; on the phone the same colours and the same action fit the existing map screen.
 
-Compact width never shows a second column. The routes stay the ones the phone uses. A resource is a push in a compact window and in the detail stack of a two-column window, and an inspector in a three-column window.
+### Big pictures
 
-## Screens
+- **Looking forward:** the collection's places as a photo wall before the trip, so the cover is not the only picture of what is coming.
+- **Looking back:** a past collection opens with its photos large and the map of where we were. The photo grid of a day ("Photos of the day") and the full-screen gallery use the room instead of phone-sized thumbnails. Memories and passport stamps on Home and World get bigger cards.
+- Photos come from the offline copy where they are saved; a photo never downloaded keeps its placeholder offline.
 
-### Home and Trips
+### On the Mac
 
-Home keeps its feed: the featured collection, invites, today, upcoming, recent locations. Trips keeps the full list, including the archive. The two tabs stay separate.
+Right-click menus on rows and map points with the same actions as the phone's long press, hover states, and keyboard shortcuts for search (⌘F), new place (⌘N) and Back (⌘[). A resizable window follows the same rules as an iPad window.
 
-The signature hero is the phone's card (46% of the window, clamped to 320–560px). In a leading column it becomes a row: the cover thumbnail, the name, the countdown, and today's title. The existing shorter hero (`compact` on `CollectionHero`) is still a card sized off the window, so it is not the iPad row.
+## Open questions
 
-Selecting a collection opens it in the middle column. The featured collection on Home is selected when the window first becomes regular, so the middle column has the current or next trip. With no collection, the middle column shows the feed's empty state.
-
-### A collection
-
-Heute, Tage, Unterkünfte, and Notizen keep their rows, day strip, and sections. They scroll inside their column. The day strip stays one horizontal row.
-
-On Heute, the selected row and "Heute Nacht" can both be opened in the inspector. The programme does not repeat the night lodging, same as on the phone.
-
-Tage is the long list in the middle column. A day heading sticks only within that column.
-
-### Map
-
-The map fills the middle column. The day filter stays a floating bar on the map. The preview card leaves the bottom sheet and becomes the inspector whenever the inspector is showing. In a two-column window the preview stays a sheet over the map, because the second column is already the map. "In Karten öffnen" and "Offline-Karten" stay. The offline-map form is a sheet.
-
-### Inspector
-
-A location, lodging, or transportation uses the same blocks as the phone: gallery, name, then the arrival or the journey, then the rest. The gallery is sized from the inspector's width, between 4:3 and 16:10, and at most 280pt tall. It is not a third of the iPad window. Transportation keeps its low 2:1 strip. A resource with no photo keeps the teal icon beside the title.
-
-Notes and checklists use the same reading and ticking they use on the phone. The inspector scrolls on its own.
-
-The full-screen photo gallery and the system PDF viewer still cover the window. They are for looking, not for sitting beside the day.
-
-### Places and World
-
-Places: the list in the leading column, the location in the inspector (or pushed in the detail stack when there are only two columns). World: countries, regions, and cities in the leading column, the map and the visited marks in the other. Statistics stay a single scrolling column in the detail pane. No third column of stats.
-
-### Editing
-
-Create and edit forms, sharing, settings, search, and account screens are sheets on a regular-width window and full-screen pushes on a compact one. Search keeps its current scope: the whole library from the shell, the open collection from the collection column. Saving, deleting, and the online-only rule are unchanged. A sheet closes back to the column that opened it.
-
-Reordering a day accepts a drag on the regular-width list, with the same limits as the phone's up and down actions: itinerary items only, dated items stay put, and the move needs a connection. The up and down actions remain for the compact window and for VoiceOver.
-
-## What does not change
-
-Colours, type, the one teal accent, native grouped rows, and the photo treatments in [DESIGN.md](../DESIGN.md). Offline reading, per-object time zones, and PDFs. German, English, and Japanese. The collection is still one request. Public collections stay read-only. Large text, bold text, more contrast, reduced motion, and VoiceOver apply to every column. The reading order is leading, then middle, then inspector.
-
-## How it is built
-
-`expo-router`'s `SplitView` (`expo-router/unstable-split-view`) is the wrong shell for this. In SDK 58 it has to be the root navigator, it cannot be nested, and its column headers cannot be customised. This app already has a root stack and two tab navigators. The columns belong inside the shell and the collection, using the existing routes. `@expo/ui`'s `NavigationSplitView` is a fit for a screen that owns its own columns. One split in the window, not a split inside a split.
-
-The phone's portrait lock stays. The iPad allows every orientation and multitasking, so the app does not set `ios.requireFullScreen`. On iOS 27 that flag does not keep a window from resizing anyway.
+- How the photo wall and the look-back view are reached: from the collection's header, from Home's memory card, or as their own section.
+- Whether the day colours need a separate high-contrast set (the numbers already carry the day).
+- Whether the Mac window needs anything the iPad doesn't, beyond menus, hover and shortcuts.
 
 ## Order of work
 
-1. **Look first.** Turn on the iPad target, let the iPad rotate, and run the current UI on an iPad simulator in portrait, landscape, and a half-width Split View. Record what breaks: the hero, the second tab bar, the gallery height, the map sheet, sheets that assume a phone. Change nothing else in this step.
-2. **Two columns** for a regular window under 1000pt. Compact stays the phone. The collection's sections move to the top of the detail column.
-3. **Three columns** from 1000pt, with the inspector, and the map preview moving into it. Drop back to two columns at Riesig.
-4. **Sheets** for editors, search, and settings. Drag to reorder a day.
-5. **Check** on an 11-inch and a 13-inch iPad: portrait, landscape, Slide Over, half and full Split View, Stage Manager, light and dark, more contrast, bold text, Riesig, VoiceOver, reduced motion, offline, a photo that never downloaded, and a Japanese screen. A regular-width Mac window of the iPad app is part of the look, not a separate project.
-
-After this ships, the implemented rules fold into [DESIGN.md](../DESIGN.md). Until then that file keeps describing the phone.
+1. **The day map**: colour by day, one day with the open places and tonight's stay, putting and moving places from the map. Useful on the phone at once.
+2. **Big pictures** for looking forward and looking back.
+3. **Mac comforts**: menus, hover, shortcuts.
+4. **Order within a day** on the map, then suggestions.
+5. **Check** on an 11-inch and a 13-inch iPad and on the Mac: portrait, landscape, Slide Over, Split View, light and dark, more contrast, bold text, Riesig, VoiceOver, offline, a photo that never downloaded, and a Japanese screen.

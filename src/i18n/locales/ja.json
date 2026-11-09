@@ -151,6 +151,16 @@
     "onRoad": "今まさに移動中",
     "todayName": "今日:{name}"
   },
+  "collectionSearch": {
+    "add": "追加",
+    "connections": "移動",
+    "library": "まだこのコレクションにありません",
+    "notes": "メモとリスト",
+    "nothingFound": "見つかりませんでした。",
+    "places": "場所",
+    "stays": "宿泊",
+    "suggestions": "すぐに見つける"
+  },
   "collectionShare": {
     "anyoneWithLinkCanSee": "リンクを知っている人は、アカウントがなくてもウェブサイトでこのコレクションを見られます。",
     "invitationSent": "招待を送信しました",
@@ -640,7 +650,10 @@
     "locationUnavailable": "現在地を取得できません。",
     "showMyLocation": "現在地を表示",
     "points_other": "{count}か所",
-    "wholeTrip": "コレクション全体"
+    "wholeTrip": "コレクション全体",
+    "putOnDay": "{day}に追加",
+    "onNoDay": "まだどの日にもありません",
+    "lastNight": "昨夜"
   },
   "mapLinks": {
     "chooseAnotherApp": "設定 → マップで別のアプリを選ぶか、選択したアプリをインストールしてください。",
@@ -806,7 +819,8 @@
     "results_other": "{count}件の結果",
     "thisCollection": "このコレクションを検索",
     "back": "戻る",
-    "clear": "検索をクリア"
+    "clear": "検索をクリア",
+    "collectionHint": "このコレクションの場所、宿泊、移動、メモを検索します。"
   },
   "serverLogin": {
     "isntAdventurelogServer": "AdventureLogサーバーではありません。",

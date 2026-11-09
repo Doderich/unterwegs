@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import type { Country } from '@/api/schemas';
 import { flagEmoji } from '@/data/world';
@@ -8,6 +8,7 @@ import { tr } from '@/i18n';
 import { ScaledText } from './ScaledText';
 import { useColors } from './theme';
 import { typeScale } from './typeScale';
+import { TapPressable } from './TapPressable';
 
 /** Stamps have a fixed size, so their text grows at most this much. */
 const MAX_SCALE = 1.4;
@@ -35,7 +36,7 @@ export function PassportStamps({
   return (
     <View style={[styles.page, { width, backgroundColor: colors.wash }]}>
       {countries.map((c) => (
-        <Pressable
+        <TapPressable
           key={c.country_code}
           accessibilityRole="button"
           accessibilityLabel={`${c.displayName}, ${tr('common.nOfTotalRegions', { n: c.num_visits, total: c.num_regions })}`}
@@ -60,7 +61,7 @@ export function PassportStamps({
             style={{ ...typeScale.label, color: colors.text, fontVariant: ['tabular-nums'] }}>
             {`${c.num_visits}/${c.num_regions}`}
           </ScaledText>
-        </Pressable>
+        </TapPressable>
       ))}
     </View>
   );

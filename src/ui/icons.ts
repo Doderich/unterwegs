@@ -33,6 +33,7 @@ const defs = {
   file: ['doc', require('@expo/material-symbols/description.xml')],
   attachment: ['paperclip', require('@expo/material-symbols/attach_file.xml')],
   chevron: ['chevron.right', require('@expo/material-symbols/chevron_right.xml')],
+  back: ['chevron.left', require('@expo/material-symbols/arrow_back.xml')],
   time: ['clock', require('@expo/material-symbols/schedule.xml')],
   key: ['key', require('@expo/material-symbols/key.xml')],
   price: ['eurosign', require('@expo/material-symbols/payments.xml')],

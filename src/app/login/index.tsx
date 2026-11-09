@@ -20,6 +20,7 @@ import { RowIcon } from '@/ui/rows';
 import { useColors, useListColors } from '@/ui/theme';
 import { Text } from '@/ui/Text';
 import { TextInput } from '@/ui/TextInput';
+import { WideButton } from '@/ui/WideButton';
 
 const DEMO_SERVER_URL = 'https://demo.adventurelog.app';
 
@@ -224,7 +225,7 @@ export default function LoginScreen() {
               keyboardType="url"
               returnKeyType="go"
             />
-            <Button label={tr('login.continue')} disabled={!filled.server} onPress={commitServer} />
+            <WideButton label={tr('login.continue')} disabled={!filled.server} onPress={commitServer} />
             <FieldGroup.SectionFooter>
               <Text textStyle={{ ...typeScale.label, color: serverError ? colors.danger : colors.secondary }}>
                 {serverError === 'insecure'
@@ -367,7 +368,7 @@ export default function LoginScreen() {
                 />,
               ]
             )}
-            <Button
+            <WideButton
               label={busy === 'password' ? tr('login.signingIn') : mfa ? tr('login.confirm') : tr('common.signIn')}
               disabled={!!busy || (mfa ? !filled.code : !filled.username || !filled.password)}
               onPress={() => void submitPassword()}
@@ -412,7 +413,7 @@ export default function LoginScreen() {
                 secureTextEntry
                 onSubmitEditing={() => void submitKey()}
               />
-              <Button
+              <WideButton
                 label={busy === 'key' ? tr('login.checking') : tr('common.signIn')}
                 disabled={!!busy || !filled.apiKey}
                 onPress={() => void submitKey()}

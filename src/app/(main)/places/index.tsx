@@ -8,22 +8,24 @@ import { CardRow } from '@/ui/CardRow';
 import { LoadingRows } from '@/ui/LoadingRows';
 import { useScreenSearch } from '@/ui/ScreenSearch';
 import { MainToolbar } from '@/ui/MainToolbar';
+import { useHeaderSearch } from '@/ui/HeaderSearch';
 
 import { useLocations } from '@/data/useLocation';
 import { tr } from '@/i18n';
-import { leadingFor } from '@/ui/entries';
 import { Host } from '@/ui/Host';
 import { RefreshableFieldGroup } from '@/ui/RefreshableFieldGroup';
 import { RowIcon, useRowTheme } from '@/ui/rows';
-import { Sub } from '@/ui/Sub';
 import { Text } from '@/ui/Text';
 import { useSelect } from '@/ui/Select';
+import { photoListItem, usePhotoColumns, photoSection } from '@/ui/PhotoListItem';
 
 export default function PlacesScreen() {
+  const photoColumns = usePhotoColumns();
   const locations = useLocations();
   const search = useScreenSearch();
   const rt = useRowTheme();
   const [query, setQuery] = useState('');
+  const ipadSearch = useHeaderSearch({ placeholder: tr('places.search'), onChange: setQuery });
   const [filter, setFilter] = useState('all');
   const select = useSelect(rt, {
     title: tr('places.filter'),
@@ -51,8 +53,12 @@ export default function PlacesScreen() {
   return (
     <>
       <Stack.Screen options={{ title: tr('shell.places') }} />
-      {Platform.OS === 'ios' ? <MainToolbar tab="places" /> : null}
       {Platform.OS === 'ios' ? (
+        <MainToolbar tab="places" search={Platform.isPad ? ipadSearch.button : undefined} />
+      ) : null}
+      {/* iPad: a magnifier apart from + and settings that opens the field in the header (useHeaderSearch). */}
+      {Platform.OS === 'ios' && Platform.isPad ? ipadSearch.bar : null}
+      {Platform.OS === 'ios' && !Platform.isPad ? (
         <Stack.SearchBar
           ref={search}
           placement="automatic"
@@ -86,34 +92,35 @@ export default function PlacesScreen() {
               {tr('places.showMap')}
             </ListItem>
           </FieldGroup.Section>
-          <FieldGroup.Section>
-            {places.map((place) => (
-              <ListItem
-                key={place.id}
-                colors={rt.listColors}
-                leading={leadingFor(place.images, <RowIcon name="location" />)}
-                supportingText={
-                  <Sub>
-                    {[place.location, !place.collections?.length ? tr('places.standalone') : null]
-                      .filter(Boolean)
-                      .join(' · ')}
-                  </Sub>
-                }
-                onPress={() => router.push({ pathname: '/place/[id]', params: { id: place.id } })}>
-                {place.name}
-              </ListItem>
-            ))}
-            {!places.length && loading ? <LoadingRows /> : null}
-            {!places.length && !loading ? (
-              <Text textStyle={{ color: rt.colors.secondary }}>
-                {locations.fetchStatus === 'paused' && !locations.data
-                  ? tr('common.offlineNoData')
-                  : locations.isError
-                    ? tr('places.loadFailed')
-                    : tr('places.empty')}
-              </Text>
-            ) : null}
-          </FieldGroup.Section>
+          {photoSection(
+            { key: 'photos-7' },
+            <>
+              {places.map((place) =>
+                photoListItem({
+                  key: place.id,
+                  colors: rt.listColors,
+                  images: place.images,
+                  icon: <RowIcon name="location" />,
+                  title: place.name,
+                  subtitle: [place.location, !place.collections?.length ? tr('places.standalone') : null]
+                    .filter(Boolean)
+                    .join(' · '),
+                  onPress: () => router.push({ pathname: '/place/[id]', params: { id: place.id } }),
+                }),
+              )}
+              {!places.length && loading ? <LoadingRows /> : null}
+              {!places.length && !loading ? (
+                <Text textStyle={{ color: rt.colors.secondary }}>
+                  {locations.fetchStatus === 'paused' && !locations.data
+                    ? tr('common.offlineNoData')
+                    : locations.isError
+                      ? tr('places.loadFailed')
+                      : tr('places.empty')}
+                </Text>
+              ) : null}
+            </>,
+            photoColumns,
+          )}
         </RefreshableFieldGroup>
       </Host>
       {select.sheet}

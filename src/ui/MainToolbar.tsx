@@ -1,10 +1,12 @@
 import { router, Stack } from 'expo-router';
+import type { ReactNode } from 'react';
 import { Platform } from 'react-native';
 import { useOnline } from '@/data/useOnlineAction';
 import { tr } from '@/i18n';
 import { toolbarIcon } from '@/ui/icons';
 
-export function MainToolbar({ tab }: { tab: string }) {
+/** `search`: the iPad header search button (useHeaderSearch), last so it sits apart at the trailing edge. */
+export function MainToolbar({ tab, search }: { tab: string; search?: ReactNode }) {
   const online = useOnline();
   return (
     <Stack.Toolbar placement="right">
@@ -48,6 +50,7 @@ export function MainToolbar({ tab }: { tab: string }) {
         accessibilityLabel={tr('common.settings')}
         onPress={() => router.push('/settings')}
       />
+      {search}
     </Stack.Toolbar>
   );
 }

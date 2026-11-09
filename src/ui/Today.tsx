@@ -30,6 +30,7 @@ import { TabBarSpacer } from './TabBarSpacer';
 import { useReduceMotion } from './theme';
 import { Text } from './Text';
 import { typeScale } from './typeScale';
+import { usePhotoColumns, photoSection } from './PhotoListItem';
 
 /**
  * Today (docs/DESIGN-PLAN.md §4): the strip of days above the pager, then per day the programme, tonight's
@@ -94,6 +95,7 @@ function DayPage({
   today: string;
   onSelectDay: (index: number) => void;
 }) {
+  const photoColumns = usePhotoColumns();
   const rt = useRowTheme();
   const network = useNetworkState();
   const offline = !isConnected(network);
@@ -158,27 +160,31 @@ function DayPage({
             {daySelect.row}
           </FieldGroup.Section>
 
-          <FieldGroup.Section title={tr('common.schedule')}>
-            {entries.length > 0 ? (
-              entries.map((entry) => entryRow(rt, entry, view, day.date))
-            ) : (
-              <Text textStyle={{ color: rt.colors.secondary }}>{tr('common.nothingPlanned')}</Text>
-            )}
-            {/* Editing the day works offline too (ADR 0016); only members of the collection can. */}
-            {isMember(view.collection) ? (
-              <ListItem
-                colors={rt.listColors}
-                leading={<RowIcon name="edit" />}
-                onPress={() =>
-                  router.push({
-                    pathname: '/day-edit/[collectionId]/[date]',
-                    params: { collectionId: view.collection.id, date: day.date },
-                  })
-                }>
-                {tr('common.editDay')}
-              </ListItem>
-            ) : null}
-          </FieldGroup.Section>
+          {photoSection(
+            { key: 'photos-11', title: tr('common.schedule') },
+            <>
+              {entries.length > 0 ? (
+                entries.map((entry) => entryRow(rt, entry, view, day.date))
+              ) : (
+                <Text textStyle={{ color: rt.colors.secondary }}>{tr('common.nothingPlanned')}</Text>
+              )}
+              {/* Editing the day works offline too (ADR 0016); only members of the collection can. */}
+              {isMember(view.collection) ? (
+                <ListItem
+                  colors={rt.listColors}
+                  leading={<RowIcon name="edit" />}
+                  onPress={() =>
+                    router.push({
+                      pathname: '/day-edit/[collectionId]/[date]',
+                      params: { collectionId: view.collection.id, date: day.date },
+                    })
+                  }>
+                  {tr('common.editDay')}
+                </ListItem>
+              ) : null}
+            </>,
+            photoColumns,
+          )}
 
           <FieldGroup.Section title={tr('today.tonight')}>{nightRow(rt, view, day, night)}</FieldGroup.Section>
 

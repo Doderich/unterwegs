@@ -153,6 +153,16 @@
     "onRoad": "Jetzt unterwegs",
     "todayName": "Heute: {name}"
   },
+  "collectionSearch": {
+    "add": "Hinzufügen",
+    "connections": "Verbindungen",
+    "library": "Noch nicht in dieser Sammlung",
+    "notes": "Notizen und Listen",
+    "nothingFound": "Nichts gefunden.",
+    "places": "Orte",
+    "stays": "Unterkünfte",
+    "suggestions": "Schnell finden"
+  },
   "collectionShare": {
     "anyoneWithLinkCanSee": "Jeder mit dem Link sieht die Sammlung auf der Website, auch ohne Konto.",
     "invitationSent": "Einladung gesendet",
@@ -658,7 +668,10 @@
     "showMyLocation": "Meinen Standort zeigen",
     "points_one": "{count} Punkt",
     "points_other": "{count} Punkte",
-    "wholeTrip": "Ganze Sammlung"
+    "wholeTrip": "Ganze Sammlung",
+    "putOnDay": "Auf {day} legen",
+    "onNoDay": "Noch an keinem Tag",
+    "lastNight": "Letzte Nacht"
   },
   "mapLinks": {
     "chooseAnotherApp": "Wähle unter Einstellungen → Karten eine andere App oder installiere die gewählte App.",
@@ -828,7 +841,8 @@
     "results_other": "{count} Treffer",
     "thisCollection": "In dieser Sammlung suchen",
     "back": "Zurück",
-    "clear": "Suche leeren"
+    "clear": "Suche leeren",
+    "collectionHint": "Orte, Unterkünfte, Verbindungen und Notizen dieser Sammlung finden."
   },
   "serverLogin": {
     "isntAdventurelogServer": "Das ist kein AdventureLog-Server.",

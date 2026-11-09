@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import type { CollectionSummary, Image } from '@/api/schemas';
 import { firstImage } from '@/data/images';
@@ -10,6 +10,7 @@ import { formatDateRange, timeAgo } from './format';
 import { ScaledText } from './ScaledText';
 import { useColors } from './theme';
 import { typeScale } from './typeScale';
+import { TapPressable } from './TapPressable';
 
 /** Cards hold a photo of fixed size, so their text grows at most this much (Fixed-Box Cap Rule). */
 const MAX_SCALE = 1.4;
@@ -44,7 +45,7 @@ export function MemoryCard({
   const image = cover(collection);
   const ago = caption ?? (collection.end_date ? timeAgo(collection.end_date, today) : null);
   return (
-    <Pressable
+    <TapPressable
       accessibilityRole="button"
       accessibilityLabel={[collection.name, ago, formatDateRange(collection.start_date, collection.end_date)]
         .filter(Boolean)
@@ -67,7 +68,7 @@ export function MemoryCard({
           {collection.name}
         </ScaledText>
       </View>
-    </Pressable>
+    </TapPressable>
   );
 }
 
@@ -138,14 +139,14 @@ export function DayPhotoStrip({ photos, width }: { photos: DayPhoto[]; width?: n
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={styles.strip}>
       {photos.map((p) => (
-        <Pressable
+        <TapPressable
           key={p.key}
           accessibilityRole="imagebutton"
           accessibilityLabel={p.label}
           onPress={p.onPress}
           style={({ pressed }) => [styles.photo, { backgroundColor: colors.border }, pressed && styles.pressed]}>
           <AuthImage url={p.url} style={StyleSheet.absoluteFill} />
-        </Pressable>
+        </TapPressable>
       ))}
     </ScrollView>
   );
