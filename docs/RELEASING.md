@@ -18,6 +18,10 @@ Built locally on **04.11.2026** at `b087a1c` (application fix `7a11939`) with `n
 
 The signed APK, checksum and matching R8/JavaScript maps are retained under `build/android/`. The existing signed APK was published as the latest GitHub release on **04.11.2026**, after pushing its commits and rechecking its checksum and certificate; Obtainium can offer it as an update. Corrected-APK launch verification remains pending. This is an Android replacement only; no new iOS archive was built.
 
+## Release in progress: 1.6.1
+
+The permission-localization changes after the first 1.6.0 archive add native iOS resources (`assets/locales/` and Expo config). Release them with runtime **1.6.1** and new Android/iOS binaries, as required by the native-change rule. Earlier 1.6.0 builds do not receive 1.6.1 OTA updates. This release also includes the merged travel utilities, native account screens and everyday-screen simplification. Public builds have no server preset.
+
 ## Current release
 
 Release record, **09.11.2026** (runtime **1.6.0**), iOS only:
