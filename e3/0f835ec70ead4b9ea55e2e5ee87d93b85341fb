@@ -1,0 +1,43 @@
+docs/FEATURES.md
+  s_c33c048724ce72::t_b6338e7dd716b9 28-30
+src/i18n/locales/en.json
+  s_c33c048724ce72::t_068d9a6053d870 27,63-113
+  s_c33c048724ce72::t_0d00df0890c2d7 114
+src/app/account/index.tsx
+  s_c33c048724ce72::t_068d9a6053d870 60-61,174-201
+src/i18n/locales/ja.json
+  s_c33c048724ce72::t_068d9a6053d870 27,62-111
+  s_c33c048724ce72::t_183bee13c6f5ac 112
+src/i18n/locales/de.json
+  s_c33c048724ce72::t_068d9a6053d870 27,63-113
+  s_c33c048724ce72::t_bba6f97672a09c 114
+src/auth/accountSecurity.ts
+  s_c33c048724ce72::t_8d3a7088d40087 1-242
+src/app/account/security.tsx
+  s_c33c048724ce72::t_827cbea38548bf 1-3,5-450,452-496
+  s_c33c048724ce72::t_3eb6adc4b7b74a 4,451
+docs/ROADMAP.md
+  s_c33c048724ce72::t_b6338e7dd716b9 40
+docs/SERVER.md
+  s_c33c048724ce72::t_b6338e7dd716b9 56-58
+src/app/_layout.tsx
+  s_c33c048724ce72::t_068d9a6053d870 137
+src/auth/__tests__/accountSecurity.test.ts
+  s_c33c048724ce72::t_21b614d25730a0 1-137
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e30f835ec70ead4b9ea55e2e5ee87d93b85341fb",
+  "prompts": {},
+  "sessions": {
+    "s_c33c048724ce72": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "91fea1de-0f1e-4bf4-9af1-a6cd58c9f12d",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
