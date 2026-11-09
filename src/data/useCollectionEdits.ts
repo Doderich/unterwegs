@@ -20,6 +20,9 @@ import { useClient } from '@/auth/session';
 import { tr } from '@/i18n';
 import { haptics } from '@/settings/haptics';
 import { celebrate } from '@/ui/celebrate';
+import { shrinkImageFile } from '@/ui/media';
+
+import { importWebImage } from './webImageImport';
 import { todayIn } from '@/time/today';
 
 import { moveWithinDay, tempId, withImage, withLocationObject, withLodging, type OrderUpdate } from './edits';
@@ -43,7 +46,7 @@ import { isMember, locationZone, type DayEntry, type Day, type CollectionView } 
 import { readsAffectedBy } from './affected';
 
 /** Edits that only make sense with the server at hand: they look something up or let the server compute. */
-const ONLINE_ONLY = new Set(['quickAdd', 'importImages', 'autoGenerateItinerary']);
+const ONLINE_ONLY = new Set(['quickAdd', 'importImage', 'autoGenerateItinerary']);
 
 /**
  * Every edit of one collection's content, through one interface. Most go through the outbox (ADR 0016): saved on
@@ -344,11 +347,14 @@ export function useCollectionEdits(view: CollectionView | null) {
       /** Fills the empty day plan from dates on the server; the refetch brings the new items. */
       autoGenerateItinerary: () => run(null, () => client.edit.autoGenerateItinerary(collectionId)),
 
-      /** Images from public URLs (Wikipedia, a typed address), downloaded by the server. */
-      importImages: (kind: MediaOwnerKind, objectId: string, urls: string[], source: 'wikipedia' | 'url') =>
+      /**
+       * An image from a public address (Wikipedia, a typed link), downloaded by the server, or by the phone when the
+       * server can't (`webImageImport.ts`).
+       */
+      importImage: (kind: MediaOwnerKind, objectId: string, url: string, source: 'wikipedia' | 'url') =>
         run(
           null,
-          () => client.edit.importImages(kind, objectId, urls, source),
+          () => importWebImage(client, kind, objectId, url, source, { prepare: shrinkImageFile }),
           (t, result) => result.created.reduce((acc, image) => withImage(acc, objectId, image), t),
         ),
       setPrimaryImage: (imageId: string) => queue({ type: 'setPrimaryImage', collectionId, imageId }, true),

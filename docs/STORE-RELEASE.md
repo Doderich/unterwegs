@@ -122,5 +122,8 @@ Checked and fine: the key lives only in SecureStore and never in the persisted c
 
 - [ ] Real-phone pass from [ROADMAP.md → Next](ROADMAP.md#next) step 1 on the store binaries: clean-install cold start, offline restart, PDFs/photos, offline maps, sharing into the app, QR sign-in, large text, VoiceOver/TalkBack.
 - [ ] A fresh install by someone outside the family, with no server preset and another AdventureLog setup: onboarding works without explanation.
-- [ ] Hide or fix what fails on other servers: Wikipedia photo import (400/500), Overpass timeouts, leaving a shared collection (403).
+- [ ] Hide or fix what fails on other servers. App side done; check on a phone:
+  - Photo import (Wikipedia, typed link, link preview): when the server answers 400, the phone downloads the public image itself (with a `User-Agent`, never the key) and uploads it like a picked photo (`src/data/webImageImport.ts`).
+  - Nearby: a failed search can be tried again with a tap, and a failed or empty one offers the same search in the maps app (`mapSearchUrl`).
+  - Leaving a shared collection: still 403 on v0.13.1 and upstream `main` (`CollectionShared` lets collaborators only read a collection, and `leave` is a POST). The app now says to ask the owner to remove you. Needs a server fix; report it upstream.
 - [ ] `npm run check` green, including the privacy test.

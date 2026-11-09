@@ -122,7 +122,7 @@ export function useMediaUploads(
     sheet.open(tr('media.addPhoto'), [
       { label: tr('media.takePhoto'), icon: 'camera', onPress: () => void fromCamera() },
       { label: tr('media.fromLibrary'), icon: 'library', onPress: () => void fromLibrary() },
-      ...(edits.can('importImages') ? [webImage()] : []),
+      ...(edits.can('importImage') ? [webImage()] : []),
     ]);
 
   const webImage = () => ({

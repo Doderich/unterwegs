@@ -11,15 +11,17 @@ import { useClient } from '@/auth/session';
 import { useCollectionView } from '@/data/queries';
 import { useCollectionEdits } from '@/data/useCollectionEdits';
 import { useLocationAction } from '@/data/useLocation';
+import { importWebImage } from '@/data/webImageImport';
 import { getLanguage, tr } from '@/i18n';
 import { wikimediaThumb } from '@/ui/format';
+import { shrinkImageFile } from '@/ui/media';
 import { RowIcon, useRowTheme } from '@/ui/rows';
 import { Host } from '@/ui/Host';
 import { TextInput } from '@/ui/TextInput';
 
 /**
  * Add a photo from the web to a location, lodging or transportation: Wikipedia images found by the object's name,
- * or any public image address. The server downloads the image. Online only.
+ * or any public image address. The server downloads the image, or the phone when the server can't. Online only.
  */
 export default function WebImageScreen() {
   const { collectionId, kind, objectId, name, library } = useLocalSearchParams<{
@@ -39,7 +41,7 @@ export default function WebImageScreen() {
   const { width } = useWindowDimensions();
   const [url, setUrl] = useState('');
   const [adding, setAdding] = useState<string | null>(null);
-  const canImport = standalone ? placeWrite.online : edits.can('importImages');
+  const canImport = standalone ? placeWrite.online : edits.can('importImage');
 
   const wiki = useQuery({
     queryKey: ['wikipedia-images', name, getLanguage()],
@@ -53,8 +55,10 @@ export default function WebImageScreen() {
     if (adding || !address) return;
     setAdding(address);
     const result = standalone
-      ? await placeWrite.run(() => client.edit.importImages(kind, objectId, [address], source))
-      : await edits.importImages(kind, objectId, [address], source);
+      ? await placeWrite.run(() =>
+          importWebImage(client, kind, objectId, address, source, { prepare: shrinkImageFile }),
+        )
+      : await edits.importImage(kind, objectId, address, source);
     setAdding(null);
     if (result) router.back();
   };

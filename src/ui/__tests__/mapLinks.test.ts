@@ -1,7 +1,7 @@
 import { Alert, Linking, Platform } from 'react-native';
 
 import { getSettings, settingsSchema, updateSettings, type MapApp } from '@/settings/store';
-import { mapUrl, openInMaps } from '../mapLinks';
+import { mapSearchUrl, mapUrl, openInMaps } from '../mapLinks';
 
 jest.mock('expo-sqlite/kv-store', () => ({ Storage: { getItemSync: jest.fn(), setItemSync: jest.fn() } }));
 
@@ -64,4 +64,18 @@ it('reports when OsmAnd on iOS needs coordinates instead of sending the user to 
 it('migrates existing settings and falls back safely from unknown providers', () => {
   expect(settingsSchema.parse({ boldText: true })).toMatchObject({ boldText: true, mapApp: 'system' });
   expect(settingsSchema.parse({ mapApp: 'unknown' }).mapApp).toBe('system');
+});
+
+it('searches around the point in each maps app when the server finds nothing', () => {
+  const at = [35.0116, 135.7681] as const;
+  expect(mapSearchUrl('apple', 'ios', 'Restaurants', ...at)).toBe(
+    'https://maps.apple.com/?q=Restaurants&sll=35.0116,135.7681',
+  );
+  expect(mapSearchUrl('system', 'android', 'Restaurants', ...at)).toBe('geo:35.0116,135.7681?q=Restaurants');
+  expect(mapSearchUrl('google', 'ios', 'Food & drink', ...at)).toBe(
+    'https://www.google.com/maps/search/Food%20%26%20drink/@35.0116,135.7681,15z',
+  );
+  expect(mapSearchUrl('organic', 'android', 'Sights', ...at)).toBe('om://search?query=Sights&cll=35.0116,135.7681');
+  // OsmAnd has no search link: the system app takes over.
+  expect(mapSearchUrl('osmand', 'ios', 'Sights', ...at)).toBe('https://maps.apple.com/?q=Sights&sll=35.0116,135.7681');
 });

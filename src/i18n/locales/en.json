@@ -199,6 +199,7 @@
     "itineraryAsPdf": "Itinerary as PDF",
     "leave": "Leave",
     "leaveNameConfirm": "Leave “{name}”?",
+    "leaveRefused": "This AdventureLog server doesn't let you leave a shared collection yourself yet. Ask the person who owns it to remove you. It then disappears from this device.",
     "leaveTrip": "Leave collection",
     "lodgingTransportationNotesChecklistsDay": "Lodging, transportation, notes, checklists and the day plan are copied. The places then belong to both collections: changes to a place show in both. The copy is private and not shared.",
     "restoreFromArchive": "Restore from archive",
@@ -790,7 +791,12 @@
     "searchingCanTakeUpMinute": "Searching… (can take up to a minute)",
     "serverCantFindPlacesRight": "The server can’t find places right now (OpenStreetMap unreachable or too slow). Try again later.",
     "sights": "Sights",
-    "within5Km": "Within 5 km"
+    "within5Km": "Within 5 km",
+    "searchInMaps": "Search in the maps app",
+    "tapToTryAgain": "Tap to try again",
+    "mapQueryFood": "Restaurants",
+    "mapQueryLodging": "Hotels",
+    "mapQueryTourism": "Sights"
   },
   "note": {
     "checklist": "Checklist",

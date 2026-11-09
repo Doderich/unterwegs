@@ -17,10 +17,11 @@ export function useCollectionsActions() {
 
   return useMemo(() => {
     /** Refreshes the collection lists (and the collection) afterwards, success or not. */
-    const run = <R>(request: () => Promise<R>, collectionId?: string) =>
+    const run = <R>(request: () => Promise<R>, collectionId?: string, forbidden?: string) =>
       write({
         request,
         refetch: readsAffectedBy('collections', ...(collectionId ? [{ collection: collectionId }] : [])),
+        forbidden,
       });
     /** `send` resolves to null on success; turn that into `true` so callers can tell success from failure. */
     const ok = (p: Promise<unknown>) => p.then(() => true as const);
@@ -30,7 +31,12 @@ export function useCollectionsActions() {
       createCollection: (input: CollectionInput) => run(() => client.edit.createCollection(input)),
       acceptInvite: (collectionId: string) => run(() => ok(client.edit.acceptInvite(collectionId)), collectionId),
       declineInvite: (collectionId: string) => run(() => ok(client.edit.declineInvite(collectionId))),
-      leave: (collectionId: string) => run(() => ok(client.edit.leaveCollection(collectionId))),
+      /**
+       * AdventureLog up to at least v0.13.1 refuses this with 403 (`CollectionShared` lets collaborators only read a
+       * collection, and `leave` is a POST), so the refusal says what to do instead.
+       */
+      leave: (collectionId: string) =>
+        run(() => ok(client.edit.leaveCollection(collectionId)), undefined, tr('collection.leaveRefused')),
       share: (collectionId: string, userUuid: string) =>
         run(() => ok(client.edit.shareCollection(collectionId, userUuid)), collectionId),
       unshare: (collectionId: string, userUuid: string) =>

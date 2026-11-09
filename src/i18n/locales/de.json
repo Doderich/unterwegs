@@ -199,6 +199,7 @@
     "itineraryAsPdf": "Tagesplan als PDF",
     "leave": "Verlassen",
     "leaveNameConfirm": "„{name}“ verlassen?",
+    "leaveRefused": "Dieser AdventureLog-Server lässt dich eine geteilte Sammlung noch nicht selbst verlassen. Bitte die Person, der sie gehört, dich zu entfernen. Danach verschwindet sie von diesem Gerät.",
     "leaveTrip": "Sammlung verlassen",
     "lodgingTransportationNotesChecklistsDay": "Unterkünfte, Verbindungen, Notizen, Checklisten und der Tagesplan werden kopiert. Die Orte gehören dann zu beiden Sammlungen: Änderungen an einem Ort sieht man in beiden. Die Kopie ist privat und nicht geteilt.",
     "restoreFromArchive": "Aus dem Archiv holen",
@@ -790,7 +791,12 @@
     "searchingCanTakeUpMinute": "Wird gesucht… (kann bis zu einer Minute dauern)",
     "serverCantFindPlacesRight": "Der Server findet gerade keine Orte (OpenStreetMap nicht erreichbar oder zu langsam). Später noch einmal versuchen.",
     "sights": "Sehenswertes",
-    "within5Km": "Im Umkreis von 5 km"
+    "within5Km": "Im Umkreis von 5 km",
+    "searchInMaps": "In der Karten-App suchen",
+    "tapToTryAgain": "Zum erneuten Versuchen tippen",
+    "mapQueryFood": "Restaurants",
+    "mapQueryLodging": "Hotels",
+    "mapQueryTourism": "Sehenswürdigkeiten"
   },
   "note": {
     "checklist": "Checkliste",
