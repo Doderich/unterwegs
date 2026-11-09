@@ -133,6 +133,7 @@ function RootStack() {
         <Stack.Screen name="account/index" options={{ title: tr('common.manageAccount') }} />
         <Stack.Screen name="account/keys" options={{ title: tr('common.apiKeys') }} />
         <Stack.Screen name="account/delete" options={{ title: tr('common.deleteAccount') }} />
+        <Stack.Screen name="account/restore" options={{ title: tr('accountRestore.title') }} />
         <Stack.Screen name="offline-maps/[collectionId]" options={{ title: tr('common.offlineMaps') }} />
         <Stack.Screen name="world/map" options={{ title: tr('app.allLocations') }} />
         <Stack.Screen name="world/countries" options={{ title: tr('common.countries') }} />

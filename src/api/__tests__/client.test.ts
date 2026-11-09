@@ -379,6 +379,25 @@ describe('media writes', () => {
     expect(calls[0].request).toMatchObject({ fieldName: 'file', file: zip, fields: {} });
   });
 
+  it('restores an account backup with the explicit confirmation the server requires', async () => {
+    const { client, calls } = captureUpload(200, {
+      success: true,
+      message: 'Data imported successfully',
+      summary: { collections: 2, locations: 14, lodging: 3, future_kind: 1 },
+    });
+    const zip = { uri: 'file:///tmp/konto.zip', name: 'konto.zip', type: 'application/zip' };
+    const result = await client.edit.restoreBackup(zip);
+    expect(result.summary).toMatchObject({ collections: 2, locations: 14, lodging: 3, future_kind: 1 });
+    expect(calls[0].url).toBe('https://al.example/api/backup/import');
+    expect(calls[0].request).toMatchObject({ fieldName: 'file', file: zip, fields: { confirm: 'yes' } });
+  });
+
+  it('reports a refused backup with the server message', async () => {
+    const { client } = captureUpload(400, { error: 'Invalid backup file - missing data.json' });
+    const zip = { uri: 'file:///tmp/other.zip', name: 'other.zip', type: 'application/zip' };
+    await expect(client.edit.restoreBackup(zip)).rejects.toThrow('Invalid backup file - missing data.json');
+  });
+
   it('creates trails as JSON and activities with a GPX file as multipart', async () => {
     const { impl, calls } = capture(201, { id: 't1', name: 'Philosophenweg' });
     const uploads = captureUpload(201, { id: 'a1', name: 'Walk' }).calls;

@@ -204,8 +204,11 @@ function AccountForm({ user }: { user: User }) {
               }>
               {serverFile.busy ? tr('common.loading') : tr('account.exportAllAccountDataZip')}
             </ListItem>
-            <ListItem colors={rt.listColors} onPress={action.online ? () => void openWebsite('data') : undefined}>
-              {tr('account.restoreBackupOnWebsite')}
+            <ListItem
+              colors={rt.listColors}
+              leading={<RowIcon name="refresh" />}
+              onPress={() => router.push('/account/restore')}>
+              {tr('account.restoreBackup')}
             </ListItem>
           </FieldGroup.Section>
           {user.is_staff ? (
