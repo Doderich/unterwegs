@@ -57,6 +57,8 @@ function AccountForm({ user }: { user: User }) {
   const [dateFormat, setDateFormat] = useState(user.date_format ?? 'locale');
   const [busy, setBusy] = useState(false);
   const serverFile = useServerFile();
+  // Accounts with a password manage it, two-factor sign-in and email here; SSO-only accounts on the website.
+  const hasPassword = !!user.has_password && !user.disable_password;
   const units = useSelect(rt, {
     title: tr('account.unitsOfMeasurement'),
     label: tr('account.unitsOfMeasurement'),
@@ -169,23 +171,34 @@ function AccountForm({ user }: { user: User }) {
               onPress={() => router.push('/account/keys')}>
               {tr('account.manageApiKeys')}
             </ListItem>
-            <ListItem
-              colors={rt.listColors}
-              leading={<RowIcon name="link" />}
-              onPress={action.online ? () => void openWebsite('security') : undefined}>
-              {tr('account.passwordTwofactorAuthentication')}
-            </ListItem>
-            <ListItem
-              colors={rt.listColors}
-              leading={<RowIcon name="link" />}
-              onPress={action.online ? () => void openWebsite('emails') : undefined}>
-              {tr('account.manageEmailAddresses')}
-            </ListItem>
-            <FieldGroup.SectionFooter>
-              <Text textStyle={{ color: rt.colors.secondary, fontSize: 13 }}>
-                {tr('account.securityEmailOpenServerWebsite')}
-              </Text>
-            </FieldGroup.SectionFooter>
+            {hasPassword ? (
+              <ListItem
+                colors={rt.listColors}
+                leading={<RowIcon name="key" />}
+                onPress={() => router.push('/account/security')}>
+                {tr('account.signInSecurity')}
+              </ListItem>
+            ) : (
+              <>
+                <ListItem
+                  colors={rt.listColors}
+                  leading={<RowIcon name="link" />}
+                  onPress={action.online ? () => void openWebsite('security') : undefined}>
+                  {tr('account.passwordTwofactorAuthentication')}
+                </ListItem>
+                <ListItem
+                  colors={rt.listColors}
+                  leading={<RowIcon name="link" />}
+                  onPress={action.online ? () => void openWebsite('emails') : undefined}>
+                  {tr('account.manageEmailAddresses')}
+                </ListItem>
+                <FieldGroup.SectionFooter>
+                  <Text textStyle={{ color: rt.colors.secondary, fontSize: 13 }}>
+                    {tr('account.securityEmailOpenServerWebsite')}
+                  </Text>
+                </FieldGroup.SectionFooter>
+              </>
+            )}
           </FieldGroup.Section>
           <FieldGroup.Section title={tr('account.backup')}>
             <ListItem
