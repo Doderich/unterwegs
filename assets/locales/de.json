@@ -1,0 +1,10 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Unterwegs nutzt die Kamera, um den Anmelde-QR-Code zu scannen und Fotos für deine Reise aufzunehmen.",
+    "NSPhotoLibraryUsageDescription": "Unterwegs braucht Zugriff auf deine Fotos, um sie zu Orten, Unterkünften und Verbindungen hochzuladen.",
+    "NSLocationWhenInUseUsageDescription": "Unterwegs zeigt deinen Standort auf der Karte und verwendet ihn, wenn du einen Ort an deiner Position anlegst.",
+    "NSLocationAlwaysAndWhenInUseUsageDescription": "Unterwegs verwendet deinen Standort nur, während die App geöffnet ist: auf der Karte und wenn du einen Ort an deiner Position anlegst.",
+    "NSLocationAlwaysUsageDescription": "Unterwegs verwendet deinen Standort nur, während die App geöffnet ist: auf der Karte und wenn du einen Ort an deiner Position anlegst.",
+    "NSMotionUsageDescription": "Unterwegs verwendet keine Bewegungsdaten."
+  }
+}

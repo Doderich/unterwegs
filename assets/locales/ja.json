@@ -1,0 +1,10 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Unterwegsはサインイン用のQRコードを読み取り、旅の写真を撮るためにカメラを使います。",
+    "NSPhotoLibraryUsageDescription": "Unterwegsは写真を場所・宿泊・交通にアップロードするために写真へのアクセスが必要です。",
+    "NSLocationWhenInUseUsageDescription": "Unterwegsは地図上に現在地を表示し、今いる場所に新しい場所を追加するときに使います。",
+    "NSLocationAlwaysAndWhenInUseUsageDescription": "Unterwegsが現在地を使うのはアプリを開いている間だけです：地図上と、今いる場所に新しい場所を追加するとき。",
+    "NSLocationAlwaysUsageDescription": "Unterwegsが現在地を使うのはアプリを開いている間だけです：地図上と、今いる場所に新しい場所を追加するとき。",
+    "NSMotionUsageDescription": "Unterwegsはモーションデータを使いません。"
+  }
+}

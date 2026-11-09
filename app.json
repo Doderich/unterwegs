@@ -7,10 +7,16 @@
     "icon": "./assets/images/icon.png",
     "scheme": "unterwegs",
     "userInterfaceStyle": "automatic",
+    "locales": {
+      "en": "./assets/locales/en.json",
+      "de": "./assets/locales/de.json",
+      "ja": "./assets/locales/ja.json"
+    },
     "ios": {
       "icon": "./assets/unterwegs.icon",
       "supportsTablet": true,
       "infoPlist": {
+        "CFBundleAllowMixedLocalizations": true,
         "UISupportedInterfaceOrientations~ipad": [
           "UIInterfaceOrientationPortrait",
           "UIInterfaceOrientationPortraitUpsideDown",
@@ -80,7 +86,7 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Unterwegs nutzt die Kamera, um den Anmelde-QR-Code zu scannen und Fotos für deine Reise aufzunehmen.",
+          "cameraPermission": "Unterwegs uses the camera to scan the sign-in QR code and to take photos for your trip.",
           "microphonePermission": false,
           "recordAudioAndroid": false
         }
@@ -88,15 +94,19 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "Unterwegs braucht Zugriff auf deine Fotos, um sie zu Orten, Unterkünften und Verbindungen hochzuladen.",
-          "cameraPermission": "Unterwegs nutzt die Kamera, um den Anmelde-QR-Code zu scannen und Fotos für deine Reise aufzunehmen.",
+          "photosPermission": "Unterwegs needs access to your photos to upload them to locations, lodging and transportation.",
+          "cameraPermission": "Unterwegs uses the camera to scan the sign-in QR code and to take photos for your trip.",
           "microphonePermission": false
         }
       ],
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "Unterwegs zeigt deinen Standort auf der Karte und verwendet ihn, wenn du einen Ort an deiner Position anlegst."
+          "locationWhenInUsePermission": "Unterwegs shows your location on the map and uses it when you add a place where you are.",
+          "locationAlwaysAndWhenInUsePermission": "Unterwegs uses your location only while the app is open: on the map and when you add a place where you are.",
+          "locationAlwaysPermission": "Unterwegs uses your location only while the app is open: on the map and when you add a place where you are.",
+          "motionUsagePermission": "Unterwegs doesn't use motion data.",
+          "locationFullAccuracyPermission": "Unterwegs uses your precise location to add a place exactly where you are."
         }
       ],
       [

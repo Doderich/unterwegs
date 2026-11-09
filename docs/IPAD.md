@@ -49,7 +49,7 @@ On the iPad and the Mac the map is big enough to plan on; on the phone the same 
 ### Big pictures
 
 - **Looking forward:** the collection's places as a photo wall before the trip, so the cover is not the only picture of what is coming.
-- **Looking back:** a past collection opens with its photos large and the map of where we were. The photo grid of a day ("Photos of the day") and the full-screen gallery use the room instead of phone-sized thumbnails. Memories and passport stamps on Home and World get bigger cards.
+- **Looking back:** a past collection opens with its photos large and the map of where we were. The photo grid of a day ("Photos of the day") and the full-screen gallery use the room instead of phone-sized thumbnails. Memories and passport stamps on Home and World get bigger cards. **Not only on the iPad:** the owner wants looking back at past trips to be a nice and exciting experience on the phone too (09.11.2026), so it is designed for the phone first and then given the room on the iPad and the Mac.
 - Photos come from the offline copy where they are saved; a photo never downloaded keeps its placeholder offline.
 
 ### On the Mac
@@ -65,7 +65,7 @@ Right-click menus on rows and map points with the same actions as the phone's lo
 ## Order of work
 
 1. **The day map**: colour by day, one day with the open places and tonight's stay, putting and moving places from the map. Useful on the phone at once.
-2. **Big pictures** for looking forward and looking back.
+2. **Big pictures** for looking forward and looking back, on the phone as well as the iPad (looking back first).
 3. **Mac comforts**: menus, hover, shortcuts.
 4. **Order within a day** on the map, then suggestions.
 5. **Check** on an 11-inch and a 13-inch iPad and on the Mac: portrait, landscape, Slide Over, Split View, light and dark, more contrast, bold text, Riesig, VoiceOver, offline, a photo that never downloaded, and a Japanese screen.

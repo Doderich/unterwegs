@@ -73,7 +73,7 @@ Still open:
 
 - [ ] Phone check of 1.4.1: sign-out wipe (files, maps, images), QR confirmation, sign-in to a server with a self-made CA on Android (API, images, downloads and the WebView fallback) and that debug builds still reach Metro, an existing iOS sign-in surviving the keychain re-save, image picker and camera on Android without the storage permissions.
 - [x] Redirects: API calls, sign-in requests and file downloads go through `keyedFetch` (`src/api/http.ts`), which follows redirects itself: credentials only go along on the same origin, and a request body never follows to another host. Downloads read through it instead of `File.downloadFileAsync`. JavaScript only, so it can go out as an OTA update.
-- [ ] Redirects for images: `expo-image` still follows redirects with the key. Only matters for a server whose `/media` redirects to another host (for example object storage). Fix: load online images through `downloadToFile` into the image cache instead of passing headers to `expo-image`.
+- [x] Redirects for images: images that need the key are downloaded by the app through `keyedFetch` into `Paths.cache/keyed-images` (`src/offline/imageCache.ts`, at most 4 at a time) and `expo-image` only shows the file; images without the key still load directly. Check a photo grid and the gallery on a phone for speed.
 - [ ] Redirects for uploads: the native multipart upload (`src/api/upload.ts`) follows redirects too. Uploads are POSTs to the API, which doesn't redirect them on the pinned server.
 - [x] iOS backups include the documents folder (offline files) and the SQLite cache. Accepted: it's the user's own backup, encrypted when they choose, and it keeps a trip's files after a phone restore. The API key is not in it (`THIS_DEVICE_ONLY`).
 - [x] The browser-sheet callback uses the unverified `unterwegs://` scheme, so on Android another app could receive it. The key now travels encrypted for that one sign-in (login page v2, `server/README.md`); Android uses the WebView for servers with the v1 page. JavaScript in the app, so it ships as an OTA update; the owner's server needs the new page redeployed.
@@ -111,7 +111,7 @@ Checked and fine: the key lives only in SecureStore and never in the persisted c
 - [ ] EU trader status (Digital Services Act): a trader's address and phone number are shown in the listing; a non-trader can't monetise. Required for EU distribution.
 - [ ] Rename the production App Store Connect record to **Unterwegs - Travel Log**; submit a TestFlight build from it for review.
 - [ ] Privacy manifest: check that the generated `PrivacyInfo.xcprivacy` covers all SDKs' required-reason APIs (App Store Connect warns on upload).
-- [ ] Permission texts in `app.json` exist only in German; add English and Japanese.
+- [x] Permission texts: English in `app.json` (the default), German and Japanese in `assets/locales/*.json` (Expo `locales`, `CFBundleAllowMixedLocalizations`). The always-location and motion texts that `expo-location` adds by default now say the app doesn't use them. Native change: ships with the next build. Check the German and Japanese prompts on a phone.
 - [ ] Age-rating questionnaire, content rights, pricing and availability.
 - [ ] iPhone screenshots (medium display, 1206 × 2622; texts and order in [STORE-LISTING.md](STORE-LISTING.md)).
 - [ ] iPad screenshots (13-inch display, 2064 × 2752): the app supports iPad since 1.6.0 ([IPAD.md](IPAD.md)), so App Store Connect requires them.
@@ -122,5 +122,8 @@ Checked and fine: the key lives only in SecureStore and never in the persisted c
 
 - [ ] Real-phone pass from [ROADMAP.md → Next](ROADMAP.md#next) step 1 on the store binaries: clean-install cold start, offline restart, PDFs/photos, offline maps, sharing into the app, QR sign-in, large text, VoiceOver/TalkBack.
 - [ ] A fresh install by someone outside the family, with no server preset and another AdventureLog setup: onboarding works without explanation.
-- [ ] Hide or fix what fails on other servers: Wikipedia photo import (400/500), Overpass timeouts, leaving a shared collection (403).
+- [ ] Hide or fix what fails on other servers. App side done; check on a phone:
+  - Photo import (Wikipedia, typed link, link preview): when the server answers 400, the phone downloads the public image itself (with a `User-Agent`, never the key) and uploads it like a picked photo (`src/data/webImageImport.ts`).
+  - Nearby: a failed search can be tried again with a tap, and a failed or empty one offers the same search in the maps app (`mapSearchUrl`).
+  - Leaving a shared collection: still 403 on v0.13.1 and upstream `main` (`CollectionShared` lets collaborators only read a collection, and `leave` is a POST). The app now says to ask the owner to remove you. Needs a server fix; report it upstream.
 - [ ] `npm run check` green, including the privacy test.

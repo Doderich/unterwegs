@@ -265,7 +265,7 @@ export default function LocationEditScreen() {
               autoCorrect={false}
             />
             {markdown.row}
-            {edits.can('importImages') && name.trim() ? (
+            {edits.can('importImage') && name.trim() ? (
               <ListItem colors={rt.listColors} leading={<RowIcon name="world" />} onPress={() => void fromWikipedia()}>
                 {fetchingWiki ? tr('common.loading') : tr('locationEdit.descriptionFromWikipedia')}
               </ListItem>

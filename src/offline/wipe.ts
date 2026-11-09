@@ -4,6 +4,7 @@ import { deleteAllRegions } from '@/maps/offline';
 import { clearExports } from '@/ui/serverFile';
 
 import { clearFileCache } from './fileCache';
+import { clearKeyedImages } from './imageCache';
 
 /**
  * Removes what the signed-in account left on the device besides the query cache: downloaded files and exports,
@@ -13,6 +14,7 @@ import { clearFileCache } from './fileCache';
 export async function wipeLocalData(): Promise<void> {
   try {
     clearFileCache();
+    clearKeyedImages();
     clearExports();
   } catch {
     // Retried on the next start while signed out.

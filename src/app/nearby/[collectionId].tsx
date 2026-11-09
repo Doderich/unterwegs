@@ -15,6 +15,7 @@ import { formatDistance } from '@/ui/format';
 import { starsLabel } from '@/ui/forms';
 import { openInMaps, openUrl, RowIcon, useRowTheme } from '@/ui/rows';
 import { useSelect } from '@/ui/Select';
+import { searchInMaps } from '@/ui/mapLinks';
 import { Sub } from '@/ui/Sub';
 import { Host } from '@/ui/Host';
 
@@ -23,6 +24,14 @@ const categoryOptions = () => [
   { value: 'food', label: tr('nearby.foodDrink') },
   { value: 'lodging', label: tr('common.stays') },
 ];
+
+/** What to search for in the maps app when the server finds nothing. */
+const mapQuery = (category: RecommendationCategory) =>
+  category === 'food'
+    ? tr('nearby.mapQueryFood')
+    : category === 'lodging'
+      ? tr('nearby.mapQueryLodging')
+      : tr('nearby.mapQueryTourism');
 
 /**
  * Places near a point (from the server's recommendations: OpenStreetMap, plus Google when set up there).
@@ -144,7 +153,24 @@ export default function NearbyScreen() {
         <FieldGroup>
           <FieldGroup.Section>{categorySelect.row}</FieldGroup.Section>
           <FieldGroup.Section title={tr('nearby.within5Km')}>
-            {status ? <ListItem colors={rt.listColors}>{status}</ListItem> : null}
+            {status ? (
+              <ListItem
+                colors={rt.listColors}
+                onPress={places.isError ? () => void places.refetch() : undefined}
+                supportingText={places.isError ? <Sub>{tr('nearby.tapToTryAgain')}</Sub> : undefined}>
+                {status}
+              </ListItem>
+            ) : null}
+            {places.isError || (places.isSuccess && !places.data.length) ? (
+              <ListItem
+                colors={rt.listColors}
+                leading={<RowIcon name="map" />}
+                onPress={() =>
+                  void searchInMaps(mapQuery(category), latitude, longitude)
+                }>
+                {tr('nearby.searchInMaps')}
+              </ListItem>
+            ) : null}
             {(places.data ?? []).map((p) => (
               <ListItem
                 key={p.id}

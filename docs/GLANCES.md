@@ -13,6 +13,15 @@ Both use `collectionPhase` and the same order as the Home feed (`src/data/homeFe
 
 "Today" and "tonight" follow `viewToday` (`src/data/selectors.ts`): the zone of tonight's lodging, falling back to the collection time zone. Every time a glance shows is formatted in the zone of the object it belongs to, and gets a zone suffix when that zone differs from today's zone ("08:42 Frankfurt").
 
+## Every glance can be switched off
+
+The owner's rule (09.11.2026): every glance can be turned off and on again, each on its own. Today that holds for reminders (one switch for all, then one per kind) and the travel-day Live Activity (Settings → Reminders). Each new glance follows it:
+
+- A glance the app shows by itself (a reminder, a Live Activity, the Android travel-day notification, a background refresh) gets its own switch, with its default written next to it in this document.
+- A widget is turned on and off by adding it to or removing it from the Home or Lock Screen. What a widget does on its own (ticking off a checklist item, stepping through departures) gets a switch too, so the widget can stay and only show.
+- Turning a glance off removes what it already shows (scheduled reminders, a running activity, the ongoing notification) at the next recompute, not only future ones.
+- The settings screen becomes "Widgets and reminders" once there is more than reminders and the Live Activity on it, grouped by kind of glance, and lists the widgets with how to add them.
+
 ## When glances are recomputed
 
 `src/glances/compute.ts` holds pure functions of the cached data and `now`: `focusCollection`, `widgetGlances` / `widgetTimeline`, `computeReminders` and `travelActivity`. They are tested against the anonymised sample (`src/glances/__tests__`). `useGlances` (mounted in the root layout) runs them:

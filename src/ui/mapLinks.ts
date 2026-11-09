@@ -37,6 +37,28 @@ export function mapUrl(
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(coords ?? label)}`;
 }
 
+/**
+ * A search for `query` ("restaurants", "sights") around a point, for when the server's nearby search fails. OsmAnd
+ * has no search link, so it falls back to the system maps app.
+ */
+export function mapSearchUrl(app: MapApp, platform: string, query: string, latitude: number, longitude: number): string {
+  const q = encodeURIComponent(query);
+  const coords = `${latitude},${longitude}`;
+  if (app === 'organic') return `om://search?query=${q}&cll=${coords}`;
+  if (app === 'google') return `https://www.google.com/maps/search/${q}/@${coords},15z`;
+  if (app === 'apple' || platform === 'ios') return `https://maps.apple.com/?q=${q}&sll=${coords}`;
+  if (platform === 'android') return `geo:${coords}?q=${q}`;
+  return `https://www.google.com/maps/search/${q}/@${coords},15z`;
+}
+
+export async function searchInMaps(query: string, latitude: number, longitude: number): Promise<void> {
+  try {
+    await Linking.openURL(mapSearchUrl(getSettings().mapApp, Platform.OS, query, latitude, longitude));
+  } catch {
+    Alert.alert(tr('mapLinks.couldNotOpen'), tr('mapLinks.chooseAnotherApp'));
+  }
+}
+
 /** Read the preference at tap time so every map action follows the latest Settings choice. */
 export async function openInMaps(label: string, latitude?: number | null, longitude?: number | null): Promise<void> {
   const url = mapUrl(getSettings().mapApp, Platform.OS, label, latitude, longitude);

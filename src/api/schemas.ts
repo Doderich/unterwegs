@@ -476,6 +476,14 @@ export const importedImagesSchema = z.object({
   requested_count: count,
 });
 
+/**
+ * `POST /api/backup/import` (v0.13.1, source-verified): `{ success, message, summary }`, the summary counting what
+ * was created per kind (`collections`, `locations`, `lodging`, `images`, …). Unknown kinds are kept.
+ */
+export const backupRestoreSchema = z.object({
+  summary: z.record(z.string(), z.number()).catch({}).default({}),
+});
+
 /** One place from `GET /api/recommendations/query` (OpenStreetMap, plus Google when the server has a key). */
 export const recommendationSchema = z.object({
   id: str,

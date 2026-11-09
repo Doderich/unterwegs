@@ -10,12 +10,14 @@ import { categoryChoices, categoryDraft, categoryLabel } from '@/data/categories
 import { fetchLinkPreview, placeFieldsFromPreview } from '@/data/linkPreview';
 import { useCategories, useCollections, useUser } from '@/data/queries';
 import { useLocationAction } from '@/data/useLocation';
+import { importWebImage } from '@/data/webImageImport';
 import { getLanguage, tr } from '@/i18n';
 import { FormHost } from '@/ui/FormHost';
 import { publicRow } from '@/ui/forms';
 import { parsePrice, parseTags } from '@/ui/formValues';
 import { androidToolbarIcon } from '@/ui/icons';
 import { useMarkdownEditor } from '@/ui/MarkdownEditor';
+import { shrinkImageFile } from '@/ui/media';
 import { useCurrencySelect } from '@/ui/objectForm';
 import { fieldsFromPick } from '@/ui/pickedPlace';
 import { usePlaceSearch } from '@/ui/PlaceSearch';
@@ -199,7 +201,9 @@ export function PlaceEditor({ location, sharedLink }: { location?: Location; sha
     );
     if (saved && pictureUrl) {
       try {
-        const imported = await client.edit.importImages('location', saved.id, [pictureUrl], 'url');
+        const imported = await importWebImage(client, 'location', saved.id, pictureUrl, 'url', {
+          prepare: shrinkImageFile,
+        });
         if (!imported.created_count) Alert.alert(tr('places.fillFromLink'), tr('places.pictureNotSaved'));
       } catch {
         Alert.alert(tr('places.fillFromLink'), tr('places.pictureNotSaved'));

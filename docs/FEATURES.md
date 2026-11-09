@@ -25,7 +25,9 @@ The app only ever stores one API key per device (secure storage); passwords and 
 
 Settings → "Konto verwalten": edit username, first/last name, public profile, measurement system, default currency and website date format. Making a profile private explicitly warns that the server removes shared-collection memberships and pending invites. API keys can be listed, created (the full key is shown once, never persisted in the query cache) and revoked; revoking this device's key signs it out. A full account ZIP can be exported. Non-staff users can delete their account after entering their username, password when required, and a final destructive confirmation.
 
-Password/MFA, email management, backup restoration and (for staff) server administration open the corresponding server settings tab in the system browser. These browser links are current implementation gaps, not permanent product exclusions. Email/MFA endpoints rejected the app key in live checks; backup restoration uses a separate API-key-capable endpoint that still needs native UI. Staff endpoints need a separate API audit. Account writes need internet.
+A backup ZIP is restored in the app ("Sicherung wiederherstellen"): the server deletes everything the account owns and imports the backup with new ids, so the screen offers a fresh export first, asks for the username and a final confirmation, waits until no offline edits are waiting, and afterwards drops the copies of the old collections and shows what was restored.
+
+Accounts with a password manage it, two-factor sign-in (authenticator app and recovery codes) and their email addresses in the app ("Anmeldung und Sicherheit"). allauth doesn't take the app's key, so the screen asks for the password once, signs in to allauth for as long as it is open and ends that session when it closes; nothing is stored. Accounts without a password (SSO only) open the website's security and email tabs instead. Staff open server administration on the website: that tab links to Django's admin pages, which have no API, and its "update visited regions" action is already in the app. Account writes need internet.
 
 ### Home and app navigation
 

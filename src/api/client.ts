@@ -8,6 +8,7 @@ import { tr } from '@/i18n';
 import {
   attachmentSchema,
   apiKeySchema,
+  backupRestoreSchema,
   calendarEventSchema,
   categorySchema,
   categoryWithCountSchema,
@@ -508,6 +509,13 @@ export function createClient(
       deleteApiKey: (keyId: string) => send('DELETE', `/auth/api-keys/${id(keyId)}`),
       deleteAccount: (confirmation: string, password: string) =>
         send('POST', '/auth/delete-account', { confirmation, password }),
+      /**
+       * Restores an account ZIP from "Alle Kontodaten exportieren". The server first **deletes all of the account's
+       * data** (collections, locations, categories, visited regions, …) and then imports the backup in one
+       * transaction; every object gets a new id. Answers 200 with counts per kind.
+       */
+      restoreBackup: (file: UploadFile) =>
+        upload('/api/backup/import', { confirm: 'yes' }, 'file', file, backupRestoreSchema),
       createNote: (n: NoteInput & { collection: string }) => send('POST', '/api/notes', n, noteSchema),
       /** Keep the collection explicit: the server treats omission as removal for collaborators. */
       updateNote: (noteId: string, n: Partial<NoteInput> & { collection: string }) =>
