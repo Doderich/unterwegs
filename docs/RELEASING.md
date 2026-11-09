@@ -18,20 +18,34 @@ Built locally on **04.11.2026** at `b087a1c` (application fix `7a11939`) with `n
 
 The signed APK, checksum and matching R8/JavaScript maps are retained under `build/android/`. The existing signed APK was published as the latest GitHub release on **04.11.2026**, after pushing its commits and rechecking its checksum and certificate; Obtainium can offer it as an update. Corrected-APK launch verification remains pending. This is an Android replacement only; no new iOS archive was built.
 
-## Release in progress: 1.6.1
-
-The permission-localization changes after the first 1.6.0 archive add native iOS resources (`assets/locales/` and Expo config). Release them with runtime **1.6.1** and new Android/iOS binaries, as required by the native-change rule. Earlier 1.6.0 builds do not receive 1.6.1 OTA updates. This release also includes the merged travel utilities, native account screens and everyday-screen simplification. Public builds have no server preset.
-
 ## Current release
+
+Release record, **09.11.2026** (runtime **1.6.1**):
+
+| Platform | Version / build | Result |
+| --- | --- | --- |
+| Android | **1.6.1-29903862** | Latest GitHub release, available through Obtainium. ARM64 APK **33,435,078 bytes**, universal APK **78,674,652 bytes**. Both upload certificates match the published 1.5.1 APK; published digests are verified below. No server preset. |
+| iOS | **1.6.1 (202611091342)** | Archive and App Store Connect upload succeeded. Processing and TestFlight tester availability are not independently confirmed. No server preset. Apple reported non-blocking missing vendor-framework dSYM warnings. Archive: `build/testflight/production-1.6.1-202611091342/`. |
+
+Built from `684ddf7` (PR #23, merged into `main` as `0cca456`; application/config contents match). The permission-localization update adds native iOS resources, so this release bumps the runtime from 1.6.0 to **1.6.1** and needs new binaries. Older runtimes do not receive 1.6.1 OTA updates. The release includes currency conversion and local history, offline units, home/destination clocks, editable local travel essentials, lodging address cards, offline readiness, native account security/backup restoration, simpler screens and the merged provider/image fixes.
+
+Preflight: license regeneration unchanged; typecheck, **81 suites / 586 tests** (one suite/two tests skipped) and lint pass (one existing warning). Artifact checks verified Android versions/runtime and matching certificates against the downloaded previous release, and iOS version/runtime, production channel, iPhone/iPad support and matching extension build numbers. Both platforms' embedded JavaScript contains no configured server preset. Privacy pages deployed successfully and were checked live in de/en/ja. The release binaries have not had a separate installed-device regression pass; source/simulator coverage and remaining limits stay in [TRAVEL-UTILITIES.md](TRAVEL-UTILITIES.md).
+
+Android SHA-256: ARM64 `7ff867710a7c4f8b43d5c5d33bf8cad03a816e8ee342e7bb2571e236807907fd`; universal `92c92b9c38b1f13cdd4bfe94ffa3bd57d941c0ffb1e53258f5a51d0f775e33da`. Signed APKs, checksums and matching R8/JavaScript maps are retained under `build/android/`. Build/upload logs and artifact verification records are retained privately under `build/releases/`.
+
+Initial build attempts stopped after disk exhaustion, and the 1Password desktop connection was restored. Only generated development-build caches were removed; previous release artifacts and signing material were retained. A preliminary 1.6.0 iOS upload was interrupted during analysis before confirmed completion; its TestFlight state is not verified. The final release to use is **1.6.1 (202611091342)**.
+
+### 1.6.0 iOS release
+
 
 Release record, **09.11.2026** (runtime **1.6.0**), iOS only:
 
 | Platform | Version / build          | Result                                                                                                                                                                                                                                                                          |
 | -------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | iOS      | **1.6.0 (202611090754)** | Archive and App Store Connect upload succeeded. Processing and TestFlight tester availability are not independently confirmed. No preset. Apple again reported non-blocking missing vendor-framework dSYM warnings. Archive: `build/testflight/production-1.6.0-202611090754/`. |
-| Android  | none yet                 | Android stays on 1.5.1 until a 1.6.0 APK is published.                                                                                                                                                                                                                          |
+| Android  | none yet                 | At that point Android remained on 1.5.1; superseded by 1.6.1 above.                                                                                                                                                                                                                          |
 
-Built from `a504931` on `feat/ipad-layout` (not yet merged to `main`). This is a native release: `ios.supportsTablet` makes the app run on iPad (and on Apple silicon Macs as "Designed for iPad"), so 1.5.1 builds do not receive this JavaScript over the air. It adds the iPad layout (collection tabs in the header, search beside the toolbar), the day map, photo cards in every list (two columns on iPad), the multi-photo hero and the grouped collection search with library places. Preflight: typecheck, **69 suites / 509 tests** (2 skipped), lint (one existing warning). Checked on iPad and iPhone simulators and the Android emulator; the release binary has not had a separate installed-device pass.
+Built from `a504931` on `feat/ipad-layout` (later merged to `main`). This is a native release: `ios.supportsTablet` makes the app run on iPad (and on Apple silicon Macs as "Designed for iPad"), so 1.5.1 builds do not receive this JavaScript over the air. It adds the iPad layout (collection tabs in the header, search beside the toolbar), the day map, photo cards in every list (two columns on iPad), the multi-photo hero and the grouped collection search with library places. Preflight: typecheck, **69 suites / 509 tests** (2 skipped), lint (one existing warning). Checked on iPad and iPhone simulators and the Android emulator; the release binary has not had a separate installed-device pass.
 
 ### 1.5.1 release
 

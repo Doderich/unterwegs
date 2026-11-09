@@ -1,6 +1,6 @@
 # Travel utilities
 
-Scope and implementation order, 09.11.2026. Phases 1 and 2 are implemented in the working tree; device verification and release remain outstanding. The selected Phase 3 tools (units, clocks and essentials) are implemented; the rest remain candidates. Current behavior belongs in [FEATURES.md](FEATURES.md), overall priority in [ROADMAP.md](ROADMAP.md), and extension research in [travel-utilities-server-compatibility.md](research/travel-utilities-server-compatibility.md).
+Scope and implementation order, 09.11.2026. Phases 1 and 2 and the selected Phase 3 tools shipped in the 1.6.1 Android/TestFlight release on 09.11.2026. Remaining device coverage is recorded below. The selected Phase 3 tools (units, clocks and essentials) are implemented; the rest remain candidates. Current behavior belongs in [FEATURES.md](FEATURES.md), overall priority in [ROADMAP.md](ROADMAP.md), and extension research in [travel-utilities-server-compatibility.md](research/travel-utilities-server-compatibility.md).
 
 ## Implementation status
 
@@ -128,3 +128,6 @@ These are ideas, not implemented commitments. Keep them out of the collection he
 
 
 Additional-utilities verification: `npm run check` passes with 81 suites and 586 tests (one suite/two tests skipped, one pre-existing lint warning). Android production export passes. On the iOS 27 simulator, units converted °C/°F, the centered icon swapped the pair, and selecting the opposite unit in the native sheet swapped it back. Home/destination clocks displayed Berlin/Tokyo times and native date/time controls. Essentials began empty; a fictional contact was saved, survived a complete app relaunch, and was removed through the confirmed deletion flow. Units was also inspected in dark mode at accessibility-large system text, then the device returned to light/large. Android authenticated interaction, tablet layouts, VoiceOver and an airplane-mode restart remain unverified for these additions. No test contact remains.
+
+
+Release: 1.6.1 Android APKs were published and iOS build 202611091342 was uploaded to App Store Connect on 09.11.2026. Apple processing/tester availability is not confirmed. Artifact signing/runtime/public-preset checks passed; privacy pages are live in all three languages. Full identifiers and checksums: [RELEASING.md](RELEASING.md#current-release).
