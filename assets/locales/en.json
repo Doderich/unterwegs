@@ -1,0 +1,10 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Unterwegs uses the camera to scan the sign-in QR code and to take photos for your trip.",
+    "NSPhotoLibraryUsageDescription": "Unterwegs needs access to your photos to upload them to locations, lodging and transportation.",
+    "NSLocationWhenInUseUsageDescription": "Unterwegs shows your location on the map and uses it when you add a place where you are.",
+    "NSLocationAlwaysAndWhenInUseUsageDescription": "Unterwegs uses your location only while the app is open: on the map and when you add a place where you are.",
+    "NSLocationAlwaysUsageDescription": "Unterwegs uses your location only while the app is open: on the map and when you add a place where you are.",
+    "NSMotionUsageDescription": "Unterwegs doesn't use motion data."
+  }
+}

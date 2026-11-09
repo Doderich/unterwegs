@@ -111,7 +111,7 @@ Checked and fine: the key lives only in SecureStore and never in the persisted c
 - [ ] EU trader status (Digital Services Act): a trader's address and phone number are shown in the listing; a non-trader can't monetise. Required for EU distribution.
 - [ ] Rename the production App Store Connect record to **Unterwegs - Travel Log**; submit a TestFlight build from it for review.
 - [ ] Privacy manifest: check that the generated `PrivacyInfo.xcprivacy` covers all SDKs' required-reason APIs (App Store Connect warns on upload).
-- [ ] Permission texts in `app.json` exist only in German; add English and Japanese.
+- [x] Permission texts: English in `app.json` (the default), German and Japanese in `assets/locales/*.json` (Expo `locales`, `CFBundleAllowMixedLocalizations`). The always-location and motion texts that `expo-location` adds by default now say the app doesn't use them. Native change: ships with the next build. Check the German and Japanese prompts on a phone.
 - [ ] Age-rating questionnaire, content rights, pricing and availability.
 - [ ] iPhone screenshots (medium display, 1206 × 2622; texts and order in [STORE-LISTING.md](STORE-LISTING.md)).
 - [ ] iPad screenshots (13-inch display, 2064 × 2752): the app supports iPad since 1.6.0 ([IPAD.md](IPAD.md)), so App Store Connect requires them.
