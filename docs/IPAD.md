@@ -1,6 +1,13 @@
 # Unterwegs on iPad and Mac
 
-Status: in progress. The iPad target is on (`ios.supportsTablet`, the iPad rotates, version 1.6.0) and the day map is built (step 1); the rest is still to build. [DESIGN.md](../DESIGN.md) keeps describing the phone until this ships.
+Status: shipped in 1.6.0 (TestFlight, 09.11.2026) with the layout below and the day map (step 1); steps 2–5 are still to build. Built so far:
+
+- The iPad target (`ios.supportsTablet`, all four orientations); on an Apple silicon Mac it runs as "Designed for iPad" once App Store Connect → Pricing and Availability → "iPhone and iPad Apps on Apple Silicon Macs" is ticked ([RELEASING.md](RELEASING.md#testflight-ios)).
+- The phone's screens, wider, with the iPadOS tab bar at the top. A collection puts its tabs in the header row, with Back and the title on the left (`src/ui/CollectionHeader.tsx`, `src/ui/CollectionTabStack.tsx`); a regular-width window is `useRegularWidth()` (`src/ui/regularWidth.ts`).
+- Search beside the toolbar buttons, in its own group, on every main screen and in a collection: collapsed to a button in portrait, an open field in landscape (`src/ui/HeaderSearch.tsx`). Collection search stays on the collection ([FEATURES.md](FEATURES.md#home-and-app-navigation)).
+- Photo cards in every list, in two equal columns ([DESIGN.md](../DESIGN.md#photo-row)); the next collection's hero shows several photos side by side instead of stretching one.
+
+[DESIGN.md](../DESIGN.md) describes the shared rules; this file holds what is iPad- and Mac-specific.
 
 ## Who uses it, and when
 

@@ -113,7 +113,9 @@ Checked and fine: the key lives only in SecureStore and never in the persisted c
 - [ ] Privacy manifest: check that the generated `PrivacyInfo.xcprivacy` covers all SDKs' required-reason APIs (App Store Connect warns on upload).
 - [ ] Permission texts in `app.json` exist only in German; add English and Japanese.
 - [ ] Age-rating questionnaire, content rights, pricing and availability.
-- [ ] iPhone screenshots (medium display, 1206 × 2622; texts and order in [STORE-LISTING.md](STORE-LISTING.md)). The app target is iPhone-only; iPad screenshots only if iPad support ([IPAD.md](IPAD.md)) ships.
+- [ ] iPhone screenshots (medium display, 1206 × 2622; texts and order in [STORE-LISTING.md](STORE-LISTING.md)).
+- [ ] iPad screenshots (13-inch display, 2064 × 2752): the app supports iPad since 1.6.0 ([IPAD.md](IPAD.md)), so App Store Connect requires them.
+- [ ] Decide whether the App Store offers the app on Apple silicon Macs (Pricing and Availability); ticking it for TestFlight on the Mac also lists it there.
 - [x] Export compliance: `ios.config.usesNonExemptEncryption: false`.
 
 ## 6. Quality gates
