@@ -1,0 +1,40 @@
+src/i18n/locales/de.json
+  s_c33c048724ce72::t_f891c7aadf1f4c 61
+  s_c33c048724ce72::t_630c3943180fb0 24,39-60
+src/i18n/locales/en.json
+  s_c33c048724ce72::t_f891c7aadf1f4c 61
+  s_c33c048724ce72::t_630c3943180fb0 24,39-60
+src/app/account/index.tsx
+  s_c33c048724ce72::t_a2cc6d6ca450d7 207-211
+src/api/__tests__/client.test.ts
+  s_c33c048724ce72::t_4e166493850d00 382-400
+src/api/schemas.ts
+  s_c33c048724ce72::t_8148cd4ba73776 479-486
+src/app/account/restore.tsx
+  s_c33c048724ce72::t_fa649e18d0d6ab 1-20,29-87,89,91-153,155-175
+  s_c33c048724ce72::t_630c3943180fb0 21-28,88,90,154
+src/i18n/locales/ja.json
+  s_c33c048724ce72::t_630c3943180fb0 24,39-59
+  s_c33c048724ce72::t_f891c7aadf1f4c 60
+src/app/_layout.tsx
+  s_c33c048724ce72::t_a2cc6d6ca450d7 136
+src/api/client.ts
+  s_c33c048724ce72::t_b2d549d6bed988 512-518
+  s_c33c048724ce72::t_8148cd4ba73776 11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "71d7604717739a533d929a0cf65dda63efba049d",
+  "prompts": {},
+  "sessions": {
+    "s_c33c048724ce72": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "91fea1de-0f1e-4bf4-9af1-a6cd58c9f12d",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Malte Budig <100218844+Doderich@users.noreply.github.com>"
+    }
+  }
+}
